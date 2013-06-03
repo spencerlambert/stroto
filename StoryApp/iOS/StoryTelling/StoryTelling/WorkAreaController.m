@@ -116,7 +116,7 @@
 - (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
     CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
     if(CGRectIntersectsRect(mainframe, testframe)){
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, tiv.size.width, tiv.size.height)];
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
         imageview.image = tiv;
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         pan.delegate = self;
