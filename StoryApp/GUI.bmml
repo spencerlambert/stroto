@@ -116,10 +116,10 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="1430" y="283" w="-1" h="-1" measuredW="150" measuredH="21" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="1430" y="283" w="-1" h="-1" measuredW="208" measuredH="21" zOrder="28" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
-        <text>Click%20Background%20Images</text>
+        <text>Click%20to%20Change%20Background%20Image</text>
       </controlProperties>
     </control>
     <control controlID="37" controlTypeID="com.balsamiq.mockups::Arrow" x="1447" y="402" w="21" h="43" measuredW="150" measuredH="100" zOrder="29" locked="false" isInGroup="-1">
