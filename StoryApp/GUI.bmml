@@ -132,10 +132,10 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="1432" y="378" w="144" h="-1" measuredW="99" measuredH="21" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="1432" y="378" w="144" h="-1" measuredW="107" measuredH="21" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
-        <text>Forgroud%20Images</text>
+        <text>Forground%20Images</text>
       </controlProperties>
     </control>
     <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="1432" y="357" w="144" h="-1" measuredW="140" measuredH="21" zOrder="31" locked="false" isInGroup="-1">
