@@ -2,22 +2,17 @@
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="729" y="86" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <bgPattern>topBlueBottom</bgPattern>
+        <bgPattern>topBlackBottom</bgPattern>
         <bgTransparent>true</bgTransparent>
         <orientation>portrait</orientation>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="807" y="481" w="-1" h="-1" measuredW="128" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Create%20New%20Story</text>
-      </controlProperties>
-    </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="831" y="193" w="-1" h="-1" measuredW="75" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="831" y="193" w="-1" h="-1" measuredW="75" measuredH="21" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Story%20Telling</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="755" y="224" w="227" h="256" measuredW="172" measuredH="95" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::DataGrid" x="755" y="224" w="227" h="242" measuredW="172" measuredH="95" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <hasHeader>false</hasHeader>
@@ -26,83 +21,89 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::iPhone" x="1063" y="86" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::iPhone" x="1063" y="86" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <bgPattern>topOnly</bgPattern>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::PointyButton" x="1261" y="191" w="-1" h="-1" measuredW="47" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::PointyButton" x="1261" y="191" w="-1" h="-1" measuredW="47" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Next</text>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::PointyButton" x="1097" y="192" w="-1" h="-1" measuredW="48" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::PointyButton" x="1097" y="192" w="-1" h="-1" measuredW="48" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>left</direction>
         <text>Back</text>
       </controlProperties>
     </control>
-    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextArea" x="1103" y="257" w="200" h="28" measuredW="200" measuredH="140" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextArea" x="1103" y="257" w="200" h="28" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>New%20Story</text>
       </controlProperties>
     </control>
-    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="236" w="-1" h="-1" measuredW="71" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="236" w="-1" h="-1" measuredW="71" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Story%20Name</text>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="299" w="-1" h="-1" measuredW="118" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="299" w="-1" h="-1" measuredW="118" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Background%20Images</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::TextArea" x="1104" y="319" w="200" h="67" measuredW="200" measuredH="140" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::TextArea" x="1104" y="319" w="200" h="67" measuredW="200" measuredH="140" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::PointyButton" x="1260" y="291" w="-1" h="-1" measuredW="42" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::PointyButton" x="1260" y="291" w="-1" h="-1" measuredW="42" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>center</direction>
         <text>Add</text>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="401" w="-1" h="-1" measuredW="114" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="1103" y="401" w="-1" h="-1" measuredW="114" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Foreground%20Images</text>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::TextArea" x="1104" y="421" w="200" h="67" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::TextArea" x="1104" y="421" w="200" h="67" measuredW="200" measuredH="140" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::PointyButton" x="1260" y="393" w="-1" h="-1" measuredW="42" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::PointyButton" x="1260" y="393" w="-1" h="-1" measuredW="42" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>center</direction>
         <text>Add</text>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::iPhone" x="1396" y="83" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="15" locked="false" isInGroup="-1"/>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::Image" x="1110" y="326" w="50" h="52" measuredW="77" measuredH="79" zOrder="16" locked="false" isInGroup="-1"/>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Image" x="1166" y="326" w="50" h="52" measuredW="77" measuredH="79" zOrder="17" locked="false" isInGroup="-1"/>
-    <control controlID="21" controlTypeID="com.balsamiq.mockups::Image" x="1113" y="428" w="50" h="52" measuredW="77" measuredH="79" zOrder="18" locked="false" isInGroup="-1"/>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Image" x="1423" y="180" w="228" h="328" measuredW="320" measuredH="480" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::iPhone" x="1396" y="83" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="14" locked="false" isInGroup="-1"/>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Image" x="1110" y="326" w="50" h="52" measuredW="77" measuredH="79" zOrder="15" locked="false" isInGroup="-1"/>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Image" x="1166" y="326" w="50" h="52" measuredW="77" measuredH="79" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Image" x="1113" y="428" w="50" h="52" measuredW="77" measuredH="79" zOrder="17" locked="false" isInGroup="-1"/>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Image" x="1423" y="180" w="228" h="328" measuredW="320" measuredH="480" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <src>./Images/Layout.png</src>
       </controlProperties>
     </control>
-    <control controlID="23" controlTypeID="com.balsamiq.mockups::Image" x="1432" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="20" locked="false" isInGroup="-1"/>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::Image" x="1482" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="21" locked="false" isInGroup="-1"/>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Image" x="1532" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="22" locked="false" isInGroup="-1"/>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Image" x="1430" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="23" locked="false" isInGroup="-1"/>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Image" x="1482" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="24" locked="false" isInGroup="-1"/>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::Image" x="1532" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="25" locked="false" isInGroup="-1"/>
-    <control controlID="30" controlTypeID="com.balsamiq.mockups::PointyButton" x="1595" y="194" w="-1" h="-1" measuredW="50" measuredH="27" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Image" x="1432" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="19" locked="false" isInGroup="-1"/>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Image" x="1482" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="20" locked="false" isInGroup="-1"/>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Image" x="1532" y="184" w="44" h="44" measuredW="77" measuredH="79" zOrder="21" locked="false" isInGroup="-1"/>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Image" x="1430" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="22" locked="false" isInGroup="-1"/>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Image" x="1482" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="23" locked="false" isInGroup="-1"/>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Image" x="1532" y="458" w="44" h="44" measuredW="77" measuredH="79" zOrder="24" locked="false" isInGroup="-1"/>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::PointyButton" x="1595" y="194" w="-1" h="-1" measuredW="50" measuredH="27" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>center</direction>
         <text>Done</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::PointyButton" x="808" y="475" w="-1" h="-1" measuredW="125" measuredH="27" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>center</direction>
+        <text>Create%20New%20Story</text>
       </controlProperties>
     </control>
   </controls>
