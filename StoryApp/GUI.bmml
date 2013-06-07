@@ -106,5 +106,59 @@
         <text>Create%20New%20Story</text>
       </controlProperties>
     </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Arrow" x="1447" y="240" w="21" h="43" measuredW="150" measuredH="100" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <curvature>-1</curvature>
+        <direction>top</direction>
+        <leftArrow>true</leftArrow>
+        <rightArrow>false</rightArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="1430" y="283" w="-1" h="-1" measuredW="150" measuredH="21" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Click%20Background%20Images</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Arrow" x="1447" y="402" w="21" h="43" measuredW="150" measuredH="100" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <curvature>1</curvature>
+        <direction>bottom</direction>
+        <leftArrow>true</leftArrow>
+        <rightArrow>false</rightArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="1432" y="378" w="144" h="-1" measuredW="99" measuredH="21" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Forgroud%20Images</text>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="1432" y="357" w="144" h="-1" measuredW="140" measuredH="21" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Drag%2C%20Zoom%2C%20and%20Rotate</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Arrow" x="1595" y="342" w="33" h="103" measuredW="150" measuredH="100" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <curvature>1</curvature>
+        <direction>top</direction>
+        <leftArrow>false</leftArrow>
+        <rightArrow>true</rightArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="1456" y="321" w="-1" h="-1" measuredW="182" measuredH="21" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Press%20to%20Start/Stop%20Recording</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
