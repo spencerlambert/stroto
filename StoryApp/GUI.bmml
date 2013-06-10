@@ -269,5 +269,11 @@
         <text>Story%20Pack</text>
       </controlProperties>
     </control>
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::PointyButton" x="1437" y="1159" w="188" h="-1" measuredW="99" measuredH="27" zOrder="53" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>center</direction>
+        <text>From%20Camera</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

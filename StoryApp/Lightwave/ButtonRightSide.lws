@@ -211,6 +211,7 @@ ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 7
 ExcludeLight 20000001
 ExcludeLight 20000002
+ExcludeLight 20000003
 
 LoadObjectLayer 2 10000001 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
 ChangeObject 0
@@ -222,63 +223,63 @@ Channel 0
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 1
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 2
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 4
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 5
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 6
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 7
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 8
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 IKInitCustomFrame 0
@@ -408,6 +409,8 @@ ObjGIMinPixelSpacing 4.000000
 ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 7
 ExcludeLight 20000001
+ExcludeLight 20000002
+ExcludeLight 20000003
 
 LoadObjectLayer 3 10000002 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
 ChangeObject 0
@@ -440,21 +443,21 @@ Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 4
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
+  Key 0 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
   Behaviors 1 1
 }
 Channel 5
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 6
@@ -606,6 +609,7 @@ ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 7
 ExcludeLight 20000001
 ExcludeLight 20000002
+ExcludeLight 20000003
 
 LoadObjectLayer 1 10000003 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/Wall.lwo
 ChangeObject 0
@@ -805,10 +809,11 @@ ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 0
 ExcludeLight 20000000
 ExcludeLight 20000002
+ExcludeLight 20000003
 ExcludeLight 21000000
 ExcludeLight 22000000
 
-AddNullObject 10000004 RecordButton.lwo
+LoadObjectLayer 4 10000004 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
 ChangeObject 0
 ShowObject 7 3
 Group 0
@@ -816,56 +821,65 @@ ObjectMotion
 NumChannels 9
 Channel 0
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 1
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 2
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 3
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key 1.5707962512969971 0.033333333333333333 0 0 0 0 1.5578144640961955 0 0
   Behaviors 1 1
 }
 Channel 4
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 -3.115628928192391 0 0
   Behaviors 1 1
 }
 Channel 5
 { Envelope
-  1
+  2
   Key 0 0 0 0 0 0 0 0 0
+  Key -1.5707962512969971 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
   Behaviors 1 1
 }
 Channel 6
 { Envelope
-  1
+  2
   Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 7
 { Envelope
-  1
+  2
   Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 8
 { Envelope
-  1
+  2
   Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 IKInitCustomFrame 0
@@ -1103,7 +1117,8 @@ FlareRingSize 0.22
 FlareRandStreakInt 0.03
 FlareRandStreakDens 50
 FlareRandStreakSharp 6
-ShadowType 0
+ShadowType 1
+ShadowColor 0 0 0
 Plugin LightHandler 1 DistantLight
 EndPlugin
 
@@ -1389,11 +1404,11 @@ PathAlignMaxLookSteps 10
 PathAlignReliableDist 0.001
 IKInitialState 0
 LightColor 1 0 0
-LightIntensity 1
+LightIntensity 0
 LightType 1
 LightFalloffType 1
 LightRange 1.98
-VolumetricLighting 1
+VolumetricLighting 0
 { Volumetrics
   { Options
     Flags 1 2 0 0 1 1 0
@@ -1617,7 +1632,7 @@ DitherIntensity 1
 AnimatedDither 0
 
 RenderMode 2
-RayTraceEffects 30
+RayTraceEffects 31
 DepthBufferAA 0
 RenderLines 1
 RayRecursionLimit 16
@@ -1647,8 +1662,8 @@ ShowFieldChart 0
 OverlayColor_fv 0 0 0
 MeshBackgroundGroup 1
 
-CurrentObject 3
-CurrentLight 3
+CurrentObject 4
+CurrentLight 0
 CurrentCamera 0
 GraphEditorData
 { GraphEd_Favorites
