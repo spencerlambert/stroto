@@ -12,6 +12,7 @@
 #import "SlideLeftView.h"
 #import "ScreenCaptureView.h"
 #import "AudioRecorder.h"
+#import "UIView+Hierarchy.h"
 
 @interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,SlideLeftViewDelegate>{
     SlideUpView *slideupview;
@@ -20,6 +21,13 @@
     BOOL toolbarsvisible;
     UIImageView *backgroundimageview;
     AudioRecorder *audiorecorder;
+    NSMutableArray *pickedimages;
+    BOOL imageselected;
+    UIImageView *selectedimage;
+    
+    UIPanGestureRecognizer *pan;
+    UIPinchGestureRecognizer *pinch;
+    UIRotationGestureRecognizer *rotate;
 }
 @property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;
     

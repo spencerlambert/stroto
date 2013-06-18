@@ -20,7 +20,6 @@
 		DB28D7231742E1460071B5C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB28D7221742E1460071B5C2 /* Default-568h@2x.png */; };
 		DB28D7261742E1460071B5C2 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB28D7241742E1460071B5C2 /* MainStoryboard_iPhone.storyboard */; };
 		DB28D7291742E1460071B5C2 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */; };
-		DB28D72C1742E1460071B5C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D72B1742E1460071B5C2 /* ViewController.m */; };
 		DB28D7341742E1460071B5C2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D7331742E1460071B5C2 /* SenTestingKit.framework */; };
 		DB28D7351742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
 		DB28D7361742E1460071B5C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70E1742E1460071B5C2 /* Foundation.framework */; };
@@ -43,6 +42,32 @@
 		DB28D76E1742F4CE0071B5C2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */; };
 		DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */; };
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
+		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
+		DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
+		DB9E9E8A1764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
+		DB9E9E8D1764A81000788373 /* AddBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */; };
+		DB9E9E8E1764A81000788373 /* AddBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */; };
+		DB9E9E911764A82100788373 /* AddForegroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E901764A82100788373 /* AddForegroundViewController.m */; };
+		DB9E9E921764A82100788373 /* AddForegroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E901764A82100788373 /* AddForegroundViewController.m */; };
+		DB9E9E971764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E961764A91C00788373 /* SavedStoryDetailsViewController.m */; };
+		DB9E9E981764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E961764A91C00788373 /* SavedStoryDetailsViewController.m */; };
+		DB9E9E9D1764BA9F00788373 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E9E9B1764BA9F00788373 /* Overlay.png */; };
+		DB9E9E9E1764BA9F00788373 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E9E9B1764BA9F00788373 /* Overlay.png */; };
+		DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E9E9C1764BA9F00788373 /* Overlay@2x.png */; };
+		DB9E9EA01764BA9F00788373 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E9E9C1764BA9F00788373 /* Overlay@2x.png */; };
+		DB9E9EAD1764BE4100788373 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA31764BE4100788373 /* ELCAlbumPickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9EAE1764BE4100788373 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA31764BE4100788373 /* ELCAlbumPickerController.m */; };
+		DB9E9EAF1764BE4100788373 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA51764BE4100788373 /* ELCAsset.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9EB01764BE4100788373 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA51764BE4100788373 /* ELCAsset.m */; };
+		DB9E9EB11764BE4100788373 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA71764BE4100788373 /* ELCAssetCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9EB21764BE4100788373 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EA71764BE4100788373 /* ELCAssetCell.m */; };
+		DB9E9EB31764BE4100788373 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */; };
+		DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; };
+		DBC1EF8D1769430A000B44A5 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC1EF8C1769430A000B44A5 /* 57.png */; };
+		DBC1EF8F17694313000B44A5 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC1EF8E17694313000B44A5 /* 57@2x.png */; };
 		DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AA7174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AAD174D6718001DFCDC /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AAB174D6718001DFCDC /* AddButton.png */; };
@@ -86,8 +111,6 @@
 		DB28D7221742E1460071B5C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DB28D7251742E1460071B5C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB28D7281742E1460071B5C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		DB28D72A1742E1460071B5C2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DB28D72B1742E1460071B5C2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DB28D7321742E1460071B5C2 /* StoryTellingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryTellingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB28D7331742E1460071B5C2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DB28D73B1742E1460071B5C2 /* StoryTellingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryTellingTests-Info.plist"; sourceTree = "<group>"; };
@@ -111,6 +134,31 @@
 		DB28D76B1742F4C50071B5C2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = SOURCE_ROOT; };
+		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
+		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
+		DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateStoryRootViewController.m; sourceTree = "<group>"; };
+		DB9E9E8B1764A81000788373 /* AddBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBackgroundViewController.h; sourceTree = "<group>"; };
+		DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBackgroundViewController.m; sourceTree = "<group>"; };
+		DB9E9E8F1764A82100788373 /* AddForegroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddForegroundViewController.h; sourceTree = "<group>"; };
+		DB9E9E901764A82100788373 /* AddForegroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddForegroundViewController.m; sourceTree = "<group>"; };
+		DB9E9E951764A91C00788373 /* SavedStoryDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedStoryDetailsViewController.h; sourceTree = "<group>"; };
+		DB9E9E961764A91C00788373 /* SavedStoryDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedStoryDetailsViewController.m; sourceTree = "<group>"; };
+		DB9E9E9B1764BA9F00788373 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
+		DB9E9E9C1764BA9F00788373 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
+		DB9E9EA21764BE4100788373 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
+		DB9E9EA31764BE4100788373 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
+		DB9E9EA41764BE4100788373 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
+		DB9E9EA51764BE4100788373 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
+		DB9E9EA61764BE4100788373 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
+		DB9E9EA71764BE4100788373 /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
+		DB9E9EA81764BE4100788373 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
+		DB9E9EA91764BE4100788373 /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
+		DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
+		DB9E9EAB1764BE4100788373 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
+		DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
+		DBC1EF8C1769430A000B44A5 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 57.png; path = ../../../../../stroto/stroto/57.png; sourceTree = "<group>"; };
+		DBC1EF8E17694313000B44A5 /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "57@2x.png"; path = "../../../../../stroto/stroto/57@2x.png"; sourceTree = "<group>"; };
 		DBFA4AA5174D66B4001DFCDC /* RecordStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordStop.png; sourceTree = "<group>"; };
 		DBFA4AAB174D6718001DFCDC /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
 		DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -199,27 +247,14 @@
 		DB28D7121742E1460071B5C2 /* StoryTelling */ = {
 			isa = PBXGroup;
 			children = (
-				DB21F8D117445B1700FA7D52 /* UIView_Hierarchy */,
+				DB9E9E991764A96E00788373 /* View Saved Story */,
+				DB9E9E861764A7C300788373 /* Create New Story */,
 				DB28D71B1742E1460071B5C2 /* AppDelegate.h */,
 				DB28D71C1742E1460071B5C2 /* AppDelegate.m */,
+				DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */,
+				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
 				DB28D7241742E1460071B5C2 /* MainStoryboard_iPhone.storyboard */,
 				DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */,
-				DB28D72A1742E1460071B5C2 /* ViewController.h */,
-				DB28D72B1742E1460071B5C2 /* ViewController.m */,
-				DB28D7511742E4900071B5C2 /* WorkAreaController.h */,
-				DB28D7521742E4900071B5C2 /* WorkAreaController.m */,
-				DB28D7551742E86A0071B5C2 /* SlideUpView.h */,
-				DB28D7561742E86A0071B5C2 /* SlideUpView.m */,
-				DB28D7591742E8840071B5C2 /* SlideDownView.h */,
-				DB28D75A1742E8840071B5C2 /* SlideDownView.m */,
-				DB28D75D1742E8950071B5C2 /* SlideLeftView.h */,
-				DB28D75E1742E8950071B5C2 /* SlideLeftView.m */,
-				DB28D74B1742E2390071B5C2 /* ScreenCaptureView.h */,
-				DB28D74C1742E2390071B5C2 /* ScreenCaptureView.m */,
-				DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */,
-				DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */,
-				DB28D7631742E8BE0071B5C2 /* ThumbImageView.h */,
-				DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */,
 				DB28D7131742E1460071B5C2 /* Supporting Files */,
 			);
 			path = StoryTelling;
@@ -228,6 +263,11 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DBC1EF8C1769430A000B44A5 /* 57.png */,
+				DBC1EF8E17694313000B44A5 /* 57@2x.png */,
+				DB9E9EA11764BE2300788373 /* ELCImagePicker */,
+				DB9E9E9A1764BA7000788373 /* Images */,
+				DB21F8D117445B1700FA7D52 /* UIView_Hierarchy */,
 				DB28D7141742E1460071B5C2 /* StoryTelling-Info.plist */,
 				DB28D7151742E1460071B5C2 /* InfoPlist.strings */,
 				DB28D7181742E1460071B5C2 /* main.m */,
@@ -235,11 +275,6 @@
 				DB28D71E1742E1460071B5C2 /* Default.png */,
 				DB28D7201742E1460071B5C2 /* Default@2x.png */,
 				DB28D7221742E1460071B5C2 /* Default-568h@2x.png */,
-				DBFA4AA5174D66B4001DFCDC /* RecordStop.png */,
-				DBFA4AAB174D6718001DFCDC /* AddButton.png */,
-				DBFA4AB2174D7B07001DFCDC /* VideoPlayButton.png */,
-				DBFA4ABD174D7EA3001DFCDC /* StartRecording.png */,
-				DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -261,6 +296,90 @@
 				DB28D73C1742E1460071B5C2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB9E9E861764A7C300788373 /* Create New Story */ = {
+			isa = PBXGroup;
+			children = (
+				DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */,
+				DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */,
+				DB9E9E8B1764A81000788373 /* AddBackgroundViewController.h */,
+				DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */,
+				DB9E9E8F1764A82100788373 /* AddForegroundViewController.h */,
+				DB9E9E901764A82100788373 /* AddForegroundViewController.m */,
+				DB9E9E931764A83B00788373 /* WorkArea */,
+			);
+			name = "Create New Story";
+			sourceTree = "<group>";
+		};
+		DB9E9E931764A83B00788373 /* WorkArea */ = {
+			isa = PBXGroup;
+			children = (
+				DB28D7511742E4900071B5C2 /* WorkAreaController.h */,
+				DB28D7521742E4900071B5C2 /* WorkAreaController.m */,
+				DB28D74B1742E2390071B5C2 /* ScreenCaptureView.h */,
+				DB28D74C1742E2390071B5C2 /* ScreenCaptureView.m */,
+				DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */,
+				DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */,
+				DB9E9E941764A88500788373 /* WorkArea Toolbars */,
+			);
+			name = WorkArea;
+			sourceTree = "<group>";
+		};
+		DB9E9E941764A88500788373 /* WorkArea Toolbars */ = {
+			isa = PBXGroup;
+			children = (
+				DB28D7551742E86A0071B5C2 /* SlideUpView.h */,
+				DB28D7561742E86A0071B5C2 /* SlideUpView.m */,
+				DB28D7591742E8840071B5C2 /* SlideDownView.h */,
+				DB28D75A1742E8840071B5C2 /* SlideDownView.m */,
+				DB28D75D1742E8950071B5C2 /* SlideLeftView.h */,
+				DB28D75E1742E8950071B5C2 /* SlideLeftView.m */,
+				DB28D7631742E8BE0071B5C2 /* ThumbImageView.h */,
+				DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */,
+			);
+			name = "WorkArea Toolbars";
+			sourceTree = "<group>";
+		};
+		DB9E9E991764A96E00788373 /* View Saved Story */ = {
+			isa = PBXGroup;
+			children = (
+				DB9E9E951764A91C00788373 /* SavedStoryDetailsViewController.h */,
+				DB9E9E961764A91C00788373 /* SavedStoryDetailsViewController.m */,
+			);
+			name = "View Saved Story";
+			sourceTree = "<group>";
+		};
+		DB9E9E9A1764BA7000788373 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DB9E9E9B1764BA9F00788373 /* Overlay.png */,
+				DB9E9E9C1764BA9F00788373 /* Overlay@2x.png */,
+				DBFA4AA5174D66B4001DFCDC /* RecordStop.png */,
+				DBFA4AAB174D6718001DFCDC /* AddButton.png */,
+				DBFA4AB2174D7B07001DFCDC /* VideoPlayButton.png */,
+				DBFA4ABD174D7EA3001DFCDC /* StartRecording.png */,
+				DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		DB9E9EA11764BE2300788373 /* ELCImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				DB9E9EA21764BE4100788373 /* ELCAlbumPickerController.h */,
+				DB9E9EA31764BE4100788373 /* ELCAlbumPickerController.m */,
+				DB9E9EA41764BE4100788373 /* ELCAsset.h */,
+				DB9E9EA51764BE4100788373 /* ELCAsset.m */,
+				DB9E9EA61764BE4100788373 /* ELCAssetCell.h */,
+				DB9E9EA71764BE4100788373 /* ELCAssetCell.m */,
+				DB9E9EA81764BE4100788373 /* ELCAssetSelectionDelegate.h */,
+				DB9E9EA91764BE4100788373 /* ELCAssetTablePicker.h */,
+				DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */,
+				DB9E9EAB1764BE4100788373 /* ELCImagePickerController.h */,
+				DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */,
+			);
+			name = ELCImagePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +464,10 @@
 				DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */,
 				DBFA4ABE174D7EA3001DFCDC /* StartRecording.png in Resources */,
 				DBFA4AC1174D7F1C001DFCDC /* StartRecordingButton.png in Resources */,
+				DB9E9E9D1764BA9F00788373 /* Overlay.png in Resources */,
+				DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */,
+				DBC1EF8D1769430A000B44A5 /* 57.png in Resources */,
+				DBC1EF8F17694313000B44A5 /* 57@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +481,8 @@
 				DBFA4AB4174D7B07001DFCDC /* VideoPlayButton.png in Resources */,
 				DBFA4ABF174D7EA3001DFCDC /* StartRecording.png in Resources */,
 				DBFA4AC2174D7F1C001DFCDC /* StartRecordingButton.png in Resources */,
+				DB9E9E9E1764BA9F00788373 /* Overlay.png in Resources */,
+				DB9E9EA01764BA9F00788373 /* Overlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +512,6 @@
 				DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */,
 				DB28D7191742E1460071B5C2 /* main.m in Sources */,
 				DB28D71D1742E1460071B5C2 /* AppDelegate.m in Sources */,
-				DB28D72C1742E1460071B5C2 /* ViewController.m in Sources */,
 				DB28D74F1742E2390071B5C2 /* ScreenCaptureView.m in Sources */,
 				DB28D7531742E4900071B5C2 /* WorkAreaController.m in Sources */,
 				DB28D7571742E86A0071B5C2 /* SlideUpView.m in Sources */,
@@ -395,6 +519,16 @@
 				DB28D75F1742E8950071B5C2 /* SlideLeftView.m in Sources */,
 				DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */,
+				DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */,
+				DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */,
+				DB9E9E8D1764A81000788373 /* AddBackgroundViewController.m in Sources */,
+				DB9E9E911764A82100788373 /* AddForegroundViewController.m in Sources */,
+				DB9E9E971764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */,
+				DB9E9EAD1764BE4100788373 /* ELCAlbumPickerController.m in Sources */,
+				DB9E9EAF1764BE4100788373 /* ELCAsset.m in Sources */,
+				DB9E9EB11764BE4100788373 /* ELCAssetCell.m in Sources */,
+				DB9E9EB31764BE4100788373 /* ELCAssetTablePicker.m in Sources */,
+				DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +545,16 @@
 				DB28D7661742E8BE0071B5C2 /* ThumbImageView.m in Sources */,
 				DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */,
+				DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */,
+				DB9E9E8A1764A7DC00788373 /* CreateStoryRootViewController.m in Sources */,
+				DB9E9E8E1764A81000788373 /* AddBackgroundViewController.m in Sources */,
+				DB9E9E921764A82100788373 /* AddForegroundViewController.m in Sources */,
+				DB9E9E981764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */,
+				DB9E9EAE1764BE4100788373 /* ELCAlbumPickerController.m in Sources */,
+				DB9E9EB01764BE4100788373 /* ELCAsset.m in Sources */,
+				DB9E9EB21764BE4100788373 /* ELCAssetCell.m in Sources */,
+				DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */,
+				DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,10 +658,14 @@
 		DB28D7451742E1460071B5C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -525,10 +673,14 @@
 		DB28D7461742E1460071B5C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

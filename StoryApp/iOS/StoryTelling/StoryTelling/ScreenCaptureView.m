@@ -15,7 +15,7 @@
 	// Initialization code
 	self.clearsContextBeforeDrawing = YES;
 	self.currentScreen = nil;
-	self.frameRate = 10.0f;     //10 frames per seconds
+	self.frameRate = 20.0f;     //10 frames per seconds
 	_recording = false;
 	videoWriter = nil;
 	videoWriterInput = nil;
