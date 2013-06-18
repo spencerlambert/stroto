@@ -42,6 +42,8 @@
 		DB28D76E1742F4CE0071B5C2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */; };
 		DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */; };
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
+		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
@@ -66,8 +68,6 @@
 		DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */; };
 		DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; };
-		DBC1EF8D1769430A000B44A5 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC1EF8C1769430A000B44A5 /* 57.png */; };
-		DBC1EF8F17694313000B44A5 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC1EF8E17694313000B44A5 /* 57@2x.png */; };
 		DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AA7174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AAD174D6718001DFCDC /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AAB174D6718001DFCDC /* AddButton.png */; };
@@ -134,6 +134,8 @@
 		DB28D76B1742F4C50071B5C2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
 		DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = SOURCE_ROOT; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
@@ -157,8 +159,6 @@
 		DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
 		DB9E9EAB1764BE4100788373 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
 		DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		DBC1EF8C1769430A000B44A5 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 57.png; path = ../../../../../stroto/stroto/57.png; sourceTree = "<group>"; };
-		DBC1EF8E17694313000B44A5 /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "57@2x.png"; path = "../../../../../stroto/stroto/57@2x.png"; sourceTree = "<group>"; };
 		DBFA4AA5174D66B4001DFCDC /* RecordStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordStop.png; sourceTree = "<group>"; };
 		DBFA4AAB174D6718001DFCDC /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
 		DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -263,8 +263,8 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DBC1EF8C1769430A000B44A5 /* 57.png */,
-				DBC1EF8E17694313000B44A5 /* 57@2x.png */,
+				DB8ADED11770D97C0094BB3A /* 57.png */,
+				DB8ADED31770D99E0094BB3A /* 57@2x.png */,
 				DB9E9EA11764BE2300788373 /* ELCImagePicker */,
 				DB9E9E9A1764BA7000788373 /* Images */,
 				DB21F8D117445B1700FA7D52 /* UIView_Hierarchy */,
@@ -466,8 +466,8 @@
 				DBFA4AC1174D7F1C001DFCDC /* StartRecordingButton.png in Resources */,
 				DB9E9E9D1764BA9F00788373 /* Overlay.png in Resources */,
 				DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */,
-				DBC1EF8D1769430A000B44A5 /* 57.png in Resources */,
-				DBC1EF8F17694313000B44A5 /* 57@2x.png in Resources */,
+				DB8ADED21770D97C0094BB3A /* 57.png in Resources */,
+				DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
