@@ -15,6 +15,7 @@
 @implementation AddForegroundViewController
 
 @synthesize delegate;
+@synthesize foregroundImagesDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication]delegate];
 	// Do any additional setup after loading the view.
 }
 
@@ -55,8 +57,8 @@
     if(info != NULL){
         foregroundImages = [[NSMutableArray alloc]initWithArray:info];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [foregroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        alert.tag = 2;
         [alert show];
-        [delegate setforegroundimages:foregroundImages];
     }
 }
 
@@ -64,6 +66,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Images Selected" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(alertView.tag == 2){
+        if(buttonIndex == 0){
+            
+            id object = nil;
+            
+            for (UIViewController *viewControl in self.navigationController.viewControllers)
+            {
+                NSLog(@"The tag value is:%d",viewControl.view.tag);
+                if(viewControl.view.tag==20)
+                {
+                    object = viewControl;
+                    [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:foregroundImages];
+                }
+            }
+            [self.navigationController popToViewController:object animated:YES];
+            
+            
+        }
+    }
 }
 
 @end

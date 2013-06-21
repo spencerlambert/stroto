@@ -23,6 +23,7 @@
 @synthesize storyNameTextField;
 @synthesize BackgroundImagesView;
 @synthesize ForegroundImagesView;
+@synthesize imagesDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,9 +37,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.tag=20;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    backgroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.backgroundImagesArray];
+    foregroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.foregroundImagesArray];
+   // NSLog(@"The count is %d",[backgroundImages count]);
     [self reloadBackgroundImagesView];
     [self reloadForegroundImagesView];
 }
@@ -90,6 +97,10 @@
     [BackgroundImagesView addSubview:BackgroundImagesHolder];
 
 }
+-(void)resigngTxtField{
+    
+    [self.storyNameTextField resignFirstResponder];
+}
 
 - (void) reloadForegroundImagesView{
     float scrollViewHeight = [ForegroundImagesView bounds].size.width; //THUMB_HEIGHT + THUMB_V_PADDING;
@@ -126,6 +137,7 @@
 
 - (void)setbackgroundimages:(NSMutableArray *)info{
     self.backgroundImages = info;
+    
 }
 
 - (void)setforegroundimages:(NSMutableArray *)info{

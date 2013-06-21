@@ -9,10 +9,15 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+@synthesize backgroundImagesArray;
+@synthesize foregroundImagesArray;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    backgroundImagesArray = [[NSMutableArray alloc]init];
+    foregroundImagesArray = [[NSMutableArray alloc]init];
+
     return YES;
 }
 							
