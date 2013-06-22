@@ -152,13 +152,13 @@
 }
 
 - (IBAction)nextButtonClicked:(id)sender{
-    WorkAreaController *workarea =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
-    [workarea setBackgroundImages:backgroundImages];
-    [workarea setForegroundImages:foregroundImages];
-    [workarea setStoryname:[storyNameTextField text]];
-    [self presentViewController:workarea animated:YES completion:nil];
+//    WorkAreaController *workarea =
+//    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+//                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
+//    [workarea setBackgroundImages:backgroundImages];
+//    [workarea setForegroundImages:foregroundImages];
+//    [workarea setStoryname:[storyNameTextField text]];
+//    [self presentViewController:workarea animated:YES completion:nil];
 }
 
 @end
