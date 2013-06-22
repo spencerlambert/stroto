@@ -7,6 +7,7 @@
 //
 
 #import "CreateStoryRootViewController.h"
+#import "WorkAreaController.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -38,7 +39,8 @@
 {
     [super viewDidLoad];
     self.view.tag=20;
-    
+    UIImageView *bgimage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"TopBar.png"]];
+    [BackgroundImagesView addSubview:bgimage];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -102,6 +104,11 @@
     [self.storyNameTextField resignFirstResponder];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.storyNameTextField resignFirstResponder];
+    return  YES;
+}
+
 - (void) reloadForegroundImagesView{
     float scrollViewHeight = [ForegroundImagesView bounds].size.width; //THUMB_HEIGHT + THUMB_V_PADDING;
     float scrollViewWidth  = [ForegroundImagesView bounds].size.width;
@@ -142,6 +149,16 @@
 
 - (void)setforegroundimages:(NSMutableArray *)info{
     self.foregroundImages = info;
+}
+
+- (IBAction)nextButtonClicked:(id)sender{
+    WorkAreaController *workarea =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
+    [workarea setBackgroundImages:backgroundImages];
+    [workarea setForegroundImages:foregroundImages];
+    [workarea setStoryname:[storyNameTextField text]];
+    [self presentViewController:workarea animated:YES completion:nil];
 }
 
 @end
