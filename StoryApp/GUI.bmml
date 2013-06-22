@@ -267,14 +267,14 @@
     </control>
     <control controlID="64" controlTypeID="com.balsamiq.mockups::Image" x="1215" y="924" w="55" h="55" measuredW="500" measuredH="500" zOrder="52" locked="false" isInGroup="-1">
       <controlProperties>
-        <src>./assets/Trashcan.png</src>
+        <src>./assets/TrashcanClosed.png</src>
       </controlProperties>
     </control>
     <control controlID="65" controlTypeID="com.balsamiq.mockups::HRule" x="1105" y="917" w="197" h="-1" measuredW="100" measuredH="10" zOrder="53" locked="false" isInGroup="-1"/>
     <control controlID="66" controlTypeID="com.balsamiq.mockups::HRule" x="1103" y="1019" w="197" h="-1" measuredW="100" measuredH="10" zOrder="54" locked="false" isInGroup="-1"/>
     <control controlID="67" controlTypeID="com.balsamiq.mockups::Image" x="1160" y="1027" w="55" h="55" measuredW="500" measuredH="500" zOrder="55" locked="false" isInGroup="-1">
       <controlProperties>
-        <src>./assets/Trashcan.png</src>
+        <src>./assets/TrashcanOpen.png</src>
       </controlProperties>
     </control>
   </controls>
