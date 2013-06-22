@@ -28,13 +28,12 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
-    frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width, thumbHeight);
+    frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width - thumbHeight, thumbHeight);
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor brownColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
         [self setAlpha:0.75];
-        [self getPhotosFromLibrary];
     }    
     return self;
 }
@@ -72,19 +71,22 @@
         float xPosition = THUMB_H_PADDING;
         
         
-        for (ALAsset *asset in self.photos) {
-            UIImage *thumbImage = [UIImage imageWithCGImage:[asset thumbnail]];
+        for (NSMutableDictionary *imageDictionary in self.photos) {
+            UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
             if (thumbImage) {
                 thumbImage =
                 [UIImage imageWithCGImage:[thumbImage CGImage]
-                                    scale:(thumbImage.scale * 2.4)
+                                    scale:(thumbImage.scale * 1.2)
                               orientation:(thumbImage.imageOrientation)];
                 ThumbImageView *thumbView = [[ThumbImageView alloc] initWithImage:thumbImage ];
                 [thumbView setThumbdelegate:self];
-                [thumbView setImageName:[[asset defaultRepresentation] filename]];
+                [thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
+                [thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
                 CGRect frame = [thumbView frame];
                 frame.origin.y = THUMB_V_PADDING;
                 frame.origin.x = xPosition;
+                frame.size.height = THUMB_HEIGHT;
+                frame.size.width = THUMB_HEIGHT;
                 [thumbView setFrame:frame];
                 [thumbView setHome:frame];
                 //thumbView.contentMode = UIViewContentModeScaleAspectFit;
@@ -95,6 +97,7 @@
         }
         [CutoutImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
         [self addSubview:CutoutImagesHolder];
+        //[self setClipsToBounds:YES];
     }
 }
 
@@ -170,8 +173,8 @@
 }
 
 - (void)checkThumbImageIntersection:(ThumbImageView *)tiv withFrame:(CGRect) testframe{
-    NSString *imageUrl = [self getOriginalUrlOfThumbnail:tiv];
-    [self findLargeImage:imageUrl withFrame:testframe];
+    if([self.mydelegate respondsToSelector:@selector(checkFrameIntersection:withFrame:)])
+        [self.mydelegate checkFrameIntersection:[tiv originalImage] withFrame:testframe];
 }
 
 /*

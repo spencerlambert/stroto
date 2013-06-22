@@ -65,6 +65,7 @@
 
 @property (nonatomic, assign) id <ThumbImageViewDelegate> thumbdelegate;
 @property (nonatomic, retain) NSString *imageName;
+@property (nonatomic, retain) UIImage *originalImage;
 @property (nonatomic, assign) CGRect home;
 @property (nonatomic, assign) CGPoint touchLocation;
 

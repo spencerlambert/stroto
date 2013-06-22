@@ -18,8 +18,9 @@
     UIImage *largeimage;
 }
 
-@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, assign) id<SlideDownViewDelegate> mydelegate;
+- (void)createThumbScrollViewIfNecessary;
 - (void)toggleThumbView;
 - (void) getPhotosFromLibrary;
 + (ALAssetsLibrary *)defaultAssetsLibrary;

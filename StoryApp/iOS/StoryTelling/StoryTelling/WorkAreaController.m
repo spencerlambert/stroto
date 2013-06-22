@@ -9,6 +9,12 @@
 #import "WorkAreaController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+
+#define THUMB_HEIGHT 60
+#define THUMB_V_PADDING 10
+#define THUMB_H_PADDING 10
+#define STATUS_BAR_HEIGHT 20
+
 @interface WorkAreaController ()
 
 @end
@@ -29,6 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect capturebounds = [[UIScreen mainScreen] bounds];
+    float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
+    [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
     imageselected = NO;
     pickedimages = [[NSMutableArray alloc]init];
     pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -38,13 +47,22 @@
     rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
     rotate.delegate = self;
     audiorecorder = [[AudioRecorder alloc]init];
-    CGRect bounds = [self.view bounds];
-    CGRect mybounds = CGRectMake(0,0,bounds.size.width,bounds.size.height);
-    backgroundimageview = [[UIImageView alloc]initWithFrame:mybounds];
+    CGRect bounds = [captureview bounds];
+    backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [backgroundimageview setUserInteractionEnabled:YES];
     [captureview addSubview:backgroundimageview];
+    [self setWorkspaceBackground:[UIImage imageNamed:@"RecordArea.png"]];
     
+    CGRect frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeight-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeight);
+    UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
+    [bottombar setImage:[UIImage imageNamed:@"BottomBar.png"]];
+    [self.view addSubview:bottombar];
+    
+    frame = CGRectMake(CGRectGetMinX(capturebounds), CGRectGetMinY(capturebounds), capturebounds.size.width, thumbHeight);
+    UIImageView *topbar = [[UIImageView alloc]initWithFrame:frame];
+    [topbar setImage:[UIImage imageNamed:@"TopBar.png"]];
+    [self.view addSubview:topbar];
     
 //    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
 //    pinch.delegate = self;
@@ -52,15 +70,19 @@
     
     slideupview = [[SlideUpView alloc]initWithFrame:CGRectMake(0,0,0,0)];
     slideupview.mydelegate = self;
+    [slideupview setPhotos:[self backgroundImages]];
+    [slideupview createThumbScrollViewIfNecessary];
     [self.view addSubview:slideupview];
     
     slidedownview = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
     slidedownview.mydelegate = self;
+    [slidedownview setPhotos:[self foregroundImages]];
+    [slidedownview createThumbScrollViewIfNecessary];
     [self.view addSubview:slidedownview];
     
-    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
-    slideleftview.mydelegate = self;
-    [self.view addSubview:slideleftview];
+//    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+//    slideleftview.mydelegate = self;
+//    [self.view addSubview:slideleftview];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doSingleTap:)];
     singleTap.numberOfTapsRequired = 1;
@@ -68,6 +90,14 @@
     [self.view addGestureRecognizer:singleTap];
     //[captureview performSelector:@selector(startRecording) withObject:nil afterDelay:1.0];
 	//[captureview performSelector:@selector(stopRecording) withObject:nil afterDelay:30.0];
+    
+    BottomRight *record_btn_view = [[BottomRight alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [record_btn_view setMydelegate:self];
+    [self.view addSubview:record_btn_view];
+    
+    TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.view addSubview:back_btn_view];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,8 +107,8 @@
 }
 
 - (void) doSingleTap:(UIGestureRecognizer *) gestureRecognizer {
-    [slideupview toggleThumbView];
-    [slidedownview toggleThumbView];
+    //[slideupview toggleThumbView];
+    //[slidedownview toggleThumbView];
     [slideleftview toggleThumbView];
 }
 
@@ -120,7 +150,7 @@
     {
         if(![touch.view isDescendantOfView:selectedimage]){
             imageselected = NO;
-            [selectedimage.layer setBorderColor:[[UIColor blackColor] CGColor]];
+            [selectedimage.layer setBorderColor:[[UIColor clearColor] CGColor]];
             [selectedimage.layer setBorderWidth: 0.0];
             [selectedimage removeGestureRecognizer:pinch];
             [selectedimage removeGestureRecognizer:pan];

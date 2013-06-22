@@ -13,8 +13,10 @@
 #import "ScreenCaptureView.h"
 #import "AudioRecorder.h"
 #import "UIView+Hierarchy.h"
+#import "BottomRight.h"
+#import "TopRightView.h"
 
-@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,SlideLeftViewDelegate>{
+@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate>{
     SlideUpView *slideupview;
     SlideDownView *slidedownview;
     SlideLeftView *slideleftview;
@@ -24,12 +26,14 @@
     NSMutableArray *pickedimages;
     BOOL imageselected;
     UIImageView *selectedimage;
-    
     UIPanGestureRecognizer *pan;
     UIPinchGestureRecognizer *pinch;
     UIRotationGestureRecognizer *rotate;
 }
 @property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;
-    
+@property (strong, nonatomic) NSMutableArray *backgroundImages;
+@property (strong, nonatomic) NSMutableArray *foregroundImages;
+@property (strong, nonatomic) NSString *storyname;
+
 
 @end

@@ -18,8 +18,9 @@
     UIImage *largeimage;
     NSString *selectedImageUrl;
 }
-@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, assign) id<SlideUpViewDelegate> mydelegate;
+- (void)createThumbScrollViewIfNecessary;
 - (void)toggleThumbView;
 - (void) getPhotosFromLibrary;
 + (ALAssetsLibrary *)defaultAssetsLibrary;
