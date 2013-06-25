@@ -13,5 +13,5 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) NSMutableArray *backgroundImagesArray;
 @property (nonatomic,retain) NSMutableArray *foregroundImagesArray;
-
+@property (nonatomic,retain) NSString *isNewStory;
 @end

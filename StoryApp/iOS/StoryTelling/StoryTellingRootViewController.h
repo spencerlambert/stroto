@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface StoryTellingRootViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *storyTable;
+@property (strong, nonatomic) AppDelegate *newstoryFlag;
 
 @end

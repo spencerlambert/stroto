@@ -13,6 +13,7 @@
 @end
 
 @implementation StoryTellingRootViewController
+@synthesize newstoryFlag;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [newstoryFlag setIsNewStory:@"true"];
 }
 
 - (void)didReceiveMemoryWarning

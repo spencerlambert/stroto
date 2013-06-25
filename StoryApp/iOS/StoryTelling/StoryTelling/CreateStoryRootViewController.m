@@ -39,15 +39,18 @@
 {
     [super viewDidLoad];
     self.view.tag=20;
-    UIImageView *bgimage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"TopBar.png"]];
-    [BackgroundImagesView addSubview:bgimage];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    if([imagesDelegate.isNewStory isEqual: @"true"]){
+        [self setBackgroundImages:[[NSMutableArray alloc]init]];
+        [self setForegroundImages:[[NSMutableArray alloc]init]];
+        [imagesDelegate setIsNewStory:@"false"];
+    }else{
     backgroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.backgroundImagesArray];
     foregroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.foregroundImagesArray];
-   // NSLog(@"The count is %d",[backgroundImages count]);
+    }
     [self reloadBackgroundImagesView];
     [self reloadForegroundImagesView];
 }
@@ -79,8 +82,8 @@
         UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
         if (thumbImage) {
             thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-                                scale:(thumbImage.scale * 2.4)
-                          orientation:(thumbImage.imageOrientation)];
+                                             scale:(thumbImage.scale * 2.4)
+                                       orientation:(thumbImage.imageOrientation)];
             UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
             CGRect frame = [thumbView frame];
             frame.origin.y = THUMB_V_PADDING;
@@ -97,7 +100,7 @@
         [view removeFromSuperview];
     }
     [BackgroundImagesView addSubview:BackgroundImagesHolder];
-
+    
 }
 -(void)resigngTxtField{
     
@@ -152,13 +155,13 @@
 }
 
 - (IBAction)nextButtonClicked:(id)sender{
-//    WorkAreaController *workarea =
-//    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-//                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
-//    [workarea setBackgroundImages:backgroundImages];
-//    [workarea setForegroundImages:foregroundImages];
-//    [workarea setStoryname:[storyNameTextField text]];
-//    [self presentViewController:workarea animated:YES completion:nil];
+    WorkAreaController *workarea =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
+    [workarea setBackgroundImages:backgroundImages];
+    [workarea setForegroundImages:foregroundImages];
+    [workarea setStoryname:[storyNameTextField text]];
+    [self presentViewController:workarea animated:YES completion:nil];
 }
 
 @end

@@ -43,7 +43,6 @@
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
 		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
-		DB93D6FE1774DCF700437F40 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB93D6FC1774DCF700437F40 /* MainStoryboard_iPhone.storyboard */; };
 		DB93D7061774E36000437F40 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7001774E36000437F40 /* Back.png */; };
 		DB93D7071774E36000437F40 /* BottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7011774E36000437F40 /* BottomBar.png */; };
 		DB93D7081774E36000437F40 /* RecordArea.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7021774E36000437F40 /* RecordArea.png */; };
@@ -54,6 +53,7 @@
 		DB93D70F1774EBEE00437F40 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB93D70D1774EBEE00437F40 /* TopRightView.m */; };
 		DB93D7121774EC0000437F40 /* BottomRight.m in Sources */ = {isa = PBXBuildFile; fileRef = DB93D7111774EC0000437F40 /* BottomRight.m */; };
 		DB93D7131774EC0000437F40 /* BottomRight.m in Sources */ = {isa = PBXBuildFile; fileRef = DB93D7111774EC0000437F40 /* BottomRight.m */; };
+		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
@@ -106,7 +106,7 @@
 /* Begin PBXFileReference section */
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
-		DB28D7081742E1460071B5C2 /* StoryTelling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryTelling.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB28D70C1742E1460071B5C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB28D70E1742E1460071B5C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB28D7101742E1460071B5C2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -145,7 +145,6 @@
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
-		DB93D6FD1774DCF700437F40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB93D7001774E36000437F40 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		DB93D7011774E36000437F40 /* BottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBar.png; sourceTree = "<group>"; };
 		DB93D7021774E36000437F40 /* RecordArea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordArea.png; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		DB93D70D1774EBEE00437F40 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
 		DB93D7101774EBFF00437F40 /* BottomRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomRight.h; sourceTree = "<group>"; };
 		DB93D7111774EC0000437F40 /* BottomRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomRight.m; sourceTree = "<group>"; };
+		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = SOURCE_ROOT; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		DB28D7091742E1460071B5C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DB28D7081742E1460071B5C2 /* StoryTelling.app */,
+				DB28D7081742E1460071B5C2 /* Stroto.app */,
 				DB28D7321742E1460071B5C2 /* StoryTellingTests.octest */,
 			);
 			name = Products;
@@ -274,7 +274,7 @@
 				DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */,
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
 				DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */,
-				DB93D6FC1774DCF700437F40 /* MainStoryboard_iPhone.storyboard */,
+				DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */,
 				DB28D7131742E1460071B5C2 /* Supporting Files */,
 			);
 			path = StoryTelling;
@@ -437,7 +437,7 @@
 			);
 			name = StoryTelling;
 			productName = StoryTelling;
-			productReference = DB28D7081742E1460071B5C2 /* StoryTelling.app */;
+			productReference = DB28D7081742E1460071B5C2 /* Stroto.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DB28D7311742E1460071B5C2 /* StoryTellingTests */ = {
@@ -505,13 +505,13 @@
 				DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */,
 				DB8ADED21770D97C0094BB3A /* 57.png in Resources */,
 				DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */,
-				DB93D6FE1774DCF700437F40 /* MainStoryboard_iPhone.storyboard in Resources */,
 				DB93D7061774E36000437F40 /* Back.png in Resources */,
 				DB93D7071774E36000437F40 /* BottomBar.png in Resources */,
 				DB93D7081774E36000437F40 /* RecordArea.png in Resources */,
 				DB93D7091774E36000437F40 /* RecordOff.png in Resources */,
 				DB93D70A1774E36000437F40 /* RecordOn.png in Resources */,
 				DB93D70B1774E36000437F40 /* TopBar.png in Resources */,
+				DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,14 +641,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		DB93D6FC1774DCF700437F40 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB93D6FD1774DCF700437F40 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -711,7 +703,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Stroto;
 				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;
@@ -726,7 +718,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Stroto;
 				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DB28D7071742E1460071B5C2"
-               BuildableName = "StoryTelling.app"
+               BuildableName = "Stroto.app"
                BlueprintName = "StoryTelling"
                ReferencedContainer = "container:StoryTelling.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DB28D7071742E1460071B5C2"
-            BuildableName = "StoryTelling.app"
+            BuildableName = "Stroto.app"
             BlueprintName = "StoryTelling"
             ReferencedContainer = "container:StoryTelling.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DB28D7071742E1460071B5C2"
-            BuildableName = "StoryTelling.app"
+            BuildableName = "Stroto.app"
             BlueprintName = "StoryTelling"
             ReferencedContainer = "container:StoryTelling.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DB28D7071742E1460071B5C2"
-            BuildableName = "StoryTelling.app"
+            BuildableName = "Stroto.app"
             BlueprintName = "StoryTelling"
             ReferencedContainer = "container:StoryTelling.xcodeproj">
          </BuildableReference>
