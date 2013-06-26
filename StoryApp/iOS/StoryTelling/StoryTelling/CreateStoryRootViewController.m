@@ -44,9 +44,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if([imagesDelegate.isNewStory isEqual: @"true"]){
-        [self setBackgroundImages:[[NSMutableArray alloc]init]];
-        [self setForegroundImages:[[NSMutableArray alloc]init]];
+       // [self setBackgroundImages:[[NSMutableArray alloc]init]];
+      //  [self setForegroundImages:[[NSMutableArray alloc]init]];
+        [imagesDelegate setBackgroundImagesArray:[[NSMutableArray alloc]init]];
+        [imagesDelegate setForegroundImagesArray:[[NSMutableArray alloc]init]];
         [imagesDelegate setIsNewStory:@"false"];
+        
     }else{
     backgroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.backgroundImagesArray];
     foregroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.foregroundImagesArray];
