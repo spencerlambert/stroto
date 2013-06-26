@@ -45,6 +45,402 @@ Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
+  Key 1.5707962512969973 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key -1.5707962512969973 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+IKInitCustomFrame 0
+GoalStrength 1
+IKFKBlending 0
+IKSoftMin 0.25
+IKSoftMax 0.75
+CtrlPosItemBlend 1
+CtrlRotItemBlend 1
+CtrlScaleItemBlend 1
+
+PathAlignLookAhead 0.033
+PathAlignMaxLookSteps 10
+PathAlignReliableDist 0.001
+IKInitialState 0
+SubPatchLevel 3 3
+APSDisplay
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+APSRender
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+NodeDisplacement 0
+{ Nodal_Block
+  { Root
+    Location 0 0
+    Zoom 1
+    Disabled 1
+  }
+  Version 1
+  { Nodes
+    Server "Displacement"
+    { Tag
+      RealName "Displacement"
+      Name "Displacement"
+      Coordinates -10 -10
+      Mode 1
+      { Data
+      }
+      Preview ""
+      Comment ""
+    }
+  }
+  { Connections
+  }
+}
+NodeDisplacementOrder 0
+UseObjGI 0
+ObjGIRadiosityRays 64
+ObjGISecondaryBounceRays 16
+ObjGIRadiosityTolerance 0.292893
+ObjGIMinPixelSpacing 4.000000
+ObjGIMaxPixelSpacing 100.000000
+ShadowOptions 7
+ExcludeLight 20000001
+ExcludeLight 20000002
+ExcludeLight 20000003
+
+LoadObjectLayer 2 10000001 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
+ChangeObject 0
+ShowObject 7 3
+Group 0
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key -1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+IKInitCustomFrame 0
+GoalStrength 1
+IKFKBlending 0
+IKSoftMin 0.25
+IKSoftMax 0.75
+CtrlPosItemBlend 1
+CtrlRotItemBlend 1
+CtrlScaleItemBlend 1
+
+PathAlignLookAhead 0.033
+PathAlignMaxLookSteps 10
+PathAlignReliableDist 0.001
+IKInitialState 0
+SubPatchLevel 3 3
+APSDisplay
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+APSRender
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+NodeDisplacement 0
+{ Nodal_Block
+  { Root
+    Location 0 0
+    Zoom 1
+    Disabled 1
+  }
+  Version 1
+  { Nodes
+    Server "Displacement"
+    { Tag
+      RealName "Displacement"
+      Name "Displacement"
+      Coordinates -10 -10
+      Mode 1
+      { Data
+      }
+      Preview ""
+      Comment ""
+    }
+  }
+  { Connections
+  }
+}
+NodeDisplacementOrder 0
+UseObjGI 0
+ObjGIRadiosityRays 64
+ObjGISecondaryBounceRays 16
+ObjGIRadiosityTolerance 0.292893
+ObjGIMinPixelSpacing 4.000000
+ObjGIMaxPixelSpacing 100.000000
+ShadowOptions 7
+ExcludeLight 20000001
+
+LoadObjectLayer 3 10000002 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
+ChangeObject 0
+ShowObject 7 3
+Group 0
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
   Key 1.5707962512969971 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
@@ -211,405 +607,6 @@ ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 7
 ExcludeLight 20000001
 ExcludeLight 20000002
-ExcludeLight 20000003
-
-LoadObjectLayer 2 10000001 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
-ChangeObject 0
-ShowObject 7 3
-Group 0
-ObjectMotion
-NumChannels 9
-Channel 0
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 1
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 2
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 3
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 4
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 5
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 6
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 7
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 8
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-IKInitCustomFrame 0
-GoalStrength 1
-IKFKBlending 0
-IKSoftMin 0.25
-IKSoftMax 0.75
-CtrlPosItemBlend 1
-CtrlRotItemBlend 1
-CtrlScaleItemBlend 1
-
-PathAlignLookAhead 0.033
-PathAlignMaxLookSteps 10
-PathAlignReliableDist 0.001
-IKInitialState 0
-SubPatchLevel 3 3
-APSDisplay
-{ APS
-  Version 1
-  Method 0
-  { VParm
-    { ObjectLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonPixelSize
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          256
-          0
-        }
-      }
-    }
-  }
-}
-APSRender
-{ APS
-  Version 1
-  Method 0
-  { VParm
-    { ObjectLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonPixelSize
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          256
-          0
-        }
-      }
-    }
-  }
-}
-NodeDisplacement 0
-{ Nodal_Block
-  { Root
-    Location 0 0
-    Zoom 1
-    Disabled 1
-  }
-  Version 1
-  { Nodes
-    Server "Displacement"
-    { Tag
-      RealName "Displacement"
-      Name "Displacement"
-      Coordinates -10 -10
-      Mode 1
-      { Data
-      }
-      Preview ""
-      Comment ""
-    }
-  }
-  { Connections
-  }
-}
-NodeDisplacementOrder 0
-UseObjGI 0
-ObjGIRadiosityRays 64
-ObjGISecondaryBounceRays 16
-ObjGIRadiosityTolerance 0.292893
-ObjGIMinPixelSpacing 4.000000
-ObjGIMaxPixelSpacing 100.000000
-ShadowOptions 7
-ExcludeLight 20000001
-ExcludeLight 20000002
-ExcludeLight 20000003
-
-LoadObjectLayer 3 10000002 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/RecordButton.lwo
-ChangeObject 0
-ShowObject 7 3
-Group 0
-ObjectMotion
-NumChannels 9
-Channel 0
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 1
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 2
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 3
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 4
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
-  Behaviors 1 1
-}
-Channel 5
-{ Envelope
-  2
-  Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 6
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 7
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-Channel 8
-{ Envelope
-  2
-  Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333333333333333 0 0 0 0 0 0 0
-  Behaviors 1 1
-}
-IKInitCustomFrame 0
-GoalStrength 1
-IKFKBlending 0
-IKSoftMin 0.25
-IKSoftMax 0.75
-CtrlPosItemBlend 1
-CtrlRotItemBlend 1
-CtrlScaleItemBlend 1
-
-PathAlignLookAhead 0.033
-PathAlignMaxLookSteps 10
-PathAlignReliableDist 0.001
-IKInitialState 0
-SubPatchLevel 3 3
-APSDisplay
-{ APS
-  Version 1
-  Method 0
-  { VParm
-    { ObjectLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonPixelSize
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          256
-          0
-        }
-      }
-    }
-  }
-}
-APSRender
-{ APS
-  Version 1
-  Method 0
-  { VParm
-    { ObjectLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonLevel
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          3
-          0
-        }
-      }
-    }
-    { PolygonPixelSize
-      0
-      { VariantParameter
-        3
-        0
-        { ParameterValue
-          256
-          0
-        }
-      }
-    }
-  }
-}
-NodeDisplacement 0
-{ Nodal_Block
-  { Root
-    Location 0 0
-    Zoom 1
-    Disabled 1
-  }
-  Version 1
-  { Nodes
-    Server "Displacement"
-    { Tag
-      RealName "Displacement"
-      Name "Displacement"
-      Coordinates -10 -10
-      Mode 1
-      { Data
-      }
-      Preview ""
-      Comment ""
-    }
-  }
-  { Connections
-  }
-}
-NodeDisplacementOrder 0
-UseObjGI 0
-ObjGIRadiosityRays 64
-ObjGISecondaryBounceRays 16
-ObjGIRadiosityTolerance 0.292893
-ObjGIMinPixelSpacing 4.000000
-ObjGIMaxPixelSpacing 100.000000
-ShadowOptions 7
-ExcludeLight 20000001
-ExcludeLight 20000002
-ExcludeLight 20000003
 
 LoadObjectLayer 1 10000003 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/Wall.lwo
 ChangeObject 0
@@ -628,7 +625,7 @@ Channel 1
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -7.0609679222106934 0.033333333333333333 0 0 0 0 0 0 0
+  Key -7.0609679222106925 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 2
@@ -642,7 +639,7 @@ Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 4.8014140129089355 0.033333333333333333 0 0 0 0 0.0017309050298919364 0 0
+  Key 4.8014140129089364 0.033333333333333333 0 0 0 0 0.0017309050298919364 0 0
   Behaviors 1 1
 }
 Channel 4
@@ -823,7 +820,205 @@ Channel 0
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 1.5578144640961955 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 -3.115628928192391 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  2
+  Key 1 0 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+IKInitCustomFrame 0
+GoalStrength 1
+IKFKBlending 0
+IKSoftMin 0.25
+IKSoftMax 0.75
+CtrlPosItemBlend 1
+CtrlRotItemBlend 1
+CtrlScaleItemBlend 1
+
+PathAlignLookAhead 0.033
+PathAlignMaxLookSteps 10
+PathAlignReliableDist 0.001
+IKInitialState 0
+SubPatchLevel 3 3
+APSDisplay
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+APSRender
+{ APS
+  Version 1
+  Method 0
+  { VParm
+    { ObjectLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonLevel
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          3
+          0
+        }
+      }
+    }
+    { PolygonPixelSize
+      0
+      { VariantParameter
+        3
+        0
+        { ParameterValue
+          256
+          0
+        }
+      }
+    }
+  }
+}
+NodeDisplacement 0
+{ Nodal_Block
+  { Root
+    Location 0 0
+    Zoom 1
+    Disabled 1
+  }
+  Version 1
+  { Nodes
+    Server "Displacement"
+    { Tag
+      RealName "Displacement"
+      Name "Displacement"
+      Coordinates -10 -10
+      Mode 1
+      { Data
+      }
+      Preview ""
+      Comment ""
+    }
+  }
+  { Connections
+  }
+}
+NodeDisplacementOrder 0
+UseObjGI 0
+ObjGIRadiosityRays 64
+ObjGISecondaryBounceRays 16
+ObjGIRadiosityTolerance 0.292893
+ObjGIMinPixelSpacing 4.000000
+ObjGIMaxPixelSpacing 100.000000
+ShadowOptions 7
+ExcludeLight 20000002
+ExcludeLight 20000003
+
+LoadObjectLayer 1 10000005 C:Users/ISP HELPER/github/isp_helper/StoryApp/Lightwave/Wall.lwo
+ChangeObject 0
+ShowObject 7 3
+Group 0
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key -8.8786783218383789 0.033333333333333333 0 0 0 0 -0.13866547710639388 0 0
   Behaviors 1 1
 }
 Channel 1
@@ -837,28 +1032,28 @@ Channel 2
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
+  Key -3.215883731842041 0.033333333333333333 0 0 0 0 0.069332738553196938 0 0
   Behaviors 1 1
 }
 Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 1.5707962512969971 0.033333333333333333 0 0 0 0 1.5578144640961955 0 0
+  Key -2.0507612228393555 0.033333333333333333 0 0 0 0 -0.0017309050298919364 0 0
   Behaviors 1 1
 }
 Channel 4
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -3.1415925025939941 0.033333333333333333 0 0 0 0 -3.115628928192391 0 0
+  Key -0.31590494513511658 0.033333333333333333 0 0 0 0 -0.0017309050298919364 0 0
   Behaviors 1 1
 }
 Channel 5
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -1.5707962512969971 0.033333333333333333 0 0 0 0 -1.5578144640961955 0 0
+  Key 0 0.033333335071802139 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 6
@@ -1008,6 +1203,8 @@ ObjGIRadiosityTolerance 0.292893
 ObjGIMinPixelSpacing 4.000000
 ObjGIMaxPixelSpacing 100.000000
 ShadowOptions 7
+ExcludeLight 20000002
+ExcludeLight 20000003
 
 AmbientColor 1 1 1
 AmbientIntensity 0
@@ -1145,7 +1342,7 @@ Channel 2
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -2.3070468902587891 0.033333333333333333 0 0 0 0 -0.069332731164191377 0 0
+  Key -2.3070468902587886 0.033333333333333333 0 0 0 0 -0.069332731164191377 0 0
   Behaviors 1 1
 }
 Channel 3
@@ -1238,7 +1435,7 @@ Channel 1
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key -0.41946297883987427 0.033333333333333333 0 0 0 0 0 0 0
+  Key -0.41946297883987432 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 2
@@ -1352,42 +1549,42 @@ Channel 3
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 4
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 5
 { Envelope
   2
   Key 0 0 0 0 0 0 0 0 0
-  Key 0 0.033333335071802139 0 0 0 0 0 0 0
+  Key 0 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 6
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 7
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 Channel 8
 { Envelope
   2
   Key 1 0 0 0 0 0 0 0 0
-  Key 1 0.033333335071802139 0 0 0 0 0 0 0
+  Key 1 0.033333333333333333 0 0 0 0 0 0 0
   Behaviors 1 1
 }
 IKInitCustomFrame 0
@@ -1404,11 +1601,11 @@ PathAlignMaxLookSteps 10
 PathAlignReliableDist 0.001
 IKInitialState 0
 LightColor 1 0 0
-LightIntensity 0
+LightIntensity 1
 LightType 1
 LightFalloffType 1
 LightRange 1.98
-VolumetricLighting 0
+VolumetricLighting 1
 { Volumetrics
   { Options
     Flags 1 2 0 0 1 1 0
@@ -1632,7 +1829,7 @@ DitherIntensity 1
 AnimatedDither 0
 
 RenderMode 2
-RayTraceEffects 31
+RayTraceEffects 30
 DepthBufferAA 0
 RenderLines 1
 RayRecursionLimit 16
@@ -1662,8 +1859,8 @@ ShowFieldChart 0
 OverlayColor_fv 0 0 0
 MeshBackgroundGroup 1
 
-CurrentObject 4
-CurrentLight 0
+CurrentObject 5
+CurrentLight 3
 CurrentCamera 0
 GraphEditorData
 { GraphEd_Favorites
