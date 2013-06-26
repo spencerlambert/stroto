@@ -28,12 +28,13 @@
     float paddingtop = THUMB_HEIGHT + THUMB_V_PADDING * 2;
     float paddingright = THUMB_HEIGHT + THUMB_V_PADDING * 2;
     frame = CGRectMake(CGRectGetMaxX(bounds)-paddingright, CGRectGetMinY(bounds), paddingright,paddingtop);
-    UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
+    //Replace with "Done" button
+    //UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
     self = [super initWithFrame:frame];
     if (self) {
         done = [UIButton buttonWithType:UIButtonTypeCustom];
         [done setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        [done setBackgroundImage:btnimage forState:UIControlStateNormal];
+        //[done setBackgroundImage:btnimage forState:UIControlStateNormal];
         [self addSubview:done];
     }
     return self;

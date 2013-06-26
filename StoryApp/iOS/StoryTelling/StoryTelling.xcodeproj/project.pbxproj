@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D2A0A19177ABD1600C78EE0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A18177ABD1600C78EE0 /* Default.png */; };
+		4D2A0A1B177ABD2C00C78EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A1A177ABD2C00C78EE0 /* Default@2x.png */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -104,6 +106,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D2A0A18177ABD1600C78EE0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4D2A0A1A177ABD2C00C78EE0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,8 @@
 		DB28D6FD1742E1460071B5C2 = {
 			isa = PBXGroup;
 			children = (
+				4D2A0A1A177ABD2C00C78EE0 /* Default@2x.png */,
+				4D2A0A18177ABD1600C78EE0 /* Default.png */,
 				DB28D7121742E1460071B5C2 /* StoryTelling */,
 				DB28D7391742E1460071B5C2 /* StoryTellingTests */,
 				DB28D70B1742E1460071B5C2 /* Frameworks */,
@@ -512,6 +518,8 @@
 				DB93D70A1774E36000437F40 /* RecordOn.png in Resources */,
 				DB93D70B1774E36000437F40 /* TopBar.png in Resources */,
 				DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */,
+				4D2A0A19177ABD1600C78EE0 /* Default.png in Resources */,
+				4D2A0A1B177ABD2C00C78EE0 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,8 +712,6 @@
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				PRODUCT_NAME = Stroto;
-				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -719,8 +725,6 @@
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				PRODUCT_NAME = Stroto;
-				PROVISIONING_PROFILE = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE826DB1-941E-4CAC-A227-9F4012503D5F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
