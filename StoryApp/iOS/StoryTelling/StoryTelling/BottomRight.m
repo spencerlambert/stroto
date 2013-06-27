@@ -9,8 +9,8 @@
 #import "BottomRight.h"
 
 
-#define THUMB_HEIGHT 60
-#define THUMB_WIDTH 36
+#define THUMB_HEIGHT 45
+#define THUMB_WIDTH 45
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 #define STATUS_BAR_HEIGHT 20
@@ -36,7 +36,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         startrecording = [UIButton buttonWithType:UIButtonTypeCustom];
-        [startrecording setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        [startrecording setFrame:CGRectMake(0, -7, frame.size.width, frame.size.height)];
         [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
         [startrecording addTarget:self action:@selector(startrecordingbtn_clicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startrecording];
@@ -64,8 +64,7 @@
             UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
             [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
             isRecording = NO;
-            finishedRecording = NO;
-            //finishedRecording = YES;
+            finishedRecording = YES;
             [mydelegate stopcapturingview];
         }
     }
