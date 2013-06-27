@@ -129,36 +129,44 @@
         }
     }
     
-    if(!imageselected)
-        for (UIImageView *temp in pickedimages) {
-            if([touch.view isDescendantOfView:temp])
-            {
-                imageselected = YES;
-                selectedimage = temp;
-                [temp.layer setBorderColor:[[UIColor blackColor] CGColor]];
-                [temp.layer setBorderWidth: 2.0];
-                [temp addGestureRecognizer:pan];
-                [temp addGestureRecognizer:pinch];
-                [temp addGestureRecognizer:rotate];
-                UIView *temp1 = temp;
-                [temp1 bringToFront];
-                return NO;
-                
-            }
-        }
-    else
-    {
-        if(![touch.view isDescendantOfView:selectedimage]){
-            imageselected = NO;
-            [selectedimage.layer setBorderColor:[[UIColor clearColor] CGColor]];
-            [selectedimage.layer setBorderWidth: 0.0];
-            [selectedimage removeGestureRecognizer:pinch];
-            [selectedimage removeGestureRecognizer:pan];
-            [selectedimage removeGestureRecognizer:rotate];
-            selectedimage = NULL;
-            return NO;
+    for (UIImageView *temp in pickedimages) {
+        if([touch.view isDescendantOfView:temp])
+        {
+            [temp bringToFront];
         }
     }
+
+    
+//    if(!imageselected)
+//        for (UIImageView *temp in pickedimages) {
+//            if([touch.view isDescendantOfView:temp])
+//            {
+//                imageselected = YES;
+//                selectedimage = temp;
+//                [temp.layer setBorderColor:[[UIColor blackColor] CGColor]];
+//                [temp.layer setBorderWidth: 2.0];
+//                [temp addGestureRecognizer:pan];
+//                [temp addGestureRecognizer:pinch];
+//                [temp addGestureRecognizer:rotate];
+//                UIView *temp1 = temp;
+//                [temp1 bringToFront];
+//                return NO;
+//                
+//            }
+//        }
+//    else
+//    {
+//        if(![touch.view isDescendantOfView:selectedimage]){
+//            imageselected = NO;
+//            [selectedimage.layer setBorderColor:[[UIColor clearColor] CGColor]];
+//            [selectedimage.layer setBorderWidth: 0.0];
+//            [selectedimage removeGestureRecognizer:pinch];
+//            [selectedimage removeGestureRecognizer:pan];
+//            [selectedimage removeGestureRecognizer:rotate];
+//            selectedimage = NULL;
+//            return NO;
+//        }
+//    }
     
     return YES;
 }
@@ -188,16 +196,16 @@
     if(CGRectIntersectsRect(mainframe, testframe)){
         UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
         imageview.image = tiv;
-//        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-//        pan.delegate = self;
-//        UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-//        pinch.delegate = self;
-//        UIRotationGestureRecognizer *rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
-//        rotate.delegate = self;
-//        [imageview setUserInteractionEnabled:YES];
-//        [imageview addGestureRecognizer:pan];
-//        [imageview addGestureRecognizer:pinch];
-//        [imageview addGestureRecognizer:rotate];
+        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+        pan.delegate = self;
+        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+        pinch.delegate = self;
+        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+        rotate.delegate = self;
+        [imageview setUserInteractionEnabled:YES];
+        [imageview addGestureRecognizer:pan];
+        [imageview addGestureRecognizer:pinch];
+        [imageview addGestureRecognizer:rotate];
         [imageview setUserInteractionEnabled:YES];
         [captureview addSubview:imageview];
         [pickedimages addObject:imageview];
@@ -207,7 +215,7 @@
 #pragma mark UIGestureRecognizerDelegate methods
 
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
-    
+    [recognizer.view bringToFront];
     CGPoint translation = [recognizer translationInView:self.view];
     recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
                                          recognizer.view.center.y + translation.y);
@@ -216,11 +224,13 @@
 }
 
 - (IBAction)handleRotate:(UIRotationGestureRecognizer *)recognizer {
+    [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
     recognizer.rotation = 0;
 }
 
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+    [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;
 }
