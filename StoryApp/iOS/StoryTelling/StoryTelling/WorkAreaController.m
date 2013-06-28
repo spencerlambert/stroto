@@ -22,6 +22,7 @@
 @implementation WorkAreaController
 
 @synthesize captureview;
+@synthesize selectedForegroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setSelectedForegroundImage:nil];
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
     [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
@@ -110,6 +112,34 @@
     //[slideupview toggleThumbView];
     //[slidedownview toggleThumbView];
     [slideleftview toggleThumbView];
+    
+    if([self selectedForegroundImage]!=nil){
+        
+        CGPoint point=[gestureRecognizer locationInView:self.view];
+        NSLog(@"%f %f",point.x,point.y);
+        
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
+        imageview.image=selectedForegroundImage;
+        [captureview addSubview:imageview];
+        [imageview bringToFront];
+        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+        pan.delegate = self;
+        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+        pinch.delegate = self;
+        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+        rotate.delegate = self;
+        tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+        tap.delegate=self;
+        [imageview setUserInteractionEnabled:YES];
+        [imageview addGestureRecognizer:pan];
+//        [imageview addGestureRecognizer:pinch];
+//        [imageview addGestureRecognizer:rotate];
+        [imageview addGestureRecognizer:tap];
+        
+        
+        [self setSelectedForegroundImage:nil];
+    }
+
 }
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -129,12 +159,12 @@
         }
     }
     
-    for (UIImageView *temp in pickedimages) {
-        if([touch.view isDescendantOfView:temp])
-        {
-            [temp bringToFront];
-        }
-    }
+//    for (UIImageView *temp in pickedimages) {
+//        if([touch.view isDescendantOfView:temp])
+//        {
+//            [temp bringToFront];
+//        }
+//    }
 
     
 //    if(!imageselected)
@@ -191,26 +221,33 @@
     backgroundimageview.image = selectedImage;
 }
 
-- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
-    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
-    if(CGRectIntersectsRect(mainframe, testframe)){
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
-        imageview.image = tiv;
-        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-        pan.delegate = self;
-        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-        pinch.delegate = self;
-        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
-        rotate.delegate = self;
-        [imageview setUserInteractionEnabled:YES];
-        [imageview addGestureRecognizer:pan];
-        [imageview addGestureRecognizer:pinch];
-        [imageview addGestureRecognizer:rotate];
-        [imageview setUserInteractionEnabled:YES];
-        [captureview addSubview:imageview];
-        [pickedimages addObject:imageview];
-    }
+//adding foreground image to work area
+-(void) setForegroundImage:(UIImage *)selectedImage{
+    [self setSelectedForegroundImage:selectedImage];
+    NSLog(@"%@", [selectedImage description]);
+    NSLog(@"foreground image set");
 }
+
+//- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
+//    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
+//    if(CGRectIntersectsRect(mainframe, testframe)){
+//        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
+//        imageview.image = tiv;
+//        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+//        pan.delegate = self;
+//        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+//        pinch.delegate = self;
+//        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+//        rotate.delegate = self;
+//        [imageview setUserInteractionEnabled:YES];
+//        [imageview addGestureRecognizer:pan];
+//        [imageview addGestureRecognizer:pinch];
+//        [imageview addGestureRecognizer:rotate];
+//        [imageview setUserInteractionEnabled:YES];
+//        [captureview addSubview:imageview];
+//        [pickedimages addObject:imageview];
+//    }
+//}
 
 #pragma mark UIGestureRecognizerDelegate methods
 
@@ -234,6 +271,11 @@
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;
 }
+
+-(IBAction)handleTap:(UITapGestureRecognizer*)recognizer{
+    [recognizer.view bringToFront];
+}
+
 
 #pragma mark SlideLeftView Delegate Methods
 

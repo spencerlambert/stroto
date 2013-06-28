@@ -31,5 +31,5 @@
 
 @optional
 - (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect)testframe;
-
+- (void)setForegroundImage:(UIImage *) selectedImage;
 @end

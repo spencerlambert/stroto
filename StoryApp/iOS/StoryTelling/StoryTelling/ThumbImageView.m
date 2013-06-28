@@ -92,7 +92,7 @@ float distanceBetweenPoints(CGPoint a, CGPoint b);
     // if we're not dragging yet, check if we've moved far enough from the initial point to start
     else if (distanceBetweenPoints(touchLocation, newTouchLocation) > DRAG_THRESHOLD) {
         touchLocation = newTouchLocation;
-        dragging = YES;
+        dragging = NO;
     }
 }
 

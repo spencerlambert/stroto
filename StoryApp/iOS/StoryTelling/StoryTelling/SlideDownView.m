@@ -172,9 +172,16 @@
     return @"nil";
 }
 
-- (void)checkThumbImageIntersection:(ThumbImageView *)tiv withFrame:(CGRect) testframe{
-    if([self.mydelegate respondsToSelector:@selector(checkFrameIntersection:withFrame:)])
-        [self.mydelegate checkFrameIntersection:[tiv originalImage] withFrame:testframe];
+//- (void)checkThumbImageIntersection:(ThumbImageView *)tiv withFrame:(CGRect) testframe{
+//    if([self.mydelegate respondsToSelector:@selector(checkFrameIntersection:withFrame:)])
+//        [self.mydelegate checkFrameIntersection:[tiv originalImage] withFrame:testframe];
+//}
+
+
+-(void)thumbImageViewWasTapped:(ThumbImageView *)tiv {
+    if ([self.mydelegate respondsToSelector:@selector(setForegroundImage:)]){
+        [self.mydelegate setForegroundImage:[tiv originalImage]];
+    }
 }
 
 /*
