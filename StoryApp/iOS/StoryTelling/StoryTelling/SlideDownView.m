@@ -33,7 +33,7 @@
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
-        [self setAlpha:0.75];
+        [self setAlpha:1];
     }    
     return self;
 }

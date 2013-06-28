@@ -44,7 +44,7 @@
     if (self) {
         [self setBackgroundColor:[UIColor yellowColor]];
         [self setOpaque:NO];
-        [self setAlpha:0.75];
+        [self setAlpha:1];
     }
     
     [self initbuttons];

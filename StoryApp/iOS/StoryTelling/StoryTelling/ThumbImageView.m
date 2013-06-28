@@ -62,6 +62,10 @@ float distanceBetweenPoints(CGPoint a, CGPoint b);
 - (id)initWithImage:(UIImage *)image {
     self = [super initWithImage:image];
     if (self) {
+        [self.layer setOpaque:NO];
+        [self.layer setBackgroundColor:[UIColor clearColor]];
+        [self setOpaque:NO];
+        [self setBackgroundColor:[UIColor clearColor]];
         [self setContentMode:UIViewContentModeScaleAspectFit];
         [self setUserInteractionEnabled:YES];
         [self setExclusiveTouch:YES];  // block other touches while dragging a thumb view
