@@ -110,6 +110,27 @@
     [self.storyNameTextField resignFirstResponder];
 }
 
+- (IBAction)backButtonClicked:(UIBarButtonItem *)sender {
+    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
+        //  [alert setBackgroundColor:[UIColor blackColor]];
+        [alert show];
+        
+    }
+    else{
+        id object=nil;
+        for (UIViewController *viewControl in self.navigationController.viewControllers)
+        {
+            NSLog(@"The tag value is:%d",viewControl.view.tag);
+            if(viewControl.view.tag==100)
+            {
+                object = viewControl;
+            }
+        }
+        [self.navigationController popToViewController:object animated:YES];
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.storyNameTextField resignFirstResponder];
     return  YES;
@@ -166,5 +187,25 @@
     [workarea setStoryname:[storyNameTextField text]];
     [self presentViewController:workarea animated:YES completion:nil];
 }
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0){
+        //continue button clicked
+        
+    }
+    else{
+        //clear button clicked
+        id object=nil;
+        for (UIViewController *viewControl in self.navigationController.viewControllers)
+        {
+            NSLog(@"The tag value is:%d",viewControl.view.tag);
+            if(viewControl.view.tag==100)
+            {
+                object = viewControl;
+            }
+        }
+        [self.navigationController popToViewController:object animated:YES];
+    }
+}
+
 
 @end

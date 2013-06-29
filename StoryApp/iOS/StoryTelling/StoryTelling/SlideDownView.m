@@ -71,8 +71,10 @@
         float xPosition = THUMB_H_PADDING;
         
         
-        for (NSMutableDictionary *imageDictionary in self.photos) {
-            UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+       for (NSMutableDictionary *imageDictionary in self.photos) {
+        UIImage *thumbImage = [imageDictionary
+                               objectForKey:@"UIImagePickerControllerOriginalImage"];
+           // UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
             if (thumbImage) {
                 thumbImage =
                 [UIImage imageWithCGImage:[thumbImage CGImage]

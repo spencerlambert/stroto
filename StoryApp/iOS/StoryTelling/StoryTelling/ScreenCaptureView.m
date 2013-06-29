@@ -3,6 +3,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
 @interface ScreenCaptureView(Private)
 - (void) writeVideoFrameAtTime:(CMTime)time;
 @end
@@ -15,7 +16,7 @@
 	// Initialization code
 	self.clearsContextBeforeDrawing = YES;
 	self.currentScreen = nil;
-	self.frameRate = 20.0f;     //10 frames per seconds
+	self.frameRate = 40.0f;     //20.0f for 10 frames per seconds
 	_recording = false;
 	videoWriter = nil;
 	videoWriterInput = nil;
@@ -296,5 +297,7 @@
 	}
 	
 }
+
+
 
 @end

@@ -264,6 +264,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Create Story" id="9dF-Fa-QfY">
                         <barButtonItem key="backBarButtonItem" title="Back" id="5Tq-o6-NC5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="zkz-9u-fae">
+                            <connections>
+                                <action selector="backButtonClicked:" destination="fLV-iY-P4c" id="Efc-mw-RPK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="0Rl-2i-1ak">
                             <connections>
                                 <action selector="nextButtonClicked:" destination="fLV-iY-P4c" id="d4Y-P3-opD"/>
@@ -434,6 +439,7 @@
         <class className="CreateStoryRootViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="nextButtonClicked:"/>
                 <relationship kind="action" name="resigngTxtField"/>
                 <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
@@ -464,6 +470,10 @@
         <class className="WorkAreaController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
             <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="handleRotate:" candidateClass="UIRotationGestureRecognizer"/>
+                <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="captureview" candidateClass="ScreenCaptureView"/>
             </relationships>
         </class>

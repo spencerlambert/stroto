@@ -24,5 +24,7 @@
 - (void) reloadBackgroundImagesView ;
 - (void) reloadForegroundImagesView ;
 -(IBAction)resigngTxtField;
+- (IBAction)backButtonClicked:(UIBarButtonItem *)sender;
+
 
 @end
