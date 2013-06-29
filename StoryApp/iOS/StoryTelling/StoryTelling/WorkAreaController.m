@@ -283,14 +283,16 @@
     slideleftview.startrecording.enabled = NO;
     slideleftview.stoprecording.enabled = YES;
     [audiorecorder recordAudio];
-    [captureview startRecording];
+    //Changing record methods: captureview is now just a UIView
+    //[captureview startRecording];
 }
 
 - (void)stopcapturingview{
     slideleftview.stoprecording.enabled = NO;
-    [captureview stopRecording];
+    //Changing record methods: captureview is now just a UIView
+    //[captureview stopRecording];
     [audiorecorder stop];
-    [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
+    //[self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
 }
 
 -(void)CompileFilesToMakeMovie

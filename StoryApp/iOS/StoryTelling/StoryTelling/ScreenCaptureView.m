@@ -105,6 +105,21 @@
 	CGImageRelease(cgImage);
 	
 	self.currentScreen = background;
+    
+    
+/***
+ Alternative steps to getting the UIImage
+ 
+ UIGraphicsBeginImageContext(self.bounds.size);
+ [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+ self.currentScreen = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ 
+ 
+***/
+    
+    
+    
 	
 	//debugging
 	//if (frameCount < 40) {

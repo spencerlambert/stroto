@@ -64,7 +64,8 @@
             UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
             [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
             isRecording = NO;
-            finishedRecording = YES;
+            //ToDo: Implement Pause
+            //finishedRecording = YES;
             [mydelegate stopcapturingview];
         }
     }

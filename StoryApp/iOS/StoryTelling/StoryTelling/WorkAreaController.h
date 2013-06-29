@@ -31,7 +31,7 @@
     UIRotationGestureRecognizer *rotate;
     UITapGestureRecognizer *tap;
 }
-@property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;
+@property (weak, nonatomic) IBOutlet UIView *captureview;
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;
