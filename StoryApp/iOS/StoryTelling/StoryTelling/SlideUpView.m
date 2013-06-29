@@ -26,11 +26,13 @@
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
     frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width - thumbHeight, thumbHeight);
     self = [super initWithFrame:frame];
+/***
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
         [self setAlpha:1];
     }
+***/
     return self;
 }
 
@@ -68,7 +70,7 @@
         
         
         for (NSMutableDictionary *imageDictionary in self.photos) {
-            UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+            UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
             if (thumbImage) {
                 thumbImage =
                 [UIImage imageWithCGImage:[thumbImage CGImage]

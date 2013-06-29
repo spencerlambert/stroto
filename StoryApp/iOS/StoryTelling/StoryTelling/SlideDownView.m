@@ -30,11 +30,13 @@
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
     frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width - thumbHeight, thumbHeight);
     self = [super initWithFrame:frame];
+/***
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
         [self setAlpha:1];
-    }    
+    }
+***/
     return self;
 }
 

@@ -16,7 +16,7 @@
 	// Initialization code
 	self.clearsContextBeforeDrawing = YES;
 	self.currentScreen = nil;
-	self.frameRate = 40.0f;     //20.0f for 10 frames per seconds
+	self.frameRate = 10.0f;     //10.0f for 10 frames per seconds
 	_recording = false;
 	videoWriter = nil;
 	videoWriterInput = nil;
@@ -95,7 +95,10 @@
 	CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, self.frame.size.height);
 	CGContextConcatCTM(context, flipVertical);
 	
-	[self.layer renderInContext:context];
+    if (_recording) {
+        // This call is slow, only do it when recording.
+        [self.layer renderInContext:context];
+    }
 	
 	CGImageRef cgImage = CGBitmapContextCreateImage(context);
 	UIImage* background = [UIImage imageWithCGImage: cgImage];
