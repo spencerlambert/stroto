@@ -1,5 +1,5 @@
 //
-//  STimagePosition.h
+//  STImagePosition.h
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/29/13.
@@ -24,6 +24,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface STimagePosition : NSObject
+@interface STImagePosition : NSObject
 
 @end

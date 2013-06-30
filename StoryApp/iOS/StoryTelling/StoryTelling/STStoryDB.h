@@ -1,5 +1,5 @@
 //
-//  STstoryDB.h
+//  STStoryDB.h
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/29/13.
@@ -102,11 +102,11 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
-#import "STimagePosition.h"
+#import "STImagePosition.h"
 
-@interface STstoryDB : NSObject;
-+ (STstoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
-+ (STstoryDB*)loadSTstoryDB:(NSString*)stroyPath;
+@interface STStoryDB : NSObject;
++ (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
++ (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
@@ -123,8 +123,8 @@
 - (UIImage*)getForegoundImage:(int*)bg_id;
 - (NSMutableArray*)getForegroundImageSortedListIds; // Returns a list of bg_ids sorted by the listDisplayOrder
 
-- (BOOL)addBackgroundTimelineImage:(STimagePosition*)position;
-- (BOOL)addForegroundTimelineImage:(STimagePosition*)position;
+- (BOOL)addBackgroundTimelineImage:(STImagePosition*)position;
+- (BOOL)addForegroundTimelineImage:(STImagePosition*)position;
 
 //Still need other methods for getting the timeline in playback mode.
 

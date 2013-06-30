@@ -1,5 +1,5 @@
 //
-//  STimagePosition.m
+//  STImagePosition.m
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/29/13.
@@ -7,8 +7,8 @@
 //
 
 
-#import "STimagePosition.h"
+#import "STImagePosition.h"
 
-@implementation STimagePosition
+@implementation STImagePosition
 
 @end
