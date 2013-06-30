@@ -44,9 +44,16 @@
     createDateTime  NUMERIC
  );
  
- // Keeps a copy of the cropped images.
+ // Keeps a copy of the images.
+ //
  // fileType: enum('png','jpg')
  // type: enum('foreground','backgound');
+ //
+ // The default X, Y and Scale values are for 
+ // being able to store the full scale image, say on 
+ // a backgound, but display it as cropped.
+ // On foregound images the defaultScale sets the size 
+ // that the image is displaied when entering the screen.
  CREATE TABLE Image (
     imageId             INTEGER PRIMARY KEY AUTOINCREMENT,
     listDisplayOrder    INTEGER,
@@ -54,6 +61,9 @@
     sizeY               INTEGER,
     fileType            TEXT,
     type                TEXT,
+    defaultX            INTEGER,
+    defaultY            INTEGER,
+    defaultScale        INTEGER,
     imageData           BLOB
  );
  
