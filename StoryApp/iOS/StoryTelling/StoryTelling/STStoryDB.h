@@ -48,48 +48,78 @@
  // fileType: enum('png','jpg')
  // type: enum('foreground','backgound');
  CREATE TABLE Image (
-    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    imageId             INTEGER PRIMARY KEY AUTOINCREMENT,
     listDisplayOrder    INTEGER,
     sizeX               INTEGER,
     sizeY               INTEGER,
     fileType            TEXT,
     type                TEXT,
-    image               BLOB
+    imageData           BLOB
  );
-
+ 
+ // Keeps a copy of sound effects/music to be used in stories.
+ // This is a future feature.
+ CREATE TABLE Sound (
+    soundId             INTEGER PRIMARY KEY AUTOINCREMENT,
+    mp3Data             BLOB
+ );
+ 
  // Stores the recorded audio and the timecode to
  // start playing it in the story.  Because of the 
  // Start/Pause feature in story create, we will have 
  // multiple audio files.
  CREATE TABLE AudioRecording (
-    id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    playAtTimecode  NUMERIC,
-    data            BLOB
+    audioId         INTEGER PRIMARY KEY AUTOINCREMENT,
+    timecode        NUMERIC,
+    audioData       BLOB
  );
+ 
+ 
+ // This table holds instance ids for every image,
+ // it makes it possible to track the movements of the 
+ // same image type used multiple times.
+ CREATE TABLE ImageInstance (
+    imageInstanceId INTEGER PRIMARY KEY AUTOINCREMENT,
+    imageId         INTEGER,
+ );
+ 
  
  // Stores the times that the background changes.
  // NOTE: Everytime Start or Pause is pressed, this
  // table needs an updadate on the current state.
+ // When layer is set to -1, the image is not currently
+ // being displayed.
  CREATE TABLE BackgroundTimeline (
-    imageId             INTEGER,
-    timecode            INTEGER,
+    imageInstanceId     INTEGER,
+    timecode            NUMERIC,
     x                   INTEGER,
     y                   INTEGER,
     scale               NUMERIC,
-    rotation            NUMERIC
+    rotation            NUMERIC,
+    layer               INTEGER
  );
 
  
  // Stores the times that the foreground images change.
  // NOTE: Everytime Start is pressed, this
  // table needs an updadate on the current state.
+ // When layer is set to -1, the image is not currently
+ // being displayed.
  CREATE TABLE ForegroundTimeline (
-    imageId             INTEGER,
-    timecode            INTEGER,
+    imageInstanceId     INTEGER,
+    timecode            NUMERIC,
     x                   INTEGER,
     y                   INTEGER,
     scale               NUMERIC,
-    rotation            NUMERIC
+    rotation            NUMERIC,
+    layer               INTEGER
+ );
+ 
+ // Future feature for playing sound effects/music in story.
+ CREATE TABLE SoundTimeline (
+    soundId             INTEGER,
+    timecode            INTEGER,
+    volume              INTEGER,
  );
  
  // NOTE: Only make a DB entry when the foreground or
@@ -118,10 +148,10 @@
 
 
 - (int)addForegroundImage:(UIImage*)image;
-- (int)updateForegoundImage:(UIImage*)image :(int*)bg_id;
-- (BOOL)deleteForegroundImage:(int*)bg_id;
-- (UIImage*)getForegoundImage:(int*)bg_id;
-- (NSMutableArray*)getForegroundImageSortedListIds; // Returns a list of bg_ids sorted by the listDisplayOrder
+- (int)updateForegoundImage:(UIImage*)image :(int*)fg_id;
+- (BOOL)deleteForegroundImage:(int*)fg_id;
+- (UIImage*)getForegoundImage:(int*)fg_id;
+- (NSMutableArray*)getForegroundImageSortedListIds; // Returns a list of fg_ids sorted by the listDisplayOrder
 
 - (BOOL)addBackgroundTimelineImage:(STImagePosition*)position;
 - (BOOL)addForegroundTimelineImage:(STImagePosition*)position;

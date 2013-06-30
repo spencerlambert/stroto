@@ -10,12 +10,13 @@
 /*******
  This is a simple class to handle the position values of:
  
- imageid
+ imageInstanceId
  x
  y
  rotation
  scale
  timecode
+ layer
  
  Used for saving the position of an image in a STstoryDB.
  Can be kept in memory durring a recording, then dumped to
