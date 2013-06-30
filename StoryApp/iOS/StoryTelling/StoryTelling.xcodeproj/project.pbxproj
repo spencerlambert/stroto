@@ -12,6 +12,7 @@
 		4D2A0A1F177BD1FD00C78EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A1E177BD1FD00C78EE0 /* Default@2x.png */; };
 		4D2A0A22177BD37A00C78EE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */; };
 		4D2A0A58177F8D0F00C78EE0 /* STstoryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A57177F8D0F00C78EE0 /* STstoryDB.m */; };
+		4D2A0A5B177FB11300C78EE0 /* STimagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A5A177FB11300C78EE0 /* STimagePosition.m */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -113,6 +114,8 @@
 		4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4D2A0A56177F8D0F00C78EE0 /* STstoryDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STstoryDB.h; sourceTree = "<group>"; };
 		4D2A0A57177F8D0F00C78EE0 /* STstoryDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STstoryDB.m; sourceTree = "<group>"; };
+		4D2A0A59177FB11300C78EE0 /* STimagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STimagePosition.h; sourceTree = "<group>"; };
+		4D2A0A5A177FB11300C78EE0 /* STimagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STimagePosition.m; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +236,8 @@
 			children = (
 				4D2A0A56177F8D0F00C78EE0 /* STstoryDB.h */,
 				4D2A0A57177F8D0F00C78EE0 /* STstoryDB.m */,
+				4D2A0A59177FB11300C78EE0 /* STimagePosition.h */,
+				4D2A0A5A177FB11300C78EE0 /* STimagePosition.m */,
 			);
 			name = StoryDB;
 			sourceTree = "<group>";
@@ -602,6 +607,7 @@
 				DB93D70E1774EBEE00437F40 /* TopRightView.m in Sources */,
 				DB93D7121774EC0000437F40 /* BottomRight.m in Sources */,
 				4D2A0A58177F8D0F00C78EE0 /* STstoryDB.m in Sources */,
+				4D2A0A5B177FB11300C78EE0 /* STimagePosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

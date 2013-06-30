@@ -3,7 +3,7 @@
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/29/13.
-//  Copyright (c) 2013 Aaswini. All rights reserved.
+//  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
 /********************
@@ -45,23 +45,14 @@
  );
  
  // Keeps a copy of the cropped images.
- // type: enum('png','jpg')
- CREATE TABLE BackgroundImage (
+ // fileType: enum('png','jpg')
+ // type: enum('foreground','backgound');
+ CREATE TABLE Image (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     listDisplayOrder    INTEGER,
     sizeX               INTEGER,
     sizeY               INTEGER,
-    type                TEXT,
-    image               BLOB
- );
-
- // Keeps a copy of the cropped images.
- // type: enum('png','jpg')
- CREATE TABLE ForegroundImage (
-    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
-    listDisplayOrder    INTEGER,
-    sizeX               INTEGER,
-    sizeY               INTEGER,
+    fileType            TEXT,
     type                TEXT,
     image               BLOB
  );
@@ -76,24 +67,11 @@
     data            BLOB
  );
  
- 
- // Stores the times that the background changes.
- // NOTE: Everytime Start is pressed, this
- // table needs an updadate on the current state.
- CREATE TABLE BackgroundTimeline (
-    backgroundImageId   INTEGER,
-    timecode            INTEGER,
-    x                   INTEGER,
-    y                   INTEGER,
-    scale               NUMERIC,
-    rotation            NUMERIC
- );
-
  // Stores the times that the background changes.
  // NOTE: Everytime Start or Pause is pressed, this
  // table needs an updadate on the current state.
  CREATE TABLE BackgroundTimeline (
-    backgroundImageId   INTEGER,
+    imageId             INTEGER,
     timecode            INTEGER,
     x                   INTEGER,
     y                   INTEGER,
@@ -106,7 +84,7 @@
  // NOTE: Everytime Start is pressed, this
  // table needs an updadate on the current state.
  CREATE TABLE ForegroundTimeline (
-    ForegroundImageId   INTEGER,
+    imageId             INTEGER,
     timecode            INTEGER,
     x                   INTEGER,
     y                   INTEGER,
@@ -124,10 +102,30 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "STimagePosition.h"
 
-@interface STstoryDB : NSObject
-{
-    NSString* storyPath;
-    
-}
+@interface STstoryDB : NSObject;
++ (STstoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
++ (STstoryDB*)loadSTstoryDB:(NSString*)stroyPath;
+
+- (BOOL)updateDisplayName:(NSString*)name;
+
+- (int)addBackgroundImage:(UIImage*)image;
+- (int)updateBackgoundImage:(UIImage*)image :(int*)bg_id;
+- (BOOL)deleteBackgroundImage:(int*)bg_id;
+- (UIImage*)getBackgoundImage:(int*)bg_id;
+- (NSMutableArray*)getBackgroundImageSortedListIds; // Returns a list of bg_ids sorted by the listDisplayOrder
+
+
+- (int)addForegroundImage:(UIImage*)image;
+- (int)updateForegoundImage:(UIImage*)image :(int*)bg_id;
+- (BOOL)deleteForegroundImage:(int*)bg_id;
+- (UIImage*)getForegoundImage:(int*)bg_id;
+- (NSMutableArray*)getForegroundImageSortedListIds; // Returns a list of bg_ids sorted by the listDisplayOrder
+
+- (BOOL)addBackgroundTimelineImage:(STimagePosition*)position;
+- (BOOL)addForegroundTimelineImage:(STimagePosition*)position;
+
+//Still need other methods for getting the timeline in playback mode.
+
 @end

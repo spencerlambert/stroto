@@ -3,7 +3,7 @@
 //  StoryTelling
 //
 //  Created by Aaswini on 09/06/13.
-//  Copyright (c) 2013 Aaswini. All rights reserved.
+//  Copyright (c) 2013 Stroto LLC. All rights reserved.
 //
 
 #import "AddForegroundViewController.h"
