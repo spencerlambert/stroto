@@ -12,7 +12,18 @@
 		4D2A0A1F177BD1FD00C78EE0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A1E177BD1FD00C78EE0 /* Default@2x.png */; };
 		4D2A0A22177BD37A00C78EE0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */; };
 		4D2A0A58177F8D0F00C78EE0 /* STStoryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A57177F8D0F00C78EE0 /* STStoryDB.m */; };
-		4D2A0A5B177FB11300C78EE0 /* STImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A5A177FB11300C78EE0 /* STImagePosition.m */; };
+		4D2A0A5B177FB11300C78EE0 /* STImageInstancePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A5A177FB11300C78EE0 /* STImageInstancePosition.m */; };
+		4D2A0A5F1780B28100C78EE0 /* STModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A5E1780B28100C78EE0 /* STModifier.m */; };
+		4D2A0A621780B37A00C78EE0 /* STModifierImageInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A611780B37A00C78EE0 /* STModifierImageInstance.m */; };
+		4D2A0A661780B44200C78EE0 /* STImageInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A651780B44200C78EE0 /* STImageInstance.m */; };
+		4D2A0A691780B47D00C78EE0 /* STImageInstanceBackgound.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A681780B47D00C78EE0 /* STImageInstanceBackgound.m */; };
+		4D2A0A6C1780B4BB00C78EE0 /* STImageInstanceForeground.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A6B1780B4BB00C78EE0 /* STImageInstanceForeground.m */; };
+		4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A6E1780B53E00C78EE0 /* STAudioRecording.m */; };
+		4D2A0A721780B56900C78EE0 /* STSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A711780B56900C78EE0 /* STSound.m */; };
+		4D2A0A751780B5A000C78EE0 /* STModiferImageInstanceZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A741780B5A000C78EE0 /* STModiferImageInstanceZoom.m */; };
+		4D2A0A781780B5C900C78EE0 /* STModifierImageInstanceRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A771780B5C900C78EE0 /* STModifierImageInstanceRotate.m */; };
+		4D2A0A7B1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A7A1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m */; };
+		4D2A0A7E1780B64500C78EE0 /* STModifierImageInstancePerspective.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A7D1780B64400C78EE0 /* STModifierImageInstancePerspective.m */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -114,8 +125,30 @@
 		4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4D2A0A56177F8D0F00C78EE0 /* STStoryDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryDB.h; sourceTree = "<group>"; };
 		4D2A0A57177F8D0F00C78EE0 /* STStoryDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryDB.m; sourceTree = "<group>"; };
-		4D2A0A59177FB11300C78EE0 /* STImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImagePosition.h; sourceTree = "<group>"; };
-		4D2A0A5A177FB11300C78EE0 /* STImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImagePosition.m; sourceTree = "<group>"; };
+		4D2A0A59177FB11300C78EE0 /* STImageInstancePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImageInstancePosition.h; sourceTree = "<group>"; };
+		4D2A0A5A177FB11300C78EE0 /* STImageInstancePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImageInstancePosition.m; sourceTree = "<group>"; };
+		4D2A0A5D1780B28100C78EE0 /* STModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifier.h; sourceTree = "<group>"; };
+		4D2A0A5E1780B28100C78EE0 /* STModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifier.m; sourceTree = "<group>"; };
+		4D2A0A601780B37A00C78EE0 /* STModifierImageInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifierImageInstance.h; sourceTree = "<group>"; };
+		4D2A0A611780B37A00C78EE0 /* STModifierImageInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierImageInstance.m; sourceTree = "<group>"; };
+		4D2A0A641780B44200C78EE0 /* STImageInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImageInstance.h; sourceTree = "<group>"; };
+		4D2A0A651780B44200C78EE0 /* STImageInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImageInstance.m; sourceTree = "<group>"; };
+		4D2A0A671780B47D00C78EE0 /* STImageInstanceBackgound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImageInstanceBackgound.h; sourceTree = "<group>"; };
+		4D2A0A681780B47D00C78EE0 /* STImageInstanceBackgound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImageInstanceBackgound.m; sourceTree = "<group>"; };
+		4D2A0A6A1780B4BB00C78EE0 /* STImageInstanceForeground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImageInstanceForeground.h; sourceTree = "<group>"; };
+		4D2A0A6B1780B4BB00C78EE0 /* STImageInstanceForeground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImageInstanceForeground.m; sourceTree = "<group>"; };
+		4D2A0A6D1780B53E00C78EE0 /* STAudioRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAudioRecording.h; sourceTree = "<group>"; };
+		4D2A0A6E1780B53E00C78EE0 /* STAudioRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAudioRecording.m; sourceTree = "<group>"; };
+		4D2A0A701780B56900C78EE0 /* STSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSound.h; sourceTree = "<group>"; };
+		4D2A0A711780B56900C78EE0 /* STSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSound.m; sourceTree = "<group>"; };
+		4D2A0A731780B5A000C78EE0 /* STModiferImageInstanceZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModiferImageInstanceZoom.h; sourceTree = "<group>"; };
+		4D2A0A741780B5A000C78EE0 /* STModiferImageInstanceZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModiferImageInstanceZoom.m; sourceTree = "<group>"; };
+		4D2A0A761780B5C900C78EE0 /* STModifierImageInstanceRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifierImageInstanceRotate.h; sourceTree = "<group>"; };
+		4D2A0A771780B5C900C78EE0 /* STModifierImageInstanceRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierImageInstanceRotate.m; sourceTree = "<group>"; };
+		4D2A0A791780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifierImageInstanceFollowTangent.h; sourceTree = "<group>"; };
+		4D2A0A7A1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierImageInstanceFollowTangent.m; sourceTree = "<group>"; };
+		4D2A0A7C1780B64400C78EE0 /* STModifierImageInstancePerspective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifierImageInstancePerspective.h; sourceTree = "<group>"; };
+		4D2A0A7D1780B64400C78EE0 /* STModifierImageInstancePerspective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierImageInstancePerspective.m; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,10 +269,46 @@
 			children = (
 				4D2A0A56177F8D0F00C78EE0 /* STStoryDB.h */,
 				4D2A0A57177F8D0F00C78EE0 /* STStoryDB.m */,
-				4D2A0A59177FB11300C78EE0 /* STImagePosition.h */,
-				4D2A0A5A177FB11300C78EE0 /* STImagePosition.m */,
+				4D2A0A59177FB11300C78EE0 /* STImageInstancePosition.h */,
+				4D2A0A5A177FB11300C78EE0 /* STImageInstancePosition.m */,
 			);
 			name = StoryDB;
+			sourceTree = "<group>";
+		};
+		4D2A0A5C1780B22300C78EE0 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				4D2A0A5D1780B28100C78EE0 /* STModifier.h */,
+				4D2A0A5E1780B28100C78EE0 /* STModifier.m */,
+				4D2A0A601780B37A00C78EE0 /* STModifierImageInstance.h */,
+				4D2A0A611780B37A00C78EE0 /* STModifierImageInstance.m */,
+				4D2A0A731780B5A000C78EE0 /* STModiferImageInstanceZoom.h */,
+				4D2A0A741780B5A000C78EE0 /* STModiferImageInstanceZoom.m */,
+				4D2A0A761780B5C900C78EE0 /* STModifierImageInstanceRotate.h */,
+				4D2A0A771780B5C900C78EE0 /* STModifierImageInstanceRotate.m */,
+				4D2A0A791780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.h */,
+				4D2A0A7A1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m */,
+				4D2A0A7C1780B64400C78EE0 /* STModifierImageInstancePerspective.h */,
+				4D2A0A7D1780B64400C78EE0 /* STModifierImageInstancePerspective.m */,
+			);
+			name = Modifiers;
+			sourceTree = "<group>";
+		};
+		4D2A0A631780B3D100C78EE0 /* StageItems */ = {
+			isa = PBXGroup;
+			children = (
+				4D2A0A641780B44200C78EE0 /* STImageInstance.h */,
+				4D2A0A651780B44200C78EE0 /* STImageInstance.m */,
+				4D2A0A671780B47D00C78EE0 /* STImageInstanceBackgound.h */,
+				4D2A0A681780B47D00C78EE0 /* STImageInstanceBackgound.m */,
+				4D2A0A6A1780B4BB00C78EE0 /* STImageInstanceForeground.h */,
+				4D2A0A6B1780B4BB00C78EE0 /* STImageInstanceForeground.m */,
+				4D2A0A6D1780B53E00C78EE0 /* STAudioRecording.h */,
+				4D2A0A6E1780B53E00C78EE0 /* STAudioRecording.m */,
+				4D2A0A701780B56900C78EE0 /* STSound.h */,
+				4D2A0A711780B56900C78EE0 /* STSound.m */,
+			);
+			name = StageItems;
 			sourceTree = "<group>";
 		};
 		DB21F8D117445B1700FA7D52 /* UIView_Hierarchy */ = {
@@ -295,6 +364,8 @@
 		DB28D7121742E1460071B5C2 /* StoryTelling */ = {
 			isa = PBXGroup;
 			children = (
+				4D2A0A631780B3D100C78EE0 /* StageItems */,
+				4D2A0A5C1780B22300C78EE0 /* Modifiers */,
 				4D2A0A55177F8C2B00C78EE0 /* StoryDB */,
 				DB9E9E991764A96E00788373 /* View Saved Story */,
 				DB9E9E861764A7C300788373 /* Create New Story */,
@@ -607,7 +678,18 @@
 				DB93D70E1774EBEE00437F40 /* TopRightView.m in Sources */,
 				DB93D7121774EC0000437F40 /* BottomRight.m in Sources */,
 				4D2A0A58177F8D0F00C78EE0 /* STStoryDB.m in Sources */,
-				4D2A0A5B177FB11300C78EE0 /* STImagePosition.m in Sources */,
+				4D2A0A5B177FB11300C78EE0 /* STImageInstancePosition.m in Sources */,
+				4D2A0A5F1780B28100C78EE0 /* STModifier.m in Sources */,
+				4D2A0A621780B37A00C78EE0 /* STModifierImageInstance.m in Sources */,
+				4D2A0A661780B44200C78EE0 /* STImageInstance.m in Sources */,
+				4D2A0A691780B47D00C78EE0 /* STImageInstanceBackgound.m in Sources */,
+				4D2A0A6C1780B4BB00C78EE0 /* STImageInstanceForeground.m in Sources */,
+				4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */,
+				4D2A0A721780B56900C78EE0 /* STSound.m in Sources */,
+				4D2A0A751780B5A000C78EE0 /* STModiferImageInstanceZoom.m in Sources */,
+				4D2A0A781780B5C900C78EE0 /* STModifierImageInstanceRotate.m in Sources */,
+				4D2A0A7B1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m in Sources */,
+				4D2A0A7E1780B64500C78EE0 /* STModifierImageInstancePerspective.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

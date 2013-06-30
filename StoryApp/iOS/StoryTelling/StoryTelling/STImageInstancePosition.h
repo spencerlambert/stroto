@@ -1,5 +1,5 @@
 //
-//  STImagePosition.h
+//  STImageInstancePosition.h
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/29/13.

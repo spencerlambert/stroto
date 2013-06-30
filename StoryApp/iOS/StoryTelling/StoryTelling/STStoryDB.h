@@ -132,7 +132,7 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
-#import "STImagePosition.h"
+#import "STImageInstancePosition.h"
 
 @interface STStoryDB : NSObject;
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
