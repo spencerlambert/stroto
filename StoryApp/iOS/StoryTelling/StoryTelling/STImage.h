@@ -16,11 +16,19 @@
  sizeY               INTEGER,
  fileType            TEXT,
  type                TEXT,
- defaultX            INTEGER,
- defaultY            INTEGER,
+ 
+ Could use CGPoint:
+    defaultX            INTEGER,
+    defaultY            INTEGER,
+ 
  defaultScale        INTEGER,
  imageData           BLOB
 
+ 
+ Note: Aaswini, I'm not familiar with all the different data types in Objective-C.
+ You can make adjustments to my definitions if you find better ways of doing things,
+ please change them.
+ 
  ***/
 
 #import <UIKit/UIKit.h>
