@@ -97,6 +97,8 @@
  // Stores the times that the background changes.
  // NOTE: Everytime Start or Pause is pressed, this
  // table needs an updadate on the current state.
+ // Flip value is 0 for no and 1 for yes, it will mirror
+ // the image, so that it's shown in reverse on the page.
  // When layer is set to -1, the image is not currently
  // being displayed.
  CREATE TABLE BackgroundTimeline (
@@ -106,6 +108,7 @@
     y                   INTEGER,
     scale               NUMERIC,
     rotation            NUMERIC,
+    flip                INTEGER,
     layer               INTEGER
  );
 
@@ -113,6 +116,8 @@
  // Stores the times that the foreground images change.
  // NOTE: Everytime Start is pressed, this
  // table needs an updadate on the current state.
+ // Flip value is 0 for no and 1 for yes, it will mirror
+ // the image, so that it's shown in reverse on the page.
  // When layer is set to -1, the image is not currently
  // being displayed.
  CREATE TABLE ForegroundTimeline (
@@ -122,6 +127,7 @@
     y                   INTEGER,
     scale               NUMERIC,
     rotation            NUMERIC,
+    flip                INTEGER,
     layer               INTEGER
  );
  
