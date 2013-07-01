@@ -94,14 +94,18 @@
  );
  
  
- // Stores the times that the background changes.
+ // Stores the times that the forground and background
+ // images change.
+ //
  // NOTE: Everytime Start or Pause is pressed, this
  // table needs an updadate on the current state.
+ //
  // Flip value is 0 for no and 1 for yes, it will mirror
  // the image, so that it's shown in reverse on the page.
+ //
  // When layer is set to -1, the image is not currently
  // being displayed.
- CREATE TABLE BackgroundTimeline (
+ CREATE TABLE ImageInstanceTimeline (
     imageInstanceId     INTEGER,
     timecode            NUMERIC,
     x                   INTEGER,
@@ -112,25 +116,6 @@
     layer               INTEGER
  );
 
- 
- // Stores the times that the foreground images change.
- // NOTE: Everytime Start is pressed, this
- // table needs an updadate on the current state.
- // Flip value is 0 for no and 1 for yes, it will mirror
- // the image, so that it's shown in reverse on the page.
- // When layer is set to -1, the image is not currently
- // being displayed.
- CREATE TABLE ForegroundTimeline (
-    imageInstanceId     INTEGER,
-    timecode            NUMERIC,
-    x                   INTEGER,
-    y                   INTEGER,
-    scale               NUMERIC,
-    rotation            NUMERIC,
-    flip                INTEGER,
-    layer               INTEGER
- );
- 
  // Future feature for playing sound effects/music in story.
  CREATE TABLE SoundTimeline (
     soundId             INTEGER,
@@ -149,6 +134,7 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "STImageInstancePosition.h"
+#import "STImage.h"
 
 @interface STStoryDB : NSObject;
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
@@ -156,21 +142,22 @@
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
-- (int)addBackgroundImage:(UIImage*)image;
-- (int)updateBackgoundImage:(UIImage*)image :(int*)bg_id;
-- (BOOL)deleteBackgroundImage:(int*)bg_id;
-- (UIImage*)getBackgoundImage:(int*)bg_id;
-- (NSMutableArray*)getBackgroundImageSortedListIds; // Returns a list of bg_ids sorted by the listDisplayOrder
+- (BOOL)addImage:(STImage*)image;  // Updates the STImage with the DB imageId
+- (BOOL)updateImage:(STImage*)image;
+- (BOOL)deleteImage:(STImage*)image;  // Only deletes if the image has no Instances in the ImageInstance table.
+- (STImage*)getImageByID:(int*)img_id;
+// I'm not sure if an NSMutableArray is the right way to pass the list of STImages.  Change if something else is better.
+- (NSMutableArray*)getBackgroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
+- (NSMutableArray*)getForegroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
 
 
-- (int)addForegroundImage:(UIImage*)image;
-- (int)updateForegoundImage:(UIImage*)image :(int*)fg_id;
-- (BOOL)deleteForegroundImage:(int*)fg_id;
-- (UIImage*)getForegoundImage:(int*)fg_id;
-- (NSMutableArray*)getForegroundImageSortedListIds; // Returns a list of fg_ids sorted by the listDisplayOrder
+// I'm still thinking about these.  Not sure how I want to break the timeline into to objects.
+// I'm thinking having a STTimeline class that can store the timeline for all types of actors, images, sounds, audio, etc.
+// Then have things like STImageInstanceTimeline that hold the specific items.
+- (id*)updateImageInstanceTimeline:(id*)timeline;
+- (id*)getImageInstanceTimeline:(id*)timeline;
 
-- (BOOL)addBackgroundTimelineImage:(STImagePosition*)position;
-- (BOOL)addForegroundTimelineImage:(STImagePosition*)position;
+
 
 //Still need other methods for getting the timeline in playback mode.
 

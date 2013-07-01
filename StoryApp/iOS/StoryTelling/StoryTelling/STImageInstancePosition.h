@@ -17,6 +17,7 @@
  scale
  timecode
  layer
+ flip
  
  Used for saving the position of an image in a STstoryDB.
  Can be kept in memory durring a recording, then dumped to

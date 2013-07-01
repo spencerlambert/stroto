@@ -29,6 +29,7 @@
 		4D2A0A871781108300C78EE0 /* STStageRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A861781108200C78EE0 /* STStageRecorder.m */; };
 		4D2A0A8A178110B200C78EE0 /* STStagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A89178110B000C78EE0 /* STStagePlayer.m */; };
 		4D2A0A8D178110D200C78EE0 /* STStagePlayerExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A8C178110D100C78EE0 /* STStagePlayerExporter.m */; };
+		4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A8F17811AA600C78EE0 /* STImage.m */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -164,6 +165,8 @@
 		4D2A0A89178110B000C78EE0 /* STStagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayer.m; sourceTree = "<group>"; };
 		4D2A0A8B178110D000C78EE0 /* STStagePlayerExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerExporter.h; sourceTree = "<group>"; };
 		4D2A0A8C178110D100C78EE0 /* STStagePlayerExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerExporter.m; sourceTree = "<group>"; };
+		4D2A0A8E17811AA500C78EE0 /* STImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImage.h; sourceTree = "<group>"; };
+		4D2A0A8F17811AA600C78EE0 /* STImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImage.m; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,6 +335,8 @@
 				4D2A0A89178110B000C78EE0 /* STStagePlayer.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
 				4D2A0A861781108200C78EE0 /* STStageRecorder.m */,
+				4D2A0A8E17811AA500C78EE0 /* STImage.h */,
+				4D2A0A8F17811AA600C78EE0 /* STImage.m */,
 			);
 			name = StageItems;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				4D2A0A871781108300C78EE0 /* STStageRecorder.m in Sources */,
 				4D2A0A8A178110B200C78EE0 /* STStagePlayer.m in Sources */,
 				4D2A0A8D178110D200C78EE0 /* STStagePlayerExporter.m in Sources */,
+				4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,8 +6,21 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+/***
+ 
+ // This table holds instance ids for every image,
+ // it makes it possible to track the movements of the
+ // same image type used multiple times.
+ CREATE TABLE ImageInstance (
+    imageInstanceId INTEGER PRIMARY KEY AUTOINCREMENT,
+    imageId         INTEGER,
+ );
 
-@interface STImageInstance : NSObject
+ 
+***/
+
+#import "STImage.h"
+
+@interface STImageInstance : STImage
 
 @end
