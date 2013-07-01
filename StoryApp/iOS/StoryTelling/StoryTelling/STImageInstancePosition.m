@@ -9,6 +9,6 @@
 
 #import "STImageInstancePosition.h"
 
-@implementation STImageInstancePosition
+@implementation STImageInstancePosition : NSObject 
 
 @end
