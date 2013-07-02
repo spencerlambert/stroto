@@ -141,7 +141,7 @@
 @interface STStoryDB : NSObject;
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
-+ (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs
++ (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
