@@ -136,12 +136,15 @@
 #import "STImageInstancePosition.h"
 #import "STImage.h"
 
-#define STDIRECTORY @"/databases/"
+#define STDIRECTORY @"story_dir/"
 
 @interface STStoryDB : NSObject;
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
+
+- (id)initWithFilename:(NSString*)filePath;
+- (id)initAsNewFile:(NSString*)filePath :(CGSize*)size;
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
@@ -149,9 +152,9 @@
 - (BOOL)updateImage:(STImage*)image;
 - (BOOL)deleteImage:(STImage*)image;  // Only deletes if the image has no Instances in the ImageInstance table.
 - (STImage*)getImageByID:(int*)img_id;
-// I'm not sure if an NSMutableArray is the right way to pass the list of STImages.  Change if something else is better.
-- (NSMutableArray*)getBackgroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
-- (NSMutableArray*)getForegroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
+// Changed to NSArray as the return type, because I don't think we need a Mutable list.
+- (NSArray*)getBackgroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
+- (NSArray*)getForegroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
 
 
 // I'm still thinking about these.  Not sure how I want to break the timeline into to objects.
