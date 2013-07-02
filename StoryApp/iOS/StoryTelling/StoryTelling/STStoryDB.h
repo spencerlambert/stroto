@@ -136,9 +136,12 @@
 #import "STImageInstancePosition.h"
 #import "STImage.h"
 
+#define STDIRECTORY @"/databases/"
+
 @interface STStoryDB : NSObject;
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
++ (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
