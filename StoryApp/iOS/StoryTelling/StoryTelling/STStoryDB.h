@@ -139,7 +139,7 @@
 #define STDIRECTORY @"story_dir/"
 
 @interface STStoryDB : NSObject;
-+ (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
++ (STStoryDB*)createNewSTstoryDB:(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
