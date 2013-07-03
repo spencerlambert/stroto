@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *storyTable;
 @property (strong, nonatomic) AppDelegate *newstoryFlag;
 - (IBAction)createNewStory:(id)sender;
--(void)createNewSTstoryDB:(NSString*)storyPath;
+
 
 
 @end
