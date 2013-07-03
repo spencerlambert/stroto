@@ -29,6 +29,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
+                                                <action selector="createNewStory:" destination="k7h-sH-vLK" eventType="touchUpInside" id="yg0-8O-bGl"/>
                                                 <segue destination="fLV-iY-P4c" kind="push" id="DmK-L8-1JX"/>
                                             </connections>
                                         </button>
@@ -421,63 +422,6 @@
             <point key="canvasLocation" x="-1357" y="-374"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AddBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="AddForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="CreateStoryRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="nextButtonClicked:"/>
-                <relationship kind="action" name="resigngTxtField"/>
-                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
-                <relationship kind="action" name="deleteButtonClicked:"/>
-                <relationship kind="action" name="editButtonClicked:"/>
-                <relationship kind="action" name="playButtonClicked:"/>
-                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
-                <relationship kind="outlet" name="NavigationBarTitle" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ScreenCaptureView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
-        </class>
-        <class className="StoryTellingRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WorkAreaController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
-            <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="handleRotate:" candidateClass="UIRotationGestureRecognizer"/>
-                <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="captureview" candidateClass="ScreenCaptureView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

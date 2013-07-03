@@ -61,6 +61,8 @@
 		DB28D76E1742F4CE0071B5C2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */; };
 		DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */; };
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB2CA7A7178435350059E3D0 /* stories.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DB2CA7A6178435350059E3D0 /* stories.sqlite */; };
+		DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB38441D1781B07C0036469D /* libsqlite3.dylib */; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
 		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
 		DB93D7061774E36000437F40 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7001774E36000437F40 /* Back.png */; };
@@ -206,6 +208,8 @@
 		DB28D76B1742F4C50071B5C2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DB2CA7A6178435350059E3D0 /* stories.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = stories.sqlite; sourceTree = "<group>"; };
+		DB38441D1781B07C0036469D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
 		DB93D7001774E36000437F40 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */,
 				DBFA4AB1174D79F7001DFCDC /* MediaPlayer.framework in Frameworks */,
 				DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */,
 				DB28D76E1742F4CE0071B5C2 /* CoreVideo.framework in Frameworks */,
@@ -353,6 +358,8 @@
 		DB28D6FD1742E1460071B5C2 = {
 			isa = PBXGroup;
 			children = (
+				DB2CA7A6178435350059E3D0 /* stories.sqlite */,
+				DB38441D1781B07C0036469D /* libsqlite3.dylib */,
 				4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */,
 				4D2A0A1E177BD1FD00C78EE0 /* Default@2x.png */,
 				4D2A0A1C177BD1EC00C78EE0 /* Default.png */,
@@ -644,6 +651,7 @@
 				4D2A0A1D177BD1EC00C78EE0 /* Default.png in Resources */,
 				4D2A0A1F177BD1FD00C78EE0 /* Default@2x.png in Resources */,
 				4D2A0A22177BD37A00C78EE0 /* Default-568h@2x.png in Resources */,
+				DB2CA7A7178435350059E3D0 /* stories.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

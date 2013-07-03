@@ -136,7 +136,7 @@
 #import "STImageInstancePosition.h"
 #import "STImage.h"
 
-@interface STStoryDB : NSObject;
+@interface STStoryDB : NSObject
 + (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
 
