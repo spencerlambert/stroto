@@ -140,9 +140,15 @@
 
 #define STDIRECTORY @"story_dir/"
 
-@interface STStoryDB : NSObject
 
-+ (STStoryDB*)createNewSTstoryDB:(NSString*)storyPath :(CGSize*)size;
+
+@interface STStoryDB : NSObject{
+
+NSString *databasePath;
+sqlite3 *db;
+}
+
++ (STStoryDB*)createNewSTstoryDB:(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
@@ -165,7 +171,7 @@
 // Then have things like STImageInstanceTimeline that hold the specific items.
 - (id*)updateImageInstanceTimeline:(id*)timeline;
 - (id*)getImageInstanceTimeline:(id*)timeline;
-
+-(void)createStory;
 
 
 //Still need other methods for getting the timeline in playback mode.

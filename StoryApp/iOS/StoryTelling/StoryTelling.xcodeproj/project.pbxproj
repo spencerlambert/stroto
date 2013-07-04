@@ -171,6 +171,7 @@
 		4D2A0A8F17811AA600C78EE0 /* STImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImage.m; sourceTree = "<group>"; };
 		4D2A0A911783758600C78EE0 /* STStoryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryFile.h; sourceTree = "<group>"; };
 		4D2A0A921783758600C78EE0 /* STStoryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryFile.m; sourceTree = "<group>"; };
+		DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,7 +225,6 @@
 		DB93D7101774EBFF00437F40 /* BottomRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomRight.h; sourceTree = "<group>"; };
 		DB93D7111774EC0000437F40 /* BottomRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomRight.m; sourceTree = "<group>"; };
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = SOURCE_ROOT; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
 		DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateStoryRootViewController.m; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 				DB9E9E861764A7C300788373 /* Create New Story */,
 				DB28D71B1742E1460071B5C2 /* AppDelegate.h */,
 				DB28D71C1742E1460071B5C2 /* AppDelegate.m */,
-				DB9E9E821764A79B00788373 /* StoryTellingRootViewController.h */,
+				DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */,
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
 				DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */,
 				DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */,

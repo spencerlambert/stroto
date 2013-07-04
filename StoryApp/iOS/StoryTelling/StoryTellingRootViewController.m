@@ -7,7 +7,7 @@
 //
 
 #import "StoryTellingRootViewController.h"
-
+#import "STStoryDB.h"
 
 @interface StoryTellingRootViewController ()
 
@@ -46,7 +46,9 @@
 }
 
 - (IBAction)createNewStory:(id)sender {
-  
+   STStoryDB *newStory = [[STStoryDB alloc] init];
+    [newStory createStory];
+    
 }
 
 
