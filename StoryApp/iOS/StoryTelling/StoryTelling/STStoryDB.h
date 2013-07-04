@@ -142,11 +142,14 @@
 
 
 
+
 @interface STStoryDB : NSObject{
 
 NSString *databasePath;
 sqlite3 *db;
 }
+
+
 
 + (STStoryDB*)createNewSTstoryDB:(CGSize*)size;
 + (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
