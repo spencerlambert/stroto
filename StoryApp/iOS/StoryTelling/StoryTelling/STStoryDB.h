@@ -135,7 +135,7 @@
 #import <sqlite3.h>
 #import "STImageInstancePosition.h"
 #import "STImage.h"
-
+#import "STStoryFile.h"
 
 
 #define STDIRECTORY @"story_dir/"
@@ -152,7 +152,7 @@ sqlite3 *db;
 
 
 + (STStoryDB*)createNewSTstoryDB:(CGSize*)size;
-+ (STStoryDB*)loadSTstoryDB:(NSString*)stroyPath;
++ (STStoryDB*)loadSTstoryDB:(STStoryFile*)stroyFile;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
 - (id)initWithFilename:(NSString*)filePath;
