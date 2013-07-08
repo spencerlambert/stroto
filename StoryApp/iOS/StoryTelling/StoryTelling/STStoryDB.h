@@ -146,7 +146,6 @@
 @interface STStoryDB : NSObject{
 
 NSString *databasePath;
-sqlite3 *db;
 }
 
 
