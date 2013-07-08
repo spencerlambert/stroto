@@ -14,7 +14,9 @@
 @end
 
 @implementation StoryTellingRootViewController
+
 @synthesize newstoryFlag;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,9 +49,15 @@
 
 - (IBAction)createNewStory:(id)sender {
    STStoryDB *newStory = [[STStoryDB alloc] init];
-    [newStory createStory];
-    
+    CGSize storySize = [AppDelegate deviceSize];
+    NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
+//   [newStory initAsNewFile:@"sfa" :280];
+     NSLog(@"db : %@",[newStory initAsNewFile:@"sfa" :&storySize]);
 }
 
 
+- (void)viewDidUnload {
+
+    [super viewDidUnload];
+}
 @end

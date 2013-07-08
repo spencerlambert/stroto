@@ -18,22 +18,51 @@
        
 //}
 
--(void)createStory{
+-(id)initAsNewFile:(NSString*)filePath :(CGSize*)size{
+    
+    NSLog(@"size : %@",NSStringFromCGSize(*size));
+    
     NSString *docsDir;
     NSArray *dirPaths;
-   
     
+    sqlite3 *db;
     // Get the documents directory
     dirPaths = NSSearchPathForDirectoriesInDomains(
                                                    NSDocumentDirectory, NSUserDomainMask, YES);
     
     docsDir = dirPaths[0];
     
-    // Build the path to the database file
-    databasePath = [[NSString alloc]
-                     initWithString: [docsDir stringByAppendingPathComponent:
-                                      @"1.db"]];
-    NSLog(@"%@",databasePath);
+    NSString *newDir = [docsDir stringByAppendingPathComponent:STDIRECTORY];
+    NSLog(@"newDir : %@",newDir);
+    
+    NSArray *arrayFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:newDir error:nil];
+    NSLog(@"Files : %@",arrayFiles);
+    
+//    if ([[NSFileManager defaultManager] createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO){
+//    // Build the path to the database file
+//    databasePath = [[NSString alloc]
+//                     initWithString: [docsDir stringByAppendingPathComponent:
+//                                      @"1.db"]];
+//    NSLog(@"%@",databasePath);
+    
+    
+    if([arrayFiles count] == 0)
+    {
+        // Build the path to the database file
+        databasePath = [[NSString alloc]
+                        initWithString: [newDir stringByAppendingPathComponent:
+                                         @"1.db"]];
+        NSLog(@"%@",databasePath);
+
+    }
+    else
+    {
+        NSLog(@"Count : %d",[arrayFiles count]);
+        databasePath = [[NSString alloc]
+                        initWithString: [newDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",[arrayFiles count]]]] ;
+        NSLog(@"%@",databasePath);
+    }
+
     
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
@@ -56,5 +85,7 @@
             NSLog(@"Failed to open/create database");
         }
     }
+   // }
+    return databasePath;
 }
 @end

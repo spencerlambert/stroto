@@ -49,4 +49,33 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
++(CGSize )deviceSize
+{
+    UIDevice *myDevice = [UIDevice currentDevice];
+
+    CGSize sizeOfTab = CGSizeZero;
+    if(myDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        
+        if([deviceType hasPrefix:@"iPhone"])
+        {
+            sizeOfTab = CGSizeMake(640, 640);
+            return sizeOfTab;
+        }
+        else
+        {
+            sizeOfTab = CGSizeMake(320, 320);
+            return sizeOfTab;
+        }
+            
+    }
+    else
+    {
+        return sizeOfTab;
+
+    }
+}
+
 @end
