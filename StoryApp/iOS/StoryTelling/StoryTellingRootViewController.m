@@ -13,7 +13,9 @@
 
 @end
 
-@implementation StoryTellingRootViewController
+@implementation StoryTellingRootViewController {
+    STStoryDB* newStory;
+}
 
 @synthesize newstoryFlag;
 
@@ -48,11 +50,15 @@
 }
 
 - (IBAction)createNewStory:(id)sender {
-   STStoryDB *newStory = [[STStoryDB alloc] init];
+
+    
     CGSize storySize = [AppDelegate deviceSize];
     NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
-//   [newStory initAsNewFile:@"sfa" :280];
-     NSLog(@"db : %@",[newStory initAsNewFile:@"sfa" :&storySize]);
+    newStory = [STStoryDB createNewSTstoryDB:&storySize];
+
+    
+    //   [newStory initAsNewFile:@"sfa" :280];
+     //NSLog(@"db : %@",[newStory initAsNewFile:@"sfa" :&storySize]);
 }
 
 

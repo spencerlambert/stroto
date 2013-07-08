@@ -10,6 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StStoryFile : NSObject
+@interface STStoryFile : NSObject
 
 @end

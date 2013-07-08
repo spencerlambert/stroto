@@ -150,12 +150,12 @@ NSString *databasePath;
 
 
 
-+ (STStoryDB*)createNewSTstoryDB:(CGSize*)size;
-+ (STStoryDB*)loadSTstoryDB:(STStoryFile*)stroyFile;
++ (id)createNewSTstoryDB:(CGSize*)size;
++ (id)loadSTstoryDB:(STStoryFile*)stroyFile;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
 - (id)initWithFilename:(NSString*)filePath;
-- (id)initAsNewFile:(NSString*)filePath :(CGSize*)size;
+- (id)initAsNewFile:(CGSize*)size;
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
