@@ -60,7 +60,7 @@
         //    NSLog(@"%@",databasePath);
         
         
-        if([arrayFiles count] == 0)
+        if([self dbnumber:arrayFiles] == 0)
         {
             // Build the path to the database file
             databasePath = [[NSString alloc]
@@ -71,9 +71,9 @@
         }
         else
         {
-            NSLog(@"Count : %d",[arrayFiles count]);
+            NSLog(@"Count : %d",[self dbnumber:arrayFiles]);
             databasePath = [[NSString alloc]
-                            initWithString: [newDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",[arrayFiles count]+1]]] ;
+                            initWithString: [newDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",[self dbnumber:arrayFiles]+1]]] ;
             NSLog(@"%@",databasePath);
         }
         
@@ -87,14 +87,55 @@
             if (sqlite3_open(dbpath, & db) == SQLITE_OK)
             {
                 char *errMsg;
-                const char *sql_stmt =
-                " CREATE TABLE Story (displayName TEXT,mainTitle TEXT,subTile TEXT,sizeX INTEGER,sizeY INTEGER,createDateTime  NUMERIC);";
-                
+                const char *sql_stmt = "CREATE TABLE Version (version  NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
                     NSLog(@"Failed to create table");
                 }
-                sqlite3_close(db);
+
+                sql_stmt = "CREATE TABLE Story (displayName TEXT, mainTitle TEXT, subTile TEXT, sizeX INTEGER, sizeY INTEGER, createDateTime  NUMERIC);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                //char *errMsg1;
+                sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale INTEGER,imageData BLOB);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                sql_stmt = "CREATE TABLE Sound (soundId INTEGER PRIMARY KEY AUTOINCREMENT, mp3Data BLOB);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                sql_stmt = "CREATE TABLE AudioRecording (audioId INTEGER PRIMARY KEY AUTOINCREMENT,timecode NUMERIC, audioData       BLOB);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                sql_stmt = "CREATE TABLE ImageInstance (imageInstanceId INTEGER PRIMARY KEY AUTOINCREMENT, imageId INTEGER);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                sql_stmt = "CREATE TABLE ImageInstanceTimeline (imageInstanceId INTEGER, timecode NUMERIC, x INTEGER, y INTEGER, scale NUMERIC, rotation NUMERIC, flip INTEGER, layer INTEGER);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                sql_stmt = "CREATE TABLE SoundTimeline (soundId INTEGER,timecode INTEGER, volume INTEGER);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to create table");
+                }
+                
+                //sqlite3_close(db);
             } else {
                 NSLog(@"Failed to open/create database");
             }
@@ -105,5 +146,14 @@
         
     }
     return self;
+}
+
+-(int)dbnumber:(NSArray *)array{
+    int count = 0;
+    for(NSString *path in array){
+        if([[[path lastPathComponent] pathExtension] isEqualToString:@"db"]){
+            count++;
+        }
+    }return count;
 }
 @end

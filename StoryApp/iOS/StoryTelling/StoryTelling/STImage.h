@@ -35,4 +35,16 @@
 
 @interface STImage : UIImage
 
+@property int imageId;
+@property int listDisplayOrder;
+@property int sizeX;
+@property int sizeY;
+@property NSString *fileType;
+@property NSString *type;
+@property int defaultX;
+@property int defaultY;
+@property int defaultScale;
+@property NSData *imageData;
+
+
 @end
