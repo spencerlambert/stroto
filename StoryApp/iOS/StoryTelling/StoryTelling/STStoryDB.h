@@ -20,7 +20,7 @@
  // value to update the sqlite file to the newest version.
  // Very helpful when releasing new code and being able to
  // still use older files.
- CRATE TABLE Version (
+ CREATE TABLE Version (
     version         NUMERIC
  );
  
