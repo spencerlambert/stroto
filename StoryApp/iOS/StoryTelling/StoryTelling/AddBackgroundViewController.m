@@ -8,6 +8,7 @@
 
 #import "AddBackgroundViewController.h"
 #import "CreateStoryRootViewController.h"
+#import "STCropBackgroundViewController.h"
 
 
 @interface AddBackgroundViewController ()
@@ -61,9 +62,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
         if(info != NULL){
         backgroundImages = [[NSMutableArray alloc]initWithArray:info];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [backgroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        alert.tag=1;
-        [alert show];
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+            STCropBackgroundViewController *cropBackground = [storyboard instantiateViewControllerWithIdentifier:@"cropBackground"];
+            [cropBackground setBackgroundimages:backgroundImages];
+            [self.navigationController pushViewController:cropBackground animated:YES];
+            //[self presentViewController:cropBackground animated:YES completion:nil];
+                    
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [backgroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+//        alert.tag=1;
+//        [alert show];
     }
 }
 

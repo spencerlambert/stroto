@@ -63,6 +63,8 @@
 		DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */; };
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB38441D1781B07C0036469D /* libsqlite3.dylib */; };
+		DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */; };
+		DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
 		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
 		DB93D7061774E36000437F40 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7001774E36000437F40 /* Back.png */; };
@@ -212,6 +214,10 @@
 		DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DB38441D1781B07C0036469D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DB4DF524178D6C7F00E90492 /* STCropBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCropBackgroundViewController.h; sourceTree = "<group>"; };
+		DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropBackgroundViewController.m; sourceTree = "<group>"; };
+		DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCropForegroundViewController.h; sourceTree = "<group>"; };
+		DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropForegroundViewController.m; sourceTree = "<group>"; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
 		DB93D7001774E36000437F40 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
@@ -414,6 +420,10 @@
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
 				DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */,
 				DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */,
+				DB4DF524178D6C7F00E90492 /* STCropBackgroundViewController.h */,
+				DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */,
+				DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */,
+				DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */,
 				DB28D7131742E1460071B5C2 /* Supporting Files */,
 			);
 			path = StoryTelling;
@@ -736,6 +746,8 @@
 				4D2A0A8D178110D200C78EE0 /* STStagePlayerExporter.m in Sources */,
 				4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */,
 				4D2A0A931783758600C78EE0 /* STStoryFile.m in Sources */,
+				DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */,
+				DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -173,7 +173,7 @@ NSString *databasePath;
 // Then have things like STImageInstanceTimeline that hold the specific items.
 - (id*)updateImageInstanceTimeline:(id*)timeline;
 - (id*)getImageInstanceTimeline:(id*)timeline;
--(void)createStory;
+
 
 
 //Still need other methods for getting the timeline in playback mode.

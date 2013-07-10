@@ -45,6 +45,7 @@
 @property int defaultY;
 @property int defaultScale;
 @property NSData *imageData;
+@property UIImage *thumbimage;
 
 
 @end
