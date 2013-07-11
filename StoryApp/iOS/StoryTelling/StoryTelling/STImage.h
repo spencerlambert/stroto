@@ -22,7 +22,8 @@
     defaultY            INTEGER,
  
  defaultScale        INTEGER,
- imageData           BLOB
+ imageData           BLOB,
+ thumbnailData       BLOB
 
  
  Note: Aaswini, I'm not familiar with all the different data types in Objective-C.
