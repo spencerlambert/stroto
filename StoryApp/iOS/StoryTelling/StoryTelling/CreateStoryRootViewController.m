@@ -8,6 +8,7 @@
 
 #import "CreateStoryRootViewController.h"
 #import "WorkAreaController.h"
+#import "STImage.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -42,6 +43,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
     imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if([imagesDelegate.isNewStory isEqual: @"true"]){
        // [self setBackgroundImages:[[NSMutableArray alloc]init]];
@@ -81,23 +83,42 @@
     
     float xPosition = THUMB_H_PADDING;
     
-    for (NSMutableDictionary *imageDictionary in backgroundImages) {
-        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
-        if (thumbImage) {
-            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-                                             scale:(thumbImage.scale * 2.4)
-                                       orientation:(thumbImage.imageOrientation)];
-            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
-            CGRect frame = [thumbView frame];
-            frame.origin.y = THUMB_V_PADDING;
-            frame.origin.x = xPosition;
-            [thumbView setFrame:frame];
-            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
-            [thumbView setClipsToBounds:YES];
-            [BackgroundImagesHolder addSubview:thumbView];
-            xPosition += (frame.size.width + THUMB_H_PADDING);
-        }
+//    for (NSMutableDictionary *imageDictionary in backgroundImages) {
+//        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+//        if (thumbImage) {
+//            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+//                                             scale:(thumbImage.scale * 2.4)
+//                                       orientation:(thumbImage.imageOrientation)];
+//            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+//            CGRect frame = [thumbView frame];
+//            frame.origin.y = THUMB_V_PADDING;
+//            frame.origin.x = xPosition;
+//            [thumbView setFrame:frame];
+//            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
+//            [thumbView setClipsToBounds:YES];
+//            [BackgroundImagesHolder addSubview:thumbView];
+//            xPosition += (frame.size.width + THUMB_H_PADDING);
+//        }
+//    }
+    
+    for (int i = 0; i<[[self backgroundImages]count];i++) {
+        STImage *stimage = [[self backgroundImages]objectAtIndex:i];
+        UIImage *thumbImage = [stimage thumbimage];
+        thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+                                         scale:(thumbImage.scale * 1.4)
+                                   orientation:(thumbImage.imageOrientation)];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
+        CGRect frame = [thumbView frame];
+        frame.origin.y = THUMB_V_PADDING;
+        frame.origin.x = xPosition;
+        frame.size.width = thumbImage.size.width;
+        frame.size.height = thumbImage.size.height;
+        [thumbView setFrame:frame];
+        [thumbView setTag:i];
+        [BackgroundImagesHolder addSubview:thumbView];
+        xPosition += (frame.size.width + THUMB_H_PADDING);
     }
+    
     [BackgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     for(UIView *view in BackgroundImagesView.subviews){
         [view removeFromSuperview];
@@ -106,7 +127,6 @@
     
 }
 -(void)resigngTxtField{
-    
     [self.storyNameTextField resignFirstResponder];
 }
 
@@ -145,23 +165,42 @@
     
     float xPosition = THUMB_H_PADDING;
     
-    for (NSMutableDictionary *imageDictionary in foregroundImages) {
-        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
-        if (thumbImage) {
-            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-                                             scale:(thumbImage.scale * 2.4)
-                                       orientation:(thumbImage.imageOrientation)];
-            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
-            CGRect frame = [thumbView frame];
-            frame.origin.y = THUMB_V_PADDING;
-            frame.origin.x = xPosition;
-            [thumbView setFrame:frame];
-            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
-            [thumbView setClipsToBounds:YES];
-            [ForegroundImagesHolder addSubview:thumbView];
-            xPosition += (frame.size.width + THUMB_H_PADDING);
-        }
+//    for (NSMutableDictionary *imageDictionary in foregroundImages) {
+//        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+//        if (thumbImage) {
+//            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+//                                             scale:(thumbImage.scale * 2.4)
+//                                       orientation:(thumbImage.imageOrientation)];
+//            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+//            CGRect frame = [thumbView frame];
+//            frame.origin.y = THUMB_V_PADDING;
+//            frame.origin.x = xPosition;
+//            [thumbView setFrame:frame];
+//            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
+//            [thumbView setClipsToBounds:YES];
+//            [ForegroundImagesHolder addSubview:thumbView];
+//            xPosition += (frame.size.width + THUMB_H_PADDING);
+//        }
+//    }
+    
+    for (int i = 0; i<[[self foregroundImages]count];i++) {
+        STImage *stimage = [[self foregroundImages]objectAtIndex:i];
+        UIImage *thumbImage = [stimage thumbimage];
+        thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+                                         scale:(thumbImage.scale * 1.4)
+                                   orientation:(thumbImage.imageOrientation)];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
+        CGRect frame = [thumbView frame];
+        frame.origin.y = THUMB_V_PADDING;
+        frame.origin.x = xPosition;
+        frame.size.width = thumbImage.size.width;
+        frame.size.height = thumbImage.size.height;
+        [thumbView setFrame:frame];
+        [thumbView setTag:i];
+        [ForegroundImagesHolder addSubview:thumbView];
+        xPosition += (frame.size.width + THUMB_H_PADDING);
     }
+
     [ForegroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     for(UIView *view in ForegroundImagesView.subviews){
         [view removeFromSuperview];

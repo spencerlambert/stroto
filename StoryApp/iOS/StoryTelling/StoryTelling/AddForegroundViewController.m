@@ -7,6 +7,8 @@
 //
 
 #import "AddForegroundViewController.h"
+#import "STCropForegroundViewController.h"
+#import "CreateStoryRootViewController.h"
 
 @interface AddForegroundViewController ()
 
@@ -56,9 +58,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     if(info != NULL){
         foregroundImages = [[NSMutableArray alloc]initWithArray:info];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [foregroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        alert.tag = 2;
-        [alert show];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        STCropForegroundViewController *cropForeground = [storyboard instantiateViewControllerWithIdentifier:@"cropForeground"];
+        [cropForeground setForegroundimages :foregroundImages];
+        [self.navigationController pushViewController:cropForeground animated:YES];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [foregroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+//        alert.tag = 2;
+//        [alert show];
     }
 }
 

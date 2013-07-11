@@ -325,7 +325,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="HIt-Mu-FuK">
+                                    <navigationItem title="Crop Background" id="HIt-Mu-FuK">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="sl5-En-FRx">
                                             <connections>
                                                 <action selector="done:" destination="oPp-VY-QRt" id="5jB-x5-UMx"/>
@@ -407,19 +407,79 @@
             </objects>
             <point key="canvasLocation" x="153" y="139"/>
         </scene>
-        <!--View Controller-->
+        <!--Crop Foreground View Controller-->
         <scene sceneID="NrE-jU-cwt">
             <objects>
-                <viewController id="Yzw-vs-wjh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cropForeground" id="Yzw-vs-wjh" customClass="STCropForegroundViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8h-vM-8mD">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" id="hXh-1N-KHD">
+                                <rect key="frame" x="0.0" y="44" width="320" height="666"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select to Crop and Erase" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3jf-4J-Rvw">
+                                        <rect key="frame" x="20" y="5" width="190" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="WCw-Cn-YLL">
+                                        <rect key="frame" x="12" y="34" width="287" height="3"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="ZSr-Jx-cNL">
+                                        <rect key="frame" x="13" y="50" width="287" height="101"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="saX-OX-3oU">
+                                        <rect key="frame" x="20" y="174" width="280" height="221"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="FnL-nE-LRx">
+                                                <rect key="frame" x="-7" y="0.0" width="287" height="221"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Axe-lv-c1t" appends="YES" id="Rww-2d-j8v"/>
+                                                    <outletCollection property="gestureRecognizers" destination="cXf-ad-3CV" appends="YES" id="Wcs-MT-zCh"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                    </scrollView>
+                                </subviews>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="e9V-4b-Wc5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Crop and Erase" id="clz-N7-ziw">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="NgG-d7-hgd">
+                                            <connections>
+                                                <action selector="done:" destination="Yzw-vs-wjh" id="agG-pO-gwS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="cropView" destination="saX-OX-3oU" id="Apq-U9-uWU"/>
+                        <outlet property="cropforegroundImage" destination="FnL-nE-LRx" id="laT-eg-Vxc"/>
+                        <outlet property="foregroundimagesView" destination="ZSr-Jx-cNL" id="dhQ-L8-t8Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-TU-f4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="Axe-lv-c1t"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cXf-ad-3CV"/>
             </objects>
-            <point key="canvasLocation" x="558" y="139"/>
+            <point key="canvasLocation" x="562" y="-89"/>
         </scene>
         <!--Add Background View Controller - Add Background-->
         <scene sceneID="e3G-dQ-o0N">
@@ -517,69 +577,6 @@
     <resources>
         <image name="57@2x.png" width="114" height="114"/>
     </resources>
-    <classes>
-        <class className="AddBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="AddForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="CreateStoryRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="nextButtonClicked:"/>
-                <relationship kind="action" name="resigngTxtField"/>
-                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="STCropBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="cropbackgroundImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
-                <relationship kind="action" name="deleteButtonClicked:"/>
-                <relationship kind="action" name="editButtonClicked:"/>
-                <relationship kind="action" name="playButtonClicked:"/>
-                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
-                <relationship kind="outlet" name="NavigationBarTitle" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ScreenCaptureView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
-        </class>
-        <class className="StoryTellingRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WorkAreaController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="captureview" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

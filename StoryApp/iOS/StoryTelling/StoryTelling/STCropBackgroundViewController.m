@@ -8,6 +8,7 @@
 
 #import "STCropBackgroundViewController.h"
 #import "STImage.h"
+#import "AppDelegate.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -18,6 +19,8 @@
 @end
 
 @implementation STCropBackgroundViewController
+
+int selectedbackgroundimage = 0;
 
 @synthesize backgroundimagesView;
 
@@ -73,9 +76,12 @@
     
     float xPosition = THUMB_H_PADDING;
     
-    UIGestureRecognizer *click = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
     
-    for (STImage *stimage in [self backgroundimages]) {
+    
+    for (int i = 0; i<[[self backgroundimages]count];i++) {
+        STImage *stimage = [[self backgroundimages]objectAtIndex:i];
+        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        click.numberOfTapsRequired = 1;
         UIImage *thumbImage = [stimage thumbimage];
         thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
                                          scale:(thumbImage.scale * 1.4)
@@ -89,6 +95,7 @@
         [thumbView setFrame:frame];
         [thumbView setUserInteractionEnabled:YES];
         [thumbView addGestureRecognizer:click];
+        [thumbView setTag:i];
         [BackgroundImagesHolder addSubview:thumbView];
         [thumbView setUserInteractionEnabled:YES];
         xPosition += (frame.size.width + THUMB_H_PADDING);
@@ -104,7 +111,14 @@
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
-    [self.cropbackgroundImage setImage:(UIImage *)recognizer.view];
+    NSLog(@"%d",selectedbackgroundimage);
+    STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
+    [img setDefaultScale:[self cropView].zoomScale];
+    [img setDefaultX:[self cropView].contentOffset.x];
+    [img setDefaultY:[self cropView].contentOffset.y];
+    [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
+    selectedbackgroundimage = recognizer.view.tag;
+    [self.cropbackgroundImage setImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
 }
 
 -(void)convertToSTImage{
@@ -123,5 +137,9 @@
 }
 
 - (IBAction)done:(id)sender {
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    AppDelegate *backgroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [backgroundImagesDelegate.backgroundImagesArray addObjectsFromArray:[self backgroundimages]];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 @end

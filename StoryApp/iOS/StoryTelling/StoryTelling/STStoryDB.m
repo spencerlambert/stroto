@@ -92,6 +92,14 @@
                 {
                     NSLog(@"Failed to create table");
                 }
+                
+                [self updateVersion];
+                
+                sql_stmt = "INSERT into Version values(1.0);";
+                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+                {
+                    NSLog(@"Failed to insert");
+                }
 
                 sql_stmt = "CREATE TABLE Story (displayName TEXT, mainTitle TEXT, subTile TEXT, sizeX INTEGER, sizeY INTEGER, createDateTime  NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
@@ -146,6 +154,17 @@
         
     }
     return self;
+}
+
+-(BOOL)updateVersion{
+    char *errMsg;
+    const char *sql_stmt = "INSERT into Version values(1.0);";
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+    {
+        NSLog(@"Failed to insert");
+        return  false;
+    }
+    return true;
 }
 
 -(int)dbnumber:(NSArray *)array{

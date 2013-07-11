@@ -174,6 +174,8 @@ NSString *databasePath;
 - (id*)updateImageInstanceTimeline:(id*)timeline;
 - (id*)getImageInstanceTimeline:(id*)timeline;
 
+-(BOOL)updateVersion:(int)version;
+
 
 
 //Still need other methods for getting the timeline in playback mode.
