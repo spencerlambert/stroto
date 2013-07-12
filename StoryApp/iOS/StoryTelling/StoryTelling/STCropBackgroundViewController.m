@@ -23,6 +23,7 @@
 int selectedbackgroundimage = 0;
 
 @synthesize backgroundimagesView;
+@synthesize cropperView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,7 +63,7 @@ int selectedbackgroundimage = 0;
 
 - (void)viewDidUnload {
     [self setBackgroundimagesView:nil];
-    [self setCropView:nil];
+//    [self setCropView:nil];
     [self setCropbackgroundImage:nil];
     [super viewDidUnload];
 }
@@ -106,19 +107,34 @@ int selectedbackgroundimage = 0;
         [view removeFromSuperview];
     }
     [backgroundimagesView addSubview:BackgroundImagesHolder];
-    [self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
-    
+    //[self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
+    cropperView = [[BFCropInterface alloc]initWithFrame:self.cropbackgroundImage.bounds andImage:[[self backgroundimages] objectAtIndex:0]];
+    cropperView.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
+    cropperView.borderColor = [UIColor whiteColor];
+    [self.cropbackgroundImage addSubview:cropperView];
 }
+
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
     NSLog(@"%d",selectedbackgroundimage);
     STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
-    [img setDefaultScale:[self cropView].zoomScale];
-    [img setDefaultX:[self cropView].contentOffset.x];
-    [img setDefaultY:[self cropView].contentOffset.y];
+//    [img setDefaultScale:[self cropView].zoomScale];
+//    [img setDefaultX:[self cropView].contentOffset.x];
+//    [img setDefaultY:[self cropView].contentOffset.y];
     [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     selectedbackgroundimage = recognizer.view.tag;
     [self.cropbackgroundImage setImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
+}
+
+-(IBAction)handleSingleTap1:(UIGestureRecognizer *)recognizer{
+    if([recognizer.view isDescendantOfView:self.view]){
+        UIImage *tempimage = [cropperView getCroppedImage];
+        [self clearimageView];
+        cropperView = [[BFCropInterface alloc]initWithFrame:self.cropbackgroundImage.bounds andImage:tempimage];
+        cropperView.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
+        cropperView.borderColor = [UIColor whiteColor];
+        [self.cropbackgroundImage addSubview:cropperView];
+    }
 }
 
 -(void)convertToSTImage{
@@ -134,6 +150,12 @@ int selectedbackgroundimage = 0;
         [stimages addObject:stimage];
     }
     [self setBackgroundimages:stimages];
+}
+
+-(void)clearimageView{
+    for(UIView *view in self.cropbackgroundImage.subviews){
+        [view removeFromSuperview];
+    }
 }
 
 - (IBAction)done:(id)sender {

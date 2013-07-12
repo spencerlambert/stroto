@@ -31,6 +31,8 @@
 	[self.navigationItem setTitle:@"Loading..."];
 
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.parent action:@selector(cancelImagePicker)];
+    
+    [self.navigationController.navigationBar setBarStyle: UIBarStyleBlackOpaque];
 	[self.navigationItem setRightBarButtonItem:cancelButton];
 	[cancelButton release];
 

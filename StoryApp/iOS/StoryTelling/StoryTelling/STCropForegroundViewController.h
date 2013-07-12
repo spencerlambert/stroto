@@ -11,10 +11,13 @@
 @interface STCropForegroundViewController : UIViewController
 
 @property NSMutableArray *foregroundimages;
+@property NSArray *sizePicker;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
 @property (strong, nonatomic) IBOutlet UIImageView *cropforegroundImage;
+@property (weak, nonatomic) IBOutlet UIPickerView *sizePickerOutlet;
 - (IBAction)done:(id)sender;
 @end

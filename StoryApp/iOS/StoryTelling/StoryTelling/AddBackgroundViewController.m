@@ -10,7 +10,6 @@
 #import "CreateStoryRootViewController.h"
 #import "STCropBackgroundViewController.h"
 
-
 @interface AddBackgroundViewController ()
 
 @end
@@ -21,7 +20,6 @@
 }
 @synthesize backgroundImagesDelegate;
 @synthesize delegate;
-
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

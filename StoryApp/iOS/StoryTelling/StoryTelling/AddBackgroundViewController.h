@@ -10,7 +10,6 @@
 #import "ELCImagePickerController.h"
 #import "ELCAlbumPickerController.h"
 #import "AppDelegate.h"
-
 @protocol AddBackgroundViewControllerDelegate <NSObject>
 
 - (void)setbackgroundimages:(NSMutableArray *)info;

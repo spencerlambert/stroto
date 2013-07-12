@@ -24,6 +24,8 @@
 int selectedforegroundimage = 0;
 
 @synthesize foregroundimagesView;
+@synthesize sizePicker;
+@synthesize sizePickerOutlet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +41,10 @@ int selectedforegroundimage = 0;
     
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
+    [[self mainScrollView] setContentSize:CGSizeMake(320, 1150)];
     [self reloadForegroundImagesView];
+    sizePicker = [[NSArray alloc]initWithObjects:@"Small",@"Medium",@"Large", nil];
+    [[self sizePickerOutlet ] setFrame:CGRectMake(sizePickerOutlet.frame.origin.x, sizePickerOutlet.frame.origin.y, sizePickerOutlet.frame.size.width, sizePickerOutlet.frame.size.height-100)];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -68,6 +73,8 @@ int selectedforegroundimage = 0;
     [self setForegroundimagesView:nil];
     [self setCropView:nil];
     [self setCropforegroundImage:nil];
+    [self setMainScrollView:nil];
+    [self setSizePickerOutlet:nil];
     [super viewDidUnload];
 }
 - (void) reloadForegroundImagesView{
@@ -146,5 +153,25 @@ int selectedforegroundimage = 0;
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// Total rows in our component.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [sizePicker count];
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    NSString *title;
+    title=[sizePicker objectAtIndex:row];
+    return title;
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+}
 
 @end
