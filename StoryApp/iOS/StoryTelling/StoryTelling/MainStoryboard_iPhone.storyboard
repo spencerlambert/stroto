@@ -306,11 +306,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rqz-hr-CkA">
-                                <rect key="frame" x="13" y="206" width="287" height="239"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="1uN-RJ-06L">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -329,24 +324,42 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" id="bCc-Nx-WEa">
+                                <rect key="frame" x="13" y="201" width="287" height="239"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="center" id="rqz-hr-CkA">
+                                        <rect key="frame" x="0.0" y="0.0" width="287" height="239"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="DBK-jC-s5V" appends="YES" id="FyP-QO-905"/>
+                                            <outletCollection property="gestureRecognizers" destination="Ptz-E3-uKM" appends="YES" id="rZ2-4B-lvt"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="9P2-ow-fqm" appends="YES" id="l1s-xp-2CG"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="backgroundimagesView" destination="jOe-hA-tP4" id="yGX-We-MfY"/>
+                        <outlet property="cropView" destination="bCc-Nx-WEa" id="h5X-GY-Wxq"/>
                         <outlet property="cropbackgroundImage" destination="rqz-hr-CkA" id="vx6-fG-Ydd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPb-Ot-wHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9P2-ow-fqm">
+                <panGestureRecognizer minimumNumberOfTouches="2" id="DBK-jC-s5V">
                     <connections>
-                        <action selector="handleSingleTap1:" destination="oPp-VY-QRt" id="bDC-61-Aez"/>
+                        <action selector="handlePan:" destination="oPp-VY-QRt" id="FuO-nH-ce4"/>
                     </connections>
-                </tapGestureRecognizer>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="Ptz-E3-uKM">
+                    <connections>
+                        <action selector="handlePinch:" destination="oPp-VY-QRt" id="eZS-G1-Cc5"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="615" y="-1372"/>
         </scene>
@@ -428,7 +441,7 @@
                                         <rect key="frame" x="13" y="174" width="287" height="221"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="FnL-nE-LRx">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="57@2x.png" id="FnL-nE-LRx">
                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="221"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <gestureRecognizers/>
@@ -622,6 +635,9 @@
             <point key="canvasLocation" x="-1357" y="-374"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="57@2x.png" width="114" height="114"/>
+    </resources>
     <classes>
         <class className="AddBackgroundViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
@@ -652,7 +668,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
                 <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="cropbackgroundImage" candidateClass="UIImageView"/>

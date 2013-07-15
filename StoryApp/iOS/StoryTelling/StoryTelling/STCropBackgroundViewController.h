@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BFCropInterface.h"
 
-@interface STCropBackgroundViewController : UIViewController
+@interface STCropBackgroundViewController : UIViewController<UIScrollViewDelegate>
 
 @property NSMutableArray *backgroundimages;
-@property BFCropInterface *cropperView;
 
-- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *backgroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
 @property (strong, nonatomic) IBOutlet UIImageView *cropbackgroundImage;

@@ -23,7 +23,6 @@
 int selectedbackgroundimage = 0;
 
 @synthesize backgroundimagesView;
-@synthesize cropperView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,8 +32,13 @@ int selectedbackgroundimage = 0;
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad
 {
+    [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
     [self reloadBackgroundImagesView];
@@ -42,8 +46,21 @@ int selectedbackgroundimage = 0;
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self.cropView setContentSize:self.cropbackgroundImage.frame.size];
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return  self.cropbackgroundImage;
+}
+
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+    CGFloat currentScale = recognizer.view.frame.size.width / recognizer.view.bounds.size.width;
+    NSLog(@"Current Scale : %f",currentScale);
+    NSLog(@"Recognizer Scale : %f",recognizer.scale);
+    NSLog(@"Scrollview Scale : %f",self.cropView.contentOffset.y);
+    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
     recognizer.scale = 1;
 }
 
@@ -107,34 +124,23 @@ int selectedbackgroundimage = 0;
         [view removeFromSuperview];
     }
     [backgroundimagesView addSubview:BackgroundImagesHolder];
-    //[self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
-    cropperView = [[BFCropInterface alloc]initWithFrame:self.cropbackgroundImage.bounds andImage:[[self backgroundimages] objectAtIndex:0]];
-    cropperView.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
-    cropperView.borderColor = [UIColor whiteColor];
-    [self.cropbackgroundImage addSubview:cropperView];
+    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropView.frame.size.width, self.cropView.frame.size.height)];
+    [self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
 }
 
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
     NSLog(@"%d",selectedbackgroundimage);
     STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
-//    [img setDefaultScale:[self cropView].zoomScale];
-//    [img setDefaultX:[self cropView].contentOffset.x];
-//    [img setDefaultY:[self cropView].contentOffset.y];
+    CGFloat currentScale = self.cropbackgroundImage.frame.size.width / self.cropbackgroundImage.bounds.size.width;
+    [img setDefaultScale:currentScale];
+    [img setDefaultX:[self cropView].contentOffset.x];
+    [img setDefaultY:[self cropView].contentOffset.y];
     [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     selectedbackgroundimage = recognizer.view.tag;
+    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropView.frame.size.width, self.cropView.frame.size.height)];
     [self.cropbackgroundImage setImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
-}
-
--(IBAction)handleSingleTap1:(UIGestureRecognizer *)recognizer{
-    if([recognizer.view isDescendantOfView:self.view]){
-        UIImage *tempimage = [cropperView getCroppedImage];
-        [self clearimageView];
-        cropperView = [[BFCropInterface alloc]initWithFrame:self.cropbackgroundImage.bounds andImage:tempimage];
-        cropperView.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
-        cropperView.borderColor = [UIColor whiteColor];
-        [self.cropbackgroundImage addSubview:cropperView];
-    }
+    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
 }
 
 -(void)convertToSTImage{
@@ -150,12 +156,6 @@ int selectedbackgroundimage = 0;
         [stimages addObject:stimage];
     }
     [self setBackgroundimages:stimages];
-}
-
--(void)clearimageView{
-    for(UIView *view in self.cropbackgroundImage.subviews){
-        [view removeFromSuperview];
-    }
 }
 
 - (IBAction)done:(id)sender {

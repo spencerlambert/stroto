@@ -173,6 +173,16 @@
         if([[[path lastPathComponent] pathExtension] isEqualToString:@"db"]){
             count++;
         }
-    }return count;
+    }
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:STDIRECTORY];
+    NSString *dbpath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",count+1]];
+    NSLog(@"newDir : %@",dbpath);
+    while ([manager fileExistsAtPath:dbpath]) {
+        count++;
+        dbpath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",count+1]];
+        NSLog(@"newDir : %@",dbpath);
+    }
+    return count;
 }
 @end
