@@ -95,12 +95,6 @@
                 
                 [self updateVersion];
                 
-                sql_stmt = "INSERT into Version values(1.0);";
-                if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
-                {
-                    NSLog(@"Failed to insert");
-                }
-
                 sql_stmt = "CREATE TABLE Story (displayName TEXT, mainTitle TEXT, subTile TEXT, sizeX INTEGER, sizeY INTEGER, createDateTime  NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
@@ -158,7 +152,7 @@
 
 -(BOOL)updateVersion{
     char *errMsg;
-    const char *sql_stmt = "INSERT into Version values(1.0);";
+    const char *sql_stmt = "DELETE FROM Version; INSERT into Version values(1.0);";
     if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
     {
         NSLog(@"Failed to insert");
