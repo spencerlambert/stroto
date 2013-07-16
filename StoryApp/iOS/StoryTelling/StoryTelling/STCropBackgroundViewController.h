@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
-@property (strong, nonatomic) IBOutlet UIImageView *cropbackgroundImage;
+@property (strong, nonatomic) UIImageView *cropbackgroundImage;
 - (IBAction)done:(id)sender;
 
 @end

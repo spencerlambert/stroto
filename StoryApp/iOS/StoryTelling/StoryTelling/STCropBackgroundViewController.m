@@ -41,36 +41,38 @@ int selectedbackgroundimage = 0;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
+    [self clearScrollView];
     [self reloadBackgroundImagesView];
+    [self prepareScrollView];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self.cropView setContentSize:self.cropbackgroundImage.frame.size];
+    //[self.cropView setContentSize:self.cropbackgroundImage.image.size];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return  self.cropbackgroundImage;
 }
 
-- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
-    CGFloat currentScale = recognizer.view.frame.size.width / recognizer.view.bounds.size.width;
-    NSLog(@"Current Scale : %f",currentScale);
-    NSLog(@"Recognizer Scale : %f",recognizer.scale);
-    NSLog(@"Scrollview Scale : %f",self.cropView.contentOffset.y);
-    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
-    recognizer.scale = 1;
-}
-
-- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
-    CGPoint translation = [recognizer translationInView:self.view];
-    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
-                                         recognizer.view.center.y + translation.y);
-    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-    
-}
+//- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+//    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+//    CGFloat currentScale = recognizer.view.frame.size.width / recognizer.view.bounds.size.width;
+//    NSLog(@"Current Scale : %f",currentScale);
+//    NSLog(@"Recognizer Scale : %f",recognizer.scale);
+//    NSLog(@"Scrollview Scale : %f",self.cropView.contentOffset.y);
+//    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
+//    recognizer.scale = 1;
+//}
+//
+//- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+//    CGPoint translation = [recognizer translationInView:self.view];
+//    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
+//                                         recognizer.view.center.y + translation.y);
+//    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -124,10 +126,12 @@ int selectedbackgroundimage = 0;
         [view removeFromSuperview];
     }
     [backgroundimagesView addSubview:BackgroundImagesHolder];
-    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropView.frame.size.width, self.cropView.frame.size.height)];
-    [self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
+    self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:0]];
+    [self.cropbackgroundImage setContentMode:UIViewContentModeCenter];
+    [self.cropView addSubview:self.cropbackgroundImage];
+    //[self.cropbackgroundImage setFrame:CGRectMake(10, 10, self.cropView.frame.size.width, self.cropView.frame.size.height)];
+    //[self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
 }
-
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
     NSLog(@"%d",selectedbackgroundimage);
@@ -138,9 +142,29 @@ int selectedbackgroundimage = 0;
     [img setDefaultY:[self cropView].contentOffset.y];
     [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     selectedbackgroundimage = recognizer.view.tag;
-    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropView.frame.size.width, self.cropView.frame.size.height)];
-    [self.cropbackgroundImage setImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
+    [self clearScrollView];
+    self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
+    [self.cropbackgroundImage setContentMode:UIViewContentModeCenter];
+    [self.cropView addSubview:self.cropbackgroundImage];
     [self.cropView setContentSize:self.cropbackgroundImage.image.size];
+    [self prepareScrollView];
+//    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropView.frame.size.width, self.cropView.frame.size.height)];
+//    [self.cropbackgroundImage setImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
+//    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
+}
+
+- (void) prepareScrollView{
+    STImage *image = (STImage*)self.cropbackgroundImage.image;
+    self.cropbackgroundImage.transform = CGAffineTransformScale(self.cropbackgroundImage.transform, image.defaultScale, image.defaultScale);
+    [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropbackgroundImage.frame.size.width, self.cropbackgroundImage.frame.size.height)];
+    [self.cropView setContentSize:self.cropbackgroundImage.frame.size];
+    [self.cropView setContentOffset:CGPointMake(image.defaultX, image.defaultY) animated:NO];
+}
+
+- (void) clearScrollView{
+    for(UIView *view in self.cropView.subviews){
+        [view removeFromSuperview];
+    }
 }
 
 -(void)convertToSTImage{
