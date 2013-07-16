@@ -127,10 +127,29 @@ int selectedbackgroundimage = 0;
     }
     [backgroundimagesView addSubview:BackgroundImagesHolder];
     self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:0]];
-    [self.cropbackgroundImage setContentMode:UIViewContentModeCenter];
+    [self.cropbackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropbackgroundImage];
+    [self.cropView setMinimumZoomScale:(self.cropView.frame.size.height/self.cropbackgroundImage.frame.size.height)];
     //[self.cropbackgroundImage setFrame:CGRectMake(10, 10, self.cropView.frame.size.width, self.cropView.frame.size.height)];
     //[self.cropbackgroundImage setImage:[[self backgroundimages] objectAtIndex:0]];
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    UIView *subView = [scrollView.subviews objectAtIndex:0];
+    
+    CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
+    (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
+    
+    CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
+    (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
+    
+    subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
+                                 scrollView.contentSize.height * 0.5 + offsetY);
+}
+
+-(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
+    
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
@@ -144,7 +163,7 @@ int selectedbackgroundimage = 0;
     selectedbackgroundimage = recognizer.view.tag;
     [self clearScrollView];
     self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:recognizer.view.tag]];
-    [self.cropbackgroundImage setContentMode:UIViewContentModeCenter];
+    [self.cropbackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropbackgroundImage];
     [self.cropView setContentSize:self.cropbackgroundImage.image.size];
     [self prepareScrollView];
@@ -159,6 +178,7 @@ int selectedbackgroundimage = 0;
     [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropbackgroundImage.frame.size.width, self.cropbackgroundImage.frame.size.height)];
     [self.cropView setContentSize:self.cropbackgroundImage.frame.size];
     [self.cropView setContentOffset:CGPointMake(image.defaultX, image.defaultY) animated:NO];
+    [self.cropView setMinimumZoomScale:(self.cropView.frame.size.height/self.cropbackgroundImage.frame.size.height)];
 }
 
 - (void) clearScrollView{

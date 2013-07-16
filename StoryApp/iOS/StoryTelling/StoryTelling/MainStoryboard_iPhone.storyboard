@@ -324,7 +324,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="4" id="bCc-Nx-WEa">
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="100" id="bCc-Nx-WEa">
                                 <rect key="frame" x="13" y="201" width="287" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
@@ -415,21 +415,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="saX-OX-3oU">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="4" id="saX-OX-3oU">
                                         <rect key="frame" x="13" y="174" width="287" height="221"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" image="57@2x.png" id="FnL-nE-LRx">
+                                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="57@2x.png" id="FnL-nE-LRx">
                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="221"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <gestureRecognizers/>
                                                 <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="Axe-lv-c1t" appends="YES" id="Rww-2d-j8v"/>
                                                     <outletCollection property="gestureRecognizers" destination="cXf-ad-3CV" appends="YES" id="Wcs-MT-zCh"/>
-                                                    <outletCollection property="gestureRecognizers" destination="aKg-UD-Qou" appends="YES" id="uun-23-p0f"/>
                                                 </connections>
                                             </imageView>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fH6-bD-MBf">
                                         <rect key="frame" x="13" y="445" width="98" height="39"/>
@@ -516,13 +515,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-TU-f4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="Axe-lv-c1t"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="cXf-ad-3CV"/>
-                <pinchGestureRecognizer id="aKg-UD-Qou">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cXf-ad-3CV">
                     <connections>
-                        <action selector="handlePinch:" destination="Yzw-vs-wjh" id="f5c-Nc-O5j"/>
+                        <action selector="handlePan:" destination="Yzw-vs-wjh" id="RT2-DO-Nly"/>
                     </connections>
-                </pinchGestureRecognizer>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="644" y="139"/>
         </scene>
@@ -660,7 +657,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
                 <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
@@ -686,17 +682,12 @@
         <class className="StoryTellingRootViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
             <relationships>
-                <relationship kind="action" name="createNewStory:"/>
                 <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="WorkAreaController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
             <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="handleRotate:" candidateClass="UIRotationGestureRecognizer"/>
-                <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="captureview" candidateClass="UIView"/>
             </relationships>
         </class>

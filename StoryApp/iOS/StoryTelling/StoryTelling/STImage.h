@@ -44,7 +44,7 @@
 @property NSString *type;
 @property int defaultX;
 @property int defaultY;
-@property int defaultScale;
+@property float defaultScale;
 @property NSData *imageData;
 @property UIImage *thumbimage;
 
