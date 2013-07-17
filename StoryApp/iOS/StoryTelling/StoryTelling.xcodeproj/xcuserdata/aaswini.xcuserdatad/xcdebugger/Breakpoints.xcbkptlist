@@ -34,24 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "StoryTelling/STCropBackgroundViewController.m"
-         timestampString = "395652673.194755"
+         timestampString = "395720525.546325"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "162"
-         endingLineNumber = "162"
-         landmarkName = "-handleSingleTap:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropBackgroundViewController.m"
-         timestampString = "395652677.43458"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "177"
-         endingLineNumber = "177"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "-prepareScrollView"
          landmarkType = "5">
       </FileBreakpoint>

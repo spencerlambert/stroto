@@ -16,6 +16,7 @@
         [self setSizeX:[self size].width];
         [self setSizeY:[self size].height];
         [self setDefaultScale:1];
+        [self setMinZoomScale:0];
         [self setDefaultX:0];
         [self setDefaultY:0];
         [self setImageData: UIImagePNGRepresentation(self)];

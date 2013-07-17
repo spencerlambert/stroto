@@ -45,6 +45,7 @@
 @property int defaultX;
 @property int defaultY;
 @property float defaultScale;
+@property float minZoomScale;
 @property NSData *imageData;
 @property UIImage *thumbimage;
 
