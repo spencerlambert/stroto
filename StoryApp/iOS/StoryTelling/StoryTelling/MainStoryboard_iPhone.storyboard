@@ -325,7 +325,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="100" id="bCc-Nx-WEa">
-                                <rect key="frame" x="2" y="201" width="316" height="256"/>
+                                <rect key="frame" x="0.0" y="201" width="320" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                         </subviews>
@@ -415,19 +415,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="4" id="saX-OX-3oU">
+                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="100" id="saX-OX-3oU">
                                         <rect key="frame" x="13" y="174" width="287" height="221"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="57@2x.png" id="FnL-nE-LRx">
-                                                <rect key="frame" x="0.0" y="0.0" width="287" height="221"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <gestureRecognizers/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="cXf-ad-3CV" appends="YES" id="Wcs-MT-zCh"/>
-                                                </connections>
-                                            </imageView>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fH6-bD-MBf">
@@ -508,7 +498,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="cropView" destination="saX-OX-3oU" id="Apq-U9-uWU"/>
-                        <outlet property="cropforegroundImage" destination="FnL-nE-LRx" id="laT-eg-Vxc"/>
                         <outlet property="foregroundimagesView" destination="ZSr-Jx-cNL" id="dhQ-L8-t8Y"/>
                         <outlet property="mainScrollView" destination="hXh-1N-KHD" id="0Ww-hx-cZu"/>
                         <outlet property="sizePickerOutlet" destination="rn1-Nt-RGM" id="bAi-7e-HAP"/>
@@ -616,9 +605,6 @@
             <point key="canvasLocation" x="-1357" y="-374"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="57@2x.png" width="114" height="114"/>
-    </resources>
     <classes>
         <class className="AddBackgroundViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
@@ -657,7 +643,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
                 <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
@@ -689,10 +674,6 @@
         <class className="WorkAreaController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
             <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="handleRotate:" candidateClass="UIRotationGestureRecognizer"/>
-                <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="captureview" candidateClass="UIView"/>
             </relationships>
         </class>

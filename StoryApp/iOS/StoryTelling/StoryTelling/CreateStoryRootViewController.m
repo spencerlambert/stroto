@@ -107,12 +107,12 @@
         thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
                                          scale:(thumbImage.scale * 1.4)
                                    orientation:(thumbImage.imageOrientation)];
-        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = thumbImage.size.width;
-        frame.size.height = thumbImage.size.height;
+        frame.size.width = 50;
+        frame.size.height = 50;
         [thumbView setFrame:frame];
         [thumbView setTag:i];
         [BackgroundImagesHolder addSubview:thumbView];
@@ -189,12 +189,12 @@
         thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
                                          scale:(thumbImage.scale * 1.4)
                                    orientation:(thumbImage.imageOrientation)];
-        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = thumbImage.size.width;
-        frame.size.height = thumbImage.size.height;
+        frame.size.width = 50;
+        frame.size.height = 50;
         [thumbView setFrame:frame];
         [thumbView setTag:i];
         [ForegroundImagesHolder addSubview:thumbView];

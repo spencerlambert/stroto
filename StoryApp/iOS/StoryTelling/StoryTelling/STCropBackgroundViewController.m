@@ -32,10 +32,6 @@ int selectedbackgroundimage = 0;
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidLoad
 {
     [self.cropView setDelegate:self];
@@ -48,31 +44,9 @@ int selectedbackgroundimage = 0;
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    //[self.cropView setContentSize:self.cropbackgroundImage.image.size];
-}
-
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return  self.cropbackgroundImage;
 }
-
-//- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-//    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
-//    CGFloat currentScale = recognizer.view.frame.size.width / recognizer.view.bounds.size.width;
-//    NSLog(@"Current Scale : %f",currentScale);
-//    NSLog(@"Recognizer Scale : %f",recognizer.scale);
-//    NSLog(@"Scrollview Scale : %f",self.cropView.contentOffset.y);
-//    [self.cropView setContentSize:self.cropbackgroundImage.image.size];
-//    recognizer.scale = 1;
-//}
-//
-//- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
-//    CGPoint translation = [recognizer translationInView:self.view];
-//    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
-//                                         recognizer.view.center.y + translation.y);
-//    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-//    
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -139,6 +113,7 @@ int selectedbackgroundimage = 0;
     [img setMinZoomScale:[self.cropView minimumZoomScale]];
     [img setDefaultX:[self cropView].contentOffset.x];
     [img setDefaultY:[self cropView].contentOffset.y];
+    [img setThumbimage:[self updateThumbImage]];
     [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     selectedbackgroundimage = recognizer.view.tag;
     [self clearScrollView];
@@ -162,17 +137,12 @@ int selectedbackgroundimage = 0;
                                  scrollView.contentSize.height * 0.5 + offsetY);
 }
 
--(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
-    
-}
-
 - (void) prepareScrollView{
     STImage *image = (STImage*)self.cropbackgroundImage.image;
     self.cropbackgroundImage.transform = CGAffineTransformScale(self.cropbackgroundImage.transform, image.defaultScale, image.defaultScale);
     [self.cropbackgroundImage setFrame:CGRectMake(0, 0, self.cropbackgroundImage.frame.size.width, self.cropbackgroundImage.frame.size.height)];
     [self.cropView setContentSize:self.cropbackgroundImage.frame.size];
     [self.cropView setContentOffset:CGPointMake(image.defaultX, image.defaultY) animated:NO];
-    NSLog(@"MINZOOMSCALE : %f" , [self getMinimumZoomScale]);
     [self.cropView setMinimumZoomScale:image.minZoomScale==0?[self getMinimumZoomScale]:image.minZoomScale];
     if(image.minZoomScale==0)
         [self.cropView zoomToRect:[self getInitZoomRect] animated:YES];
@@ -219,6 +189,34 @@ int selectedbackgroundimage = 0;
     CGRect zoomrect;
     zoomrect = CGRectMake(0, 0, self.cropbackgroundImage.frame.size.width, self.cropbackgroundImage.frame.size.height);
     return zoomrect;
+}
+
+- (UIImage*) updateThumbImage{
+    float scale = 1.0f/self.cropView.zoomScale;
+    CGRect visibleRect;
+    visibleRect.origin.x = self.cropView.contentOffset.x * scale;
+    visibleRect.origin.y = self.cropView.contentOffset.y * scale;
+    visibleRect.size.width = self.cropView.bounds.size.width * scale;
+    visibleRect.size.height = self.cropView.bounds.size.height * scale;
+    UIImage *temp = [self cropImage:self.cropbackgroundImage.image :&visibleRect];
+    UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedbackgroundimage inView:[backgroundimagesView.subviews objectAtIndex:0]];
+    thumbview.image = temp;
+    return temp;
+}
+
+- (UIView*) subviewWithTag:(int)tag inView:(UIView*)view{
+    for(UIView *temp in view.subviews){
+        if(temp.tag == tag)return temp;
+    }
+    return nil;
+}
+
+- (UIImage*) cropImage:(UIImage*) srcImage:(CGRect*) rect
+{
+    CGImageRef cr = CGImageCreateWithImageInRect([srcImage CGImage], *rect);
+    UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
+    CGImageRelease(cr);
+    return cropped;
 }
 
 @end

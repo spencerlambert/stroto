@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STCropForegroundViewController : UIViewController
+@interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>
 
 @property NSMutableArray *foregroundimages;
 @property NSArray *sizePicker;

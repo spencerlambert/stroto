@@ -38,30 +38,22 @@ int selectedforegroundimage = 0;
 
 - (void)viewDidLoad
 {
-    
+    [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
     [[self mainScrollView] setContentSize:CGSizeMake(320, 1150)];
-    [self reloadForegroundImagesView];
     sizePicker = [[NSArray alloc]initWithObjects:@"Small",@"Medium",@"Large", nil];
     [[self sizePickerOutlet ] setFrame:CGRectMake(sizePickerOutlet.frame.origin.x, sizePickerOutlet.frame.origin.y, sizePickerOutlet.frame.size.width, sizePickerOutlet.frame.size.height-100)];
+    [self clearScrollView];
+    [self reloadForegroundImagesView];
+    [self prepareScrollView];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
-    recognizer.scale = 1;
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return  self.cropforegroundImage;
 }
-
-- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
-    CGPoint translation = [recognizer translationInView:self.view];
-    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
-                                         recognizer.view.center.y + translation.y);
-    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-    
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,12 +63,13 @@ int selectedforegroundimage = 0;
 
 - (void)viewDidUnload {
     [self setForegroundimagesView:nil];
-    [self setCropView:nil];
+    //[self setCropView:nil];
     [self setCropforegroundImage:nil];
     [self setMainScrollView:nil];
     [self setSizePickerOutlet:nil];
     [super viewDidUnload];
 }
+
 - (void) reloadForegroundImagesView{
     float scrollViewHeight = THUMB_HEIGHT + THUMB_V_PADDING;
     float scrollViewWidth  = [foregroundimagesView bounds].size.width;
@@ -116,19 +109,63 @@ int selectedforegroundimage = 0;
         [view removeFromSuperview];
     }
     [foregroundimagesView addSubview:ForegroundImagesHolder];
-    [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
+    // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
+    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
+    [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
+    [self.cropView addSubview:self.cropforegroundImage];
     
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
-    NSLog(@"%d",selectedforegroundimage);
+    //NSLog(@"%d",selectedforegroundimage);
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
-    [img setDefaultScale:[self cropView].zoomScale];
+    CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
+    [img setDefaultScale:currentScale];
+    [img setMinZoomScale:[self.cropView minimumZoomScale]];
     [img setDefaultX:[self cropView].contentOffset.x];
     [img setDefaultY:[self cropView].contentOffset.y];
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
     selectedforegroundimage = recognizer.view.tag;
-    [self.cropforegroundImage setImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+    [self clearScrollView];
+    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+    [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
+    [self.cropView addSubview:self.cropforegroundImage];
+    [self prepareScrollView];
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    if([scrollView isDescendantOfView:self.cropView]){
+        UIView *subView = [scrollView.subviews objectAtIndex:0];
+        
+        CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
+        (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
+        
+        CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
+        (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
+        
+        subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
+                                     scrollView.contentSize.height * 0.5 + offsetY);
+        
+    }
+}
+
+- (void) prepareScrollView{
+    STImage *image = (STImage*)self.cropforegroundImage.image;
+    self.cropforegroundImage.transform = CGAffineTransformScale(self.cropforegroundImage.transform, image.defaultScale, image.defaultScale);
+    [self.cropforegroundImage setFrame:CGRectMake(0, 0, self.cropforegroundImage.frame.size.width, self.cropforegroundImage.frame.size.height)];
+    [self.cropView setContentSize:self.cropforegroundImage.frame.size];
+    [self.cropView setContentOffset:CGPointMake(image.defaultX, image.defaultY) animated:NO];
+    //NSLog(@"MINZOOMSCALE : %f" , [self getMinimumZoomScale]);
+    [self.cropView setMinimumZoomScale:image.minZoomScale==0?[self getMinimumZoomScale]:image.minZoomScale];
+    if(image.minZoomScale==0)
+        [self.cropView zoomToRect:[self getInitZoomRect] animated:YES];
+}
+
+- (void) clearScrollView{
+    for(UIView *view in self.cropView.subviews){
+        [view removeFromSuperview];
+    }
 }
 
 -(void)convertToSTImage{
@@ -151,6 +188,21 @@ int selectedforegroundimage = 0;
     AppDelegate *foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:[self foregroundimages]];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+}
+
+- (float)getMinimumZoomScale{
+    float heightMinimumScale = self.cropView.frame.size.height/self.cropforegroundImage.frame.size.height;
+    float widthMinimumScale = self.cropView.frame.size.width/self.cropforegroundImage.frame.size.width;
+    if(widthMinimumScale > heightMinimumScale)
+        return widthMinimumScale;
+    else
+        return heightMinimumScale;
+}
+
+- (CGRect) getInitZoomRect{
+    CGRect zoomrect;
+    zoomrect = CGRectMake(0, 0, self.cropforegroundImage.frame.size.width, self.cropforegroundImage.frame.size.height);
+    return zoomrect;
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
