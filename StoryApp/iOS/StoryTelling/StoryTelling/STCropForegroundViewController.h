@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STEraseImageView.h"
 
 @interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>
 

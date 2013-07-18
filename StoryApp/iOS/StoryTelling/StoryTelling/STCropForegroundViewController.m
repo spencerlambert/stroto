@@ -110,7 +110,8 @@ int selectedforegroundimage = 0;
     }
     [foregroundimagesView addSubview:ForegroundImagesHolder];
     // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
-    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
+    self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
+    [self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     
@@ -127,7 +128,8 @@ int selectedforegroundimage = 0;
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
     selectedforegroundimage = recognizer.view.tag;
     [self clearScrollView];
-    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+    self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+    [self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
@@ -225,5 +227,9 @@ int selectedforegroundimage = 0;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 }
+
+
+
+
 
 @end
