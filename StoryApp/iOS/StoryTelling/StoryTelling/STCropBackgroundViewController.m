@@ -84,8 +84,8 @@ int selectedbackgroundimage = 0;
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = thumbImage.size.width;
-        frame.size.height = thumbImage.size.height;
+        frame.size.width = 50;//thumbImage.size.width;
+        frame.size.height = 50;//thumbImage.size.height;
         [thumbView setFrame:frame];
         [thumbView setUserInteractionEnabled:YES];
         [thumbView addGestureRecognizer:click];
@@ -103,6 +103,7 @@ int selectedbackgroundimage = 0;
     self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:0]];
     [self.cropbackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropbackgroundImage];
+    selectedbackgroundimage = 0;
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
@@ -135,6 +136,14 @@ int selectedbackgroundimage = 0;
     
     subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
                                  scrollView.contentSize.height * 0.5 + offsetY);
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
+    [self updateThumbImage];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self updateThumbImage];
 }
 
 - (void) prepareScrollView{
@@ -170,6 +179,14 @@ int selectedbackgroundimage = 0;
 }
 
 - (IBAction)done:(id)sender {
+    STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
+    CGFloat currentScale = self.cropbackgroundImage.frame.size.width / self.cropbackgroundImage.bounds.size.width;
+    [img setDefaultScale:currentScale];
+    [img setMinZoomScale:[self.cropView minimumZoomScale]];
+    [img setDefaultX:[self cropView].contentOffset.x];
+    [img setDefaultY:[self cropView].contentOffset.y];
+    [img setThumbimage:[self updateThumbImage]];
+    [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     //[self.navigationController popToRootViewControllerAnimated:YES];
     AppDelegate *backgroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [backgroundImagesDelegate.backgroundImagesArray addObjectsFromArray:[self backgroundimages]];
