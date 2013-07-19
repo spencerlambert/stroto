@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BFCropInterface.h"
 
 @interface STCropBackgroundViewController : UIViewController<UIScrollViewDelegate>
 

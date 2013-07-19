@@ -215,7 +215,7 @@ int selectedbackgroundimage = 0;
     visibleRect.origin.y = self.cropView.contentOffset.y * scale;
     visibleRect.size.width = self.cropView.bounds.size.width * scale;
     visibleRect.size.height = self.cropView.bounds.size.height * scale;
-    UIImage *temp = [self cropImage:self.cropbackgroundImage.image :&visibleRect];
+    UIImage *temp = [self cropImage:self.cropbackgroundImage.image srcImage:&visibleRect];
     UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedbackgroundimage inView:[backgroundimagesView.subviews objectAtIndex:0]];
     thumbview.image = temp;
     return temp;
@@ -228,7 +228,7 @@ int selectedbackgroundimage = 0;
     return nil;
 }
 
-- (UIImage*) cropImage:(UIImage*) srcImage:(CGRect*) rect
+- (UIImage*) cropImage:(UIImage*)srcImage srcImage:(CGRect*)rect
 {
     CGImageRef cr = CGImageCreateWithImageInRect([srcImage CGImage], *rect);
     UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];

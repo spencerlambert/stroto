@@ -103,11 +103,6 @@
 		DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */; };
 		DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; };
-		DBD7B001178FE5E60071C2AD /* BFCropInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD7B000178FE5E60071C2AD /* BFCropInterface.m */; };
-		DBD7B002178FEB420071C2AD /* BFCropInterface.h in Sources */ = {isa = PBXBuildFile; fileRef = DBD7AFFF178FE5E60071C2AD /* BFCropInterface.h */; };
-		DBD7B003178FEB480071C2AD /* BFCropInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD7B000178FE5E60071C2AD /* BFCropInterface.m */; };
-		DBD7B005178FEEAE0071C2AD /* node.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD7B004178FEEAE0071C2AD /* node.png */; };
-		DBD7B007178FEEBA0071C2AD /* node@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD7B006178FEEBA0071C2AD /* node@2x.png */; };
 		DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AA7174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AAD174D6718001DFCDC /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AAB174D6718001DFCDC /* AddButton.png */; };
@@ -261,10 +256,6 @@
 		DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
 		DB9E9EAB1764BE4100788373 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
 		DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		DBD7AFFF178FE5E60071C2AD /* BFCropInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCropInterface.h; sourceTree = "<group>"; };
-		DBD7B000178FE5E60071C2AD /* BFCropInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFCropInterface.m; sourceTree = "<group>"; };
-		DBD7B004178FEEAE0071C2AD /* node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = node.png; sourceTree = "<group>"; };
-		DBD7B006178FEEBA0071C2AD /* node@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "node@2x.png"; sourceTree = "<group>"; };
 		DBFA4AA5174D66B4001DFCDC /* RecordStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordStop.png; sourceTree = "<group>"; };
 		DBFA4AAB174D6718001DFCDC /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
 		DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -446,7 +437,6 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DBD7AFFD178FE5BF0071C2AD /* CropperView */,
 				DB8ADED11770D97C0094BB3A /* 57.png */,
 				DB8ADED31770D99E0094BB3A /* 57@2x.png */,
 				DB9E9EA11764BE2300788373 /* ELCImagePicker */,
@@ -584,17 +574,6 @@
 			name = ELCImagePicker;
 			sourceTree = "<group>";
 		};
-		DBD7AFFD178FE5BF0071C2AD /* CropperView */ = {
-			isa = PBXGroup;
-			children = (
-				DBD7AFFF178FE5E60071C2AD /* BFCropInterface.h */,
-				DBD7B004178FEEAE0071C2AD /* node.png */,
-				DBD7B006178FEEBA0071C2AD /* node@2x.png */,
-				DBD7B000178FE5E60071C2AD /* BFCropInterface.m */,
-			);
-			name = CropperView;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -689,8 +668,6 @@
 				4D2A0A1D177BD1EC00C78EE0 /* Default.png in Resources */,
 				4D2A0A1F177BD1FD00C78EE0 /* Default@2x.png in Resources */,
 				4D2A0A22177BD37A00C78EE0 /* Default-568h@2x.png in Resources */,
-				DBD7B005178FEEAE0071C2AD /* node.png in Resources */,
-				DBD7B007178FEEBA0071C2AD /* node@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,8 +709,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBD7B003178FEB480071C2AD /* BFCropInterface.m in Sources */,
-				DBD7B002178FEB420071C2AD /* BFCropInterface.h in Sources */,
 				DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */,
 				DB28D7191742E1460071B5C2 /* main.m in Sources */,
 				DB28D71D1742E1460071B5C2 /* AppDelegate.m in Sources */,
@@ -807,7 +782,6 @@
 				DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */,
 				DB93D70F1774EBEE00437F40 /* TopRightView.m in Sources */,
 				DB93D7131774EC0000437F40 /* BottomRight.m in Sources */,
-				DBD7B001178FE5E60071C2AD /* BFCropInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

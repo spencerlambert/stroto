@@ -11,9 +11,9 @@
 
 @interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *eraseBtn;
 @property NSMutableArray *foregroundimages;
 @property NSArray *sizePicker;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;

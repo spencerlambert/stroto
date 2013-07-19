@@ -22,6 +22,7 @@
 @implementation STCropForegroundViewController
 
 int selectedforegroundimage = 0;
+bool eraseMode = NO;
 
 @synthesize foregroundimagesView;
 @synthesize sizePicker;
@@ -38,6 +39,7 @@ int selectedforegroundimage = 0;
 
 - (void)viewDidLoad
 {
+    eraseMode = NO;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
@@ -67,6 +69,7 @@ int selectedforegroundimage = 0;
     [self setCropforegroundImage:nil];
     [self setMainScrollView:nil];
     [self setSizePickerOutlet:nil];
+    [self setEraseBtn:nil];
     [super viewDidUnload];
 }
 
@@ -89,12 +92,12 @@ int selectedforegroundimage = 0;
         thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
                                          scale:(thumbImage.scale * 1.4)
                                    orientation:(thumbImage.imageOrientation)];
-        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = thumbImage.size.width;
-        frame.size.height = thumbImage.size.height;
+        frame.size.width = 50; //thumbImage.size.width;
+        frame.size.height = 50; // thumbImage.size.height;
         [thumbView setFrame:frame];
         [thumbView setUserInteractionEnabled:YES];
         [thumbView addGestureRecognizer:click];
@@ -102,6 +105,7 @@ int selectedforegroundimage = 0;
         [ForegroundImagesHolder addSubview:thumbView];
         [thumbView setUserInteractionEnabled:YES];
         xPosition += (frame.size.width + THUMB_H_PADDING);
+        selectedforegroundimage = 0;
     }
     
     [ForegroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
@@ -111,7 +115,7 @@ int selectedforegroundimage = 0;
     [foregroundimagesView addSubview:ForegroundImagesHolder];
     // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
     self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
-    [self.cropforegroundImage setUserInteractionEnabled:YES];
+    //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     
@@ -125,11 +129,12 @@ int selectedforegroundimage = 0;
     [img setMinZoomScale:[self.cropView minimumZoomScale]];
     [img setDefaultX:[self cropView].contentOffset.x];
     [img setDefaultY:[self cropView].contentOffset.y];
+    [img setThumbimage:[self updateThumbImage]];
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
     selectedforegroundimage = recognizer.view.tag;
     [self clearScrollView];
     self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
-    [self.cropforegroundImage setUserInteractionEnabled:YES];
+    //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
@@ -150,6 +155,14 @@ int selectedforegroundimage = 0;
                                      scrollView.contentSize.height * 0.5 + offsetY);
         
     }
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
+    [self updateThumbImage];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self updateThumbImage];
 }
 
 - (void) prepareScrollView{
@@ -185,8 +198,46 @@ int selectedforegroundimage = 0;
     [self setForegroundimages:stimages];
 }
 
+- (UIImage*) updateThumbImage{
+         float scale = 1.0f/self.cropView.zoomScale;
+         CGRect visibleRect;
+         visibleRect.origin.x = self.cropView.contentOffset.x * scale;
+         visibleRect.origin.y = self.cropView.contentOffset.y * scale;
+         visibleRect.size.width = self.cropView.bounds.size.width * scale;
+         visibleRect.size.height = self.cropView.bounds.size.height * scale;
+         UIImage *temp = [self cropImage:self.cropforegroundImage.image srcImage:&visibleRect];
+         UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedforegroundimage inView:[foregroundimagesView.subviews objectAtIndex:0]];
+         thumbview.image = temp;
+         return temp;
+     }
+
+- (UIView*) subviewWithTag:(int)tag inView:(UIView*)view{
+    for(UIView *temp in view.subviews){
+        if(temp.tag == tag)return temp;
+    }
+    return nil;
+}
+
+- (UIImage*) cropImage:(UIImage*)srcImage srcImage:(CGRect*) rect
+{
+    CGImageRef cr = CGImageCreateWithImageInRect([srcImage CGImage], *rect);
+    UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
+    CGImageRelease(cr);
+    return cropped;
+}
+
+
+
 - (IBAction)done:(id)sender {
     //[self.navigationController popToRootViewControllerAnimated:YES];
+    STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
+    [img setDefaultScale:currentScale];
+    [img setMinZoomScale:[self.cropView minimumZoomScale]];
+    [img setDefaultX:[self cropView].contentOffset.x];
+    [img setDefaultY:[self cropView].contentOffset.y];
+    [img setThumbimage:[self updateThumbImage]];
+    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
     AppDelegate *foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:[self foregroundimages]];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
@@ -195,7 +246,7 @@ int selectedforegroundimage = 0;
 - (float)getMinimumZoomScale{
     float heightMinimumScale = self.cropView.frame.size.height/self.cropforegroundImage.frame.size.height;
     float widthMinimumScale = self.cropView.frame.size.width/self.cropforegroundImage.frame.size.width;
-    if(widthMinimumScale > heightMinimumScale)
+    if(widthMinimumScale < heightMinimumScale)
         return widthMinimumScale;
     else
         return heightMinimumScale;
@@ -228,8 +279,21 @@ int selectedforegroundimage = 0;
 {
 }
 
-
-
-
+- (IBAction)erasePressed:(id)sender
+{
+    eraseMode = !eraseMode;
+    if(eraseMode){
+        [self.cropView setScrollEnabled:NO];
+        [self.cropView setDelaysContentTouches:NO];
+        [self.cropView setMultipleTouchEnabled:NO];
+        [self.cropforegroundImage setUserInteractionEnabled:YES];
+    }
+    else{
+        [self.cropView setScrollEnabled:YES];
+        [self.cropView setDelaysContentTouches:YES];
+        [self.cropView setMultipleTouchEnabled:YES];
+        [self.cropforegroundImage setUserInteractionEnabled:NO];
+    }
+}
 
 @end
