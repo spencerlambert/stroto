@@ -12,5 +12,10 @@
     CGPoint lastPoint;
     BOOL mouseSwiped;
 }
+@property CGSize size;
+@property CGPoint location;
+@property UIImageView *maskView;
+@property UIImage *originalImage;
+@property UIImage *mask;
 
 @end

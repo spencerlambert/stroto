@@ -49,5 +49,8 @@
 @property NSData *imageData;
 @property UIImage *thumbimage;
 
+@property UIImage *orgImage;
+@property UIImage *maskImage;
+
 
 @end

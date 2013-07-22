@@ -18,7 +18,7 @@
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
-@property (strong, nonatomic) IBOutlet UIImageView *cropforegroundImage;
+@property (strong, nonatomic) IBOutlet STEraseImageView *cropforegroundImage;
 @property (weak, nonatomic) IBOutlet UIPickerView *sizePickerOutlet;
 - (IBAction)done:(id)sender;
 @end

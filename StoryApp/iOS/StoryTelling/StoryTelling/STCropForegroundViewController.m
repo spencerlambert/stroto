@@ -114,7 +114,10 @@ bool eraseMode = NO;
     }
     [foregroundimagesView addSubview:ForegroundImagesHolder];
     // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
+    NSLog(@"(%f,%f)",((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.width,((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.height);
     self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
+    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:0]).size];
+    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:0]).orgImage];
     //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
@@ -124,16 +127,24 @@ bool eraseMode = NO;
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
     //NSLog(@"%d",selectedforegroundimage);
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    STImage *img1 = [[STImage alloc] initWithCGImage:self.cropforegroundImage.image.CGImage];
+    img1.listDisplayOrder = img.listDisplayOrder;
+    img1.fileType = img.fileType;
+    img1.type = img.type;
+    img1.sizeX = img.sizeX;
+    img1.sizeY = img.sizeY;
     CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
-    [img setDefaultScale:currentScale];
-    [img setMinZoomScale:[self.cropView minimumZoomScale]];
-    [img setDefaultX:[self cropView].contentOffset.x];
-    [img setDefaultY:[self cropView].contentOffset.y];
-    [img setThumbimage:[self updateThumbImage]];
-    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
+    [img1 setDefaultScale:currentScale];
+    [img1 setMinZoomScale:[self.cropView minimumZoomScale]];
+    [img1 setDefaultX:[self cropView].contentOffset.x];
+    [img1 setDefaultY:[self cropView].contentOffset.y];
+    [img1 setThumbimage:[self updateThumbImage]];
+    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
     selectedforegroundimage = recognizer.view.tag;
     [self clearScrollView];
     self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).size];
+    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).orgImage];
     //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
@@ -175,6 +186,8 @@ bool eraseMode = NO;
     [self.cropView setMinimumZoomScale:image.minZoomScale==0?[self getMinimumZoomScale]:image.minZoomScale];
     if(image.minZoomScale==0)
         [self.cropView zoomToRect:[self getInitZoomRect] animated:YES];
+//    else
+//        [self.cropView zoomToRect:CGRectMake(image.defaultX, image.defaultY, self.cropforegroundImage.image.size.width, self.cropforegroundImage.image.size.height) animated:YES];
 }
 
 - (void) clearScrollView{
@@ -193,23 +206,24 @@ bool eraseMode = NO;
         [stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
         [stimage setType:@"foreground"];
         [stimage setListDisplayOrder:count++];
+        [stimage setOrgImage:[[UIImage alloc] initWithCGImage:[Image CGImage] ]];
         [stimages addObject:stimage];
     }
     [self setForegroundimages:stimages];
 }
 
 - (UIImage*) updateThumbImage{
-         float scale = 1.0f/self.cropView.zoomScale;
-         CGRect visibleRect;
-         visibleRect.origin.x = self.cropView.contentOffset.x * scale;
-         visibleRect.origin.y = self.cropView.contentOffset.y * scale;
-         visibleRect.size.width = self.cropView.bounds.size.width * scale;
-         visibleRect.size.height = self.cropView.bounds.size.height * scale;
-         UIImage *temp = [self cropImage:self.cropforegroundImage.image srcImage:&visibleRect];
-         UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedforegroundimage inView:[foregroundimagesView.subviews objectAtIndex:0]];
-         thumbview.image = temp;
-         return temp;
-     }
+    float scale = 1.0f/self.cropView.zoomScale;
+    CGRect visibleRect;
+    visibleRect.origin.x = self.cropView.contentOffset.x * scale;
+    visibleRect.origin.y = self.cropView.contentOffset.y * scale;
+    visibleRect.size.width = self.cropView.bounds.size.width * scale;
+    visibleRect.size.height = self.cropView.bounds.size.height * scale;
+    UIImage *temp = [self cropImage:self.cropforegroundImage.image srcImage:&visibleRect];
+    UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedforegroundimage inView:[foregroundimagesView.subviews objectAtIndex:0]];
+    thumbview.image = temp;
+    return temp;
+}
 
 - (UIView*) subviewWithTag:(int)tag inView:(UIView*)view{
     for(UIView *temp in view.subviews){
@@ -267,16 +281,11 @@ bool eraseMode = NO;
 {
     return [sizePicker count];
 }
+
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
     NSString *title;
     title=[sizePicker objectAtIndex:row];
     return title;
-}
-
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
 }
 
 - (IBAction)erasePressed:(id)sender
