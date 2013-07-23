@@ -11,14 +11,15 @@
 
 @interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *eraseBtn;
+- (IBAction)sliderChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+
 @property NSMutableArray *foregroundimages;
-@property NSArray *sizePicker;
-@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
+
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
 @property (strong, nonatomic) IBOutlet STEraseImageView *cropforegroundImage;
-@property (weak, nonatomic) IBOutlet UIPickerView *sizePickerOutlet;
+
 - (IBAction)done:(id)sender;
 @end

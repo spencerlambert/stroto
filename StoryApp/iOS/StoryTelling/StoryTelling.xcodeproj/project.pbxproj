@@ -79,6 +79,7 @@
 		DB93D7121774EC0000437F40 /* BottomRight.m in Sources */ = {isa = PBXBuildFile; fileRef = DB93D7111774EC0000437F40 /* BottomRight.m */; };
 		DB93D7131774EC0000437F40 /* BottomRight.m in Sources */ = {isa = PBXBuildFile; fileRef = DB93D7111774EC0000437F40 /* BottomRight.m */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
+		DB9D5DF4179E3DB700494945 /* STForegroundEraseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D5DF3179E3DB700494945 /* STForegroundEraseViewController.m */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
@@ -234,6 +235,8 @@
 		DB93D7101774EBFF00437F40 /* BottomRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomRight.h; sourceTree = "<group>"; };
 		DB93D7111774EC0000437F40 /* BottomRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomRight.m; sourceTree = "<group>"; };
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		DB9D5DF2179E3DB700494945 /* STForegroundEraseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STForegroundEraseViewController.h; sourceTree = "<group>"; };
+		DB9D5DF3179E3DB700494945 /* STForegroundEraseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STForegroundEraseViewController.m; sourceTree = "<group>"; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
 		DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateStoryRootViewController.m; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */,
 				DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */,
 				DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */,
+				DB9D5DF2179E3DB700494945 /* STForegroundEraseViewController.h */,
+				DB9D5DF3179E3DB700494945 /* STForegroundEraseViewController.m */,
 				DB0238291797D7CF00A2682F /* STEraseImageView.h */,
 				DB02382A1797D7CF00A2682F /* STEraseImageView.m */,
 				DB28D7131742E1460071B5C2 /* Supporting Files */,
@@ -754,6 +759,7 @@
 				DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */,
 				DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */,
 				DB02382B1797D7CF00A2682F /* STEraseImageView.m in Sources */,
+				DB9D5DF4179E3DB700494945 /* STForegroundEraseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,8 +887,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
 				WRAPPER_EXTENSION = app;
 			};
@@ -895,8 +903,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
 				WRAPPER_EXTENSION = app;
 			};

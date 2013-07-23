@@ -25,8 +25,7 @@ int selectedforegroundimage = 0;
 bool eraseMode = NO;
 
 @synthesize foregroundimagesView;
-@synthesize sizePicker;
-@synthesize sizePickerOutlet;
+@synthesize slider;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,14 +42,16 @@ bool eraseMode = NO;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
-    [[self mainScrollView] setContentSize:CGSizeMake(320, 1150)];
-    sizePicker = [[NSArray alloc]initWithObjects:@"Small",@"Medium",@"Large", nil];
-    [[self sizePickerOutlet ] setFrame:CGRectMake(sizePickerOutlet.frame.origin.x, sizePickerOutlet.frame.origin.y, sizePickerOutlet.frame.size.width, sizePickerOutlet.frame.size.height-100)];
     [self clearScrollView];
     [self reloadForegroundImagesView];
     [self prepareScrollView];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    [super viewWillAppear:animated];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -67,9 +68,7 @@ bool eraseMode = NO;
     [self setForegroundimagesView:nil];
     //[self setCropView:nil];
     [self setCropforegroundImage:nil];
-    [self setMainScrollView:nil];
-    [self setSizePickerOutlet:nil];
-    [self setEraseBtn:nil];
+    [self setSlider:nil];
     [super viewDidUnload];
 }
 
@@ -149,6 +148,7 @@ bool eraseMode = NO;
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
+    [self scrollViewDidZoom:self.cropView];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
@@ -272,21 +272,8 @@ bool eraseMode = NO;
     return zoomrect;
 }
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
 
 // Total rows in our component.
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [sizePicker count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSString *title;
-    title=[sizePicker objectAtIndex:row];
-    return title;
-}
 
 - (IBAction)erasePressed:(id)sender
 {
@@ -305,4 +292,14 @@ bool eraseMode = NO;
     }
 }
 
+- (IBAction)sliderChanged:(id)sender {
+    
+    if(slider.value < 1){
+        [slider setValue:0];
+        
+    }else if(slider.value <2){
+        [slider setValue:1];
+    }
+    
+}
 @end
