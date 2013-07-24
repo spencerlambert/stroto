@@ -9,6 +9,7 @@
 #import "STCropForegroundViewController.h"
 #import "STImage.h"
 #import "AppDelegate.h"
+#import "STForegroundEraseViewController.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -301,5 +302,9 @@ bool eraseMode = NO;
         [slider setValue:1];
     }
     
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [(STForegroundEraseViewController*) segue.destinationViewController setImage:self.cropforegroundImage.image];
 }
 @end

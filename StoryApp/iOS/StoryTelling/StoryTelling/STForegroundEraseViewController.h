@@ -11,6 +11,8 @@
 @interface STForegroundEraseViewController : UIViewController
 
 
+@property UIImage *image;
+
 - (IBAction)done:(id)sender;
 
 @end

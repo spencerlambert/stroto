@@ -66,6 +66,10 @@
 		DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB38441D1781B07C0036469D /* libsqlite3.dylib */; };
 		DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */; };
 		DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */; };
+		DB4E38A6179F81E000413100 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4E38A5179F81E000413100 /* libz.dylib */; };
+		DB4E38A9179F838000413100 /* STTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4E38A8179F838000413100 /* STTestViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB4E38AA179F838000413100 /* STTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4E38A8179F838000413100 /* STTestViewController.mm */; };
+		DB4E38AC179FA20A00413100 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4E38AB179FA20A00413100 /* opencv2.framework */; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
 		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
 		DB93D7061774E36000437F40 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7001774E36000437F40 /* Back.png */; };
@@ -222,6 +226,10 @@
 		DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropBackgroundViewController.m; sourceTree = "<group>"; };
 		DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCropForegroundViewController.h; sourceTree = "<group>"; };
 		DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropForegroundViewController.m; sourceTree = "<group>"; };
+		DB4E38A5179F81E000413100 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DB4E38A7179F838000413100 /* STTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTestViewController.h; sourceTree = "<group>"; };
+		DB4E38A8179F838000413100 /* STTestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = STTestViewController.mm; sourceTree = "<group>"; };
+		DB4E38AB179FA20A00413100 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
 		DB93D7001774E36000437F40 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
@@ -274,6 +282,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4E38AC179FA20A00413100 /* opencv2.framework in Frameworks */,
+				DB4E38A6179F81E000413100 /* libz.dylib in Frameworks */,
 				DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */,
 				DBFA4AB1174D79F7001DFCDC /* MediaPlayer.framework in Frameworks */,
 				DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */,
@@ -373,12 +383,12 @@
 		DB28D6FD1742E1460071B5C2 = {
 			isa = PBXGroup;
 			children = (
-				DB38441D1781B07C0036469D /* libsqlite3.dylib */,
 				4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */,
 				4D2A0A1E177BD1FD00C78EE0 /* Default@2x.png */,
 				4D2A0A1C177BD1EC00C78EE0 /* Default.png */,
 				4D2A0A1A177ABD2C00C78EE0 /* Default@2x.png */,
 				4D2A0A18177ABD1600C78EE0 /* Default.png */,
+				DB4E389C179F803D00413100 /* CV */,
 				DB28D7121742E1460071B5C2 /* StoryTelling */,
 				DB28D7391742E1460071B5C2 /* StoryTellingTests */,
 				DB28D70B1742E1460071B5C2 /* Frameworks */,
@@ -398,6 +408,9 @@
 		DB28D70B1742E1460071B5C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB4E38AB179FA20A00413100 /* opencv2.framework */,
+				DB4E38A5179F81E000413100 /* libz.dylib */,
+				DB38441D1781B07C0036469D /* libsqlite3.dylib */,
 				DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */,
 				DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */,
 				DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */,
@@ -475,6 +488,15 @@
 				DB28D73C1742E1460071B5C2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB4E389C179F803D00413100 /* CV */ = {
+			isa = PBXGroup;
+			children = (
+				DB4E38A7179F838000413100 /* STTestViewController.h */,
+				DB4E38A8179F838000413100 /* STTestViewController.mm */,
+			);
+			name = CV;
 			sourceTree = "<group>";
 		};
 		DB93D6FF1774E33600437F40 /* WorArea Images */ = {
@@ -760,6 +782,7 @@
 				DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */,
 				DB02382B1797D7CF00A2682F /* STEraseImageView.m in Sources */,
 				DB9D5DF4179E3DB700494945 /* STForegroundEraseViewController.m in Sources */,
+				DB4E38A9179F838000413100 /* STTestViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +811,7 @@
 				DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */,
 				DB93D70F1774EBEE00437F40 /* TopRightView.m in Sources */,
 				DB93D7131774EC0000437F40 /* BottomRight.m in Sources */,
+				DB4E38AA179F838000413100 /* STTestViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,11 +909,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
 				WRAPPER_EXTENSION = app;
@@ -901,11 +930,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryTelling/StoryTelling-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
 				WRAPPER_EXTENSION = app;

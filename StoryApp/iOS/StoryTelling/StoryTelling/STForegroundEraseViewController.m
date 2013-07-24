@@ -7,7 +7,7 @@
 //
 
 #import "STForegroundEraseViewController.h"
-//#import "ImageProcessingImpl.h"
+#import "STTestViewController.h"
 
 @interface STForegroundEraseViewController ()
 
@@ -35,6 +35,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [(STTestViewController*)segue.destinationViewController setMyimage:self.image];
 }
 
 - (IBAction)done:(id)sender {
