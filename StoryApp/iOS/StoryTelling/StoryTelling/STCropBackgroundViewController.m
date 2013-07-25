@@ -10,7 +10,7 @@
 #import "STImage.h"
 #import "AppDelegate.h"
 
-#define THUMB_HEIGHT 95
+#define THUMB_HEIGHT 78
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 
