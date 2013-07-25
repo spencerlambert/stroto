@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STEraseImageView.h"
 
 @interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>
 
@@ -19,7 +18,7 @@
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
-@property (strong, nonatomic) IBOutlet STEraseImageView *cropforegroundImage;
+@property (strong, nonatomic) IBOutlet UIImageView *cropforegroundImage;
 
 - (IBAction)done:(id)sender;
 @end

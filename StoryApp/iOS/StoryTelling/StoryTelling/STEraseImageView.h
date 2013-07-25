@@ -11,11 +11,19 @@
 @interface STEraseImageView : UIImageView{
     CGPoint lastPoint;
     BOOL mouseSwiped;
+    
+    
+    
+    
 }
 @property CGSize size;
 @property CGPoint location;
 @property UIImageView *maskView;
 @property UIImage *originalImage;
-@property UIImage *mask;
+@property int brush;
+@property int flags;
+
+- (void) doGrabCut;
+- (void) initialize;
 
 @end

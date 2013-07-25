@@ -115,9 +115,9 @@ bool eraseMode = NO;
     [foregroundimagesView addSubview:ForegroundImagesHolder];
     // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
     NSLog(@"(%f,%f)",((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.width,((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.height);
-    self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
-    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:0]).size];
-    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:0]).orgImage];
+    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
+//    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:0]).size];
+//    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:0]).orgImage];
     //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
@@ -142,9 +142,9 @@ bool eraseMode = NO;
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
     selectedforegroundimage = recognizer.view.tag;
     [self clearScrollView];
-    self.cropforegroundImage = [[STEraseImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
-    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).size];
-    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).orgImage];
+    self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
+//    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).size];
+//    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).orgImage];
     //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
@@ -271,26 +271,6 @@ bool eraseMode = NO;
     CGRect zoomrect;
     zoomrect = CGRectMake(0, 0, self.cropforegroundImage.frame.size.width, self.cropforegroundImage.frame.size.height);
     return zoomrect;
-}
-
-
-// Total rows in our component.
-
-- (IBAction)erasePressed:(id)sender
-{
-    eraseMode = !eraseMode;
-    if(eraseMode){
-        [self.cropView setScrollEnabled:NO];
-        [self.cropView setDelaysContentTouches:NO];
-        [self.cropView setMultipleTouchEnabled:NO];
-        [self.cropforegroundImage setUserInteractionEnabled:YES];
-    }
-    else{
-        [self.cropView setScrollEnabled:YES];
-        [self.cropView setDelaysContentTouches:YES];
-        [self.cropView setMultipleTouchEnabled:YES];
-        [self.cropforegroundImage setUserInteractionEnabled:NO];
-    }
 }
 
 - (IBAction)sliderChanged:(id)sender {

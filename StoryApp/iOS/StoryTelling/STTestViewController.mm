@@ -73,7 +73,7 @@
     return cvMat;
 }
 
--(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
+- (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
     CGColorSpaceRef colorSpace;
@@ -114,6 +114,7 @@
 {
     [super viewDidLoad];
     self.imageview.image = self.myimage;
+    [self cut];
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     
 	// Do any additional setup after loading the view.
@@ -137,7 +138,7 @@
     //cv::Mat mask = cv::Mat::ones(inputMat.size, CV_8U) * cv::GC_BGD;
     cv::Mat result; // segmentation (4 possible values)
     cv::Mat bgModel,fgModel; // the models (internally used)
-    cv::Rect rectangle(10,100,380,180);
+    cv::Rect rectangle(0,0,inputMat.cols-1,inputMat.rows-1);
     // GrabCut segmentation
     cv::grabCut(inputMat,    // input image
                 result,      // segmentation result

@@ -497,28 +497,13 @@
             <objects>
                 <viewController storyboardIdentifier="CVTest" id="5mU-54-8WD" customClass="STTestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pec-CX-Fjf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="396"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="d23-hl-J3x">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="396"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="d23-hl-J3x">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Sy-Kh-tX5">
-                                <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="grabcut:" destination="5mU-54-8WD" eventType="touchUpInside" id="57h-yA-pUQ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -529,18 +514,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXJ-C5-dIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="-424"/>
+            <point key="canvasLocation" x="1528" y="139"/>
         </scene>
         <!--Foreground Erase View Controller - Erase Background-->
         <scene sceneID="SZk-Py-jDa">
             <objects>
                 <viewController id="8dv-hQ-YSc" customClass="STForegroundEraseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hNC-nV-a1t">
-                        <rect key="frame" x="0.0" y="64" width="320" height="396"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lJ0-Rc-zdr">
-                                <rect key="frame" x="10" y="20" width="73" height="35"/>
+                                <rect key="frame" x="6" y="6" width="109" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Pick BG">
@@ -550,9 +535,12 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="bgMask:" destination="8dv-hQ-YSc" eventType="touchUpInside" id="Qgl-LT-Lf2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JUW-Wi-tCl">
-                                <rect key="frame" x="124" y="20" width="73" height="35"/>
+                                <rect key="frame" x="123" y="6" width="110" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Pick FG">
@@ -562,9 +550,12 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="fgMask:" destination="8dv-hQ-YSc" eventType="touchUpInside" id="oeG-o4-T1U"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YML-3y-Nwb">
-                                <rect key="frame" x="237" y="20" width="73" height="35"/>
+                                <rect key="frame" x="241" y="6" width="73" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Test">
@@ -578,9 +569,9 @@
                                     <segue destination="5mU-54-8WD" kind="push" id="ocl-f5-QfK"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="d9c-P4-wEM">
-                                <rect key="frame" x="0.0" y="96" width="320" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView contentMode="scaleAspectFit" id="d9c-P4-wEM" customClass="STEraseImageView">
+                                <rect key="frame" x="0.0" y="48" width="320" height="368"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -594,10 +585,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="imageview" destination="d9c-P4-wEM" id="0rR-6m-XQR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dg3-Lq-67m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1170" y="139"/>
+            <point key="canvasLocation" x="1108" y="139"/>
         </scene>
         <!--Add Background View Controller - Add Background-->
         <scene sceneID="e3G-dQ-o0N">
@@ -733,7 +728,7 @@
                 <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
                 <relationship kind="action" name="sliderChanged:"/>
                 <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="cropforegroundImage" candidateClass="STEraseImageView"/>
+                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
             </relationships>
@@ -744,7 +739,10 @@
         <class className="STForegroundEraseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STForegroundEraseViewController.h"/>
             <relationships>
+                <relationship kind="action" name="bgMask:"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="fgMask:"/>
+                <relationship kind="outlet" name="imageview" candidateClass="STEraseImageView"/>
             </relationships>
         </class>
         <class className="STTestViewController" superclassName="UIViewController">

@@ -15,6 +15,8 @@
 
 @implementation STForegroundEraseViewController
 
+@synthesize mask;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,6 +30,8 @@
 {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    [self.imageview setImage:self.image];
+    [self.imageview initialize];
 	// Do any additional setup after loading the view.
 }
 
@@ -38,15 +42,22 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    [(STTestViewController*)segue.destinationViewController setMyimage:self.image];
+    [self.imageview doGrabCut];
+    [(STTestViewController*)segue.destinationViewController setMyimage:self.imageview.image];
 }
 
 - (IBAction)done:(id)sender {
-//    UIImage *image = [UIImage imageNamed:@"AddButton"];
-//    id<ImageProcessingProtocol> imageProcessor = [[ImageProcessingImpl alloc] init];
-//    UIImage * processedImage = [imageProcessor processImage:image];
-//    UIImageView *view = [[UIImageView alloc] initWithImage:processedImage];
-//    [self.view addSubview:view];
     [self.navigationController  popViewControllerAnimated:YES];
 }
+
+- (IBAction)fgMask:(id)sender{
+    [self.imageview setFlags:1];
+//    self.imageview.flags = 1;
+}
+
+- (IBAction)bgMask:(id)sender{
+    [self.imageview setFlags:2];
+//    self.imageview.flags = 2;
+}
+
 @end

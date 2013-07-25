@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STEraseImageView.h"
 
 @interface STForegroundEraseViewController : UIViewController
 
-
 @property UIImage *image;
+@property IBOutlet STEraseImageView *imageview;
+@property UIImage *mask;
 
 - (IBAction)done:(id)sender;
+- (IBAction)bgMask:(id)sender;
+- (IBAction)fgMask:(id)sender;
 
 @end
