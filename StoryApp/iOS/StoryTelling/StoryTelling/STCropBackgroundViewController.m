@@ -10,7 +10,7 @@
 #import "STImage.h"
 #import "AppDelegate.h"
 
-#define THUMB_HEIGHT 60
+#define THUMB_HEIGHT 95
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 
@@ -84,8 +84,8 @@ int selectedbackgroundimage = 0;
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = 50;//thumbImage.size.width;
-        frame.size.height = 50;//thumbImage.size.height;
+        frame.size.width = THUMB_HEIGHT;//thumbImage.size.width;
+        frame.size.height = THUMB_HEIGHT;//thumbImage.size.height;
         [thumbView setFrame:frame];
         [thumbView setUserInteractionEnabled:YES];
         [thumbView addGestureRecognizer:click];

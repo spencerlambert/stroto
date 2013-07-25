@@ -408,7 +408,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" maximumZoomScale="100" id="saX-OX-3oU">
-                                <rect key="frame" x="0.0" y="117" width="320" height="315"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="ZSr-Jx-cNL">
@@ -524,7 +524,7 @@
                                 </connections>
                             </button>
                             <imageView contentMode="scaleAspectFit" id="d9c-P4-wEM" customClass="STEraseImageView">
-                                <rect key="frame" x="0.0" y="73" width="320" height="271"/>
+                                <rect key="frame" x="0.0" y="75" width="320" height="269"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="tIm-dJ-sfw">
@@ -628,7 +628,7 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </segmentedControl>
                             <imageView contentMode="scaleAspectFit" id="Ptm-nJ-gNO" customClass="STEraseImageView">
-                                <rect key="frame" x="0.0" y="117" width="320" height="271"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="269"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
