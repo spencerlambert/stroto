@@ -10,7 +10,7 @@
 #import "WorkAreaController.h"
 #import "STImage.h"
 
-#define THUMB_HEIGHT 60
+#define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 
@@ -111,8 +111,8 @@
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = 50;
-        frame.size.height = 50;
+        frame.size.width = THUMB_HEIGHT;
+        frame.size.height = THUMB_HEIGHT;
         [thumbView setFrame:frame];
         [thumbView setTag:i];
         [BackgroundImagesHolder addSubview:thumbView];
@@ -193,8 +193,8 @@
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
-        frame.size.width = 50;
-        frame.size.height = 50;
+        frame.size.width = THUMB_HEIGHT;
+        frame.size.height = THUMB_HEIGHT;
         [thumbView setFrame:frame];
         [thumbView setTag:i];
         [ForegroundImagesHolder addSubview:thumbView];
