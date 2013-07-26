@@ -422,39 +422,148 @@
         <scene sceneID="NrE-jU-cwt">
             <objects>
                 <viewController storyboardIdentifier="cropForeground" id="Yzw-vs-wjh" customClass="STCropForegroundViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="a8h-vM-8mD">
+                    <view key="view" contentMode="scaleToFill" id="YF5-aO-hl5">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="z6W-ps-a2q">
-                                <rect key="frame" x="0.0" y="44" width="320" height="424"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="hhg-CE-nXw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="e9V-4b-Wc5">
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="a37-x6-riU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Edit Foreground" id="clz-N7-ziw">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="NgG-d7-hgd">
+                                    <navigationItem title="Edit Foreground" id="SSW-NG-pLm">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="qR5-d8-9Z9">
                                             <connections>
-                                                <action selector="done:" destination="Yzw-vs-wjh" id="agG-pO-gwS"/>
+                                                <action selector="done:" destination="Yzw-vs-wjh" id="TFt-kc-EOZ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" maximumZoomScale="100" id="saX-OX-3oU">
-                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </scrollView>
-                            <view contentMode="scaleToFill" id="ZSr-Jx-cNL">
+                            <view contentMode="scaleToFill" id="LK8-gd-Mbo">
                                 <rect key="frame" x="0.0" y="44" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="lHp-Kq-oym">
-                                <rect key="frame" x="-11" y="431" width="337" height="30"/>
+                            <view contentMode="scaleToFill" id="cUK-vn-obA">
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" maximumZoomScale="100" id="kXn-uc-wil">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="uIy-fg-gQO">
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="Jlx-uX-AJH">
+                                        <rect key="frame" x="2" y="286" width="316" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="sliderChanged:" destination="Yzw-vs-wjh" eventType="valueChanged" id="L52-3D-511"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Image Start Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rBf-Kj-Wlf">
+                                        <rect key="frame" x="100" y="267" width="148" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFh-ph-4Rg">
+                                        <rect key="frame" x="7" y="274" width="17" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cTv-Qg-jXV">
+                                        <rect key="frame" x="299" y="270" width="19" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView contentMode="scaleAspectFit" id="Ptm-nJ-gNO">
+                                        <rect key="frame" x="0.0" y="-2" width="320" height="269"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" id="hNC-nV-a1t">
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lJ0-Rc-zdr">
+                                        <rect key="frame" x="6" y="272" width="109" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Pick BG">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pickBG:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="Uje-L1-xRE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JUW-Wi-tCl">
+                                        <rect key="frame" x="123" y="272" width="110" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Pick FG">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pickFG:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="WAx-oo-3oW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YML-3y-Nwb">
+                                        <rect key="frame" x="241" y="272" width="73" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="applyGrabcut:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="CNg-aS-1ES"/>
+                                        </connections>
+                                    </button>
+                                    <imageView contentMode="scaleAspectFit" id="d9c-P4-wEM">
+                                        <rect key="frame" x="0.0" y="1" width="320" height="269"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="P59-O5-sgw" appends="YES" id="O09-Xe-PAt"/>
+                                            <outletCollection property="gestureRecognizers" destination="93a-5Q-AQo" appends="YES" id="efk-qk-KSQ"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="b2r-9X-M0U">
+                                <rect key="frame" x="-9" y="430" width="337" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <segments>
                                     <segment title="Crop"/>
@@ -462,36 +571,48 @@
                                     <segment title="Size"/>
                                 </segments>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="editForegroundSegment:" destination="Yzw-vs-wjh" eventType="valueChanged" id="JfL-kw-AcU"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="cropView" destination="saX-OX-3oU" id="Apq-U9-uWU"/>
-                        <outlet property="foregroundimagesView" destination="ZSr-Jx-cNL" id="dhQ-L8-t8Y"/>
+                        <outlet property="cropMainView" destination="cUK-vn-obA" id="HW9-ka-zT8"/>
+                        <outlet property="cropView" destination="kXn-uc-wil" id="ly0-S9-0C6"/>
+                        <outlet property="eraseMainView" destination="hNC-nV-a1t" id="aq9-a6-P02"/>
+                        <outlet property="foregroundimagesView" destination="LK8-gd-Mbo" id="mQZ-XX-CuE"/>
+                        <outlet property="grabcutView" destination="d9c-P4-wEM" id="yAl-IV-FPw"/>
+                        <outlet property="sizeMainView" destination="uIy-fg-gQO" id="Hr4-eW-7fw"/>
                         <outlet property="slider" destination="Jlx-uX-AJH" id="NSk-jz-rSe"/>
+                        <outlet property="view" destination="YF5-aO-hl5" id="WqI-1y-gVE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpa-TU-f4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="cXf-ad-3CV">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="P59-O5-sgw">
                     <connections>
-                        <action selector="handlePan:" destination="Yzw-vs-wjh" id="RT2-DO-Nly"/>
+                        <action selector="handleErasePanGesture:" destination="Yzw-vs-wjh" id="6qN-Mq-2Rc"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="93a-5Q-AQo">
+                    <connections>
+                        <action selector="handleEraseTapGesture:" destination="Yzw-vs-wjh" id="MPn-Rd-auS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="656" y="139"/>
+            <point key="canvasLocation" x="623" y="139"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="pZ4-X6-dFJ">
             <objects>
                 <viewController storyboardIdentifier="CVTest" id="5mU-54-8WD" customClass="STTestViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pec-CX-Fjf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="d23-hl-J3x">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -504,185 +625,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXJ-C5-dIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="139"/>
-        </scene>
-        <!--Foreground Erase View Controller - Edit Foreground-->
-        <scene sceneID="SZk-Py-jDa">
-            <objects>
-                <viewController id="8dv-hQ-YSc" customClass="STForegroundEraseViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hNC-nV-a1t">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="3iQ-uD-V4v">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lJ0-Rc-zdr">
-                                <rect key="frame" x="6" y="348" width="109" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Pick BG">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="bgMask:" destination="8dv-hQ-YSc" eventType="touchUpInside" id="Qgl-LT-Lf2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JUW-Wi-tCl">
-                                <rect key="frame" x="123" y="348" width="110" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Pick FG">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fgMask:" destination="8dv-hQ-YSc" eventType="touchUpInside" id="oeG-o4-T1U"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YML-3y-Nwb">
-                                <rect key="frame" x="241" y="348" width="73" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Apply">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5mU-54-8WD" kind="push" id="ocl-f5-QfK"/>
-                                </connections>
-                            </button>
-                            <imageView contentMode="scaleAspectFit" id="d9c-P4-wEM" customClass="STEraseImageView">
-                                <rect key="frame" x="0.0" y="75" width="320" height="269"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" id="tIm-dJ-sfw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="nI4-DD-m3B">
-                                <rect key="frame" x="-8" y="386" width="337" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="Crop"/>
-                                    <segment title="Erase BG"/>
-                                    <segment title="Size"/>
-                                </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Foreground" id="vxW-ml-Ll6">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="vHy-74-MeS"/>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="zKs-76-bqX">
-                            <connections>
-                                <action selector="done:" destination="8dv-hQ-YSc" id="NKW-zj-DaT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="imageview" destination="d9c-P4-wEM" id="0rR-6m-XQR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dg3-Lq-67m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1108" y="139"/>
-        </scene>
-        <!--View Controller - Title-->
-        <scene sceneID="lGx-hU-bpm">
-            <objects>
-                <viewController id="mBK-S2-EcC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uIy-fg-gQO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="JVP-vd-i4R">
-                                <rect key="frame" x="0.0" y="44" width="320" height="424"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="Jlx-uX-AJH">
-                                <rect key="frame" x="2" y="406" width="316" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="sliderChanged:" destination="Yzw-vs-wjh" eventType="valueChanged" id="L52-3D-511"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Image Start Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rBf-Kj-Wlf">
-                                <rect key="frame" x="86" y="387" width="148" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFh-ph-4Rg">
-                                <rect key="frame" x="7" y="394" width="17" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cTv-Qg-jXV">
-                                <rect key="frame" x="299" y="390" width="19" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="Cky-pu-kHj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Foreground" id="Nyh-40-MuJ">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="Kxo-JC-wyX"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" id="2e5-6g-iW3">
-                                <rect key="frame" x="0.0" y="44" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="2" id="ocJ-MU-RgG">
-                                <rect key="frame" x="-8" y="431" width="337" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="Crop"/>
-                                    <segment title="Erase BG"/>
-                                    <segment title="Size"/>
-                                </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </segmentedControl>
-                            <imageView contentMode="scaleAspectFit" id="Ptm-nJ-gNO" customClass="STEraseImageView">
-                                <rect key="frame" x="0.0" y="119" width="320" height="269"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="u8e-Un-409"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ecs-sX-ShC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1108" y="733"/>
+            <point key="canvasLocation" x="1151" y="139"/>
         </scene>
         <!--Add Background View Controller - Add Background-->
         <scene sceneID="e3G-dQ-o0N">
@@ -812,98 +755,6 @@
     <resources>
         <image name="app_bg.png" width="640" height="960"/>
     </resources>
-    <classes>
-        <class className="AddBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="AddForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="CreateStoryRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="nextButtonClicked:"/>
-                <relationship kind="action" name="resigngTxtField"/>
-                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="STCropBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="STCropForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="STEraseImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STEraseImageView.h"/>
-        </class>
-        <class className="STForegroundEraseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STForegroundEraseViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bgMask:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="fgMask:"/>
-                <relationship kind="outlet" name="imageview" candidateClass="STEraseImageView"/>
-            </relationships>
-        </class>
-        <class className="STTestViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STTestViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabcut:"/>
-                <relationship kind="outlet" name="imageview" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
-                <relationship kind="action" name="deleteButtonClicked:"/>
-                <relationship kind="action" name="editButtonClicked:"/>
-                <relationship kind="action" name="playButtonClicked:"/>
-                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
-                <relationship kind="outlet" name="NavigationBarTitle" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ScreenCaptureView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
-        </class>
-        <class className="StoryTellingRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WorkAreaController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="captureview" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

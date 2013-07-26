@@ -9,7 +9,7 @@
 #import "STCropForegroundViewController.h"
 #import "STImage.h"
 #import "AppDelegate.h"
-#import "STForegroundEraseViewController.h"
+
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -23,10 +23,12 @@
 @implementation STCropForegroundViewController
 
 int selectedforegroundimage = 0;
-bool eraseMode = NO;
 
 @synthesize foregroundimagesView;
 @synthesize slider;
+@synthesize cropMainView,eraseMainView,sizeMainView;
+@synthesize grabcutView;
+@synthesize grabCutController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,13 +41,24 @@ bool eraseMode = NO;
 
 - (void)viewDidLoad
 {
-    eraseMode = NO;
+    edit_fg = YES;
+    grabCutController = [[CvGrabCutController alloc] init];
+    image_changed = NO;
+    grabcutView.userInteractionEnabled = YES;
+    grabcutView.exclusiveTouch = YES;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
     [self clearScrollView];
     [self reloadForegroundImagesView];
     [self prepareScrollView];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEraseTapGesture:)];
+//    tapGesture.numberOfTapsRequired = 1;
+//    [grabcutView addGestureRecognizer:tapGesture];
+//    
+//    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
+//                                          initWithTarget:self action:@selector(handleErasePanGesture:)];
+//    [grabcutView addGestureRecognizer:panGesture];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -53,6 +66,52 @@ bool eraseMode = NO;
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [super viewWillAppear:animated];
+}
+
+- (IBAction)handleEraseTapGesture:(UIGestureRecognizer *)sender;
+{
+    if (self.editing == NO) {
+        return;
+    }
+    
+    
+    CGPoint tapPoint = [sender locationInView:sender.view.superview];
+    NSLog(@"tap (%f,%f)", tapPoint.x, tapPoint.y);
+    NSLog(@"->  (%f,%f)", tapPoint.x*scale_x, tapPoint.y*scale_y);
+    tapPoint = CGPointMake(tapPoint.x * scale_x, tapPoint.y * scale_y);
+    
+    
+    [grabCutController maskLabel:tapPoint foreground:edit_fg];
+    
+    
+    grabcutView.image = [grabCutController getSaveImage];
+}
+
+- (void)updateEraseView;
+{
+    grabcutView.image = [grabCutController getSaveImage];
+
+    
+//    if (grabCutController.processing) {
+//        [self indicateActivity:YES];
+//    } else {
+//        [self indicateActivity:NO];
+//    }
+}
+
+- (IBAction)handleErasePanGesture:(UIPanGestureRecognizer *)sender;
+{
+    if (self.editing == NO) {
+        return;
+    }
+    
+    CGPoint tapPoint = [sender locationInView:sender.view.superview];
+    NSLog(@"tap (%f,%f)", tapPoint.x, tapPoint.y);
+    
+    tapPoint = CGPointMake(tapPoint.x * scale_x, tapPoint.y * scale_y);
+    [grabCutController maskLabel:tapPoint foreground:edit_fg];
+    
+    grabcutView.image = [grabCutController getSaveImage];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -70,6 +129,10 @@ bool eraseMode = NO;
     //[self setCropView:nil];
     [self setCropforegroundImage:nil];
     [self setSlider:nil];
+    [self setCropMainView:nil];
+    [self setEraseMainView:nil];
+    [self setSizeMainView:nil];
+    [self setGrabcutView:nil];
     [super viewDidUnload];
 }
 
@@ -116,12 +179,24 @@ bool eraseMode = NO;
     // [self.cropforegroundImage setImage:[[self foregroundimages] objectAtIndex:0]];
     NSLog(@"(%f,%f)",((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.width,((UIImage*)[[self foregroundimages]objectAtIndex:0]).size.height);
     self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
-//    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:0]).size];
-//    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:0]).orgImage];
-    //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
+    grabcutView.image = [self.foregroundimages objectAtIndex:0];
+    [grabCutController setImage:grabcutView.image];
+    [self calculateScale];
     
+}
+
+- (void)calculateScale;
+{
+    NSLog(@"imageView bounds: %f,%f", grabcutView.bounds.size.width, grabcutView.bounds.size.height);
+    NSLog(@"imageView.image bounds: %f,%f", grabcutView.image.size.width, grabcutView.image.size.height);
+    
+    scale_x = grabcutView.image.size.width / grabcutView.bounds.size.width;
+    scale_y = grabcutView.image.size.height / grabcutView.bounds.size.height;
+    
+    NSLog(@"scale_x: %f", scale_x);
+    NSLog(@"scale_y: %f", scale_y);
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
@@ -150,6 +225,7 @@ bool eraseMode = NO;
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
     [self scrollViewDidZoom:self.cropView];
+    grabcutView.image = [[self foregroundimages]objectAtIndex:recognizer.view.tag];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
@@ -243,6 +319,35 @@ bool eraseMode = NO;
 
 
 
+- (IBAction)pickBG:(id)sender {
+    NSLog(@"%@",grabcutView.userInteractionEnabled==YES?@"true":@"false");
+    edit_fg = NO;
+}
+
+- (IBAction)pickFG:(id)sender {
+    edit_fg = YES;
+}
+
+- (IBAction)applyGrabcut:(id)sender {
+    [self performSelectorOnMainThread:@selector(actionGrabCutIteration) withObject:nil waitUntilDone:NO];
+}
+
+- (void)actionGrabCutIteration;
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [grabCutController nextIteration];
+        [self performSelectorOnMainThread:@selector(grabCutDone) withObject:nil waitUntilDone:NO];
+    });
+}
+
+- (void)grabCutDone;
+{
+    image_changed = YES;
+    
+    grabcutView.image = [grabCutController getImage];
+    [self updateEraseView];
+}
+
 - (IBAction)done:(id)sender {
     //[self.navigationController popToRootViewControllerAnimated:YES];
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
@@ -256,6 +361,30 @@ bool eraseMode = NO;
     AppDelegate *foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:[self foregroundimages]];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+}
+
+- (IBAction)editForegroundSegment:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0) {
+        [cropMainView setHidden:NO];
+        [eraseMainView setHidden:YES];
+        [sizeMainView setHidden:YES];
+    }
+    else if (selectedSegment == 1){
+        [cropMainView setHidden:YES];
+        [eraseMainView setHidden:NO];
+        [self.view bringSubviewToFront:eraseMainView];
+        [self.eraseMainView bringSubviewToFront:grabcutView];
+        [self.view bringSubviewToFront:grabcutView];
+        [sizeMainView setHidden:YES];
+    }
+    else{
+        [cropMainView setHidden:YES];
+        [eraseMainView setHidden:YES];
+        [sizeMainView setHidden:NO];
+    }
 }
 
 - (float)getMinimumZoomScale{
@@ -284,7 +413,5 @@ bool eraseMode = NO;
     
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    [(STForegroundEraseViewController*) segue.destinationViewController setImage:self.cropforegroundImage.image];
-}
+
 @end

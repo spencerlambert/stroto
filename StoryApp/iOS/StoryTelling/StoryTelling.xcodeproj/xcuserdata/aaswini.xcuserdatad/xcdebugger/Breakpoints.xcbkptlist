@@ -17,42 +17,16 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "396338948.895856"
+         filePath = "STTestViewController.mm"
+         timestampString = "396508623.509655"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
-         landmarkName = "-prepareScrollView"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "396338948.895856"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "188"
-         endingLineNumber = "188"
-         landmarkName = "-prepareScrollView"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "396419869.854898"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
-         landmarkName = "-prepareForSegue:sender:"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
+         landmarkName = "-cvMatFromUIImage:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
