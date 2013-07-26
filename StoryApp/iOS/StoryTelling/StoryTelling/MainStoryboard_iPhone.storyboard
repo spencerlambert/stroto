@@ -338,7 +338,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClQ-2X-2Ru">
-                                <rect key="frame" x="58" y="131" width="205" height="44"/>
+                                <rect key="frame" x="58" y="137" width="205" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="From Gallery">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -352,7 +352,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LX1-JE-x95">
-                                <rect key="frame" x="58" y="238" width="205" height="44"/>
+                                <rect key="frame" x="58" y="49" width="205" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="From Story Pack">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -363,6 +363,34 @@
                                 </state>
                                 <connections>
                                     <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="g6t-LO-J7C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Efc-bf-LPf">
+                                <rect key="frame" x="58" y="229" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Created Story">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="iBY-LO-ZBI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8jn-dF-e0z">
+                                <rect key="frame" x="58" y="317" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Camera">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="t56-ZJ-bNU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -637,7 +665,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gSw-PW-bSc">
-                                <rect key="frame" x="58" y="108" width="205" height="44"/>
+                                <rect key="frame" x="58" y="136" width="205" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="From Gallery">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -651,7 +679,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pc7-Gy-3w2">
-                                <rect key="frame" x="58" y="216" width="205" height="44"/>
+                                <rect key="frame" x="58" y="53" width="205" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="From Story Pack">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -662,6 +690,34 @@
                                 </state>
                                 <connections>
                                     <action selector="fromStoryPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="rhx-qN-bq3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k6m-ZF-4ec">
+                                <rect key="frame" x="58" y="222" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Created Story">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="V5Q-dJ-7Ze"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R2r-Bu-X5m">
+                                <rect key="frame" x="58" y="310" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Camera">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="5yO-Jf-Jhp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -721,6 +777,98 @@
             <point key="canvasLocation" x="-1357" y="-374"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AddBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="AddForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+                <relationship kind="action" name="fromStoryPackButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="CreateStoryRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="nextButtonClicked:"/>
+                <relationship kind="action" name="resigngTxtField"/>
+                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="STCropBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="STCropForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="STEraseImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STEraseImageView.h"/>
+        </class>
+        <class className="STForegroundEraseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STForegroundEraseViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bgMask:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="fgMask:"/>
+                <relationship kind="outlet" name="imageview" candidateClass="STEraseImageView"/>
+            </relationships>
+        </class>
+        <class className="STTestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STTestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="grabcut:"/>
+                <relationship kind="outlet" name="imageview" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
+                <relationship kind="action" name="deleteButtonClicked:"/>
+                <relationship kind="action" name="editButtonClicked:"/>
+                <relationship kind="action" name="playButtonClicked:"/>
+                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
+                <relationship kind="outlet" name="NavigationBarTitle" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="ScreenCaptureView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
+        </class>
+        <class className="StoryTellingRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="WorkAreaController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="captureview" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
