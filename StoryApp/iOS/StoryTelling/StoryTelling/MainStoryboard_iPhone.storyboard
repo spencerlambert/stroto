@@ -116,7 +116,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3b-Qu-ssD">
-                                <rect key="frame" x="52" y="256" width="216" height="44"/>
+                                <rect key="frame" x="52" y="186" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Upload To Facebook">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -130,9 +130,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1FT-fB-7ON">
-                                <rect key="frame" x="52" y="186" width="216" height="44"/>
+                                <rect key="frame" x="52" y="253" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal" title="Edit / Record More">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
