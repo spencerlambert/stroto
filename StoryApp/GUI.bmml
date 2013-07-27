@@ -506,7 +506,7 @@
         <text>Pick%20BG</text>
       </controlProperties>
     </control>
-    <control controlID="182" controlTypeID="com.balsamiq.mockups::PointyButton" x="2328" y="2357" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="122" locked="false" isInGroup="-1">
+    <control controlID="182" controlTypeID="com.balsamiq.mockups::PointyButton" x="2326" y="2357" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="122" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>center</direction>
         <text>Pick%20FG</text>
