@@ -38,6 +38,10 @@
 - (IBAction)applyGrabcut:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *grabcutView;
 @property (nonatomic, retain) CvGrabCutController *grabCutController;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *bgBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fgBtn;
 
 
 

@@ -10,7 +10,6 @@
 #import "STImage.h"
 #import "AppDelegate.h"
 
-
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -29,6 +28,8 @@ int selectedforegroundimage = 0;
 @synthesize cropMainView,eraseMainView,sizeMainView;
 @synthesize grabcutView;
 @synthesize grabCutController;
+@synthesize indicatorView,activityIndicator;
+@synthesize bgBtn,fgBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +43,7 @@ int selectedforegroundimage = 0;
 - (void)viewDidLoad
 {
     edit_fg = YES;
+    [self highlightButton:fgBtn with:YES];
     grabCutController = [[CvGrabCutController alloc] init];
     image_changed = NO;
     grabcutView.userInteractionEnabled = YES;
@@ -62,6 +64,10 @@ int selectedforegroundimage = 0;
 //    [grabcutView addGestureRecognizer:panGesture];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void) highlightButton:(UIButton*)button with:(BOOL)boolean{
+    [button setHighlighted:boolean];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -94,6 +100,7 @@ int selectedforegroundimage = 0;
         const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
         mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
         grabcutView.image = [self maskImage:grabcutView.image withMask:mask];
+        
 //        STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
 //        STImage *img1 = [[STImage alloc] initWithCGImage:self.grabcutView.image.CGImage];
 //        img1.listDisplayOrder = img.listDisplayOrder;
@@ -101,17 +108,14 @@ int selectedforegroundimage = 0;
 //        img1.type = img.type;
 //        img1.sizeX = img.sizeX;
 //        img1.sizeY = img.sizeY;
-//        //CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
-//        //[img1 setDefaultScale:currentScale];
-//        //[img1 setMinZoomScale:[self.cropView minimumZoomScale]];
-//        //[img1 setDefaultX:[self cropView].contentOffset.x];
-//        //[img1 setDefaultY:[self cropView].contentOffset.y];
 //        img1.defaultScale = img.defaultScale;
 //        img1.minZoomScale = img.minZoomScale;
 //        img1.defaultX = img.defaultX;
 //        img1.defaultY = img.defaultY;
 //        [img1 setThumbimage:[self updateEraseThumbImage]];
 //        [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+        
+        
     }
 }
 
@@ -170,6 +174,10 @@ int selectedforegroundimage = 0;
     [self setEraseMainView:nil];
     [self setSizeMainView:nil];
     [self setGrabcutView:nil];
+    [self setActivityIndicator:nil];
+    [self setIndicatorView:nil];
+    [self setBgBtn:nil];
+    [self setFgBtn:nil];
     [super viewDidUnload];
 }
 
@@ -237,7 +245,7 @@ int selectedforegroundimage = 0;
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
-    //NSLog(@"%d",selectedforegroundimage);
+    
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
     STImage *img1 = [[STImage alloc] initWithCGImage:self.cropforegroundImage.image.CGImage];
     img1.listDisplayOrder = img.listDisplayOrder;
@@ -253,6 +261,13 @@ int selectedforegroundimage = 0;
     [img1 setThumbimage:[self updateThumbImage]];
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
     
+//    if(selectedView == 0){
+//        [self handleCropViewSingleTap:recognizer];
+//    }
+//    else if (selectedView == 1){
+//        [self handleEraseViewSingleTap:recognizer];
+//    }
+    
     selectedforegroundimage = recognizer.view.tag;
     
     [self clearScrollView];
@@ -261,9 +276,12 @@ int selectedforegroundimage = 0;
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
     [self scrollViewDidZoom:self.cropView];
+    
     grabcutView.image = [[self foregroundimages]objectAtIndex:recognizer.view.tag];
     [grabCutController setImage:grabcutView.image];
     [self calculateScale];
+    
+    
 }
 
 - (void) handleCropViewSingleTap:(UIGestureRecognizer *)recognizer{
@@ -404,16 +422,29 @@ int selectedforegroundimage = 0;
 
 
 - (IBAction)pickBG:(id)sender {
-    NSLog(@"%@",grabcutView.userInteractionEnabled==YES?@"true":@"false");
     edit_fg = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self highlightButton:bgBtn with:!edit_fg];
+    });
+    [self highlightButton:fgBtn with:edit_fg];
 }
 
 - (IBAction)pickFG:(id)sender {
     edit_fg = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self highlightButton:fgBtn with:edit_fg];
+    });
+    [self highlightButton:bgBtn with:!edit_fg];
+    //[self highlightButton:fgBtn with:edit_fg];
 }
 
 - (IBAction)applyGrabcut:(id)sender {
     [self performSelectorOnMainThread:@selector(actionGrabCutIteration) withObject:nil waitUntilDone:NO];
+    [self.eraseMainView bringSubviewToFront:indicatorView];
+    [indicatorView setUserInteractionEnabled:YES];
+    [self indicateActivity:YES];
+    [self highlightButton:bgBtn with:NO];
+    [self highlightButton:fgBtn with:NO];
 }
 
 - (void)actionGrabCutIteration;
@@ -430,6 +461,11 @@ int selectedforegroundimage = 0;
     
     grabcutView.image = [grabCutController getImage];
     [self updateEraseView];
+    [self indicateActivity: NO];
+    [self highlightButton:bgBtn with:!edit_fg];
+    [self highlightButton:fgBtn with:edit_fg];
+    [self.eraseMainView sendSubviewToBack:indicatorView];
+    [indicatorView setUserInteractionEnabled:NO];
 }
 
 - (IBAction)done:(id)sender {
@@ -460,9 +496,7 @@ int selectedforegroundimage = 0;
     else if (selectedSegment == 1){
         [cropMainView setHidden:YES];
         [eraseMainView setHidden:NO];
-        [self.view bringSubviewToFront:eraseMainView];
         [self.eraseMainView bringSubviewToFront:grabcutView];
-        [self.view bringSubviewToFront:grabcutView];
         [sizeMainView setHidden:YES];
         selectedView = selectedSegment;
     }
@@ -496,6 +530,19 @@ int selectedforegroundimage = 0;
         
     }else if(slider.value <2){
         [slider setValue:1];
+    }
+    
+}
+
+- (void)indicateActivity:(BOOL)active{
+    
+    indicatorView.hidden = !active;
+    
+    if(active){
+        [activityIndicator startAnimating];
+    }
+    else{
+        [activityIndicator stopAnimating];
     }
     
 }
