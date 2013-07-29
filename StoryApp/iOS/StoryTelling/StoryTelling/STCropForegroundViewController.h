@@ -19,6 +19,7 @@
     
     CvGrabCutController* grabCutController;
 
+    int selectedView;
 }
 
 - (IBAction)editForegroundSegment:(id)sender;

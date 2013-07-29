@@ -70,6 +70,7 @@ using namespace std;
 @property (nonatomic, assign) int iterCount;
 
 - (UIImage*)getSaveImage;
+- (UIImage*)getSaveImageMask;
 - (void)setImage:(UIImage*)image;
 - (void)nextIteration;
 - (void)resetImage;

@@ -46,6 +46,7 @@ int selectedforegroundimage = 0;
     image_changed = NO;
     grabcutView.userInteractionEnabled = YES;
     grabcutView.exclusiveTouch = YES;
+    selectedView = 0;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
@@ -70,48 +71,84 @@ int selectedforegroundimage = 0;
 
 - (IBAction)handleEraseTapGesture:(UIGestureRecognizer *)sender;
 {
-    if (self.editing == NO) {
-        return;
-    }
+//    if (self.editing == NO) {
+//        return;
+//    }
     
     
-    CGPoint tapPoint = [sender locationInView:sender.view.superview];
+    CGPoint tapPoint = [sender locationInView:sender.view];
     NSLog(@"tap (%f,%f)", tapPoint.x, tapPoint.y);
     NSLog(@"->  (%f,%f)", tapPoint.x*scale_x, tapPoint.y*scale_y);
     tapPoint = CGPointMake(tapPoint.x * scale_x, tapPoint.y * scale_y);
     
-    
     [grabCutController maskLabel:tapPoint foreground:edit_fg];
     
-    
-    grabcutView.image = [grabCutController getSaveImage];
+    grabcutView.image = [grabCutController getImage];
 }
 
 - (void)updateEraseView;
 {
-    grabcutView.image = [grabCutController getSaveImage];
+    grabcutView.image = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    UIImage *mask = [grabCutController getSaveImageMask];
+    {
+        const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
+        mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
+        grabcutView.image = [self maskImage:grabcutView.image withMask:mask];
+//        STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+//        STImage *img1 = [[STImage alloc] initWithCGImage:self.grabcutView.image.CGImage];
+//        img1.listDisplayOrder = img.listDisplayOrder;
+//        img1.fileType = img.fileType;
+//        img1.type = img.type;
+//        img1.sizeX = img.sizeX;
+//        img1.sizeY = img.sizeY;
+//        //CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
+//        //[img1 setDefaultScale:currentScale];
+//        //[img1 setMinZoomScale:[self.cropView minimumZoomScale]];
+//        //[img1 setDefaultX:[self cropView].contentOffset.x];
+//        //[img1 setDefaultY:[self cropView].contentOffset.y];
+//        img1.defaultScale = img.defaultScale;
+//        img1.minZoomScale = img.minZoomScale;
+//        img1.defaultX = img.defaultX;
+//        img1.defaultY = img.defaultY;
+//        [img1 setThumbimage:[self updateEraseThumbImage]];
+//        [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    }
+}
 
+- (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
     
-//    if (grabCutController.processing) {
-//        [self indicateActivity:YES];
-//    } else {
-//        [self indicateActivity:NO];
-//    }
+    CGImageRef maskRef = maskImage.CGImage;
+    
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+                                        CGImageGetHeight(maskRef),
+                                        CGImageGetBitsPerComponent(maskRef),
+                                        CGImageGetBitsPerPixel(maskRef),
+                                        CGImageGetBytesPerRow(maskRef),
+                                        CGImageGetDataProvider(maskRef), NULL, false);
+    
+    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], mask);
+    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+    
+    CGImageRelease(mask);
+    CGImageRelease(maskedImageRef);
+    
+    // returns new image with mask applied
+    return maskedImage;
 }
 
 - (IBAction)handleErasePanGesture:(UIPanGestureRecognizer *)sender;
 {
-    if (self.editing == NO) {
-        return;
-    }
+//    if (self.editing == NO) {
+//        return;
+//    }
     
-    CGPoint tapPoint = [sender locationInView:sender.view.superview];
+    CGPoint tapPoint = [sender locationInView:sender.view];
     NSLog(@"tap (%f,%f)", tapPoint.x, tapPoint.y);
     
     tapPoint = CGPointMake(tapPoint.x * scale_x, tapPoint.y * scale_y);
     [grabCutController maskLabel:tapPoint foreground:edit_fg];
     
-    grabcutView.image = [grabCutController getSaveImage];
+    grabcutView.image = [grabCutController getImage];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -215,17 +252,51 @@ int selectedforegroundimage = 0;
     [img1 setDefaultY:[self cropView].contentOffset.y];
     [img1 setThumbimage:[self updateThumbImage]];
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    
     selectedforegroundimage = recognizer.view.tag;
+    
     [self clearScrollView];
     self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:recognizer.view.tag]];
-//    [self.cropforegroundImage setSize:((UIImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).size];
-//    [self.cropforegroundImage setOriginalImage:((STImage*)[[self foregroundimages]objectAtIndex:recognizer.view.tag]).orgImage];
-    //[self.cropforegroundImage setUserInteractionEnabled:YES];
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     [self prepareScrollView];
     [self scrollViewDidZoom:self.cropView];
     grabcutView.image = [[self foregroundimages]objectAtIndex:recognizer.view.tag];
+    [grabCutController setImage:grabcutView.image];
+    [self calculateScale];
+}
+
+- (void) handleCropViewSingleTap:(UIGestureRecognizer *)recognizer{
+    STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    STImage *img1 = [[STImage alloc] initWithCGImage:self.cropforegroundImage.image.CGImage];
+    img1.listDisplayOrder = img.listDisplayOrder;
+    img1.fileType = img.fileType;
+    img1.type = img.type;
+    img1.sizeX = img.sizeX;
+    img1.sizeY = img.sizeY;
+    CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
+    [img1 setDefaultScale:currentScale];
+    [img1 setMinZoomScale:[self.cropView minimumZoomScale]];
+    [img1 setDefaultX:[self cropView].contentOffset.x];
+    [img1 setDefaultY:[self cropView].contentOffset.y];
+    [img1 setThumbimage:[self updateThumbImage]];
+    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+}
+
+- (void) handleEraseViewSingleTap:(UIGestureRecognizer *)recognizer{
+    STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    STImage *img1 = [[STImage alloc] initWithCGImage:self.grabcutView.image.CGImage];
+    img1.listDisplayOrder = img.listDisplayOrder;
+    img1.fileType = img.fileType;
+    img1.type = img.type;
+    img1.sizeX = img.sizeX;
+    img1.sizeY = img.sizeY;
+    img1.defaultScale = img.defaultScale;
+    img1.minZoomScale = img.minZoomScale;
+    img1.defaultX = img.defaultX;
+    img1.defaultY = img.defaultY;
+    [img1 setThumbimage:[self updateEraseThumbImage]];
+    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
@@ -302,6 +373,19 @@ int selectedforegroundimage = 0;
     return temp;
 }
 
+- (UIImage*) updateEraseThumbImage{
+    float scale = 1.0f/self.cropView.zoomScale;
+    CGRect visibleRect;
+    visibleRect.origin.x = self.cropView.contentOffset.x * scale;
+    visibleRect.origin.y = self.cropView.contentOffset.y * scale;
+    visibleRect.size.width = self.cropView.bounds.size.width * scale;
+    visibleRect.size.height = self.cropView.bounds.size.height * scale;
+    UIImage *temp = [self cropImage:self.grabcutView.image srcImage:&visibleRect];
+    UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedforegroundimage inView:[foregroundimagesView.subviews objectAtIndex:0]];
+    thumbview.image = temp;
+    return temp;
+}
+
 - (UIView*) subviewWithTag:(int)tag inView:(UIView*)view{
     for(UIView *temp in view.subviews){
         if(temp.tag == tag)return temp;
@@ -371,6 +455,7 @@ int selectedforegroundimage = 0;
         [cropMainView setHidden:NO];
         [eraseMainView setHidden:YES];
         [sizeMainView setHidden:YES];
+        selectedView = selectedSegment;
     }
     else if (selectedSegment == 1){
         [cropMainView setHidden:YES];
@@ -379,11 +464,13 @@ int selectedforegroundimage = 0;
         [self.eraseMainView bringSubviewToFront:grabcutView];
         [self.view bringSubviewToFront:grabcutView];
         [sizeMainView setHidden:YES];
+        selectedView = selectedSegment;
     }
     else{
         [cropMainView setHidden:YES];
         [eraseMainView setHidden:YES];
         [sizeMainView setHidden:NO];
+        selectedView = selectedSegment;
     }
 }
 
