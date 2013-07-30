@@ -51,6 +51,8 @@
 
 @property UIImage *orgImage;
 @property UIImage *maskImage;
+@property float sizeScale;
+@property BOOL isEdited;
 
 
 @end

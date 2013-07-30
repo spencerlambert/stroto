@@ -469,7 +469,7 @@
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="sliderChanged:" destination="Yzw-vs-wjh" eventType="valueChanged" id="L52-3D-511"/>
+                                            <action selector="sliderChanged:" destination="Yzw-vs-wjh" eventType="valueChanged" id="gQP-eg-egO"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Image Start Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rBf-Kj-Wlf">
@@ -494,7 +494,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView contentMode="scaleAspectFit" id="Ptm-nJ-gNO">
-                                        <rect key="frame" x="0.0" y="-2" width="320" height="269"/>
+                                        <rect key="frame" x="25" y="-2" width="269" height="269"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -603,6 +603,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="leZ-Z5-hqd" id="s9m-RC-vFK"/>
+                        <outlet property="applyBtn" destination="YML-3y-Nwb" id="0FS-ea-MGu"/>
                         <outlet property="bgBtn" destination="lJ0-Rc-zdr" id="MEE-si-82A"/>
                         <outlet property="cropMainView" destination="cUK-vn-obA" id="HW9-ka-zT8"/>
                         <outlet property="cropView" destination="kXn-uc-wil" id="ly0-S9-0C6"/>
@@ -612,6 +613,7 @@
                         <outlet property="grabcutView" destination="d9c-P4-wEM" id="yAl-IV-FPw"/>
                         <outlet property="indicatorView" destination="YNZ-xr-9yy" id="81J-NH-5Nr"/>
                         <outlet property="sizeMainView" destination="uIy-fg-gQO" id="Hr4-eW-7fw"/>
+                        <outlet property="sizeView" destination="Ptm-nJ-gNO" id="d80-BN-AZG"/>
                         <outlet property="slider" destination="Jlx-uX-AJH" id="NSk-jz-rSe"/>
                         <outlet property="view" destination="YF5-aO-hl5" id="WqI-1y-gVE"/>
                     </connections>

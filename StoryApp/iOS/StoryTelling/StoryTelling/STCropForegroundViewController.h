@@ -42,11 +42,13 @@
 @property (weak, nonatomic) IBOutlet UIView *indicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *bgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fgBtn;
+@property (weak, nonatomic) IBOutlet UIButton *applyBtn;
 
 
 
 - (IBAction)sliderChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UIImageView *sizeView;
 
 - (IBAction)done:(id)sender;
 
