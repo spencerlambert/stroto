@@ -26,6 +26,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface STImagePosition : NSObject
+@interface STImageInstancePosition : NSObject
 
 @end
