@@ -8,6 +8,14 @@
 
 #import "STModifierImageInstance.h"
 
-@interface STModiferImageInstanceZoom : STModifierImageInstance
+@interface STModiferImageInstanceZoom : STModifierImageInstance {
+    // Sets the rate of the zoom, this is defined when the instance is created and
+    // then getNewImageInstancePosition uses these settings in it's calculations.
+    int zoomRate;
+    BOOL isZoomOut;
+    BOOL isZoomIn;
+}
+
+- (STImagePosition*)getNewImageInstancePosition:(id*)timeline;
 
 @end

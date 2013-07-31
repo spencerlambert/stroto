@@ -7,7 +7,13 @@
 //
 
 #import "STModifier.h"
+#import "STImageInstancePosition.h"
 
 @interface STModifierImageInstance : STModifier
+
+// Each sub class should override this function
+// This function gets an array of STImageInstancePositions and then calculates
+// what the next position should be.
+- (STImagePosition*)getNewImageInstancePosition:(id*)timeline;
 
 @end
