@@ -36,14 +36,7 @@ int selectedbackgroundimage = 0;
 {
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
-    //if we came from camera
-    if (isFromCamera) {
-        [self convertToSTImage2];
-    
-    }
-    else{
-        [self convertToSTImage];
-    }
+    [self convertToSTImage];
     [self clearScrollView];
     [self reloadBackgroundImagesView];
     [self prepareScrollView];
@@ -184,22 +177,6 @@ int selectedbackgroundimage = 0;
     }
     [self setBackgroundimages:stimages];
 }
--(void)convertToSTImage2{
-    NSMutableArray *stimages = [[NSMutableArray alloc]init];
-    int count = 0;
-    for(NSMutableDictionary *imageDictionary in [self backgroundimages]){
-        UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
-        STImage *stimage = [[STImage alloc] initWithCGImageForCamera:[Image CGImage]];
-        
-        [stimage setThumbimage:[imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"]];
-        //[stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
-        [stimage setType:@"background"];
-        [stimage setListDisplayOrder:count++];
-        [stimages addObject:stimage];
-    }
-    [self setBackgroundimages:stimages];
-    
-}
 - (IBAction)done:(id)sender {
     STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
     CGFloat currentScale = self.cropbackgroundImage.frame.size.width / self.cropbackgroundImage.bounds.size.width;
@@ -238,11 +215,7 @@ int selectedbackgroundimage = 0;
     visibleRect.size.width = self.cropView.bounds.size.width * scale;
     visibleRect.size.height = self.cropView.bounds.size.height * scale;
     UIImage *temp;
-    if (isFromCamera) {
-        temp = [self cropImageForCamera:self.cropbackgroundImage.image srcImage:&visibleRect];
-    }
-    else
-        temp = [self cropImage:self.cropbackgroundImage.image srcImage:&visibleRect];
+    temp = [self cropImage:self.cropbackgroundImage.image srcImage:&visibleRect];
     UIImageView *thumbview = (UIImageView*)[self subviewWithTag:selectedbackgroundimage inView:[backgroundimagesView.subviews objectAtIndex:0]];
     thumbview.image = temp;
     //thumbview.transform = CGAffineTransformMakeRotation(M_PI_2);
@@ -263,14 +236,5 @@ int selectedbackgroundimage = 0;
     CGImageRelease(cr);
     return cropped;
    
-}
-//for image taken from camera
-- (UIImage*) cropImageForCamera:(UIImage*)srcImage srcImage:(CGRect*)rect
-{
-//    CGImageRef cr = CGImageCreateWithImageInRect([srcImage CGImage], *rect);
-//    UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
-//    CGImageRelease(cr);
-    return srcImage;
-    
 }
 @end
