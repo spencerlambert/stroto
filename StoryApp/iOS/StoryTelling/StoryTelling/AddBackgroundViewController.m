@@ -51,6 +51,23 @@
 }
 
 - (IBAction)fromStoryPackButtonClicked:(id)sender {
+   
+}
+
+- (IBAction)fromCamraPackButtonClicked:(id)sender {
+    @try
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.delegate = self;
+        
+        [self presentModalViewController:picker animated:YES];
+    }
+    @catch (NSException *exception)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
     
 }
 
@@ -101,4 +118,41 @@
 
     }
 
+#pragma -mark delegate method of UIImage picker
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
+{
+    NSLog(@"Media Info: %@", info);
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    UIImage *photoTaken = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+       
+    NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+    
+    [workingDictionary setObject:photoTaken forKey:@"UIImagePickerControllerThumbnailImage"];
+    UIImage *img = [[UIImage alloc]initWithCGImage:photoTaken.CGImage scale:0 orientation:UIImageOrientationRight];
+    
+    [workingDictionary setObject:img forKey:@"UIImagePickerControllerOriginalImage"];
+    //self.testimg.image = [workingDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //self.testimg.transform = CGAffineTransformMakeRotation(M_PI_2);
+    [returnArray addObject:workingDictionary];
+    
+    if(returnArray != NULL){
+    
+		
+    backgroundImages = [[NSMutableArray alloc]initWithArray:returnArray];
+        
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        STCropBackgroundViewController *cropBackground = [storyboard instantiateViewControllerWithIdentifier:@"cropBackground"];
+        [cropBackground setBackgroundimages:backgroundImages];
+        cropBackground.isFromCamera = YES;
+        [self.navigationController pushViewController:cropBackground animated:YES];
+        
+            }
+
+}
+- (void)viewDidUnload {
+   
+    [super viewDidUnload];
+}
 @end

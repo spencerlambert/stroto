@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIView *backgroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;
 @property (strong, nonatomic) UIImageView *cropbackgroundImage;
+@property (assign,atomic) BOOL isFromCamera;
 - (IBAction)done:(id)sender;
 
 @end

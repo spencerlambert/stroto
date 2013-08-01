@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -721,7 +721,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="fromStoryPackButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="5yO-Jf-Jhp"/>
+                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="nsB-ng-mQ2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -789,6 +789,7 @@
         <class className="AddBackgroundViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
             <relationships>
+                <relationship kind="action" name="fromCamraPackButtonClicked:"/>
                 <relationship kind="action" name="fromGalleryButtonClicked:"/>
                 <relationship kind="action" name="fromStoryPackButtonClicked:"/>
             </relationships>

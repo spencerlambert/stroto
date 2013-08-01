@@ -17,13 +17,15 @@
 
 @end
 
-@interface AddBackgroundViewController : UIViewController<ELCImagePickerControllerDelegate,UIAlertViewDelegate>{
+@interface AddBackgroundViewController : UIViewController<ELCImagePickerControllerDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate>{
     NSMutableArray *backgroundImages;
 }
+//@property (weak, nonatomic) IBOutlet UIImageView *testimg;
 
 @property id<AddBackgroundViewControllerDelegate> delegate;
 - (IBAction)fromGalleryButtonClicked:(id)sender;
 - (IBAction)fromStoryPackButtonClicked:(id)sender;
+- (IBAction)fromCamraPackButtonClicked:(id)sender;
 @property(nonatomic,retain) AppDelegate *backgroundImagesDelegate;
 
 @end
