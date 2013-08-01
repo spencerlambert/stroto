@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *sizeMainView;
 
 @property NSMutableArray *foregroundimages;
+@property NSMutableArray *foregroundEraseImages;
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @property (strong, nonatomic) IBOutlet UIView *foregroundimagesView;
 @property (strong, nonatomic) IBOutlet UIScrollView *cropView;

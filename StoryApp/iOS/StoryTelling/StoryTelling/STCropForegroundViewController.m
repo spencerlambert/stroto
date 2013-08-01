@@ -23,6 +23,8 @@
 
 int selectedforegroundimage = 0;
 CGPoint centerPoint;
+CGPoint grabcutCenter;
+CGRect grabcutFrame;
 
 @synthesize foregroundimagesView;
 @synthesize slider;
@@ -97,7 +99,7 @@ CGPoint centerPoint;
 - (void)updateEraseView;
 {
    // grabcutView.image = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
-    UIImage *test = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    UIImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
     UIImage *mask = [grabCutController getSaveImageMask];
     {
         const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
@@ -233,11 +235,14 @@ CGPoint centerPoint;
     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.cropView addSubview:self.cropforegroundImage];
     
-    UIImage *img = [self.foregroundimages objectAtIndex:0];
+    UIImage *img = [self.foregroundEraseImages objectAtIndex:0];
     NSLog(@"x,y = (%f,%f)",img.size.width,img.size.height);
-    grabcutView.image = [self.foregroundimages objectAtIndex:0];
+    grabcutView.image = [self.foregroundEraseImages objectAtIndex:0];
     [grabCutController setImage:grabcutView.image];
+    grabcutCenter = [grabcutView center];
+    grabcutFrame = [grabcutView frame];
     [self calculateScale];
+    
     
     sizeView.image  = [[self foregroundimages]objectAtIndex:0];
     sizeView.contentMode = UIViewContentModeScaleAspectFit;
@@ -252,9 +257,33 @@ CGPoint centerPoint;
     NSLog(@"imageView bounds: %f,%f", grabcutView.bounds.size.width, grabcutView.bounds.size.height);
     NSLog(@"imageView.image bounds: %f,%f", grabcutView.image.size.width, grabcutView.image.size.height);
     
-    scale_x = grabcutView.image.size.width / grabcutView.bounds.size.width;
-    scale_y = grabcutView.image.size.height / grabcutView.bounds.size.height;
-    
+    scale_x = grabcutView.bounds.size.width / grabcutView.image.size.width;
+    scale_y = grabcutView.bounds.size.height / grabcutView.image.size.height;
+   
+    if( scale_y >= scale_x)
+    {
+        scale_x = grabcutView.bounds.size.width / grabcutView.image.size.width;
+        float newHeight = scale_x * grabcutView.image.size.height;
+        CGRect frame = grabcutView.frame;
+        frame.size.height = newHeight;
+        grabcutView.frame = frame;
+        scale_y = grabcutView.bounds.size.height/grabcutView.image.size.height;
+        scale_x = 1/scale_x;
+        scale_y = 1/scale_y;
+        [grabcutView setCenter:grabcutCenter];
+   
+    }else
+    {
+        scale_y = grabcutView.bounds.size.height / grabcutView.image.size.height;
+        float newWidth = scale_y * grabcutView.image.size.width;
+        CGRect frame = grabcutView.frame;
+        frame.size.width = newWidth;
+        grabcutView.frame = frame;
+        scale_x = grabcutView.bounds.size.width/grabcutView.image.size.width;
+        scale_x = 1/scale_x;
+        scale_y = 1/scale_y;
+        [grabcutView setCenter:grabcutCenter];
+    }
     NSLog(@"scale_x: %f", scale_x );
     NSLog(@"scale_y: %f", scale_y);
       
@@ -286,13 +315,15 @@ CGPoint centerPoint;
     if(img.isEdited){
         [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
         [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
-        grabcutView.image = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+        [grabcutView setFrame:grabcutFrame];
+        grabcutView.image = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
         [grabCutController setImage:grabcutView.image];
         [self calculateScale];
     }else{
         [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
         [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
-        grabcutView.image = ((STImage*)[[self foregroundimages]objectAtIndex:selectedforegroundimage]).orgImage;
+        [grabcutView setFrame:grabcutFrame];
+        grabcutView.image = ((STImage*)[[self foregroundEraseImages]objectAtIndex:selectedforegroundimage]).orgImage;
         [grabCutController setImage:grabcutView.image];
         [self calculateScale];
     }
@@ -329,7 +360,7 @@ CGPoint centerPoint;
 }
 
 - (void) handleEraseViewSingleTap{
-    STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
     STImage *img1 = [[STImage alloc] initWithCGImage:self.grabcutView.image.CGImage];
     img1.listDisplayOrder = img.listDisplayOrder;
     img1.fileType = img.fileType;
@@ -344,7 +375,24 @@ CGPoint centerPoint;
     img1.defaultX = img.defaultX;
     img1.defaultY = img.defaultY;
     [img1 setThumbimage:[self updateEraseThumbImage]];
-    [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    [[self foregroundEraseImages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    
+    if(img.isEdited){
+        img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+        img1.listDisplayOrder = img.listDisplayOrder;
+        img1.fileType = img.fileType;
+        img1.type = img.type;
+        img1.sizeX = img.sizeX;
+        img1.sizeY = img.sizeY;
+        img1.orgImage = img.orgImage;
+        img1.sizeScale = img.sizeScale;
+        img1.defaultScale = img.defaultScale;
+        img1.minZoomScale = img.minZoomScale;
+        img1.defaultX = img.defaultX;
+        img1.defaultY = img.defaultY;
+        [img1 setThumbimage:[self updateEraseThumbImage]];
+        [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    }
 }
 
 -(void) handleSizeViewSingleTap{
@@ -400,6 +448,7 @@ CGPoint centerPoint;
 
 -(void)convertToSTImage{
     NSMutableArray *stimages = [[NSMutableArray alloc]init];
+    NSMutableArray *eraseImages = [[NSMutableArray alloc]init];
     int count = 0;
     for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
         UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -411,8 +460,57 @@ CGPoint centerPoint;
         [stimage setOrgImage:[[UIImage alloc] initWithCGImage:[Image CGImage]]];
         [stimages addObject:stimage];
     }
+    //[self setForegroundimages:stimages];
+    for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
+        UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+        if(Image.size.width >= Image.size.height && Image.size.width > 640){
+            Image = [self imageWithImage:Image scaledToWidth:640];
+        }else if (Image.size.height >Image.size.width && Image.size.height > 640){
+            Image = [self imageWithImage:Image scaledToHeight:640];
+        }
+        STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
+        [stimage setThumbimage:[imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"]];
+        [stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
+        [stimage setType:@"foreground"];
+        [stimage setListDisplayOrder:count++];
+        [stimage setOrgImage:[[UIImage alloc] initWithCGImage:[Image CGImage]]];
+        [eraseImages addObject:stimage];
+
+    }
     [self setForegroundimages:stimages];
+    [self setForegroundEraseImages:eraseImages];
 }
+
+- (UIImage *) imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width {//method to scale image accordcing to width
+    
+    float oldWidth = sourceImage.size.width;
+    float scaleFactor = i_width / oldWidth;
+    
+    float newHeight = sourceImage.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+- (UIImage *) imageWithImage: (UIImage*) sourceImage scaledToHeight: (float) i_height {//method to scale image accordcing to width
+    
+    float oldHeight = sourceImage.size.height;
+    float scaleFactor = i_height / oldHeight;
+    
+    float newWidth = sourceImage.size.width * scaleFactor;
+    float newHeight = oldHeight * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
 
 - (UIImage*) updateThumbImage{
     float scale = 1.0f/self.cropView.zoomScale;
@@ -476,7 +574,7 @@ CGPoint centerPoint;
 
 - (IBAction)applyGrabcut:(id)sender {
     if([applyBtn.titleLabel.text isEqual: @"Undo"]){
-        STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+        STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
         STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
         img1.listDisplayOrder = img.listDisplayOrder;
         img1.fileType = img.fileType;
@@ -497,7 +595,30 @@ CGPoint centerPoint;
         grabCutController = [[CvGrabCutController alloc] init];
         [grabCutController setImage:img1.orgImage];
         [self calculateScale];
+        [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+        
+        img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
+        img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
+        img1.listDisplayOrder = img.listDisplayOrder;
+        img1.fileType = img.fileType;
+        img1.type = img.type;
+        img1.sizeX = img.sizeX;
+        img1.sizeY = img.sizeY;
+        img1.orgImage = img.orgImage;
+        img1.sizeScale = img.sizeScale;
+        img1.isEdited = NO;
+        img1.defaultScale = img.defaultScale;
+        img1.minZoomScale = img.minZoomScale;
+        img1.defaultX = img.defaultX;
+        img1.defaultY = img.defaultY;
+        [img1 setThumbimage:[self updateEraseThumbImage]];
+        [self cropforegroundImage].image = img1;
+        [self sizeView].image = img1;
         [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+
+
+        
+        
     }else{
     [self performSelectorOnMainThread:@selector(actionGrabCutIteration) withObject:nil waitUntilDone:NO];
     [self.eraseMainView bringSubviewToFront:indicatorView];
@@ -528,9 +649,14 @@ CGPoint centerPoint;
     [self highlightButton:fgBtn with:edit_fg];
     [self.eraseMainView sendSubviewToBack:indicatorView];
     [indicatorView setUserInteractionEnabled:NO];
-    STImage *img = [self.foregroundimages objectAtIndex:selectedforegroundimage];
+    
+    STImage *img = [self.foregroundEraseImages objectAtIndex:selectedforegroundimage];
     img.isEdited = YES;
-    [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img];
+    [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img];
+    
+    
+    
+    
     //[applyBtn.titleLabel setText:@"Undo"];
     [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
     [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
