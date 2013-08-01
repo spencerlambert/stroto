@@ -16,6 +16,6 @@
     BOOL isZoomIn;
 }
 
-- (STImagePosition*)getNewImageInstancePosition:(id*)timeline;
+- (STImageInstancePosition*)getNewImageInstancePosition:(id*)timeline;
 
 @end
