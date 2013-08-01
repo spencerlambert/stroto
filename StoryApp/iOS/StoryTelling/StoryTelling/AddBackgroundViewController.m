@@ -10,6 +10,9 @@
 #import "CreateStoryRootViewController.h"
 #import "STCropBackgroundViewController.h"
 
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
+
 @interface AddBackgroundViewController ()
 
 @end
@@ -123,14 +126,62 @@
 {
     NSLog(@"Media Info: %@", info);
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
-    UIImage *photoTaken = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImage *sourceImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
        
     NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+
+    //[workingDictionary setObject:photoTaken forKey:@"UIImagePickerControllerThumbnailImage"];
+    //UIImage *sourceImage = [[UIImage alloc]initWithCGImage:photoTaken.CGImage];
     
-    [workingDictionary setObject:photoTaken forKey:@"UIImagePickerControllerThumbnailImage"];
-    UIImage *img = [[UIImage alloc]initWithCGImage:photoTaken.CGImage scale:0 orientation:UIImageOrientationRight];
+    CGFloat targetWidth = sourceImage.size.width;
+    CGFloat targetHeight = sourceImage.size.height;
+
+    CGImageRef imageRef = [sourceImage CGImage];
+	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
     
-    [workingDictionary setObject:img forKey:@"UIImagePickerControllerOriginalImage"];
+    CGContextRef bitmap;
+    
+    if (sourceImage.imageOrientation == UIImageOrientationLeft || sourceImage.imageOrientation == UIImageOrientationRight) {
+        targetWidth = sourceImage.size.height;
+        targetHeight = sourceImage.size.width;
+    }
+    
+	if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
+		bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+	} else {
+		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+	}
+    
+	if (sourceImage.imageOrientation == UIImageOrientationLeft) {
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(90));
+		CGContextTranslateCTM (bitmap, 0, -targetHeight);
+        
+	} else if (sourceImage.imageOrientation == UIImageOrientationRight) {
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(-90));
+		CGContextTranslateCTM (bitmap, -targetWidth, 0);
+        
+	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
+		// NOTHING
+	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
+		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(-180.));
+	}
+    
+	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
+	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+	UIImage* newImage = [UIImage imageWithCGImage:ref];
+    
+	CGContextRelease(bitmap);
+	CGImageRelease(ref);
+    
+    
+  
+    
+    
+    [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerOriginalImage"];
     //self.testimg.image = [workingDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
     //self.testimg.transform = CGAffineTransformMakeRotation(M_PI_2);
     [returnArray addObject:workingDictionary];

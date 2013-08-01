@@ -54,5 +54,4 @@
 @property BOOL isEdited;
 
 @property float sizeScale;
-- (id)initWithCGImageForCamera:(CGImageRef)CGImage;
 @end
