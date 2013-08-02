@@ -21,8 +21,6 @@
 {
     NSMutableArray *selectedimages;
 }
-@synthesize backgroundImagesDelegate;
-@synthesize delegate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +35,6 @@
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    backgroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication]delegate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,48 +75,20 @@
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
-        if(info != NULL){
+    if(info == NULL || [info count]<=0){
+    }else{
         backgroundImages = [[NSMutableArray alloc]initWithArray:info];
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
             STCropBackgroundViewController *cropBackground = [storyboard instantiateViewControllerWithIdentifier:@"cropBackground"];
             [cropBackground setBackgroundimages:backgroundImages];
             [self.navigationController pushViewController:cropBackground animated:YES];
-            //[self presentViewController:cropBackground animated:YES completion:nil];
-                    
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [backgroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-//        alert.tag=1;
-//        [alert show];
     }
 }
 
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:nil];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Images Selected" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
 }
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(alertView.tag == 1){
-        if(buttonIndex == 0){
-            
-                id object = nil;
-                
-                for (UIViewController *viewControl in self.navigationController.viewControllers)
-                {
-                    if(viewControl.view.tag==20)
-                    {
-                        object = viewControl;
-                        [backgroundImagesDelegate.backgroundImagesArray addObjectsFromArray:backgroundImages];
-                    }
-                }
-                [self.navigationController popToViewController:object animated:YES];
-            
-
-        }
-    }
-
-    }
 
 #pragma -mark delegate method of UIImage picker
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
@@ -199,9 +168,10 @@
         cropBackground.isFromCamera = YES;
         [self.navigationController pushViewController:cropBackground animated:YES];
         
-            }
+   }
 
 }
+
 - (void)viewDidUnload {
    
     [super viewDidUnload];

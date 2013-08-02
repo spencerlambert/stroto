@@ -16,8 +16,6 @@
 
 @implementation AddForegroundViewController
 
-@synthesize delegate;
-@synthesize foregroundImagesDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,8 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication]delegate];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,45 +53,23 @@
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
-    if(info != NULL){
+    if(info == NULL || [info count]<=0){
+    }
+    else{
+        
         foregroundImages = [[NSMutableArray alloc]initWithArray:info];
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
         STCropForegroundViewController *cropForeground = [storyboard instantiateViewControllerWithIdentifier:@"cropForeground"];
         [cropForeground setForegroundimages :foregroundImages];
         [self.navigationController pushViewController:cropForeground animated:YES];
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%d Images Selected", [foregroundImages count]] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-//        alert.tag = 2;
-//        [alert show];
+
     }
 }
 
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:nil];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Images Selected" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(alertView.tag == 2){
-        if(buttonIndex == 0){
-            
-            id object = nil;
-            
-            for (UIViewController *viewControl in self.navigationController.viewControllers)
-            {
-                NSLog(@"The tag value is:%d",viewControl.view.tag);
-                if(viewControl.view.tag==20)
-                {
-                    object = viewControl;
-                    [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:foregroundImages];
-                }
-            }
-            [self.navigationController popToViewController:object animated:YES];
-            
-            
-        }
-    }
-}
 
 @end

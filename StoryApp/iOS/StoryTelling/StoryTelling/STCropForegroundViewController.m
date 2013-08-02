@@ -204,11 +204,11 @@ CGRect grabcutFrame;
         STImage *stimage = [[self foregroundimages]objectAtIndex:i];
         UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
         click.numberOfTapsRequired = 1;
-        UIImage *thumbImage = [stimage thumbimage];
-        thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-                                         scale:(thumbImage.scale * 1.4)
-                                   orientation:(thumbImage.imageOrientation)];
-        UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+//        UIImage *thumbImage = [stimage thumbimage];
+//        thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+//                                         scale:(thumbImage.scale * 1.4)
+//                                   orientation:(thumbImage.imageOrientation)];
+        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage ];
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;
@@ -254,8 +254,8 @@ CGRect grabcutFrame;
 
 - (void)calculateScale;
 {
-    NSLog(@"imageView bounds: %f,%f", grabcutView.bounds.size.width, grabcutView.bounds.size.height);
-    NSLog(@"imageView.image bounds: %f,%f", grabcutView.image.size.width, grabcutView.image.size.height);
+    //NSLog(@"imageView bounds: %f,%f", grabcutView.bounds.size.width, grabcutView.bounds.size.height);
+    //NSLog(@"imageView.image bounds: %f,%f", grabcutView.image.size.width, grabcutView.image.size.height);
     
     scale_x = grabcutView.bounds.size.width / grabcutView.image.size.width;
     scale_y = grabcutView.bounds.size.height / grabcutView.image.size.height;
@@ -284,8 +284,8 @@ CGRect grabcutFrame;
         scale_y = 1/scale_y;
         [grabcutView setCenter:grabcutCenter];
     }
-    NSLog(@"scale_x: %f", scale_x );
-    NSLog(@"scale_y: %f", scale_y);
+    //NSLog(@"scale_x: %f", scale_x );
+    //NSLog(@"scale_y: %f", scale_y);
       
 }
 
@@ -328,7 +328,8 @@ CGRect grabcutFrame;
         [self calculateScale];
     }
     
-    sizeView.image  = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    //sizeView.image  = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
+    sizeView.image = ((UIImageView*)recognizer.view).image;
     CGRect frame = sizeView.frame;
     frame.size.width = img.sizeScale;
     frame.size.height = img.sizeScale;
@@ -357,6 +358,9 @@ CGRect grabcutFrame;
     [img1 setDefaultY:[self cropView].contentOffset.y];
     [img1 setThumbimage:[self updateThumbImage]];
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    
+    
+    grabcutView.image = img1.thumbimage;
 }
 
 - (void) handleEraseViewSingleTap{
@@ -392,6 +396,7 @@ CGRect grabcutFrame;
         img1.defaultY = img.defaultY;
         [img1 setThumbimage:[self updateEraseThumbImage]];
         [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+        self.cropforegroundImage.image = img1;
     }
 }
 

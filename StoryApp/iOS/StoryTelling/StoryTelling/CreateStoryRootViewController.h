@@ -10,7 +10,7 @@
 #import "AddBackgroundViewController.h"
 #import "AppDelegate.h"
 
-@interface CreateStoryRootViewController : UIViewController<AddBackgroundViewControllerDelegate,UITextFieldDelegate>
+@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *storyNameTextField;
 @property (strong, nonatomic) IBOutlet UIView *BackgroundImagesView;

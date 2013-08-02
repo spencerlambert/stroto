@@ -71,7 +71,7 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    [segue.destinationViewController setDelegate:self];
+    
 }
 
 - (void) reloadBackgroundImagesView{

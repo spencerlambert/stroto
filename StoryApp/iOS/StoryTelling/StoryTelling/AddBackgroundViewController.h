@@ -10,22 +10,13 @@
 #import "ELCImagePickerController.h"
 #import "ELCAlbumPickerController.h"
 #import "AppDelegate.h"
-@protocol AddBackgroundViewControllerDelegate <NSObject>
 
-- (void)setbackgroundimages:(NSMutableArray *)info;
-
-
-@end
-
-@interface AddBackgroundViewController : UIViewController<ELCImagePickerControllerDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate>{
+@interface AddBackgroundViewController : UIViewController<ELCImagePickerControllerDelegate,UIImagePickerControllerDelegate>{
     NSMutableArray *backgroundImages;
 }
-//@property (weak, nonatomic) IBOutlet UIImageView *testimg;
 
-@property id<AddBackgroundViewControllerDelegate> delegate;
 - (IBAction)fromGalleryButtonClicked:(id)sender;
 - (IBAction)fromStoryPackButtonClicked:(id)sender;
 - (IBAction)fromCamraPackButtonClicked:(id)sender;
-@property(nonatomic,retain) AppDelegate *backgroundImagesDelegate;
 
 @end

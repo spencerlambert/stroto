@@ -11,18 +11,10 @@
 #import "ELCAlbumPickerController.h"
 #import "AppDelegate.h"
 
-@protocol AddForegroundViewControllerDelegate <NSObject>
-
-- (void)setforegroundimages:(NSMutableArray *)info;
-
-@end
-
-@interface AddForegroundViewController : UIViewController<ELCImagePickerControllerDelegate,UIAlertViewDelegate>{
+@interface AddForegroundViewController : UIViewController<ELCImagePickerControllerDelegate>{
     NSMutableArray *foregroundImages;
 }
-@property id<AddForegroundViewControllerDelegate> delegate;
 - (IBAction)fromGalleryButtonClicked:(id)sender;
 - (IBAction)fromStoryPackButtonClicked:(id)sender;
-@property(nonatomic,retain) AppDelegate *foregroundImagesDelegate;
 
 @end
