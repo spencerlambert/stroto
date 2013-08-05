@@ -68,6 +68,7 @@ using namespace std;
 
 @property (atomic, assign) bool processing;
 @property (nonatomic, assign) int iterCount;
+@property UIImage *orgImage;
 
 - (UIImage*)getSaveImage;
 - (UIImage*)getSaveImageMask;
