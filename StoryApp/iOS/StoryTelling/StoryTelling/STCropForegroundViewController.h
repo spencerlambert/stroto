@@ -20,6 +20,10 @@
     CvGrabCutController* grabCutController;
 
     int selectedView;
+    
+    BOOL isEdited;
+    BOOL isEditing;
+    UIImage *lastEdit;
 }
 
 - (IBAction)editForegroundSegment:(id)sender;
