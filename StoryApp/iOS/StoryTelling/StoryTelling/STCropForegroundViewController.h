@@ -24,6 +24,7 @@
     BOOL isEdited;
     BOOL isEditing;
     UIImage *lastEdit;
+    NSMutableArray *undoImages;
 }
 
 - (IBAction)editForegroundSegment:(id)sender;
@@ -41,6 +42,7 @@
 - (IBAction)pickBG:(id)sender;
 - (IBAction)pickFG:(id)sender;
 - (IBAction)applyGrabcut:(id)sender;
+- (IBAction)undoGrabcut:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *grabcutView;
 @property (nonatomic, retain) CvGrabCutController *grabCutController;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -48,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *bgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *applyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *undoBtn;
+
 
 
 

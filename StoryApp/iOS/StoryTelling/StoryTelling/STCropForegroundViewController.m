@@ -32,7 +32,7 @@ CGRect grabcutFrame;
 @synthesize grabcutView;
 @synthesize grabCutController;
 @synthesize indicatorView,activityIndicator;
-@synthesize bgBtn,fgBtn,applyBtn;
+@synthesize bgBtn,fgBtn,applyBtn,undoBtn;
 @synthesize sizeView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,9 +58,16 @@ CGRect grabcutFrame;
     [self.cropView setDelegate:self];
     [[self navigationController] setNavigationBarHidden:YES animated:NO];
     [self convertToSTImage];
+    undoImages = [[NSMutableArray alloc]initWithCapacity:[self.foregroundimages count]];
+    for (int i =0; i<[self.foregroundimages count]; i++) {
+        NSMutableArray *temp = [[NSMutableArray alloc]init];
+        undoImages[i] = temp;
+    }
     [self clearScrollView];
     [self reloadForegroundImagesView];
     [self prepareScrollView];
+    [undoBtn setEnabled:NO];
+    
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEraseTapGesture:)];
 //    tapGesture.numberOfTapsRequired = 1;
 //    [grabcutView addGestureRecognizer:tapGesture];
@@ -84,8 +91,8 @@ CGRect grabcutFrame;
 - (IBAction)handleEraseTapGesture:(UIGestureRecognizer *)sender;
 {
     if (isEdited == YES) {
-        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
     }
     
     CGPoint tapPoint = [sender locationInView:sender.view];
@@ -135,8 +142,8 @@ CGRect grabcutFrame;
 {
     isEditing = YES;
     if (isEdited == YES) {
-        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
     }
     
     CGPoint tapPoint = [sender locationInView:sender.view];
@@ -174,6 +181,7 @@ CGRect grabcutFrame;
     [self setFgBtn:nil];
     [self setSizeView:nil];
     [self setApplyBtn:nil];
+    [self setUndoBtn:nil];
     [super viewDidUnload];
 }
 
@@ -218,6 +226,7 @@ CGRect grabcutFrame;
 
     //init erase imageview
     grabcutView.image = [self.foregroundEraseImages objectAtIndex:0];
+    undoImages[0][0] = grabcutView.image;
     [grabCutController setImage:grabcutView.image];
     grabcutCenter = [grabcutView center];
     grabcutFrame = [grabcutView frame];
@@ -295,23 +304,23 @@ CGRect grabcutFrame;
     
     
     if(img.isEdited){
-        [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
-        [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
+//        [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
         [grabcutView setFrame:grabcutFrame];
         grabcutView.image = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
         [grabCutController setImage:grabcutView.image];
         [self calculateScale];
     }else if (!img.isEdited && img.minZoomScale!=0){
-        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
         [grabcutView setFrame:grabcutFrame];
         grabcutView.image = img.thumbimage;
         [grabCutController setImage:grabcutView.image];
         [self calculateScale];
     }
     else{
-        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
         [grabcutView setFrame:grabcutFrame];
         grabcutView.image = ((STImage*)[[self foregroundEraseImages]objectAtIndex:selectedforegroundimage]).orgImage;
         [grabCutController setImage:grabcutView.image];
@@ -599,60 +608,60 @@ CGRect grabcutFrame;
 }
 
 - (IBAction)applyGrabcut:(id)sender {
-    if([applyBtn.titleLabel.text isEqual: @"Undo"]){
-        STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
-        STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
-        img1.listDisplayOrder = img.listDisplayOrder;
-        img1.fileType = img.fileType;
-        img1.type = img.type;
-        img1.sizeX = img.sizeX;
-        img1.sizeY = img.sizeY;
-        img1.orgImage = img.orgImage;
-        img1.sizeScale = img.sizeScale;
-        img1.isEdited = NO;
-        img1.defaultScale = img.defaultScale;
-        img1.minZoomScale = img.minZoomScale;
-        img1.defaultX = img.defaultX;
-        img1.defaultY = img.defaultY;
-        grabcutView.image = img.orgImage;
-        [img1 setThumbimage:[self updateEraseThumbImage]];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
-        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-        grabCutController = [[CvGrabCutController alloc] init];
-        [grabCutController setImage:img1.orgImage];
-        [self calculateScale];
-        [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    //if([applyBtn.titleLabel.text isEqual: @"Undo"]){
+//        STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+//        STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
+//        img1.listDisplayOrder = img.listDisplayOrder;
+//        img1.fileType = img.fileType;
+//        img1.type = img.type;
+//        img1.sizeX = img.sizeX;
+//        img1.sizeY = img.sizeY;
+//        img1.orgImage = img.orgImage;
+//        img1.sizeScale = img.sizeScale;
+//        img1.isEdited = NO;
+//        img1.defaultScale = img.defaultScale;
+//        img1.minZoomScale = img.minZoomScale;
+//        img1.defaultX = img.defaultX;
+//        img1.defaultY = img.defaultY;
+//        grabcutView.image = img.orgImage;
+//        [img1 setThumbimage:[self updateEraseThumbImage]];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//        [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//        grabCutController = [[CvGrabCutController alloc] init];
+//        [grabCutController setImage:img1.orgImage];
+//        [self calculateScale];
+//        [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+//        
+//        img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
+//        img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
+//        img1.listDisplayOrder = img.listDisplayOrder;
+//        img1.fileType = img.fileType;
+//        img1.type = img.type;
+//        img1.sizeX = img.sizeX;
+//        img1.sizeY = img.sizeY;
+//        img1.orgImage = img.orgImage;
+//        img1.sizeScale = img.sizeScale;
+//        img1.isEdited = NO;
+//        img1.defaultScale = img.defaultScale;
+//        img1.minZoomScale = img.minZoomScale;
+//        img1.defaultX = img.defaultX;
+//        img1.defaultY = img.defaultY;
+//        [img1 setThumbimage:[self updateEraseThumbImage]];
+//        [self cropforegroundImage].image = img1;
+//        [self sizeView].image = img1;
+//        [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+//
+//        isEditing = NO;
+//        
         
-        img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
-        img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
-        img1.listDisplayOrder = img.listDisplayOrder;
-        img1.fileType = img.fileType;
-        img1.type = img.type;
-        img1.sizeX = img.sizeX;
-        img1.sizeY = img.sizeY;
-        img1.orgImage = img.orgImage;
-        img1.sizeScale = img.sizeScale;
-        img1.isEdited = NO;
-        img1.defaultScale = img.defaultScale;
-        img1.minZoomScale = img.minZoomScale;
-        img1.defaultX = img.defaultX;
-        img1.defaultY = img.defaultY;
-        [img1 setThumbimage:[self updateEraseThumbImage]];
-        [self cropforegroundImage].image = img1;
-        [self sizeView].image = img1;
-        [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
-
-        isEditing = NO;
-        
-        
-    }else{
+   // }else{
     [self performSelectorOnMainThread:@selector(actionGrabCutIteration) withObject:nil waitUntilDone:NO];
     [self.eraseMainView bringSubviewToFront:indicatorView];
     [indicatorView setUserInteractionEnabled:YES];
     [self indicateActivity:YES];
     [self highlightButton:bgBtn with:NO];
     [self highlightButton:fgBtn with:NO];
-    }
+   // }
 }
 
 - (void)actionGrabCutIteration;
@@ -683,9 +692,11 @@ CGRect grabcutFrame;
     isEdited = YES;
     isEditing = NO;
     
-    [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
-    [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
+    [undoBtn setEnabled:YES];
     
+//    [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+//    [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
+//    
     //    [fgBtn setEnabled:NO];
     //    [bgBtn setEnabled:NO];
 }
@@ -748,31 +759,31 @@ CGRect grabcutFrame;
         
         [self handleEraseViewSingleTap];
         if(img.isEdited){
-            [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
-            [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+//            [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
+//            [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
             [grabcutView setFrame:grabcutFrame];
             grabcutView.image = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
             [grabCutController setImage:grabcutView.image];
             [self calculateScale];
         }else if (!img.isEdited && img.minZoomScale!=0){
-            [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-            [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//            [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//            [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
             [grabcutView setFrame:grabcutFrame];
             grabcutView.image = img.thumbimage;
             [grabCutController setImage:grabcutView.image];
             [self calculateScale];
         }
         else{
-            [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-            [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//            [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+//            [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
             [grabcutView setFrame:grabcutFrame];
             grabcutView.image = ((STImage*)[[self foregroundEraseImages]objectAtIndex:selectedforegroundimage]).orgImage;
             [grabCutController setImage:grabcutView.image];
             [self calculateScale];
         }
         if(isEditing){
-            [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
-            [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+//            [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
+//            [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
             isEditing = NO;
         }
     }
@@ -821,6 +832,53 @@ CGRect grabcutFrame;
     CGRect zoomrect;
     zoomrect = CGRectMake(0, 0,self.cropforegroundImage.frame.size.width, self.cropforegroundImage.frame.size.height);
     return zoomrect;
+}
+
+- (IBAction)undoGrabcut:(id)sender {
+    STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+    STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
+    img1.listDisplayOrder = img.listDisplayOrder;
+    img1.fileType = img.fileType;
+    img1.type = img.type;
+    img1.sizeX = img.sizeX;
+    img1.sizeY = img.sizeY;
+    img1.orgImage = img.orgImage;
+    img1.sizeScale = img.sizeScale;
+    img1.isEdited = NO;
+    img1.defaultScale = img.defaultScale;
+    img1.minZoomScale = img.minZoomScale;
+    img1.defaultX = img.defaultX;
+    img1.defaultY = img.defaultY;
+    grabcutView.image = img.orgImage;
+    [img1 setThumbimage:[self updateEraseThumbImage]];
+//    [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
+//    [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
+    grabCutController = [[CvGrabCutController alloc] init];
+    [grabCutController setImage:img1.orgImage];
+    [self calculateScale];
+    [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    
+    img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
+    img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
+    img1.listDisplayOrder = img.listDisplayOrder;
+    img1.fileType = img.fileType;
+    img1.type = img.type;
+    img1.sizeX = img.sizeX;
+    img1.sizeY = img.sizeY;
+    img1.orgImage = img.orgImage;
+    img1.sizeScale = img.sizeScale;
+    img1.isEdited = NO;
+    img1.defaultScale = img.defaultScale;
+    img1.minZoomScale = img.minZoomScale;
+    img1.defaultX = img.defaultX;
+    img1.defaultY = img.defaultY;
+    [img1 setThumbimage:[self updateEraseThumbImage]];
+    [self cropforegroundImage].image = img1;
+    [self sizeView].image = img1;
+    [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    
+    isEditing = NO;
+    
 }
 
 - (IBAction)sliderChanged:(id)sender {
