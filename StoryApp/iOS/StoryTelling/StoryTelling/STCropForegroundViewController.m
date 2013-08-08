@@ -9,6 +9,9 @@
 #import "STCropForegroundViewController.h"
 #import "STImage.h"
 #import "AppDelegate.h"
+#import "ACMagnifyingView.h"
+#import "ACMagnifyingGlass.h"
+#import "ACLoupe.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -75,6 +78,11 @@ CGRect grabcutFrame;
 //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
 //                                          initWithTarget:self action:@selector(handleErasePanGesture:)];
 //    [grabcutView addGestureRecognizer:panGesture];
+    
+    ACLoupe *loupe = [[ACLoupe alloc] init];
+    self.magnifyingView.magnifyingGlass = loupe;
+	loupe.scaleAtTouchPoint =YES;
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -182,6 +190,7 @@ CGRect grabcutFrame;
     [self setSizeView:nil];
     [self setApplyBtn:nil];
     [self setUndoBtn:nil];
+    [self setMagnifyingView:nil];
     [super viewDidUnload];
 }
 

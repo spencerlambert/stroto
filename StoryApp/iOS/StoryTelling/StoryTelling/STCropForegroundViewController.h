@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CvGrabCutController.hh"
+#import "ACMagnifyingView.h"
 
 @interface STCropForegroundViewController : UIViewController<UIScrollViewDelegate>{
     
@@ -51,6 +52,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *fgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *applyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *undoBtn;
+@property (weak, nonatomic) IBOutlet ACMagnifyingView *magnifyingView;
+
 
 
 

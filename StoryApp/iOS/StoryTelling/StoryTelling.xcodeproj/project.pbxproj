@@ -116,6 +116,10 @@
 		DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */; };
 		DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */; };
+		DBE496D417B372FC009B5C31 /* ACLoupe.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE496CD17B372FC009B5C31 /* ACLoupe.m */; };
+		DBE496D517B372FC009B5C31 /* ACMagnifyingGlass.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE496CF17B372FC009B5C31 /* ACMagnifyingGlass.m */; };
+		DBE496D617B372FC009B5C31 /* ACMagnifyingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE496D117B372FC009B5C31 /* ACMagnifyingView.m */; };
+		DBE496D717B372FC009B5C31 /* kb-loupe-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */; };
 		DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AA7174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AAD174D6718001DFCDC /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AAB174D6718001DFCDC /* AddButton.png */; };
@@ -279,6 +283,13 @@
 		DB9E9EAA1764BE4100788373 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
 		DB9E9EAB1764BE4100788373 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
 		DB9E9EAC1764BE4100788373 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
+		DBE496CC17B372FC009B5C31 /* ACLoupe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoupe.h; sourceTree = "<group>"; };
+		DBE496CD17B372FC009B5C31 /* ACLoupe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoupe.m; sourceTree = "<group>"; };
+		DBE496CE17B372FC009B5C31 /* ACMagnifyingGlass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMagnifyingGlass.h; sourceTree = "<group>"; };
+		DBE496CF17B372FC009B5C31 /* ACMagnifyingGlass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMagnifyingGlass.m; sourceTree = "<group>"; };
+		DBE496D017B372FC009B5C31 /* ACMagnifyingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMagnifyingView.h; sourceTree = "<group>"; };
+		DBE496D117B372FC009B5C31 /* ACMagnifyingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMagnifyingView.m; sourceTree = "<group>"; };
+		DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kb-loupe-hi.png"; sourceTree = "<group>"; };
 		DBFA4AA5174D66B4001DFCDC /* RecordStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordStop.png; sourceTree = "<group>"; };
 		DBFA4AAB174D6718001DFCDC /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
 		DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -466,6 +477,7 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DBE496CB17B372FC009B5C31 /* MagnifyingGlass */,
 				DB95AEAC17A61AB70006FDC9 /* black.png */,
 				DB8ADED11770D97C0094BB3A /* 57.png */,
 				DB8ADED31770D99E0094BB3A /* 57@2x.png */,
@@ -617,6 +629,28 @@
 			name = ELCImagePicker;
 			sourceTree = "<group>";
 		};
+		DBE496CB17B372FC009B5C31 /* MagnifyingGlass */ = {
+			isa = PBXGroup;
+			children = (
+				DBE496CC17B372FC009B5C31 /* ACLoupe.h */,
+				DBE496CD17B372FC009B5C31 /* ACLoupe.m */,
+				DBE496CE17B372FC009B5C31 /* ACMagnifyingGlass.h */,
+				DBE496CF17B372FC009B5C31 /* ACMagnifyingGlass.m */,
+				DBE496D017B372FC009B5C31 /* ACMagnifyingView.h */,
+				DBE496D117B372FC009B5C31 /* ACMagnifyingView.m */,
+				DBE496D217B372FC009B5C31 /* Resources */,
+			);
+			path = MagnifyingGlass;
+			sourceTree = "<group>";
+		};
+		DBE496D217B372FC009B5C31 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -713,6 +747,7 @@
 				4D2A0A22177BD37A00C78EE0 /* Default-568h@2x.png in Resources */,
 				4D3CFDA517A1FE5C004EB904 /* app_bg.png in Resources */,
 				DB95AEAD17A61AB70006FDC9 /* black.png in Resources */,
+				DBE496D717B372FC009B5C31 /* kb-loupe-hi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +840,9 @@
 				DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */,
 				DB02382B1797D7CF00A2682F /* STEraseImageView.mm in Sources */,
 				DB4E38A9179F838000413100 /* STTestViewController.mm in Sources */,
+				DBE496D417B372FC009B5C31 /* ACLoupe.m in Sources */,
+				DBE496D517B372FC009B5C31 /* ACMagnifyingGlass.m in Sources */,
+				DBE496D617B372FC009B5C31 /* ACMagnifyingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
