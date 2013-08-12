@@ -11,11 +11,12 @@
 @interface STModiferImageInstanceZoom : STModifierImageInstance {
     // Sets the rate of the zoom, this is defined when the instance is created and
     // then getNewImageInstancePosition uses these settings in it's calculations.
+    
     int zoomRate;
-    BOOL isZoomOut;
     BOOL isZoomIn;
+//  BOOL isZoomOut;  No need for two bool variables, isZoomIn will do the thing for you.
 }
 
-- (STImageInstancePosition*)getNewImageInstancePosition:(id*)timeline;
+- (STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
 
 @end

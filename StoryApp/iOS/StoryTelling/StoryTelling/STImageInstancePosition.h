@@ -28,4 +28,17 @@
 
 @interface STImageInstancePosition : NSObject
 
+{
+ @public
+    
+int imageInstanceId;
+int x;
+int y;
+float rotation;
+float scale;
+float timecode;
+int layer;
+int flip;
+    
+}
 @end
