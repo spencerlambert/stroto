@@ -52,11 +52,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *fgBtn;
 @property (weak, nonatomic) IBOutlet UIButton *applyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *undoBtn;
-@property (weak, nonatomic) IBOutlet ACMagnifyingView *magnifyingView;
-
-
-
-
+//@property (weak, nonatomic) IBOutlet ACMagnifyingView *magnifyingView;
 
 - (IBAction)sliderChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISlider *slider;

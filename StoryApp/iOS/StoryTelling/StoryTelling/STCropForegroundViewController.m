@@ -78,10 +78,10 @@ CGRect grabcutFrame;
 //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
 //                                          initWithTarget:self action:@selector(handleErasePanGesture:)];
 //    [grabcutView addGestureRecognizer:panGesture];
-    
-    ACLoupe *loupe = [[ACLoupe alloc] init];
-    self.magnifyingView.magnifyingGlass = loupe;
-	loupe.scaleAtTouchPoint =YES;
+//    
+//    ACLoupe *loupe = [[ACLoupe alloc] init];
+//    self.magnifyingView.magnifyingGlass = loupe;
+//	loupe.scaleAtTouchPoint =YES;
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -115,12 +115,12 @@ CGRect grabcutFrame;
 
 - (void)updateEraseView;
 {
-    UIImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+    STImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
     UIImage *mask = [grabCutController getSaveImageMask];
     {
         const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
         mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
-        grabcutView.image = [self maskImage:test withMask:mask];
+        grabcutView.image = [self maskImage:test.orgImage withMask:mask];
         lastEdit = grabcutView.image;
     }
 }
@@ -190,7 +190,7 @@ CGRect grabcutFrame;
     [self setSizeView:nil];
     [self setApplyBtn:nil];
     [self setUndoBtn:nil];
-    [self setMagnifyingView:nil];
+//    [self setMagnifyingView:nil];
     [super viewDidUnload];
 }
 
@@ -235,7 +235,6 @@ CGRect grabcutFrame;
 
     //init erase imageview
     grabcutView.image = [self.foregroundEraseImages objectAtIndex:0];
-    undoImages[0][0] = grabcutView.image;
     [grabCutController setImage:grabcutView.image];
     grabcutCenter = [grabcutView center];
     grabcutFrame = [grabcutView frame];
@@ -314,7 +313,8 @@ CGRect grabcutFrame;
     
     if(img.isEdited){
 //        [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
-//        [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+        //        [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+        //[applyBtn setEnabled:NO];
         [grabcutView setFrame:grabcutFrame];
         grabcutView.image = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
         [grabCutController setImage:grabcutView.image];
@@ -687,6 +687,7 @@ CGRect grabcutFrame;
     
     grabcutView.image = [grabCutController getImage];
     [self updateEraseView];
+    [undoImages[selectedforegroundimage] addObject:[grabCutController getSaveImageMask]];
     [self updateEraseThumbImage];
     [self indicateActivity: NO];
     [self highlightButton:bgBtn with:!edit_fg];
@@ -702,6 +703,7 @@ CGRect grabcutFrame;
     isEditing = NO;
     
     [undoBtn setEnabled:YES];
+    [undoBtn setAlpha:1.0];
     
 //    [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
 //    [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
@@ -770,6 +772,7 @@ CGRect grabcutFrame;
         if(img.isEdited){
 //            [applyBtn setTitle:@"Undo" forState:UIControlStateHighlighted];
 //            [applyBtn setTitle:@"Undo" forState:UIControlStateNormal];
+            //[applyBtn setEnabled:NO];
             [grabcutView setFrame:grabcutFrame];
             grabcutView.image = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
             [grabCutController setImage:grabcutView.image];
@@ -844,47 +847,66 @@ CGRect grabcutFrame;
 }
 
 - (IBAction)undoGrabcut:(id)sender {
-    STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
-    STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
-    img1.listDisplayOrder = img.listDisplayOrder;
-    img1.fileType = img.fileType;
-    img1.type = img.type;
-    img1.sizeX = img.sizeX;
-    img1.sizeY = img.sizeY;
-    img1.orgImage = img.orgImage;
-    img1.sizeScale = img.sizeScale;
-    img1.isEdited = NO;
-    img1.defaultScale = img.defaultScale;
-    img1.minZoomScale = img.minZoomScale;
-    img1.defaultX = img.defaultX;
-    img1.defaultY = img.defaultY;
-    grabcutView.image = img.orgImage;
-    [img1 setThumbimage:[self updateEraseThumbImage]];
-//    [applyBtn setTitle:@"Apply" forState:UIControlStateNormal];
-//    [applyBtn setTitle:@"Apply" forState:UIControlStateHighlighted];
-    grabCutController = [[CvGrabCutController alloc] init];
-    [grabCutController setImage:img1.orgImage];
-    [self calculateScale];
-    [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
-    
-    img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
-    img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
-    img1.listDisplayOrder = img.listDisplayOrder;
-    img1.fileType = img.fileType;
-    img1.type = img.type;
-    img1.sizeX = img.sizeX;
-    img1.sizeY = img.sizeY;
-    img1.orgImage = img.orgImage;
-    img1.sizeScale = img.sizeScale;
-    img1.isEdited = NO;
-    img1.defaultScale = img.defaultScale;
-    img1.minZoomScale = img.minZoomScale;
-    img1.defaultX = img.defaultX;
-    img1.defaultY = img.defaultY;
-    [img1 setThumbimage:[self updateEraseThumbImage]];
-    [self cropforegroundImage].image = img1;
-    [self sizeView].image = img1;
-    [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+    if([undoImages[selectedforegroundimage] count]>1){
+        int count = [undoImages[selectedforegroundimage] count];
+        
+        UIImage *mask = [undoImages[selectedforegroundimage] objectAtIndex:count-2];
+        STImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+        {
+            const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
+            mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
+            grabcutView.image = [self maskImage:test.orgImage withMask:mask];
+            lastEdit = grabcutView.image;
+        }
+        [undoImages[selectedforegroundimage] removeLastObject];
+    }
+    else
+    {
+        [undoImages[selectedforegroundimage] removeAllObjects];
+        [undoBtn setEnabled:NO];
+        [undoBtn setAlpha:0.5];
+        STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+        STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
+        img1.listDisplayOrder = img.listDisplayOrder;
+        img1.fileType = img.fileType;
+        img1.type = img.type;
+        img1.sizeX = img.sizeX;
+        img1.sizeY = img.sizeY;
+        img1.orgImage = img.orgImage;
+        img1.sizeScale = img.sizeScale;
+        img1.isEdited = NO;
+        img1.defaultScale = img.defaultScale;
+        img1.minZoomScale = img.minZoomScale;
+        img1.defaultX = img.defaultX;
+        img1.defaultY = img.defaultY;
+        grabcutView.image = img.orgImage;
+        [img1 setThumbimage:[self updateEraseThumbImage]];
+        grabCutController = [[CvGrabCutController alloc] init];
+        [grabCutController setImage:img1.orgImage];
+        [self calculateScale];
+        [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+        
+        img =  [[self foregroundimages] objectAtIndex:selectedforegroundimage];
+        img1 = [[STImage alloc]initWithCGImage:img.orgImage.CGImage];
+        img1.listDisplayOrder = img.listDisplayOrder;
+        img1.fileType = img.fileType;
+        img1.type = img.type;
+        img1.sizeX = img.sizeX;
+        img1.sizeY = img.sizeY;
+        img1.orgImage = img.orgImage;
+        img1.sizeScale = img.sizeScale;
+        img1.isEdited = NO;
+        img1.defaultScale = img.defaultScale;
+        img1.minZoomScale = img.minZoomScale;
+        img1.defaultX = img.defaultX;
+        img1.defaultY = img.defaultY;
+        [img1 setThumbimage:[self updateEraseThumbImage]];
+        [self cropforegroundImage].image = img1;
+        [self sizeView].image = img1;
+        [self.foregroundimages replaceObjectAtIndex:selectedforegroundimage withObject:img1];
+        
+        [applyBtn setEnabled:YES];
+    } 
     
     isEditing = NO;
     
