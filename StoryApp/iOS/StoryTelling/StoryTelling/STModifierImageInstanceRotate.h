@@ -10,7 +10,7 @@
 
 @interface STModifierImageInstanceRotate : STModifierImageInstance
 {
-    int rotationAngle;
+    float rotationAngle;
     BOOL isRotationClockwise;
 }
 
