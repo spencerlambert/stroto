@@ -10,4 +10,16 @@
 
 @implementation STModifierImageInstanceFlip
 
+-(STImageInstancePosition*)getNewImageInstancePosition:(id)timeline
+{
+    STImageInstancePosition *newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
+    if(newImageInstancePosition)
+    {
+    if(newImageInstancePosition->flip)
+        newImageInstancePosition->flip = 0;
+    else
+        newImageInstancePosition->flip = 1;
+    }
+    return newImageInstancePosition;
+}
 @end

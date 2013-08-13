@@ -10,5 +10,14 @@
 #import "STImageInstancePosition.h"
 
 @implementation STImageInstancePosition : NSObject 
-
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        imageInstanceId = x = y = rotation = scale = timecode = layer = flip =  0;
+        
+    }
+    return  self;
+}
 @end

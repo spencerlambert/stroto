@@ -41,4 +41,5 @@ int layer;
 int flip;
     
 }
+-(id)init;
 @end

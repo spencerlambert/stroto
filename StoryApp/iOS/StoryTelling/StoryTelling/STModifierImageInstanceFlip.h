@@ -9,5 +9,5 @@
 #import "STModifierImageInstance.h"
 
 @interface STModifierImageInstanceFlip : STModifierImageInstance
-
+-(STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
 @end
