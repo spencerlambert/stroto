@@ -16,7 +16,7 @@
     BOOL isZoomIn;
 //  BOOL isZoomOut;  No need for two bool variables, isZoomIn will do the thing for you.
 }
-
+-(id) init;
 - (STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
 
 @end

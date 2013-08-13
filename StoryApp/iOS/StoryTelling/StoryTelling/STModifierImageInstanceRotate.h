@@ -9,5 +9,12 @@
 #import "STModifierImageInstance.h"
 
 @interface STModifierImageInstanceRotate : STModifierImageInstance
+{
+    int rotationAngle;
+    BOOL isRotationClockwise;
+}
+
+-(id)init;
+-(STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
 
 @end
