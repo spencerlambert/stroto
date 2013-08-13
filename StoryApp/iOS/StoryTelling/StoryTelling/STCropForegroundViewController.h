@@ -26,7 +26,9 @@
     BOOL isEditing;
     UIImage *lastEdit;
     NSMutableArray *undoImages;
-}
+    
+    
+  }
 
 - (IBAction)editForegroundSegment:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *cropMainView;
