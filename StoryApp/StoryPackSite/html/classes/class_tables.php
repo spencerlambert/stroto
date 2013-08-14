@@ -1,4 +1,4 @@
-<?
+<?php
 
 class tables {
     public static $cur_version = '1.00';
