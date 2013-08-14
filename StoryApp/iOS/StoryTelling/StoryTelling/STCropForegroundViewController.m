@@ -68,6 +68,7 @@ CGRect grabcutFrame;
         undoImages[i] = temp;
     }
     [self clearScrollView];
+    croppedImages = [[NSMutableArray alloc]initWithCapacity:[self.foregroundimages count]];
     [self reloadForegroundImagesView];
     [self prepareScrollView];
     [undoBtn setEnabled:NO];
@@ -117,14 +118,14 @@ CGRect grabcutFrame;
 
 - (void)updateEraseView;
 {
-    STImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+//    STImage *test = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
+    STImage *test = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
     UIImage *mask = [grabCutController getSaveImageMask];
     {
         const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
         mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
-        grabcutView.image = [self maskImage:test.thumbimage withMask:mask];
+        grabcutView.image = [self maskImage:test withMask:mask];
         lastEdit = grabcutView.image;
-       
     }
 }
 
@@ -250,6 +251,15 @@ CGRect grabcutFrame;
     slider.minimumValue = 24;
     slider.value = slider.maximumValue;
     centerPoint = [sizeView center];
+    
+    for(int i =0; i< [self foregroundimages].count ; i++){
+        NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
+        [temp setValue:((STImage *)self.foregroundimages[i]).thumbimage forKey:@"image"];
+        [temp setValue:[NSNumber numberWithInt:0] forKey:@"count"];
+        NSMutableArray *temp1 = [[NSMutableArray alloc]init];
+        [temp1 addObject:temp];
+        croppedImages[i] = temp1;
+    }
 }
 
 - (void)calculateScale;
@@ -498,7 +508,12 @@ CGRect grabcutFrame;
     for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
         UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
         STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
-        [stimage setThumbimage:[imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"]];
+        if(Image.size.width >= Image.size.height && Image.size.width > 640){
+            Image = [self imageWithImage:Image scaledToWidth:640];
+        }else if (Image.size.height >Image.size.width && Image.size.height > 640){
+            Image = [self imageWithImage:Image scaledToHeight:640];
+        }
+        [stimage setThumbimage:Image];
         [stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
         [stimage setType:@"foreground"];
         [stimage setListDisplayOrder:count++];
@@ -514,7 +529,7 @@ CGRect grabcutFrame;
             Image = [self imageWithImage:Image scaledToHeight:640];
         }
         STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
-        [stimage setThumbimage:[imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"]];
+        [stimage setThumbimage:Image];
         [stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
         [stimage setType:@"foreground"];
         [stimage setListDisplayOrder:count++];
@@ -738,6 +753,24 @@ CGRect grabcutFrame;
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
+- (UIImage*) updateThumbImage1{
+    float scale = 1.0f/self.cropView.zoomScale;
+    CGRect visibleRect;
+    visibleRect.origin.x = self.cropView.contentOffset.x * scale;
+    visibleRect.origin.y = self.cropView.contentOffset.y * scale;
+    visibleRect.size.width = self.cropView.bounds.size.width * scale;
+    visibleRect.size.height = self.cropView.bounds.size.height * scale;
+    UIImage *temp = [self cropImage:self.cropforegroundImage.image srcImage:&visibleRect];
+    if(temp.size.width >= temp.size.height && temp.size.width > 640){
+        temp = [self imageWithImage:temp scaledToWidth:640];
+    }else if (temp.size.height >temp.size.width && temp.size.height > 640){
+        temp = [self imageWithImage:temp scaledToHeight:640];
+    }
+   
+    return temp;
+}
+
+
 - (IBAction)editForegroundSegment:(id)sender {
     
     isEdited = NO;
@@ -780,6 +813,30 @@ CGRect grabcutFrame;
         
     }
     else if (selectedSegment == 1){
+        if(selectedView == 0)
+        {
+            for(int i=0; i < [self foregroundimages].count; i++){
+                STImage *temp = self.foregroundimages[i];
+                if(temp.minZoomScale !=0){
+                    STImage *temp1 = [[STImage alloc] initWithCGImage:((UIImage*)[[croppedImages[i] lastObject] valueForKey:@"image"]).CGImage];
+                    temp1.minZoomScale = temp.minZoomScale;
+                    temp1.defaultScale = temp.defaultScale;
+                    temp1.defaultX = temp.defaultX;
+                    temp1.defaultY = temp.defaultY;
+                    [self clearScrollView];
+                    self.cropforegroundImage = [[UIImageView alloc] initWithImage:temp1];
+                    [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
+                    [self.cropView addSubview:self.cropforegroundImage];
+                    [self prepareScrollView];
+                    [self scrollViewDidZoom:self.cropView];
+                    STImage *temp2 = [[STImage alloc]initWithCGImage:[self updateThumbImage1].CGImage];
+                    NSMutableDictionary *temp3 = [[NSMutableDictionary alloc]init];
+                    [temp3 setValue:temp2 forKey:@"image"];
+                    [temp3 setValue:[NSNumber numberWithInteger:[undoImages[i] count]] forKey:@"count"];
+                    [croppedImages[i] addObject:temp3];
+                }
+            }
+        }
         [cropMainView setHidden:YES];
         [eraseMainView setHidden:NO];
         [self.eraseMainView bringSubviewToFront:grabcutView];
@@ -867,10 +924,12 @@ CGRect grabcutFrame;
 - (IBAction)undoGrabcut:(id)sender {
     if([undoImages[selectedforegroundimage] count]>1){
         int count = [undoImages[selectedforegroundimage] count];
-        STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
-        UIImage *test = img.orgImage;
-        if(img.minZoomScale !=0)
-            test = img.thumbimage;
+//        UIImage *test = img.orgImage;
+//        if(img.minZoomScale !=0)
+//            test = img.thumbimage;
+        if([[[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"count"] intValue] == count-1)
+            [croppedImages[selectedforegroundimage] removeLastObject];
+        UIImage *test = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
         UIImage *mask = [undoImages[selectedforegroundimage] objectAtIndex:count-2];
                {
             const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
@@ -889,7 +948,6 @@ CGRect grabcutFrame;
         [undoBtn setEnabled:NO];
         [undoBtn setAlpha:0.5];
         STImage *img = [[self foregroundEraseImages]objectAtIndex:selectedforegroundimage];
-        STImage *temp = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
         STImage *img1 = [[STImage alloc] initWithCGImage:img.orgImage.CGImage];
         img1.listDisplayOrder = img.listDisplayOrder;
         img1.fileType = img.fileType;
@@ -903,7 +961,8 @@ CGRect grabcutFrame;
         img1.minZoomScale = img.minZoomScale;
         img1.defaultX = img.defaultX;
         img1.defaultY = img.defaultY;
-        grabcutView.image = img.orgImage;
+        grabcutView.image = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
+        [croppedImages[selectedforegroundimage] removeLastObject];
                 [img1 setThumbimage:[self updateEraseThumbImage]];
                 grabCutController = [[CvGrabCutController alloc] init];
                 [grabCutController setImage:img1.orgImage];
