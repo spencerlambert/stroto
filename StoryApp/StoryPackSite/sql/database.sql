@@ -23,6 +23,7 @@ CREATE TABLE `Images` (
     `StoryPackID`       int(10),
     `ImageDataPNG`      blob,
     `ImageType`         enum('Background','Foreground'),
+    `DefaultScale`      float(4,3),
     `ThumbnailURL`      varchar(100),
     PRIMARY KEY (`ImageID),
     KEY (`StoryPackID`)

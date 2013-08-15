@@ -5,20 +5,21 @@ class tables {
     
     public static $version = "
     CREATE TABLE Version (
-        Version varchar(100)
+        Version text
     );
     ";
 
     public static $images = "
     CREATE TABLE Images (
         ImageDataPNG    blob,
-        ImageType       varchar(100)
+        ImageType       text,
+        DefaultScale    real
     );
     ";
 
     public static $story = "
     CREATE TABLE StoryPackInfo (
-        Name            varchar(100)
+        Name            text
     );
     ";
 
