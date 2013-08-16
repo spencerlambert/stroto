@@ -74,6 +74,12 @@ CGRect grabcutFrame;
     [undoBtn setEnabled:NO];
     [undoBtn setAlpha:0.5];
     
+    testImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+   // [self.view addSubview:testImage];
+    testImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 0, 150, 150)];
+   // [self.view addSubview:testImage1];
+    
+    
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEraseTapGesture:)];
 //    tapGesture.numberOfTapsRequired = 1;
 //    [grabcutView addGestureRecognizer:tapGesture];
@@ -127,6 +133,8 @@ CGRect grabcutFrame;
         grabcutView.image = [self maskImage:test withMask:mask];
         lastEdit = grabcutView.image;
     }
+    testImage.image = test;
+    testImage1.image = [grabCutController getImage];
 }
 
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
@@ -834,6 +842,9 @@ CGRect grabcutFrame;
                     [temp3 setValue:temp2 forKey:@"image"];
                     [temp3 setValue:[NSNumber numberWithInteger:[undoImages[i] count]] forKey:@"count"];
                     [croppedImages[i] addObject:temp3];
+//                    UIImage *mask = [self getBlankMask:temp2.size];
+//                    [undoImages addObject:mask];
+//                    testImage1.image = [undoImages lastObject];
                 }
             }
         }
@@ -921,6 +932,13 @@ CGRect grabcutFrame;
     return zoomrect;
 }
 
+- (UIImage *) getBlankMask:(CGSize)size{
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return blank;
+}
+
 - (IBAction)undoGrabcut:(id)sender {
     if([undoImages[selectedforegroundimage] count]>1){
         int count = [undoImages[selectedforegroundimage] count];
@@ -935,7 +953,9 @@ CGRect grabcutFrame;
             const float colorMasking = *CGColorGetComponents([UIColor blackColor].CGColor); //{1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
             mask = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(mask.CGImage, &colorMasking)];
             grabcutView.image = [self maskImage:test withMask:mask];
+                   testImage1.image = mask;
             lastEdit = grabcutView.image;
+                   [self calculateScale];
             [grabCutController setImage:grabcutView.image];
 //            UIImageView *test1 = [[UIImageView alloc]initWithImage:test];
 //            [self.view addSubview:test1];
@@ -961,9 +981,10 @@ CGRect grabcutFrame;
         img1.minZoomScale = img.minZoomScale;
         img1.defaultX = img.defaultX;
         img1.defaultY = img.defaultY;
-        grabcutView.image = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
-        [croppedImages[selectedforegroundimage] removeLastObject];
-                [img1 setThumbimage:[self updateEraseThumbImage]];
+                grabcutView.image = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
+                [croppedImages[selectedforegroundimage] removeLastObject];
+
+                       [img1 setThumbimage:[self updateEraseThumbImage]];
                 grabCutController = [[CvGrabCutController alloc] init];
                 [grabCutController setImage:img1.orgImage];
                 [self calculateScale];
