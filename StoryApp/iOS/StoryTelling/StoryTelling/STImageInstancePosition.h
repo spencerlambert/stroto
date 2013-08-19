@@ -39,7 +39,7 @@ float scale;
 float timecode;
 int layer;
 int flip;
-    
+int perspective;
 }
 -(id)init;
 @end

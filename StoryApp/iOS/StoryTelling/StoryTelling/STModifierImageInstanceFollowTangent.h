@@ -9,5 +9,5 @@
 #import "STModifierImageInstance.h"
 
 @interface STModifierImageInstanceFollowTangent : STModifierImageInstance
-
+-(id)init;
 @end

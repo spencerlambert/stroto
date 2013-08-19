@@ -14,6 +14,6 @@
 // Each sub class should override this function
 // This function gets an array of STImageInstancePositions and then calculates
 // what the next position should be.
-- (STImageInstancePosition*)getNewImageInstancePosition:(id*)timeline;
+- (STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
 
 @end
