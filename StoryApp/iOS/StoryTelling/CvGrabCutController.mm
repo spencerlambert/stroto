@@ -212,6 +212,25 @@
     [self reset];
 }
 
+- (void) saveMask{
+    if( !undo_mask.empty() )
+        undo_mask.setTo(Scalar::all(GC_BGD));
+    undo_bgdPxls = Mat::zeros(image.size(), CV_8UC1);
+    undo_fgdPxls = Mat::zeros(image.size(), CV_8UC1);
+    bgdPxls.copyTo(undo_bgdPxls);
+    fgdPxls.copyTo(undo_fgdPxls);
+    mask.copyTo(undo_mask);
+}
+
+-(void) restoreMask{
+    if( !mask.empty() )
+        mask.setTo(Scalar::all(GC_BGD));
+    bgdPxls = Mat::zeros(image.size(), CV_8UC1);
+    fgdPxls = Mat::zeros(image.size(), CV_8UC1);
+    undo_mask.copyTo(mask);
+    undo_bgdPxls.copyTo(bgdPxls);
+    undo_fgdPxls.copyTo(fgdPxls);
+}
 
 - (void)maskLabel:(CGPoint)point foreground:(BOOL)isForeground;
 {
