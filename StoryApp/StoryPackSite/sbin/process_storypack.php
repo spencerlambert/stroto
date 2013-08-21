@@ -77,9 +77,10 @@ $bg_dir = dir(getcwd().'/bg/');
 while (false !== ($img = $bg_dir->read())) {
    
     if (strpos($img, '.png') === false) continue;
+    if (strpos($img, '.') == 0) continue;
 
     $image_path = getcwd().'/bg/'.$img;
-    $image_bin = mysql_real_escape_string(file_get_contents($img_path));
+    $image_bin = mysql_real_escape_string(file_get_contents($image_path));
     $sql = "INSERT INTO Images
                 (`StoryPackID`,`ImageDataPNG`,`ImageType`)
             VALUES
@@ -102,6 +103,7 @@ $bg_dir = dir(getcwd().'/fg/');
 while (false !== ($img = $bg_dir->read())) {
    
     if (strpos($img, '.png') === false) continue;
+    if (strpos($img, '.') == 0) continue;
 
     $image_path = getcwd().'/fg/'.$img;
     $image_bin = mysql_real_escape_string(file_get_contents($image_path));
