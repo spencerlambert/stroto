@@ -1,4 +1,6 @@
+DROP DATABASE story_packs;
 CREATE DATABASE story_packs;
+USE story_packs;
 
 CREATE TABLE `Version` (
     `Version`           varchar(15)
@@ -25,7 +27,7 @@ CREATE TABLE `Images` (
     `ImageType`         enum('Background','Foreground'),
     `DefaultScale`      float(4,3),
     `ThumbnailURL`      varchar(100),
-    PRIMARY KEY (`ImageID),
+    PRIMARY KEY (`ImageID`),
     KEY (`StoryPackID`)
 );
 
