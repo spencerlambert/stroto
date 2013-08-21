@@ -784,7 +784,7 @@ CGRect grabcutFrame;
                 STImage *temp = self.foregroundimages[i];
                 if(temp.minZoomScale !=0){
                     /*
-                    STImage *temp1 = self.foregroundimages[i];
+                    STImage *temp1 = [[STImage alloc] initWithCGImage:((UIImage*)[[croppedImages[i] lastObject] valueForKey:@"image"]).CGImage];
                     temp1.minZoomScale = temp.minZoomScale;
                     temp1.defaultScale = temp.defaultScale;
                     temp1.defaultX = temp.defaultX;
