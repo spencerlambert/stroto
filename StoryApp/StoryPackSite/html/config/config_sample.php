@@ -8,7 +8,6 @@ define("THUMBNAIL_PATH", HTTPD_SITE_ROOT.THUMBNAIL_SUBDIR);
 define("SITE_URL", "http://storypacks.stroto.com/");
 define("THUMBNAIL_URL", SITE_URL.THUMBNAIL_SUBDIR);
 
-
 define("CONVERT_PATH", "/usr/bin/convert");
 
 //Storypack DB

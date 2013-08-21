@@ -27,7 +27,7 @@ if ($vals['StoryPackID'] === false) {
                 ('".$vals['Name']."')";
     echo($sql."\n\n");
     $res = mysql_query($sql, $db_storypack);
-    $vals['story_pack_id'] = mysql_insert_id($db_storypack);
+    $vals['StoryPackID'] = mysql_insert_id($db_storypack);
     
 }
 
@@ -48,7 +48,7 @@ $handle = fopen('info.txt', "w");
 if ($handle) {
     foreach ($vals as $name=>$val) {
         if (trim($name) == '') continue;
-        fwrite($handle, str_pad($name.": ", 25).$vals."\n");
+        fwrite($handle, str_pad($name.": ", 25).$val."\n");
     }
     fclose($handle);
 } else {
@@ -58,7 +58,7 @@ if ($handle) {
 //Create Thumbnail Directory
 if (is_dir(THUMBNAIL_PATH."/".$vals['StoryPackID']) === false) mkdir(THUMBNAIL_PATH."/".$vals['StoryPackID']);
 $thumbnail_dir = THUMBNAIL_PATH."/".$vals['StoryPackID']."/";
-$thumbnail_url = THUMBNAIL_URL.."/".$vals['StoryPackID']."/";
+$thumbnail_url = THUMBNAIL_URL."/".$vals['StoryPackID']."/";
 
 exec(CONVERT_PATH." -define png:size=200x200 ".getcwd()."/thumbnail.png -thumbnail '150x150>' ".$thumbnail_dir."main.png");
 
@@ -104,7 +104,7 @@ while (false !== ($img = $bg_dir->read())) {
     if (strpos($img, '.png') === false) continue;
 
     $image_path = getcwd().'/fg/'.$img;
-    $image_bin = mysql_real_escape_string(file_get_contents($img_path));
+    $image_bin = mysql_real_escape_string(file_get_contents($image_path));
     $sql = "INSERT INTO Images
                 (`StoryPackID`,`ImageDataPNG`,`ImageType`)
             VALUES
