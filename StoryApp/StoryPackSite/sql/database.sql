@@ -21,7 +21,7 @@ CREATE TABLE `StoryPack` (
 CREATE TABLE `Images` (
     `ImageID`           int(10) NOT NULL AUTO_INCREMENT,
     `StoryPackID`       int(10),
-    `ImageDataPNG`      blob,
+    `ImageDataPNG`      longblob,
     `ImageType`         enum('Background','Foreground'),
     `DefaultScale`      float(4,3),
     `ThumbnailURL`      varchar(100),
