@@ -15,6 +15,8 @@ $res = mysql_query($sql, $db_storypack);
 
 $json = array();
 $json['st_list'] = array();
+$json['st_error'] = "";
+$json['st_result'] = "OK";
 
 while ($row = mysql_fetch_assoc($res)) {
     $json['st_list'][] = $row;    
