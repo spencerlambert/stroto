@@ -259,7 +259,8 @@ CGRect grabcutFrame;
     
     for(int i =0; i< [self foregroundimages].count ; i++){
         NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
-        [temp setValue:((STImage *)self.foregroundimages[i]).thumbimage forKey:@"image"];
+        //[temp setValue:((STImage *)self.foregroundimages[i]).thumbimage forKey:@"image"];
+        [temp setValue:((STImage *)self.foregroundimages[i]) forKey:@"image"];
         [temp setValue:[NSNumber numberWithInt:0] forKey:@"count"];
         NSMutableArray *temp1 = [[NSMutableArray alloc]init];
         [temp1 addObject:temp];
@@ -783,15 +784,13 @@ CGRect grabcutFrame;
             for(int i=0; i < [self foregroundimages].count; i++){
                 STImage *temp = self.foregroundimages[i];
                 if(temp.minZoomScale !=0){
-                    /*
                     STImage *temp1 = [[STImage alloc] initWithCGImage:((UIImage*)[[croppedImages[i] lastObject] valueForKey:@"image"]).CGImage];
                     temp1.minZoomScale = temp.minZoomScale;
                     temp1.defaultScale = temp.defaultScale;
                     temp1.defaultX = temp.defaultX;
                     temp1.defaultY = temp.defaultY;
-                     */
                     [self clearScrollView];
-                    self.cropforegroundImage = [[UIImageView alloc] initWithImage:temp];
+                    self.cropforegroundImage = [[UIImageView alloc] initWithImage:temp1];
                     [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
                     [self.cropView addSubview:self.cropforegroundImage];
                     [self prepareScrollView];
