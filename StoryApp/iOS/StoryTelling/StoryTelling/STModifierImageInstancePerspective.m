@@ -21,8 +21,10 @@
 -(STImageInstancePosition*)getNewImageInstancePosition:(id)timeline
 {
     //perspective : 1=ground, 0=sky, -1=No perspective.
-    STImageInstancePosition *newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
-    STImageInstancePosition *previousImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline objectAtIndex:[(NSArray*)timeline count]-2];
+    STImageInstancePosition *newImageInstancePosition = [[STImageInstancePosition alloc]init];
+    newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
+    STImageInstancePosition *previousImageInstancePosition = [[STImageInstancePosition alloc]init];
+    previousImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline objectAtIndex:[(NSArray*)timeline count]-2];
     newImageInstancePosition->perspective = isGroundPerspective; //setting up perspective (1 or 0)
     int yChange =  newImageInstancePosition->y - previousImageInstancePosition->y; //gives delta y
     if(isGroundPerspective == 1) //ground
