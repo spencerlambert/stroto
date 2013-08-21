@@ -49,7 +49,6 @@ CGRect grabcutFrame;
 
 - (void)viewDidLoad
 {
-    
     isEditing = NO;
     isEdited = NO;
     edit_fg = YES;
@@ -75,9 +74,9 @@ CGRect grabcutFrame;
     [undoBtn setAlpha:0.5];
     
     testImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
-    //[self.view addSubview:testImage];
+   // [self.view addSubview:testImage];
     testImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 0, 150, 150)];
-    //[self.view addSubview:testImage1];
+  //  [self.view addSubview:testImage1];
     
     
     //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEraseTapGesture:)];
@@ -685,6 +684,17 @@ CGRect grabcutFrame;
 }
 
 - (IBAction)done:(id)sender {
+    if(selectedView == 0){
+        [self handleCropViewSingleTap];
+    }
+    else if (selectedView == 1){
+        [self handleEraseViewSingleTap];
+    }
+    else if (selectedView == 2){
+        [self handleSizeViewSingleTap];
+    }
+    
+
     
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
     CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
@@ -712,6 +722,7 @@ CGRect grabcutFrame;
     }else if (temp.size.height >temp.size.width && temp.size.height > 640){
         temp = [self imageWithImage:temp scaledToHeight:640];
     }
+    testImage1.image = temp;
     
     return temp;
 }
@@ -745,6 +756,14 @@ CGRect grabcutFrame;
     STImage *img = [[self foregroundimages]objectAtIndex:selectedforegroundimage];
     
     if (selectedSegment == 0) {
+        
+        for (int i=0; i< [[self foregroundimages] count]; i++) {
+            STImage *tempImg = [[self foregroundimages] objectAtIndex:i];
+            if (tempImg.minZoomScale!=0 && [croppedImages[i] count]>1 ) {
+                [croppedImages[i] removeLastObject];
+            }
+        }
+        
         [cropMainView setHidden:NO];
         [eraseMainView setHidden:YES];
         [sizeMainView setHidden:YES];
@@ -782,7 +801,7 @@ CGRect grabcutFrame;
                     [croppedImages[i] addObject:temp3];
                     UIImage *mask = [self getBlankMask:temp2.size];
                     [undoImages addObject:mask];
-                    testImage1.image = [undoImages lastObject];
+                   // testImage1.image = temp2;//[undoImages lastObject];
                 }
             }
         }

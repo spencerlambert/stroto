@@ -817,6 +817,8 @@
                 <relationship kind="action" name="applyGrabcut:"/>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="editForegroundSegment:"/>
+                <relationship kind="action" name="handleErasePanGesture:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="handleEraseTapGesture:" candidateClass="UIGestureRecognizer"/>
                 <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
                 <relationship kind="action" name="pickBG:"/>
                 <relationship kind="action" name="pickFG:"/>
