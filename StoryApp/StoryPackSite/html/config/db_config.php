@@ -1,6 +1,11 @@
 <?php date_default_timezone_set('America/Denver'); ?>
 <?php
 
+if (CONFIG_LOADED !== true) {
+    $error_txt = "no access";
+    include('/include/error_reply.php');
+}
+
 $MYSQL_ERRNO 		= '';
 $MYSQL_ERROR 		= '';
 

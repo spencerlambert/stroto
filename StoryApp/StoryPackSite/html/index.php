@@ -1,4 +1,5 @@
 <?php
+include_once('config/config.php');
 include_once('include/functions.php');
 
 $json_string = file_get_contents('php://input');
@@ -9,18 +10,24 @@ if (!isset($json_data->st_request)) {
     include('include/error_reply.php');
 }
 
+include_once('config/db_config.php');
+
 switch ($json_data->st_request) {
     case "get_free_list":
-        include('request/get_free_list.php');
+        $type = 'Free';
+        $category = 'Featured';
+        include('request/get_list.php');
         break;
     case "get_paid_list":
-        include('request/get_paid_list.php');
+        $type = 'Paid';
+        $category = 'Featured';
+        include('request/get_list.php');
         break;
     case "get_story_details":
         include('request/get_story_details.php');
         break;
     case "purchase":
-        include('purchase.php');
+        include('request/purchase.php');
         break;
     default:
         $error_txt = "st_request not recognized";
