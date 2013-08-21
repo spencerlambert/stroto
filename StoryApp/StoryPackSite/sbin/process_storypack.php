@@ -57,8 +57,8 @@ if ($handle) {
 
 //Create Thumbnail Directory
 if (is_dir(THUMBNAIL_PATH."/".$vals['StoryPackID']) === false) mkdir(THUMBNAIL_PATH."/".$vals['StoryPackID']);
-$thumbnail_dir = THUMBNAIL_PATH."/".$vals['StoryPackID']."/";
-$thumbnail_url = THUMBNAIL_URL."/".$vals['StoryPackID']."/";
+$thumbnail_dir = THUMBNAIL_PATH.$vals['StoryPackID']."/";
+$thumbnail_url = THUMBNAIL_URL.$vals['StoryPackID']."/";
 
 exec(CONVERT_PATH." -define png:size=200x200 ".getcwd()."/thumbnail.png -thumbnail '150x150>' ".$thumbnail_dir."main.png");
 
@@ -84,7 +84,7 @@ while (false !== ($img = $bg_dir->read())) {
     $sql = "INSERT INTO Images
                 (`StoryPackID`,`ImageDataPNG`,`ImageType`)
             VALUES
-                ('".$vals['StoryPackID']."','Background','".$image_bin."')";
+                ('".$vals['StoryPackID']."','".$image_bin."','Background')";
     $res = mysql_query($sql, $db_storypack);
     $img_id = mysql_insert_id($db_storypack);
 
@@ -110,7 +110,7 @@ while (false !== ($img = $bg_dir->read())) {
     $sql = "INSERT INTO Images
                 (`StoryPackID`,`ImageDataPNG`,`ImageType`)
             VALUES
-                ('".$vals['StoryPackID']."','Foreground','".$image_bin."')";
+                ('".$vals['StoryPackID']."','".$image_bin."','Foreground')";
     $res = mysql_query($sql, $db_storypack);
     $img_id = mysql_insert_id($db_storypack);
 
