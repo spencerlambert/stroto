@@ -13,8 +13,5 @@
     float rotationAngle;
     BOOL isRotationClockwise;
 }
-
 -(id)init;
--(STImageInstancePosition*)getNewImageInstancePosition:(id)timeline;
-
 @end

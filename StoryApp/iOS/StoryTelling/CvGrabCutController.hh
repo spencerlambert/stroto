@@ -56,6 +56,11 @@ using namespace std;
     Mat fgdPxls;
     Mat bgdPxls;
     
+    //for undo
+    Mat undo_mask;
+    Mat undo_fgdPxls;
+    Mat undo_bgdPxls;
+    
 #endif
         
     
@@ -81,7 +86,8 @@ using namespace std;
 
 - (UIImage*)getImage;
 
-
+- (void) saveMask;
+- (void) restoreMask;
 
 
 @end

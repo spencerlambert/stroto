@@ -9,5 +9,8 @@
 #import "STModifierImageInstance.h"
 
 @interface STModifierImageInstancePerspective : STModifierImageInstance
-
+{   @public
+    int isGroundPerspective;
+}
+-(id)init;
 @end

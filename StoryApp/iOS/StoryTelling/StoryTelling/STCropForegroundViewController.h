@@ -26,6 +26,9 @@
     BOOL isEditing;
     UIImage *lastEdit;
     NSMutableArray *undoImages;
+    NSMutableArray *croppedImages;
+    UIImageView *testImage;
+    UIImageView *testImage1;
     
     
   }
