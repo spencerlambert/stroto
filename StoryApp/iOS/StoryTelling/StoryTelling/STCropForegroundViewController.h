@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIView *eraseMainView;
 @property (weak, nonatomic) IBOutlet UIView *sizeMainView;
 
+@property (assign, atomic) BOOL isFromCamera;
 @property NSMutableArray *foregroundimages;
 @property NSMutableArray *foregroundEraseImages;
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer;
