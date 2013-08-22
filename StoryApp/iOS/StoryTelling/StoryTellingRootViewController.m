@@ -49,17 +49,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)createNewStory:(id)sender {
-
-    
-    CGSize storySize = [AppDelegate deviceSize];
-    NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
-    newStory = [STStoryDB createNewSTstoryDB:&storySize];
-
-    
-    //   [newStory initAsNewFile:@"sfa" :280];
-     //NSLog(@"db : %@",[newStory initAsNewFile:@"sfa" :&storySize]);
-}
+//- (IBAction)createNewStory:(id)sender {
+//    
+//    CGSize storySize = [AppDelegate deviceSize];
+//    NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
+//    newStory = [STStoryDB createNewSTstoryDB:&storySize];
+//
+//}
 
 
 - (void)viewDidUnload {

@@ -163,7 +163,7 @@ NSString *databasePath;
 - (BOOL)addImage:(STImage*)image;  // Updates the STImage with the DB imageId
 - (BOOL)updateImage:(STImage*)image;
 - (BOOL)deleteImage:(STImage*)image;  // Only deletes if the image has no Instances in the ImageInstance table.
-- (STImage*)getImageByID:(int*)img_id;
+- (STImage*)getImageByID:(int)img_id;
 // Changed to NSArray as the return type, because I don't think we need a Mutable list.
 - (NSArray*)getBackgroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
 - (NSArray*)getForegroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
@@ -176,6 +176,7 @@ NSString *databasePath;
 - (id*)getImageInstanceTimeline:(id*)timeline;
 
 -(BOOL)updateVersion:(int)version;
+-(BOOL)deleteSTstoryDB;
 
 
 

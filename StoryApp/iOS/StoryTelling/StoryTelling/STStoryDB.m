@@ -14,10 +14,10 @@
 }
 
 //Need private methods for creating the db and making the actual sql calls.
-        
+
 +(id)createNewSTstoryDB:(CGSize*)size{
-     return [[self alloc] initAsNewFile:size];
-       
+    return [[self alloc] initAsNewFile:size];
+    
 }
 
 
@@ -27,8 +27,8 @@
     self = [super init];
     
     if (self) {
-    
-        NSLog(@"size : %@",NSStringFromCGSize(*size));
+        
+       // NSLog(@"size : %@",NSStringFromCGSize(*size));
         
         NSString *docsDir;
         NSArray *dirPaths;
@@ -40,7 +40,7 @@
         docsDir = dirPaths[0];
         
         NSString *newDir = [docsDir stringByAppendingPathComponent:STDIRECTORY];
-        NSLog(@"newDir : %@",newDir);
+        // NSLog(@"newDir : %@",newDir);
         
         NSFileManager *fileManger = [NSFileManager defaultManager];
         NSError *error = nil;
@@ -50,15 +50,7 @@
         }
         
         NSArray *arrayFiles = [fileManger contentsOfDirectoryAtPath:newDir error:nil];
-        NSLog(@"Files : %@",arrayFiles);
-        
-        //    if ([[NSFileManager defaultManager] createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO){
-        //    // Build the path to the database file
-        //    databasePath = [[NSString alloc]
-        //                     initWithString: [docsDir stringByAppendingPathComponent:
-        //                                      @"1.db"]];
-        //    NSLog(@"%@",databasePath);
-        
+       // NSLog(@"Files : %@",arrayFiles);
         
         if([self dbnumber:arrayFiles] == 0)
         {
@@ -71,7 +63,7 @@
         }
         else
         {
-            NSLog(@"Count : %d",[self dbnumber:arrayFiles]);
+           // NSLog(@"Count : %d",[self dbnumber:arrayFiles]);
             databasePath = [[NSString alloc]
                             initWithString: [newDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",[self dbnumber:arrayFiles]+1]]] ;
             NSLog(@"%@",databasePath);
@@ -100,7 +92,7 @@
                 {
                     NSLog(@"Failed to create table");
                 }
-                //char *errMsg1;
+                
                 sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, thumbnailData BLOB);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
@@ -137,15 +129,10 @@
                     NSLog(@"Failed to create table");
                 }
                 
-                //sqlite3_close(db);
             } else {
                 NSLog(@"Failed to open/create database");
             }
         }
-        // }
-        // I'm not sure why this is returning the databasePath.
-        //return databasePath;
-        
     }
     return self;
 }
@@ -171,12 +158,132 @@
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:STDIRECTORY];
     NSString *dbpath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",count+1]];
-    NSLog(@"newDir : %@",dbpath);
+    // NSLog(@"newDir : %@",dbpath);
     while ([manager fileExistsAtPath:dbpath]) {
         count++;
         dbpath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",count+1]];
-        NSLog(@"newDir : %@",dbpath);
+    // NSLog(@"newDir : %@",dbpath);
     }
     return count;
 }
+
+-(BOOL)deleteSTstoryDB{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if([manager fileExistsAtPath:databasePath]){
+        return [manager removeItemAtPath:databasePath error:nil];
+    }
+    return  NO;
+}
+
+-(BOOL)addImage:(STImage *)image{
+   
+    char *errMsg;
+    NSString *sql = [NSString stringWithFormat:@"INSERT into Image values('',%d,%d,%d,%@,%@,%d,%d,%f,%@,%@);",image.listDisplayOrder,image.sizeX,image.sizeY,image.fileType,image.type,image.defaultX,image.defaultY,image.defaultScale,image.imageData,UIImagePNGRepresentation(image.thumbimage) ];
+    const char *sql_stmt = [sql UTF8String];
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+    {
+        NSLog(@"Failed to insert");
+        return  false;
+    }
+    return true;
+}
+
+- (STImage*)getImageByID:(int)img_id{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where imageId = %d;",img_id];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 9);
+            int size = sqlite3_column_bytes(compiled_stmt, 9);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+            UIImage *image = [UIImage imageWithData:data];
+            STImage *temp = [[STImage alloc]initWithCGImage:image.CGImage];
+            temp.imageId = img_id;
+            temp.listDisplayOrder = sqlite3_column_int(compiled_stmt, 1);
+            temp.sizeX = sqlite3_column_int(compiled_stmt, 2);
+            temp.sizeY = sqlite3_column_int(compiled_stmt, 3);
+            temp.fileType =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 4)];
+            temp.type =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 5)];
+            temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
+            temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
+            temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
+            UIImage *image1 = [UIImage imageWithData:data1];
+            temp.thumbimage = image1;
+            return  temp;
+        }
+    }
+    return  nil;
+}
+
+- (NSArray*)getBackgroundImagesSorted{
+    NSMutableArray *bgImages = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where type='background';"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 9);
+            int size = sqlite3_column_bytes(compiled_stmt, 9);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+            UIImage *image = [UIImage imageWithData:data];
+            STImage *temp = [[STImage alloc]initWithCGImage:image.CGImage];
+            temp.imageId = sqlite3_column_int(compiled_stmt, 0);
+            temp.listDisplayOrder = sqlite3_column_int(compiled_stmt, 1);
+            temp.sizeX = sqlite3_column_int(compiled_stmt, 2);
+            temp.sizeY = sqlite3_column_int(compiled_stmt, 3);
+            temp.fileType =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 4)];
+            temp.type =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 5)];
+            temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
+            temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
+            temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
+            UIImage *image1 = [UIImage imageWithData:data1];
+            temp.thumbimage = image1;
+            [bgImages addObject:temp];
+        }
+        
+    }
+    return bgImages;
+}
+
+- (NSArray*)getForegroundImagesSorted{
+    NSMutableArray *fgImages = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where type='foreground';"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 9);
+            int size = sqlite3_column_bytes(compiled_stmt, 9);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+            UIImage *image = [UIImage imageWithData:data];
+            STImage *temp = [[STImage alloc]initWithCGImage:image.CGImage];
+            temp.imageId = sqlite3_column_int(compiled_stmt, 0);
+            temp.listDisplayOrder = sqlite3_column_int(compiled_stmt, 1);
+            temp.sizeX = sqlite3_column_int(compiled_stmt, 2);
+            temp.sizeY = sqlite3_column_int(compiled_stmt, 3);
+            temp.fileType =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 4)];
+            temp.type =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 5)];
+            temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
+            temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
+            temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
+            UIImage *image1 = [UIImage imageWithData:data1];
+            temp.thumbimage = image1;
+            [fgImages addObject:temp];
+        }
+        
+    }
+    return fgImages;
+}
+
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddBackgroundViewController.h"
 #import "AppDelegate.h"
+#import "STStoryDB.h"
 
 @interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate>
 
