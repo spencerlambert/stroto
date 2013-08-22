@@ -23,7 +23,7 @@
 @end
 
 @implementation STCropForegroundViewController
-
+@synthesize isFromCamera;
 int selectedforegroundimage = 0;
 CGPoint centerPoint;
 CGPoint grabcutCenter;
