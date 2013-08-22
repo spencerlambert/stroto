@@ -818,8 +818,6 @@
         <image name="app_bg.png" width="640" height="960"/>
         <image name="black.png" width="22" height="20"/>
     </resources>
-<<<<<<< HEAD
-=======
     <classes>
         <class className="AddBackgroundViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
@@ -911,7 +909,6 @@
             </relationships>
         </class>
     </classes>
->>>>>>> 9326f08daa56d3343efd70a9228c67f48e3145b3
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
