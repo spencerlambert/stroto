@@ -38,7 +38,7 @@
  CREATE TABLE Story (
     displayName     TEXT,
     mainTitle       TEXT,
-    subTile         TEXT,
+    subTitle         TEXT,
     sizeX           INTEGER,
     sizeY           INTEGER,
     createDateTime  NUMERIC
@@ -151,12 +151,12 @@ NSString *databasePath;
 
 
 
-+ (id)createNewSTstoryDB:(CGSize*)size;
++ (id)createNewSTstoryDB:(CGSize)size;
 + (id)loadSTstoryDB:(STStoryFile*)stroyFile;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
 - (id)initWithFilename:(NSString*)filePath;
-- (id)initAsNewFile:(CGSize*)size;
+- (id)initAsNewFile:(CGSize)size;
 
 - (BOOL)updateDisplayName:(NSString*)name;
 
@@ -175,8 +175,9 @@ NSString *databasePath;
 - (id*)updateImageInstanceTimeline:(id*)timeline;
 - (id*)getImageInstanceTimeline:(id*)timeline;
 
--(BOOL)updateVersion:(int)version;
--(BOOL)deleteSTstoryDB;
+-(BOOL)updateVersion:(float)version;
+-(BOOL)deleteSTstoryDB;//Delete the current db
+
 
 
 

@@ -15,17 +15,17 @@
 
 //Need private methods for creating the db and making the actual sql calls.
 
-+(id)createNewSTstoryDB:(CGSize*)size{
++(id)createNewSTstoryDB:(CGSize)size{
     return [[self alloc] initAsNewFile:size];
     
 }
 
 
 
--(id)initAsNewFile: (CGSize*)size{
+-(id)initAsNewFile: (CGSize)size{
     
     self = [super init];
-    
+       
     if (self) {
         
        // NSLog(@"size : %@",NSStringFromCGSize(*size));
@@ -82,51 +82,53 @@
                 const char *sql_stmt = "CREATE TABLE Version (version  NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table1");
                 }
                 
-                [self updateVersion];
+                [self updateVersion:1.0];
                 
-                sql_stmt = "CREATE TABLE Story (displayName TEXT, mainTitle TEXT, subTile TEXT, sizeX INTEGER, sizeY INTEGER, createDateTime  NUMERIC);";
+                sql_stmt = "CREATE TABLE Story (displayName TEXT, mainTitle TEXT, subTitle TEXT, sizeX INTEGER, sizeY INTEGER, createDateTime  NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table2");
                 }
+                
+                [self initStoryTable:size];
                 
                 sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, thumbnailData BLOB);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table3");
                 }
                 
                 sql_stmt = "CREATE TABLE Sound (soundId INTEGER PRIMARY KEY AUTOINCREMENT, mp3Data BLOB);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table4");
                 }
                 
                 sql_stmt = "CREATE TABLE AudioRecording (audioId INTEGER PRIMARY KEY AUTOINCREMENT,timecode NUMERIC, audioData       BLOB);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table5");
                 }
                 
                 sql_stmt = "CREATE TABLE ImageInstance (imageInstanceId INTEGER PRIMARY KEY AUTOINCREMENT, imageId INTEGER);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table6");
                 }
                 
                 sql_stmt = "CREATE TABLE ImageInstanceTimeline (imageInstanceId INTEGER, timecode NUMERIC, x INTEGER, y INTEGER, scale NUMERIC, rotation NUMERIC, flip INTEGER, layer INTEGER);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table7");
                 }
                 
                 sql_stmt = "CREATE TABLE SoundTimeline (soundId INTEGER,timecode INTEGER, volume INTEGER);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
-                    NSLog(@"Failed to create table");
+                    NSLog(@"Failed to create table8");
                 }
                 
             } else {
@@ -137,12 +139,13 @@
     return self;
 }
 
--(BOOL)updateVersion{
+-(BOOL)updateVersion:(float)version{
     char *errMsg;
-    const char *sql_stmt = "DELETE FROM Version; INSERT into Version values(1.0);";
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Version; INSERT into Version values(%f);",version];
+    const char *sql_stmt = [sql UTF8String];
     if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
     {
-        NSLog(@"Failed to insert");
+        NSLog(@"Failed to insert version");
         return  false;
     }
     return true;
@@ -177,15 +180,32 @@
 
 -(BOOL)addImage:(STImage *)image{
    
-    char *errMsg;
-    NSString *sql = [NSString stringWithFormat:@"INSERT into Image values('',%d,%d,%d,%@,%@,%d,%d,%f,%@,%@);",image.listDisplayOrder,image.sizeX,image.sizeY,image.fileType,image.type,image.defaultX,image.defaultY,image.defaultScale,image.imageData,UIImagePNGRepresentation(image.thumbimage) ];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','thumbnailData') VALUES (?,?,?,?,?,?,?,?,?,?);"];
     const char *sql_stmt = [sql UTF8String];
-    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
-    {
-        NSLog(@"Failed to insert");
-        return  false;
+    sqlite3_stmt *statement;
+        // Prepare the statement.
+    if (sqlite3_prepare_v2(db, sql_stmt, -1, &statement, NULL) == SQLITE_OK) {
+        
+        sqlite3_bind_int(statement, 1, image.listDisplayOrder);
+        sqlite3_bind_int(statement, 2, image.sizeX);
+        sqlite3_bind_int(statement, 3, image.sizeY);
+        sqlite3_bind_text(statement, 4, [image.fileType UTF8String], -1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [image.type UTF8String], -1,SQLITE_TRANSIENT);
+        sqlite3_bind_int(statement, 6, image.defaultX);
+        sqlite3_bind_int(statement, 7, image.defaultY);
+        sqlite3_bind_double(statement, 8, image.defaultScale);
+        sqlite3_bind_blob(statement, 9, [image.imageData bytes], [image.imageData length], SQLITE_STATIC);
+        NSData *imageData = UIImagePNGRepresentation(image.thumbimage);
+        sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
+        // Execute the statement.
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            NSLog(@"Failed to insert images");
+            return  false;
+        }
     }
-    return true;
+    // Clean up and delete the resources used by the prepared statement.
+    sqlite3_finalize(statement);
+    return  true; 
 }
 
 - (STImage*)getImageByID:(int)img_id{
@@ -284,6 +304,27 @@
         
     }
     return fgImages;
+}
+
+//To init the Story table
+-(void)initStoryTable:(CGSize)size{
+   NSString *sql = [NSString stringWithFormat:@"INSERT into Story values('','','',%f,%f,%.0f);", size.width,size.height,[[NSDate date]timeIntervalSince1970] ];
+    const char *sql_stmt = [sql UTF8String];
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Failed to insert story");
+    }
+   }
+
+- (BOOL)updateDisplayName:(NSString*)name{
+    NSString *sql = [NSString stringWithFormat:@"UPDATE Story set displayName='%@';",name];
+    const char *sql_stmt = [sql UTF8String];
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Failed to update story name");
+        return  false;
+    }
+    return true;
 }
 
 @end

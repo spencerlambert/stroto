@@ -45,7 +45,14 @@
     self.view.tag=20;
     CGSize storySize = [AppDelegate deviceSize];
     NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
-    newStory = [STStoryDB createNewSTstoryDB:&storySize];
+    newStory = [STStoryDB createNewSTstoryDB:storySize];
+    NSDateFormatter *dateTimeFormat = [[NSDateFormatter alloc] init];
+    [dateTimeFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+    NSDate *now = [[NSDate alloc] init];
+    NSString *dateTime = [dateTimeFormat stringFromDate:now];
+    NSLog(@"Title is %@", dateTime );
+    [storyNameTextField setText:dateTime];
+    [newStory updateDisplayName:dateTime];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -137,15 +144,16 @@
 }
 
 - (IBAction)backButtonClicked:(UIBarButtonItem *)sender {
-    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
-    [alert show];
-        
-    }
-    else{
-        [newStory deleteSTstoryDB];
-        [self.navigationController popViewControllerAnimated:YES];
-            }
+//    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
+//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
+//    [alert show];
+//        
+//    }
+//    else{
+//        [newStory deleteSTstoryDB];
+    [self updateDB];
+    [self.navigationController popViewControllerAnimated:YES];
+//            }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -215,6 +223,7 @@
 }
 
 - (IBAction)nextButtonClicked:(id)sender{
+    [self updateDB];
     WorkAreaController *workarea =
     [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
@@ -223,13 +232,22 @@
     [workarea setStoryname:[storyNameTextField text]];
     [self presentViewController:workarea animated:YES completion:nil];
 }
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==1){
-        //clear button clicked
-        [newStory deleteSTstoryDB];
-        [self.navigationController popViewControllerAnimated:YES];
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if(buttonIndex==1){
+//        //clear button clicked
+//        [newStory deleteSTstoryDB];
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+//}
+
+- (void)updateDB{
+    [newStory updateDisplayName:storyNameTextField.text];
+    for(STImage *image in backgroundImages){
+        [newStory addImage:image];
+    }
+    for (STImage *image in foregroundImages) {
+        [newStory addImage:image];
     }
 }
-
 
 @end
