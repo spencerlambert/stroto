@@ -16,7 +16,6 @@
 }
 
 - (IBAction)fromGalleryButtonClicked:(id)sender;
-- (IBAction)fromStoryPackButtonClicked:(id)sender;
 - (IBAction)fromCamraPackButtonClicked:(id)sender;
 
 @end

@@ -15,7 +15,6 @@
     NSMutableArray *foregroundImages;
 }
 - (IBAction)fromGalleryButtonClicked:(id)sender;
-- (IBAction)fromStoryPackButtonClicked:(id)sender;
 - (IBAction)fromCameraButtonClicked:(UIButton *)sender;
 
 @end

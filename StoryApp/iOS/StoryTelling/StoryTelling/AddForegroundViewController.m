@@ -54,9 +54,6 @@
     [self presentViewController:elcPicker animated:YES completion:nil];
 }
 
-- (IBAction)fromStoryPackButtonClicked:(id)sender {
-}
-
 - (IBAction)fromCameraButtonClicked:(UIButton *)sender {
     @try
     {

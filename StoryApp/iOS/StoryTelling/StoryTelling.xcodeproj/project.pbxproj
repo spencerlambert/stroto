@@ -131,6 +131,9 @@
 		DBFA4AC2174D7F1C001DFCDC /* StartRecordingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */; };
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
+		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
+		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
+		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,6 +296,12 @@
 		DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartRecordingButton.png; sourceTree = "<group>"; };
 		DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
+		EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPacksViewController.m; sourceTree = "<group>"; };
+		EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaidStoryPacksViewController.h; sourceTree = "<group>"; };
+		EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaidStoryPacksViewController.m; sourceTree = "<group>"; };
+		EB7FE48817C743F000E28B4F /* STFreeStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFreeStoryPacksViewController.h; sourceTree = "<group>"; };
+		EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFreeStoryPacksViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +550,7 @@
 				DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */,
 				DB9E9E8F1764A82100788373 /* AddForegroundViewController.h */,
 				DB9E9E901764A82100788373 /* AddForegroundViewController.m */,
+				EB7FE48117C716EB00E28B4F /* StoryPack */,
 				DB9E9E931764A83B00788373 /* WorkArea */,
 			);
 			name = "Create New Story";
@@ -641,6 +651,19 @@
 				DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EB7FE48117C716EB00E28B4F /* StoryPack */ = {
+			isa = PBXGroup;
+			children = (
+				EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */,
+				EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */,
+				EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */,
+				EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */,
+				EB7FE48817C743F000E28B4F /* STFreeStoryPacksViewController.h */,
+				EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */,
+			);
+			name = StoryPack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -834,6 +857,9 @@
 				DBE496D417B372FC009B5C31 /* ACLoupe.m in Sources */,
 				DBE496D517B372FC009B5C31 /* ACMagnifyingGlass.m in Sources */,
 				DBE496D617B372FC009B5C31 /* ACMagnifyingView.m in Sources */,
+				EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */,
+				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
+				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
