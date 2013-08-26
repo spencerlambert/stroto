@@ -17,4 +17,12 @@
 @property (strong, nonatomic) IBOutlet UIView *freeStoryPacksView;
 - (IBAction)previousView:(UIBarButtonItem *)sender;
 
+@property (strong, nonatomic) NSDictionary *paidJson;
+@property (strong, nonatomic) NSDictionary *freeJson;
+
+@property (strong,nonatomic) NSArray *freeImages;
+@property (strong, nonatomic) NSArray *paidImages;
+@property (strong, nonatomic) NSArray *installedImages;
+
+
 @end
