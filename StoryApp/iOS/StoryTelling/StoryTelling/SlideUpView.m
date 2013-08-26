@@ -7,6 +7,7 @@
 //
 
 #import "SlideUpView.h"
+#import "STImage.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -69,17 +70,17 @@
         float xPosition = THUMB_H_PADDING;
         
         
-        for (NSMutableDictionary *imageDictionary in self.photos) {
-            UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+        for (int i = 0; i<[[self photos]count];i++) {
+            STImage *stimage = [[self photos]objectAtIndex:i];
+            UIImage *thumbImage = stimage.thumbimage;
             if (thumbImage) {
-                thumbImage =
-                [UIImage imageWithCGImage:[thumbImage CGImage]
-                                    scale:(thumbImage.scale * 1.2)
-                              orientation:(thumbImage.imageOrientation)];
+                thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+                                                 scale:(thumbImage.scale * 1.4)
+                                           orientation:(thumbImage.imageOrientation)];
                 ThumbImageView *thumbView = [[ThumbImageView alloc] initWithImage:thumbImage ];
                 [thumbView setThumbdelegate:self];
-                [thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
-                [thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
+                //[thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
+                //[thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
                 CGRect frame = [thumbView frame];
                 frame.origin.y = THUMB_V_PADDING;
                 frame.origin.x = xPosition;

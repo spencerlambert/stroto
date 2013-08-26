@@ -76,11 +76,11 @@
     [slideupview createThumbScrollViewIfNecessary];
     [self.view addSubview:slideupview];
     
-    slidedownview = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
-    slidedownview.mydelegate = self;
-    [slidedownview setPhotos:[self foregroundImages]];
-    [slidedownview createThumbScrollViewIfNecessary];
-    [self.view addSubview:slidedownview];
+//    slidedownview = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+//    slidedownview.mydelegate = self;
+//    [slidedownview setPhotos:[self foregroundImages]];
+//    [slidedownview createThumbScrollViewIfNecessary];
+//    [self.view addSubview:slidedownview];
     
 //    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
 //    slideleftview.mydelegate = self;

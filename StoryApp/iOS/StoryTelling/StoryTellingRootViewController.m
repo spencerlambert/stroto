@@ -15,6 +15,7 @@
 
 @implementation StoryTellingRootViewController {
     STStoryDB* newStory;
+    NSMutableArray *displayNames ;
 }
 
 @synthesize newstoryFlag;
@@ -35,12 +36,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.tag=100;
+    [self displaydbNames];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [newstoryFlag setIsNewStory:@"true"];
+    [self displaydbNames];
+    [[self storyTable] reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +61,70 @@
 //
 //}
 
+- (void)displaydbNames{
+    NSString *docsDir;
+    NSArray *dirPaths;
+    displayNames = [[NSMutableArray alloc]init];
+    
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = dirPaths[0];
+    
+    NSString *newDir = [docsDir stringByAppendingPathComponent:STDIRECTORY];
+    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    
+    NSArray *filelist= [filemgr contentsOfDirectoryAtPath:newDir error:nil];
+    
+    int count = [filelist count];
+    
+    
+    NSLog (@"%i",count);
+    for(int i=0; i<count; i++){
+        sqlite3 *db;
+        if([[[filelist[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
+            NSLog(@"%@",filelist[i]);
+            NSString *databasePath = [newDir stringByAppendingPathComponent:filelist[i]];
+            const char *dbpath = [databasePath UTF8String];
+            
+            if (sqlite3_open(dbpath, & db) == SQLITE_OK){
+                NSString *sql = [NSString stringWithFormat:@"SELECT displayName from Story;"];
+                const char *sql_stmt = [sql UTF8String];
+                sqlite3_stmt *compiled_stmt;
+                if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+                    if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+                        NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
+                        [displayNames addObject:temp];
+                        NSLog(@"aaa is %@",temp);
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [displayNames count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = [displayNames objectAtIndex:indexPath.row];
+    return cell;
+}
 
 - (void)viewDidUnload {
 
