@@ -8,6 +8,6 @@
 
 #import "STStage.h"
 
-@interface STStagePlayer : STStage
+@interface STStagePlayer : NSObject
 
 @end

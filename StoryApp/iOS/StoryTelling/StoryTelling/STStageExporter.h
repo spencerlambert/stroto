@@ -1,14 +1,13 @@
 //
-//  STStagePlayer.m
+//  STStageExporter.h
 //  StoryTelling
 //
-//  Created by Spencer Lambert on 6/30/13.
+//  Created by Aaswini on 27/08/13.
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
 #import "STStagePlayer.h"
 
-@implementation STStagePlayer
-
+@interface STStageExporter : STStagePlayer
 
 @end

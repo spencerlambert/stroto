@@ -84,8 +84,8 @@
                               orientation:(thumbImage.imageOrientation)];
                 ThumbImageView *thumbView = [[ThumbImageView alloc] initWithImage:thumbImage ];
                 [thumbView setThumbdelegate:self];
-                [thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
-                [thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
+//                [thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
+//                [thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
                 CGRect frame = [thumbView frame];
                 frame.origin.y = THUMB_V_PADDING;
                 frame.origin.x = xPosition;

@@ -8,6 +8,6 @@
 
 #import "STStage.h"
 
-@interface STStageRecorder : STStage
+@interface STStageRecorder : NSObject
 
 @end

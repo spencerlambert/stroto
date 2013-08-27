@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STStageRecorder.h"
+#import "STStagePlayer.h"
+#import "STStageExporter.h"
+#import "STSound.h"
+#import "STAudioRecording.h"
 
-@interface STStage : UIView
+
+@interface STStage : UIView{
+    
+    STStageRecorder *stageRecorder;
+    STStagePlayer *stagePlayer;
+    STStageExporter *stageExporter;
+    STSound *sound;
+    STAudioRecording *audioRecording;
+    
+}
 
 @end
