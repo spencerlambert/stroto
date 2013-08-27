@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STImage.h"
 
 @interface STStoryPacksViewController : UIViewController
 {
@@ -17,12 +18,11 @@
 @property (strong, nonatomic) IBOutlet UIView *freeStoryPacksView;
 - (IBAction)previousView:(UIBarButtonItem *)sender;
 
-@property (strong, nonatomic) NSDictionary *paidJson;
-@property (strong, nonatomic) NSDictionary *freeJson;
+@property (strong, nonatomic) NSDictionary *paidJson;   //holding json from get_paid_list
+@property (strong, nonatomic) NSDictionary *freeJson;   //holding json from get_free_list
 
-@property (strong,nonatomic) NSArray *freeImages;
-@property (strong, nonatomic) NSArray *paidImages;
-@property (strong, nonatomic) NSArray *installedImages;
-
+@property (strong,nonatomic) NSArray *freeImages;       //not used
+@property (strong, nonatomic) NSArray *paidImages;      //not used
+@property (strong, nonatomic) NSArray *installedImages; //not used
 
 @end
