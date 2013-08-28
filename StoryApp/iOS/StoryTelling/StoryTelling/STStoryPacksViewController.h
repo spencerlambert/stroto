@@ -13,6 +13,7 @@
 {
     
 }
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UIView *installedStoryPacksView;
 @property (strong, nonatomic) IBOutlet UIView *paidStoryPacksView;
 @property (strong, nonatomic) IBOutlet UIView *freeStoryPacksView;
