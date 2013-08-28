@@ -115,11 +115,11 @@
         //selectedforegroundimage = 0;
     }
     [freeStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
-    for(UIView *view in paidStoryPacksView.subviews){
+    for(UIView *view in freeStoryPacksView.subviews){
         [view removeFromSuperview];
     }
     [freeStoryPacksHolder setHidden:NO];
-    [paidStoryPacksView addSubview:freeStoryPacksHolder];
+    [freeStoryPacksView addSubview:freeStoryPacksHolder];
     //###########################################################################
 }
 
