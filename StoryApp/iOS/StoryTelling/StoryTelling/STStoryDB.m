@@ -196,7 +196,7 @@
         sqlite3_bind_double(statement, 8, image.defaultScale);
         sqlite3_bind_blob(statement, 9, [image.imageData bytes], [image.imageData length], SQLITE_STATIC);
         NSData *imageData = UIImagePNGRepresentation(image.thumbimage);
-        sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
         // Execute the statement.
         if (sqlite3_step(statement) != SQLITE_DONE) {
             NSLog(@"Failed to insert images");

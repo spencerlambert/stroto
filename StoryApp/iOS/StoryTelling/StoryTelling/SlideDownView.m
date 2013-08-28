@@ -7,6 +7,7 @@
 //
 
 #import "SlideDownView.h"
+#import "STImage.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -72,20 +73,16 @@
         // and in the course of doing so calculate the content width
         float xPosition = THUMB_H_PADDING;
         
-        
-       for (NSMutableDictionary *imageDictionary in self.photos) {
-        UIImage *thumbImage = [imageDictionary
-                               objectForKey:@"UIImagePickerControllerOriginalImage"];
-           // UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+        for (int i = 0; i<[[self photos]count];i++) {
+            STImage *stimage = [[self photos]objectAtIndex:i];
+            UIImage *thumbImage = stimage.thumbimage;
+            
             if (thumbImage) {
-                thumbImage =
-                [UIImage imageWithCGImage:[thumbImage CGImage]
-                                    scale:(thumbImage.scale * 1.2)
-                              orientation:(thumbImage.imageOrientation)];
+                thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+                                                 scale:(thumbImage.scale * 1.4)
+                                           orientation:(thumbImage.imageOrientation)];
                 ThumbImageView *thumbView = [[ThumbImageView alloc] initWithImage:thumbImage ];
                 [thumbView setThumbdelegate:self];
-//                [thumbView setImageName:[imageDictionary objectForKey:@"UIImagePickerControllerImageFileName"]];
-//                [thumbView setOriginalImage:[imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"]];
                 CGRect frame = [thumbView frame];
                 frame.origin.y = THUMB_V_PADDING;
                 frame.origin.x = xPosition;
@@ -93,8 +90,9 @@
                 frame.size.width = THUMB_HEIGHT;
                 [thumbView setFrame:frame];
                 [thumbView setHome:frame];
-                //thumbView.contentMode = UIViewContentModeScaleAspectFit;
+                thumbView.contentMode = UIViewContentModeScaleAspectFill;
                 [thumbView setClipsToBounds:YES];
+                [thumbView setOriginalImage:stimage];
                 [CutoutImagesHolder addSubview:thumbView];
                 xPosition += (frame.size.width + THUMB_H_PADDING);
             }

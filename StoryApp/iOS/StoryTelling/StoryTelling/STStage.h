@@ -10,7 +10,6 @@
 #import "STStageRecorder.h"
 #import "STStagePlayer.h"
 #import "STStageExporter.h"
-#import "STSound.h"
 #import "STAudioRecording.h"
 
 

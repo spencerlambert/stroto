@@ -15,6 +15,7 @@
 #import "UIView+Hierarchy.h"
 #import "BottomRight.h"
 #import "TopRightView.h"
+#import "STStoryDB.h"
 
 @interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate>{
     SlideUpView *slideupview;
@@ -30,12 +31,14 @@
     UIPinchGestureRecognizer *pinch;
     UIRotationGestureRecognizer *rotate;
     UITapGestureRecognizer *tap;
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *captureview;
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;
 @property (strong, nonatomic) UIImage *selectedForegroundImage;
+@property STStoryDB *storyDB;
 
 
 @end

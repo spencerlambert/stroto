@@ -23,6 +23,7 @@
 
 @synthesize captureview;
 @synthesize selectedForegroundImage;
+@synthesize storyDB;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,9 +34,16 @@
     return self;
 }
 
+-(void)initWorkArea{
+    
+    [self setBackgroundImages:[NSMutableArray arrayWithArray:[storyDB getBackgroundImagesSorted]]];
+    [self setForegroundImages:[NSMutableArray arrayWithArray:[storyDB getForegroundImagesSorted]]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initWorkArea];
     [self setSelectedForegroundImage:nil];
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
@@ -76,11 +84,11 @@
     [slideupview createThumbScrollViewIfNecessary];
     [self.view addSubview:slideupview];
     
-//    slidedownview = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
-//    slidedownview.mydelegate = self;
-//    [slidedownview setPhotos:[self foregroundImages]];
-//    [slidedownview createThumbScrollViewIfNecessary];
-//    [self.view addSubview:slidedownview];
+    slidedownview = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+    slidedownview.mydelegate = self;
+    [slidedownview setPhotos:[self foregroundImages]];
+    [slidedownview createThumbScrollViewIfNecessary];
+    [self.view addSubview:slidedownview];
     
 //    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
 //    slideleftview.mydelegate = self;
@@ -228,26 +236,26 @@
     NSLog(@"foreground image set");
 }
 
-//- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
-//    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
-//    if(CGRectIntersectsRect(mainframe, testframe)){
-//        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
-//        imageview.image = tiv;
-//        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-//        pan.delegate = self;
-//        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-//        pinch.delegate = self;
-//        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
-//        rotate.delegate = self;
-//        [imageview setUserInteractionEnabled:YES];
-//        [imageview addGestureRecognizer:pan];
-//        [imageview addGestureRecognizer:pinch];
-//        [imageview addGestureRecognizer:rotate];
-//        [imageview setUserInteractionEnabled:YES];
-//        [captureview addSubview:imageview];
-//        [pickedimages addObject:imageview];
-//    }
-//}
+- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
+    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
+    if(CGRectIntersectsRect(mainframe, testframe)){
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
+        imageview.image = tiv;
+        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+        pan.delegate = self;
+        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+        pinch.delegate = self;
+        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+        rotate.delegate = self;
+        [imageview setUserInteractionEnabled:YES];
+        [imageview addGestureRecognizer:pan];
+        [imageview addGestureRecognizer:pinch];
+        [imageview addGestureRecognizer:rotate];
+        [imageview setUserInteractionEnabled:YES];
+        [captureview addSubview:imageview];
+        [pickedimages addObject:imageview];
+    }
+}
 
 #pragma mark UIGestureRecognizerDelegate methods
 

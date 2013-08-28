@@ -227,9 +227,10 @@
     WorkAreaController *workarea =
     [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
-    [workarea setBackgroundImages:backgroundImages];
-    [workarea setForegroundImages:foregroundImages];
+//    [workarea setBackgroundImages:backgroundImages];
+//    [workarea setForegroundImages:foregroundImages];
     [workarea setStoryname:[storyNameTextField text]];
+    [workarea setStoryDB:newStory];
     [self presentViewController:workarea animated:YES completion:nil];
 }
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
