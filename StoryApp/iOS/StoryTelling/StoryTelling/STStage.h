@@ -19,9 +19,8 @@
     STStageRecorder *stageRecorder;
     STStagePlayer *stagePlayer;
     STStageExporter *stageExporter;
-    STSound *sound;
     STAudioRecording *audioRecording;
-    
+
 }
 
 @end

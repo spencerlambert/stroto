@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
-#import "STStage.h"
-
 @interface STStageRecorder : NSObject
 
 @end

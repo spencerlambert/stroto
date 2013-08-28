@@ -47,76 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "398756719.029822"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "721"
-         endingLineNumber = "721"
-         landmarkName = "-updateThumbImage1"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "398756719.029822"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "723"
-         endingLineNumber = "723"
-         landmarkName = "-updateThumbImage1"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "398756719.029822"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "713"
-         endingLineNumber = "713"
-         landmarkName = "-updateThumbImage1"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "398756708.307237"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "487"
-         endingLineNumber = "487"
-         landmarkName = "-prepareScrollView"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
          timestampString = "398761643.558286"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "775"
          endingLineNumber = "775"
-         landmarkName = "-editForegroundSegment:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "StoryTelling/STCropForegroundViewController.m"
-         timestampString = "398758685.512795"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "735"
-         endingLineNumber = "735"
          landmarkName = "-editForegroundSegment:"
          landmarkType = "5">
       </FileBreakpoint>
