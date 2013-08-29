@@ -86,6 +86,14 @@
 		DB95AEAE17A61AB70006FDC9 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = DB95AEAC17A61AB70006FDC9 /* black.png */; };
 		DB98581D17C35751001AD854 /* UIImageCVMatConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB98581C17C35751001AD854 /* UIImageCVMatConverter.mm */; };
 		DB98581F17C3596A001AD854 /* UIImageCVMatConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB98581C17C35751001AD854 /* UIImageCVMatConverter.mm */; };
+		DB989C8017CF2ED20056299D /* ModifierButtonFlip.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7817CF2ED20056299D /* ModifierButtonFlip.png */; };
+		DB989C8117CF2ED20056299D /* ModifierButtonFollowTangent.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7917CF2ED20056299D /* ModifierButtonFollowTangent.png */; };
+		DB989C8217CF2ED20056299D /* ModifierButtonPerspectiveGround.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7A17CF2ED20056299D /* ModifierButtonPerspectiveGround.png */; };
+		DB989C8317CF2ED20056299D /* ModifierButtonPerspectiveSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7B17CF2ED20056299D /* ModifierButtonPerspectiveSky.png */; };
+		DB989C8417CF2ED20056299D /* ModifierButtonRotateLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7C17CF2ED20056299D /* ModifierButtonRotateLeft.png */; };
+		DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7D17CF2ED20056299D /* ModifierButtonRotateRight.png */; };
+		DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */; };
+		DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
@@ -254,6 +262,14 @@
 		DB95AEAC17A61AB70006FDC9 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		DB98581B17C35745001AD854 /* UIImageCVMatConverter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIImageCVMatConverter.hh; sourceTree = "<group>"; };
 		DB98581C17C35751001AD854 /* UIImageCVMatConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVMatConverter.mm; sourceTree = "<group>"; };
+		DB989C7817CF2ED20056299D /* ModifierButtonFlip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonFlip.png; sourceTree = "<group>"; };
+		DB989C7917CF2ED20056299D /* ModifierButtonFollowTangent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonFollowTangent.png; sourceTree = "<group>"; };
+		DB989C7A17CF2ED20056299D /* ModifierButtonPerspectiveGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonPerspectiveGround.png; sourceTree = "<group>"; };
+		DB989C7B17CF2ED20056299D /* ModifierButtonPerspectiveSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonPerspectiveSky.png; sourceTree = "<group>"; };
+		DB989C7C17CF2ED20056299D /* ModifierButtonRotateLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonRotateLeft.png; sourceTree = "<group>"; };
+		DB989C7D17CF2ED20056299D /* ModifierButtonRotateRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonRotateRight.png; sourceTree = "<group>"; };
+		DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonZoomLarger.png; sourceTree = "<group>"; };
+		DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonZoomSmaller.png; sourceTree = "<group>"; };
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9D34F517CD98CC00845670 /* STStageExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporter.h; sourceTree = "<group>"; };
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
@@ -477,6 +493,14 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DB989C7817CF2ED20056299D /* ModifierButtonFlip.png */,
+				DB989C7917CF2ED20056299D /* ModifierButtonFollowTangent.png */,
+				DB989C7A17CF2ED20056299D /* ModifierButtonPerspectiveGround.png */,
+				DB989C7B17CF2ED20056299D /* ModifierButtonPerspectiveSky.png */,
+				DB989C7C17CF2ED20056299D /* ModifierButtonRotateLeft.png */,
+				DB989C7D17CF2ED20056299D /* ModifierButtonRotateRight.png */,
+				DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */,
+				DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */,
 				4D696D7C17BAE05800F7D47C /* Divider.png */,
 				DBE496CB17B372FC009B5C31 /* MagnifyingGlass */,
 				DB95AEAC17A61AB70006FDC9 /* black.png */,
@@ -762,6 +786,14 @@
 				DB95AEAD17A61AB70006FDC9 /* black.png in Resources */,
 				DBE496D717B372FC009B5C31 /* kb-loupe-hi.png in Resources */,
 				4D696D7D17BAE05800F7D47C /* Divider.png in Resources */,
+				DB989C8017CF2ED20056299D /* ModifierButtonFlip.png in Resources */,
+				DB989C8117CF2ED20056299D /* ModifierButtonFollowTangent.png in Resources */,
+				DB989C8217CF2ED20056299D /* ModifierButtonPerspectiveGround.png in Resources */,
+				DB989C8317CF2ED20056299D /* ModifierButtonPerspectiveSky.png in Resources */,
+				DB989C8417CF2ED20056299D /* ModifierButtonRotateLeft.png in Resources */,
+				DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */,
+				DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */,
+				DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

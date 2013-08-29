@@ -76,7 +76,7 @@ CGRect grabcutFrame;
     testImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
    // [self.view addSubview:testImage];
     testImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 0, 150, 150)];
-  //  [self.view addSubview:testImage1];
+   //[self.view addSubview:testImage1];
     
     
     //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEraseTapGesture:)];
@@ -723,7 +723,7 @@ CGRect grabcutFrame;
     }else if (temp.size.height >temp.size.width && temp.size.height > 640){
         temp = [self imageWithImage:temp scaledToHeight:640];
     }
-    testImage1.image = temp;
+   // testImage1.image = temp;
     
     return temp;
 }

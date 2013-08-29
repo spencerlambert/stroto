@@ -88,7 +88,7 @@
                 [thumbView setHome:frame];
                 //thumbView.contentMode = UIViewContentModeScaleAspectFit;
                 [thumbView setClipsToBounds:YES];
-                [thumbView setOriginalImage:stimage];
+                [thumbView setOriginalImage:stimage.thumbimage];
                 [BackgroundImagesHolder addSubview:thumbView];
                 xPosition += (frame.size.width + THUMB_H_PADDING);
             }
