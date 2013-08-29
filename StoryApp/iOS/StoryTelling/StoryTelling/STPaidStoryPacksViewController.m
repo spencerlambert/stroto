@@ -5,7 +5,8 @@
 //  Created by Nandakumar on 23/08/13.
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
-
+#define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
+#define paidDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":"]
 #import "STPaidStoryPacksViewController.h"
 
 @interface STPaidStoryPacksViewController ()
@@ -19,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -27,8 +29,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+//    self.navigationController.title = @"Story Packs";
+    //for test white views
+}
+-(void) paidJsonDetails
+{
+    [self reloadBackgroundImages];
+    [self reloadForegroundImages];
+}
+-(void)reloadBackgroundImages
+{
+    
 }
 
+-(void)reloadForegroundImages
+{
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

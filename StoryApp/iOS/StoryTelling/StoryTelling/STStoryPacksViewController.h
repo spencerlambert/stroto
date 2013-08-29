@@ -22,8 +22,6 @@
 @property (strong, nonatomic) NSDictionary *paidJson;   //holding json from get_paid_list
 @property (strong, nonatomic) NSDictionary *freeJson;   //holding json from get_free_list
 
-@property (strong,nonatomic) NSArray *freeImages;       //not used
-@property (strong, nonatomic) NSArray *paidImages;      //not used
-@property (strong, nonatomic) NSArray *installedImages; //not used
+@property (strong, nonatomic) NSArray *installedImages; //to be used later
 
 @end

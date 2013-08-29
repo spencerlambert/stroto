@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+//    self.navigationController.title = @"Story Packs";
+//    for tests blue views
 }
 
 - (void)didReceiveMemoryWarning
