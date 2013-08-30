@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STImage.h"
 
 @interface STFreeStoryPacksViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UILabel *freeStoryPackName;
-@property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;
-@property (strong, nonatomic) IBOutlet UIView *foreGroundImagesView;
 
+@property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;
+@property (strong, nonatomic) IBOutlet UIView *foregroundImagesView;
+
+@property (strong, nonatomic) NSDictionary *freeStoryPackDetailsJson;
+@property (assign, nonatomic) int storyPackID;
 @end

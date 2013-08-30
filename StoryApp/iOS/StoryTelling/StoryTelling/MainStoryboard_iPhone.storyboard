@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -754,10 +754,10 @@
             </objects>
             <point key="canvasLocation" x="153" y="-637"/>
         </scene>
-        <!--Paid Story Packs View Controller - Free Story Packs-->
+        <!--Paid Story Packs View Controller - Story Packs-->
         <scene sceneID="XRU-NQ-N1i">
             <objects>
-                <viewController storyboardIdentifier="paidStoryPacks" title="Free Story Packs" id="BTs-AR-N9X" customClass="STPaidStoryPacksViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paidStoryPacks" title="Story Packs" id="BTs-AR-N9X" customClass="STPaidStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcI-OD-CM5">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -769,7 +769,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkP-Ob-lZa">
                                 <rect key="frame" x="0.0" y="20" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -796,7 +796,7 @@
                             <view opaque="NO" contentMode="scaleToFill" id="xbt-ZB-gZQ">
                                 <rect key="frame" x="0.0" y="168" width="321" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="Ygh-Iu-kfC">
@@ -813,15 +813,21 @@
                             <view opaque="NO" contentMode="scaleToFill" id="f0p-7k-8hj">
                                 <rect key="frame" x="0.0" y="318" width="321" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
+                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="ynD-0V-vCJ">
+                                <rect key="frame" x="137" y="227" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="backgroundImagesView" destination="xbt-ZB-gZQ" id="HkW-UN-BjF"/>
                         <outlet property="foregroundImagesView" destination="f0p-7k-8hj" id="GOm-n0-axA"/>
+                        <outlet property="loader" destination="ynD-0V-vCJ" id="aoX-UJ-VI5"/>
                         <outlet property="paidButtonLabel" destination="6ey-qN-mrI" id="uGx-tQ-fPR"/>
                         <outlet property="paidStoryPackName" destination="tkP-Ob-lZa" id="SNS-VX-mz4"/>
                     </connections>
@@ -915,22 +921,21 @@
             </objects>
             <point key="canvasLocation" x="943" y="-641"/>
         </scene>
-        <!--Free Story Packs View Controller-->
+        <!--Free Story Packs View Controller - Story Packs-->
         <scene sceneID="eBK-mY-Nvl">
             <objects>
-                <viewController storyboardIdentifier="freeStoryPacks" id="RRX-6d-vFv" customClass="STFreeStoryPacksViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="freeStoryPacks" title="Story Packs" id="RRX-6d-vFv" customClass="STFreeStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RmS-dL-PUv">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="alX-ku-A83">
-                                <rect key="frame" x="1" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AkV-RR-Hph">
-                                <rect key="frame" x="1" y="20" width="320" height="25"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -957,7 +962,7 @@
                             <view opaque="NO" contentMode="scaleToFill" id="Gcc-fO-arI">
                                 <rect key="frame" x="-1" y="168" width="321" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="TkS-78-Etb">
@@ -974,16 +979,22 @@
                             <view opaque="NO" contentMode="scaleToFill" id="xiL-vv-74W">
                                 <rect key="frame" x="0.0" y="318" width="321" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
+                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="FND-CI-GA7">
+                                <rect key="frame" x="158" y="225" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="backgroundImagesView" destination="Gcc-fO-arI" id="sAM-fO-WiJ"/>
-                        <outlet property="foreGroundImagesView" destination="xiL-vv-74W" id="eyL-G4-98Y"/>
+                        <outlet property="foregroundImagesView" destination="xiL-vv-74W" id="5N6-I6-qgw"/>
                         <outlet property="freeStoryPackName" destination="AkV-RR-Hph" id="dj6-aR-dff"/>
+                        <outlet property="loader" destination="FND-CI-GA7" id="JpB-mk-6cW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQf-kN-SCI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1082,8 +1093,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="foreGroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
             </relationships>
         </class>
         <class className="STPaidStoryPacksViewController" superclassName="UIViewController">
@@ -1091,6 +1103,7 @@
             <relationships>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="paidStoryPackName" candidateClass="UILabel"/>
             </relationships>
@@ -1122,6 +1135,7 @@
         <class className="StoryTellingRootViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
             <relationships>
+                <relationship kind="action" name="createNewStory:"/>
                 <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
             </relationships>
         </class>

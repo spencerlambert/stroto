@@ -19,6 +19,7 @@
 #import "STFreeStoryPacksViewController.h"
 
 @implementation STStoryPacksViewController
+
 @synthesize installedStoryPacksView;
 @synthesize paidStoryPacksView;
 @synthesize freeStoryPacksView;
@@ -97,6 +98,7 @@
 //    [paidStoryPacksView setBackgroundColor:[UIColor whiteColor]];
     float __block xPosition = THUMB_H_PADDING;
     UIScrollView *paidStoryPacksHolder = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeight)];
+    paidStoryPacksHolder.tag = 1;
     [paidStoryPacksHolder setCanCancelContentTouches:NO];
     [paidStoryPacksHolder setClipsToBounds:NO];
     for(UIView *view in paidStoryPacksView.subviews)
@@ -121,16 +123,13 @@
         frame.size.height = THUMB_HEIGHT; // thumbImage.size.height;
         [thumbView setFrame:frame];
         [thumbView setHidden:NO];
-        [thumbView setTag:i];
-        
 //Implementing Tap on thumbnails
-        
-        
+//        NSLog(@"[valueForKey:StoryPackID] intValue = %d",[[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]);
+        [thumbView setTag:[[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
         UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
         click.numberOfTapsRequired = 1;
         [thumbView addGestureRecognizer:click];
         [thumbView setUserInteractionEnabled:YES];
-        
         [paidStoryPacksHolder addSubview:thumbView];
 //showing storyPackName for paid packs
         UILabel *storyPackName = [[UILabel alloc] init];
@@ -143,16 +142,14 @@
         storyPackName.text = [[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Name"];
 //        storyPackName.text = @"Goldilocks and The three Bears";//test largest name!
         [storyPackName setFrame:textFrame];
-        [storyPackName setTag:i];
+        
         [storyPackName setHidden:NO];
-        
 //implementing tap on name label
-        
-        
-//        [storyPackName addGestureRecognizer:click];
-//        [storyPackName setUserInteractionEnabled:YES];
-        
-//        selectedforegroundimage = 0;
+        [storyPackName setTag:[[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
+        UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        nameClick.numberOfTapsRequired = 1;
+        [storyPackName addGestureRecognizer:nameClick];
+        [storyPackName setUserInteractionEnabled:YES];
         [paidStoryPacksHolder addSubview:storyPackName];
 //price display for paid story packs.
         UILabel *storyPackPrice = [[UILabel alloc] init];
@@ -164,12 +161,13 @@
         [storyPackPrice setNumberOfLines:1];
         storyPackPrice.text = [NSString stringWithFormat:@"$%@",[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Price"]];
         [storyPackPrice setFrame:priceTextFrame];
-        [storyPackPrice setTag:i];
         [storyPackPrice setHidden:NO];
-//        implementing tap on price label
-//        [storyPackPrice addGestureRecognizer:click];
-//        [storyPackPrice setUserInteractionEnabled:YES];
-        //selectedStoryPack = 0;
+//implementing tap on price label
+        [storyPackPrice setTag:[[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
+        UITapGestureRecognizer *priceClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        priceClick.numberOfTapsRequired = 1;
+        [storyPackPrice addGestureRecognizer:priceClick];
+        [storyPackPrice setUserInteractionEnabled:YES];
         [paidStoryPacksHolder addSubview:storyPackPrice];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
@@ -186,6 +184,7 @@
     float scrollViewWidth  = [freeStoryPacksView bounds].size.width;
 //    [freeStoryPacksView setBackgroundColor:[UIColor whiteColor]];//for knowing the bounds
     UIScrollView *freeStoryPacksHolder = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeight)];
+    freeStoryPacksHolder.tag = 2;
     [freeStoryPacksHolder setCanCancelContentTouches:NO];
     [freeStoryPacksHolder setClipsToBounds:NO];
     float __block xPosition = THUMB_H_PADDING;
@@ -207,11 +206,12 @@
         [thumbView setFrame:frame];
         [thumbView setHidden:NO];
 //implementing Tap on storypack thumbnails
+//        NSLog(@"valueForKey:StoryPackID = %d",[[[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]);
+        [thumbView setTag:[[[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
         UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
         click.numberOfTapsRequired = 1;
         [thumbView addGestureRecognizer:click];
         [thumbView setUserInteractionEnabled:YES];
-        [thumbView setTag:i];
         [freeStoryPacksHolder addSubview:thumbView];
 //showing storyPackName
         UILabel *storyPackName = [[UILabel alloc] init];
@@ -223,14 +223,15 @@
         [storyPackName setNumberOfLines:2];
         storyPackName.text = [[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Name"];
         [storyPackName setFrame:textFrame];
-        [storyPackName setTag:i];
-//implementing tap on storypack name
-//        [storyPackName addGestureRecognizer:click];
-//        [storyPackName setUserInteractionEnabled:YES];
         [storyPackName setHidden:NO];
+//implementing tap on storypack name
+        [storyPackName setTag:[[[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
+        UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        nameClick.numberOfTapsRequired = 1;
+        [storyPackName addGestureRecognizer:nameClick];
+        [storyPackName setUserInteractionEnabled:YES];
         [freeStoryPacksHolder addSubview:storyPackName];
         xPosition += (frame.size.width + THUMB_H_PADDING);
-        //selectedStoryPack = 0;
     }
     [freeStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     for(UIView *view in freeStoryPacksView.subviews){
@@ -245,12 +246,34 @@
     [self.loader setHidden:TRUE];
     
 }
--(void)handleSingleTap:(UIGestureRecognizer *)recognizer{
-    
+-(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    STPaidStoryPacksViewController *paidStoryPacks = [storyboard instantiateViewControllerWithIdentifier:@"paidStoryPacks"];
-    [self.navigationController pushViewController:paidStoryPacks animated:YES];
-//      [self presentViewController:paidStoryPacks animated:YES completion:nil];
+    
+//  
+//    NSLog(@"recognizer.view.superview.tag = %d",recognizer.view.superview.tag);
+//    if(recognizer.view)
+    if(recognizer.view.superview.tag == 1)
+    {
+        STPaidStoryPacksViewController *paidStoryPacks = [storyboard instantiateViewControllerWithIdentifier:@"paidStoryPacks"];
+        
+        paidStoryPacks.storyPackID = (unsigned int)recognizer.view.tag;
+//        NSLog(@"recognizer.view.tag = %d",recognizer.view.tag);
+//        NSLog(@"paidStoryPacks.storyPackID = %d",paidStoryPacks.storyPackID);
+
+   [self.navigationController pushViewController:paidStoryPacks animated:YES];
+    }
+    else if(recognizer.view.superview.tag == 2)
+    {
+          STFreeStoryPacksViewController *freeStoryPacks = [storyboard instantiateViewControllerWithIdentifier:@"freeStoryPacks"];
+        
+        freeStoryPacks.storyPackID = (unsigned int)recognizer.view.tag;
+//        NSLog(@"recognizer.view.tag = %d",recognizer.view.tag);
+//        NSLog(@"freeStoryPacks.storyPackID = %d",freeStoryPacks.storyPackID);
+
+      [self.navigationController pushViewController:freeStoryPacks animated:YES];
+    
+    }
 }
 
 - (void)viewDidUnload {
