@@ -8,8 +8,8 @@
 
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define freeDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":\"%d\"}",storyPackID]
-#define THUMB_HEIGHT 57
-#define THUMB_V_PADDING 3
+#define THUMB_HEIGHT 80
+#define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
 
 #import "STFreeStoryPacksViewController.h"
@@ -109,6 +109,7 @@
         //showing paid story pack's thubnail images
         UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
         CGRect frame = [thumbView frame];
+        [thumbView setContentMode:UIViewContentModeScaleAspectFit];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;//thumb_H_padding
         frame.size.width = THUMB_HEIGHT; //thumbImage.size.width;
@@ -161,6 +162,7 @@
         //showing paid story pack's thubnail images
         UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
         CGRect frame = [thumbView frame];
+        [thumbView setContentMode:UIViewContentModeScaleAspectFit];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;//thumb_H_padding
         frame.size.width = THUMB_HEIGHT; //thumbImage.size.width;
