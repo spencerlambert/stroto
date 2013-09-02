@@ -22,6 +22,8 @@
         [self setImageData: UIImagePNGRepresentation(self)];
         [self setSizeScale:269];
         [self setIsEdited:NO];
+        [self setMasks:[[NSMutableArray alloc]init]];
+        [self setMaskImgs:[[NSMutableArray alloc]init]];
     }
     return self;
 }

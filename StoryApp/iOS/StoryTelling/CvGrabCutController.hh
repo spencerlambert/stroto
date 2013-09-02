@@ -77,6 +77,7 @@ using namespace std;
 
 - (UIImage*)getSaveImage;
 - (UIImage*)getSaveImageMask;
+- (UIImage*)getInverseSaveImageMask;
 - (void)setImage:(UIImage*)image;
 - (void)nextIteration;
 - (void)resetImage;
@@ -88,6 +89,5 @@ using namespace std;
 
 - (void) saveMask;
 - (void) restoreMask;
-
 
 @end

@@ -378,6 +378,8 @@ CGRect grabcutFrame;
     img1.sizeScale = img.sizeScale;
     img1.isEdited = img.isEdited;
     img1.orgImage = img.orgImage;
+    img1.masks = img.masks;
+    img1.maskImgs = img.maskImgs;
     CGFloat currentScale = self.cropforegroundImage.frame.size.width / self.cropforegroundImage.bounds.size.width;
     [img1 setDefaultScale:currentScale];
     [img1 setMinZoomScale:[self.cropView minimumZoomScale]];
@@ -405,6 +407,8 @@ CGRect grabcutFrame;
     img1.minZoomScale = img.minZoomScale;
     img1.defaultX = img.defaultX;
     img1.defaultY = img.defaultY;
+    img1.masks = img.masks;
+    img1.maskImgs = img.maskImgs;
     [img1 setThumbimage:[self updateEraseThumbImage]];
     [[self foregroundEraseImages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
     
@@ -421,6 +425,8 @@ CGRect grabcutFrame;
         img1.minZoomScale = 0;
         img1.defaultX = 0;
         img1.defaultY = 0;
+//        img1.mask = img.mask;
+//        img1.maskImg = img.maskImg;
         [img1 setThumbimage:[self updateEraseThumbImage]];
         [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
         [self clearScrollView];
@@ -442,6 +448,8 @@ CGRect grabcutFrame;
         img1.minZoomScale = 0;
         img1.defaultX = 0;
         img1.defaultY = 0;
+        img1.masks = img.masks;
+        img1.maskImgs = img.maskImgs;
         [img1 setThumbimage:img.thumbimage];
         [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img1];
         [self clearScrollView];
@@ -674,6 +682,8 @@ CGRect grabcutFrame;
     
     STImage *img = [self.foregroundEraseImages objectAtIndex:selectedforegroundimage];
     img.isEdited = YES;
+    [img.maskImgs addObject:[[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"]];
+    [img.masks addObject:[grabCutController getInverseSaveImageMask]];
     [self.foregroundEraseImages replaceObjectAtIndex:selectedforegroundimage withObject:img];
     
     isEdited = YES;
@@ -894,9 +904,6 @@ CGRect grabcutFrame;
     }
     if([undoImages[selectedforegroundimage] count]>1){
         int count = [undoImages[selectedforegroundimage] count];
-        //        UIImage *test = img.orgImage;
-        //        if(img.minZoomScale !=0)
-        //            test = img.thumbimage;
         if([[[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"count"] intValue] == count-1)
             [croppedImages[selectedforegroundimage] removeLastObject];
         UIImage *test = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
@@ -909,10 +916,16 @@ CGRect grabcutFrame;
             lastEdit = grabcutView.image;
             [self calculateScale];
             [grabCutController setImage:grabcutView.image];
-            //            UIImageView *test1 = [[UIImageView alloc]initWithImage:test];
-            //            [self.view addSubview:test1];
         }
         [undoImages[selectedforegroundimage] removeLastObject];
+        STImage *temp = (STImage*)[self foregroundimages][selectedforegroundimage];
+        [temp.masks removeLastObject];
+        [temp.maskImgs removeLastObject];
+        [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:temp];
+        STImage *temp1 = (STImage*)[self foregroundEraseImages][selectedforegroundimage];
+        [temp1.masks removeLastObject];
+        [temp1.maskImgs removeLastObject];
+        [[self foregroundEraseImages]replaceObjectAtIndex:selectedforegroundimage withObject:temp1];
     }
     else
     {
@@ -933,6 +946,8 @@ CGRect grabcutFrame;
         img1.minZoomScale = img.minZoomScale;
         img1.defaultX = img.defaultX;
         img1.defaultY = img.defaultY;
+        img1.masks = img.masks;
+        img1.maskImgs = img.maskImgs;
         grabcutView.image = [[croppedImages[selectedforegroundimage] lastObject] objectForKey:@"image"];
         //[croppedImages[selectedforegroundimage] removeLastObject];
         
@@ -957,6 +972,8 @@ CGRect grabcutFrame;
         img1.minZoomScale = img.minZoomScale;
         img1.defaultX = img.defaultX;
         img1.defaultY = img.defaultY;
+        img1.masks = img.masks;
+        img1.maskImgs = img.maskImgs;
         [img1 setThumbimage:[self updateEraseThumbImage]];
         [self cropforegroundImage].image = img1;
         [self sizeView].image = img1;

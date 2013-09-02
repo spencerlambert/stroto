@@ -54,4 +54,7 @@
 @property BOOL isEdited;
 
 @property float sizeScale;
+
+@property NSMutableArray *masks;
+@property NSMutableArray *maskImgs;
 @end

@@ -207,6 +207,30 @@
     return [UIImageCVMatConverter UIImageFromCVMat:~alpha];
 }
 
+- (UIImage*)getInverseSaveImageMask;
+{
+    Mat result;
+    Mat binMask;
+    Mat alpha;
+    if (initialized == NO) {
+        image.copyTo(result);
+    } else {
+        binMask = [self getBinMask:mask];
+        image.copyTo(result, binMask);
+        
+        // add alpha channel from mask
+        
+        m255.copyTo( alpha, binMask );
+        
+        vector<Mat> v;
+        v.push_back(result);
+        v.push_back(alpha);
+        merge(v, result);
+    }
+    
+    return [UIImageCVMatConverter UIImageFromCVMat:alpha];
+}
+
 - (void)resetImage;
 {
     [self reset];

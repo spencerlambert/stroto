@@ -137,6 +137,7 @@
 #import "STImageInstancePosition.h"
 #import "STImage.h"
 #import "STStoryFile.h"
+#import "CvGrabCutController.hh"
 
 
 #define STDIRECTORY @"story_dir/"

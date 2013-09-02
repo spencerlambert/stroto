@@ -194,8 +194,14 @@
         sqlite3_bind_int(statement, 6, image.defaultX);
         sqlite3_bind_int(statement, 7, image.defaultY);
         sqlite3_bind_double(statement, 8, image.defaultScale);
-        sqlite3_bind_blob(statement, 9, [image.imageData bytes], [image.imageData length], SQLITE_STATIC);
-        NSData *imageData = UIImagePNGRepresentation(image.thumbimage);
+        NSData *imageData;
+        if ([image.masks count]>0 && [image.maskImgs count]>0) {
+            imageData = [self getImageData:image];
+        }
+        else{
+            imageData = UIImagePNGRepresentation([UIImage imageWithCGImage:image.thumbimage.CGImage]);
+        }
+        sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
         sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
         // Execute the statement.
         if (sqlite3_step(statement) != SQLITE_DONE) {
@@ -325,6 +331,31 @@
         return  false;
     }
     return true;
+}
+
+-(NSData*)getImageData:(STImage*)image{
+    return UIImagePNGRepresentation([self maskImage:[image.maskImgs lastObject] withMask:[image.masks lastObject]]);
+}
+
+- (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
+    
+    CGImageRef maskRef = maskImage.CGImage;
+    
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+                                        CGImageGetHeight(maskRef),
+                                        CGImageGetBitsPerComponent(maskRef),
+                                        CGImageGetBitsPerPixel(maskRef),
+                                        CGImageGetBytesPerRow(maskRef),
+                                        CGImageGetDataProvider(maskRef), NULL, false);
+    
+    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], mask);
+    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+    
+    CGImageRelease(mask);
+    CGImageRelease(maskedImageRef);
+    
+    // returns new image with mask applied
+    return maskedImage;
 }
 
 @end
