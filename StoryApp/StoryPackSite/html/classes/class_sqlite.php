@@ -30,7 +30,7 @@ class StoryPackDB {
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
-        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".sqlite_escape_string($story_name)."'");
+        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".SQLite3::escapeString($story_name)."'");
         
     }
     
@@ -96,14 +96,14 @@ class StoryPackDB {
     protected function format_extra_insert_values($extra_match) {
         $insert = "";
         foreach ($extra_match as $name=>$val) {
-            $val = sqlite_escape_string($val);
+            $val = SQLite3::escapeString($val);
             $insert .= ", '$val'";
         }
         return $insert;
     }
     
     public function insert_image($type, $png_data, $scale) {
-        $sql = "INSERT INTO Images (DefaultScale, ImageType, ImageDataPNG) VALUES ('".$scale."', '".$type."','".sqlite_escape_string($png_data)."')";
+        $sql = "INSERT INTO Images (DefaultScale, ImageType, ImageDataPNG) VALUES ('".$scale."', '".$type."','".SQLite3::escapeString($png_data)."')";
         return $this->exec($sql);
     }
     
@@ -115,11 +115,11 @@ class StoryPackDB {
     }
     
     public function set_values($table, $account_id, $val_array, $extra_match = array()) {
-        $account_id = sqlite_escape_string($account_id);
+        $account_id = SQLite3::escapeString($account_id);
         $this->check_table($table, $account_id, $extra_match);
         
         foreach ($val_array as $name=>$val) {
-            $val = sqlite_escape_string(trim($val));
+            $val = SQLite3::escapeString(trim($val));
             $this->exec("UPDATE $table SET $name='$val' WHERE AccountID='$account_id'".$this->format_extra_where($extra_match));
         }
     }
