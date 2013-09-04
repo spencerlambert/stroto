@@ -33,6 +33,7 @@ switch ($json_data->st_request) {
         break;
     case "purchase":
         $story_id = numbers_only($json_data->st_story_id);
+        $apple_receipt = $json_data->apple_receipt;
         if ($story_id == "") {
             $error_txt = "missing valid st_story_id";
             include('include/error_reply.php');            
