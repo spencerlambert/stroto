@@ -4,8 +4,8 @@ if (CONFIG_LOADED !== true) {
     include('/include/error_reply.php');
 }
 
-include_once('../classes/class_tables.php');
-include_once('../classes/class_sqlite.php');
+include_once('/classes/class_tables.php');
+include_once('/classes/class_sqlite.php');
 
 //Check Apple Receipt
 if (trim($apple_receipt) == "") {
