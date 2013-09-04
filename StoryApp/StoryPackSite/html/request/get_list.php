@@ -1,7 +1,7 @@
 <?php
 if (CONFIG_LOADED !== true) {
     $error_txt = "no access";
-    include('/include/error_reply.php');
+    include('include/error_reply.php');
 }
 
 $sql = "SELECT StoryPackID, Name, ThumbnailURL, Price, AppleStoreKey, Type

@@ -1,7 +1,7 @@
 <?php
 if (CONFIG_LOADED !== true) {
     $error_txt = "no access";
-    include('/include/error_reply.php');
+    include('include/error_reply.php');
 }
 
 $sql = "SELECT StoryPackID, Name, Description, ThumbnailURL, Price, AppleStoreKey, Type
@@ -12,7 +12,7 @@ $sql = "SELECT StoryPackID, Name, Description, ThumbnailURL, Price, AppleStoreKe
 $row = mysql_fetch_assoc(mysql_query($sql, $db_storypack));
 if ($story_id != $row['StoryPackID']) {
     $error_txt = "did not find st_story_id: ".$story_id;
-    include('/include/error_reply.php');                
+    include('include/error_reply.php');                
 }
 
 $json = array();

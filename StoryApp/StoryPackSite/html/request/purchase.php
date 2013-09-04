@@ -1,16 +1,16 @@
 <?php
 if (CONFIG_LOADED !== true) {
     $error_txt = "no access";
-    include('/include/error_reply.php');
+    include('include/error_reply.php');
 }
 
-include_once('/classes/class_tables.php');
-include_once('/classes/class_sqlite.php');
+include_once('classes/class_tables.php');
+include_once('classes/class_sqlite.php');
 
 //Check Apple Receipt
 if (trim($apple_receipt) == "") {
     $error_txt = "apple_receipt is blank";
-    include('/include/error_reply.php');                    
+    include('include/error_reply.php');                    
 }
 
 
@@ -26,7 +26,7 @@ $sql = "SELECT StoryPackID, Name
 $row = mysql_fetch_assoc(mysql_query($sql, $db_storypack));
 if ($story_id != $row['StoryPackID']) {
     $error_txt = "did not find st_story_id: ".$story_id;
-    include('/include/error_reply.php');                
+    include('include/error_reply.php');                
 }
 
 $sqlite_filename = random_string(25)."db";
