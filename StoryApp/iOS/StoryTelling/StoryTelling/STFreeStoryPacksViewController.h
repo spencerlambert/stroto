@@ -18,4 +18,5 @@
 
 @property (strong, nonatomic) NSDictionary *freeStoryPackDetailsJson;
 @property (assign, nonatomic) int storyPackID;
+-(IBAction)buyButtonTapped:(id)sender;
 @end

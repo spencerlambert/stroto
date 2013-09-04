@@ -12,9 +12,12 @@
 #define THUMB_H_PADDING 8
 
 #import "STPaidStoryPacksViewController.h"
-
-@interface STPaidStoryPacksViewController ()
-
+#import "STStoryPackIAPHelper.h"
+#import <StoreKit/StoreKit.h>
+@interface STPaidStoryPacksViewController () <SKProductsRequestDelegate>
+{
+     NSArray *_products;
+}
 @end
 
 @implementation STPaidStoryPacksViewController
@@ -42,6 +45,7 @@
 	// Do any additional setup after loading the view.
 //    self.navigationController.title = @"Story Packs";
     //for test white views
+    [STStoryPackIAPHelper sharedInstance];
     NSLog(@"paidStorypackID = %d",self.storyPackID);
     NSLog(@"string Defined : %@",paidDetailsBody);
     //Activity Indicator
@@ -184,6 +188,77 @@
     //stoping activity indicator
     [self.loader stopAnimating];
     [self.loader setHidden:TRUE];
+    
+}
+//- (void)buyButtonTapped:(id)sender {
+//    
+//    UIButton *buyButton = (UIButton *)sender;
+//    
+//    NSSet * productIdentifier = [NSSet setWithObject:
+//                                  @"free_sp_test_1",
+//                                  nil];
+////    NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
+//    
+//    SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifier ];
+//    
+////    SKProduct *product = ;// change the tag to product ID
+//    
+////    NSLog(@"Buying %@...", product.productIdentifier);
+////    [[STStoryPackIAPHelper sharedInstance] buyProduct:product];
+//    
+//}
+- (IBAction)buyButtonTapped:(id)sender {
+    
+    //    UIButton *buyButton = (UIButton *)sender;
+    
+    //    NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
+
+    NSSet * productIdentifiers = [NSSet setWithObjects:
+                                  @"paid_sp_test_1",
+                                  nil];
+    
+    SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
+    productReq.delegate = self;
+    [productReq start];
+    
+    //    SKProductsRequest *productReq =  [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers ];
+    NSLog(@"response : %@",productReq.description );
+    
+    //    SKProduct *product = ;// change the tag to product ID
+    
+    //    NSLog(@"Buying %@...", product.productIdentifier);
+    //    [[STStoryPackIAPHelper sharedInstance] buyProduct:product];
+    
+}
+
+#pragma mark - SKProductsRequestDelegate
+-(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSLog(@"Loaded List of Products");
+    //    SKProductsRequest *productsRequest = nil;
+    NSArray *skProducts = response.products;
+    NSLog(@"response.products : %@",response.products);
+    for (SKProduct *skProduct in skProducts) {
+        NSLog(@"Found product : %@ %@ %0.2f",
+              skProduct.productIdentifier,
+              skProduct.localizedTitle,
+              skProduct.price.floatValue);
+    }
+    //    _completionhandler(YES, skProducts);
+    //    _completionhandler = nil;
+}
+
+-(void)requestDidFinish:(SKRequest *)request
+{
+    NSLog(@"Loading request : %@",request.description);
+}
+
+-(void)request:(SKRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to load the list of Products : %@",error.description);
+    //    _productsRequest = nil;
+    //    _completionhandler(NO, nil);
+    //    _completionhandler = nil;
     
 }
 - (void)didReceiveMemoryWarning

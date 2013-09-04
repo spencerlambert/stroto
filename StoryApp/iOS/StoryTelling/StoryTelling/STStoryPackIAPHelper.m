@@ -12,9 +12,14 @@
 +(STStoryPackIAPHelper*)sharedInstance
 {
     static dispatch_once_t once;
-    static STStoryPackIAPHelper *sharedIstance;
+    static STStoryPackIAPHelper *sharedInstance;
     dispatch_once(&once, ^{
-        
+        NSSet * productIdentifiers = [NSSet setWithObjects:
+                                      @"free_sp_test_1",
+                                      @"paid_sp_test_1",
+                                      nil];
+        sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });
+    return sharedInstance;
 }
 @end

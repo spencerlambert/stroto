@@ -785,6 +785,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buyButtonTapped:" destination="BTs-AR-N9X" eventType="touchUpInside" id="utX-OT-6UJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQb-5g-gAM">
                                 <rect key="frame" x="22" y="102" width="166" height="30"/>
@@ -951,6 +954,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buyButtonTapped:" destination="RRX-6d-vFv" eventType="touchUpInside" id="p7d-Jo-KKh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQo-bv-kjF">
                                 <rect key="frame" x="21" y="102" width="166" height="30"/>
@@ -1092,6 +1098,7 @@
         <class className="STFreeStoryPacksViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
             <relationships>
+                <relationship kind="action" name="buyButtonTapped:"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
@@ -1101,6 +1108,7 @@
         <class className="STPaidStoryPacksViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STPaidStoryPacksViewController.h"/>
             <relationships>
+                <relationship kind="action" name="buyButtonTapped:"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>

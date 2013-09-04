@@ -7,7 +7,8 @@
 //
 
 #import "IAPHelper.h"
+#import <StoreKit/StoreKit.h>
 
-@interface STStoryPackIAPHelper : IAPHelper
+@interface STStoryPackIAPHelper : IAPHelper<SKPaymentTransactionObserver, SKRequestDelegate, SKProductsRequestDelegate>
 +(STStoryPackIAPHelper*)sharedInstance;
 @end
