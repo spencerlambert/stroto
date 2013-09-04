@@ -28,7 +28,7 @@ if ($story_id != $row['StoryPackID']) {
 
 $sqlite_filename = random_string(25)."db";
 
-$sqlite_db = new StoryPackDB(DOWNLOAD_PATH.$sqlite_filename);
+$sqlite_db = new StoryPackDB(DOWNLOAD_PATH.$sqlite_filename, $row['Name']);
 
 $sql = "SELECT DefaultScale, ImageDataPNG, ImageType FROM Images WHERE StoryPackID='".$story_id."'";
 $res = mysql_query($sql, $db_storypack);

@@ -7,7 +7,7 @@ class StoryPackDB {
     protected $echo_sql;
     protected $last_res;
     
-    function __construct($db_file, $echo_sql = false) {
+    function __construct($db_file, $story_name, $echo_sql = false) {
         $this->db = new SQLite3($db_file);
         $this->echo_sql = $echo_sql;
         
@@ -25,6 +25,7 @@ class StoryPackDB {
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
+        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".sqlite_escape_string($story_name)."'");
         
     }
     
