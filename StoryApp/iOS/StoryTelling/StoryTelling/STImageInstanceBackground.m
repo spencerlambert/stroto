@@ -1,21 +1,21 @@
 //
-//  STImageInstanceForeground.m
+//  STImageInstanceBackgound.m
 //  StoryTelling
 //
 //  Created by Spencer Lambert on 6/30/13.
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
-#import "STImageInstanceForeground.h"
+#import "STImageInstanceBackground.h"
 
-@implementation STImageInstanceForeground
+@implementation STImageInstanceBackground
 
-- (id)initFGInstanceWithID:(int)instanceID imageID:(int)imageId{
+
+- (id)initBGInstanceWithID:(int)instanceID imageID:(int)imageId{
     self = [super initInstanceWithID:instanceID imageID:imageId];
     if(self){
-        self.instanceType = true;
+        self.instanceType = false;
     }
     return  self;
 }
-
 @end

@@ -15,6 +15,7 @@
 #import "UIView+Hierarchy.h"
 #import "BottomRight.h"
 #import "TopRightView.h"
+#import "STStage.h"
 #import "STStoryDB.h"
 
 @interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate>{
@@ -33,7 +34,7 @@
     UITapGestureRecognizer *tap;
     
 }
-@property (weak, nonatomic) IBOutlet UIView *captureview;
+@property (weak, nonatomic) IBOutlet STStage *captureview;
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;

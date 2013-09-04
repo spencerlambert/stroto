@@ -179,7 +179,8 @@ NSString *databasePath;
 -(BOOL)updateVersion:(float)version;
 -(BOOL)deleteSTstoryDB;//Delete the current db
 
-
+- (NSArray*)getImageInstanceTable;
+- (BOOL)addImageInstance:(int)imageId;
 
 
 //Still need other methods for getting the timeline in playback mode.

@@ -23,4 +23,11 @@
 
 @interface STImageInstance : STImage
 
+@property (assign,readonly) int imageInstanceID;
+@property (assign,readonly) int imageID;
+@property (assign) BOOL instanceType;  // true = foreground,false = background
+
+
+- (id)initInstanceWithID:(int)instanceID imageID:(int)imageId;
+
 @end

@@ -10,4 +10,16 @@
 
 @implementation STImageInstance
 
+@synthesize imageInstanceID;
+@synthesize imageID;
+
+- (id)initInstanceWithID:(int)instanceID imageID:(int)imageId{
+    self = [super init];
+    if(self){
+        imageInstanceID = instanceID;
+        imageID = imageId;
+    }
+    return  self;
+}
+
 @end

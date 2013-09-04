@@ -10,4 +10,11 @@
 
 @implementation STStageRecorder
 
+-(id)initWithDB:(STStoryDB *)db{
+    self = [super init];
+    if(self){
+        storyDB = db;
+    }
+    return  self;
+}
 @end

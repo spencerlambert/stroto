@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ThumbImageView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "STImage.h"
 
 @protocol SlideUpViewDelegate;
 
@@ -29,5 +30,5 @@
 @protocol SlideUpViewDelegate <NSObject>
 
 @optional
-- (void)setWorkspaceBackground:(UIImage *) selectedImage;
+- (void)setWorkspaceBackground:(STImage *) selectedImage;
 @end

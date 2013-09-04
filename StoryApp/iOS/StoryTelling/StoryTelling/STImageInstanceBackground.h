@@ -8,6 +8,8 @@
 
 #import "STImageInstance.h"
 
-@interface STImageInstanceBackgound : STImageInstance
+@interface STImageInstanceBackground : STImageInstance
+
+- (id)initBGInstanceWithID:(int)instanceID imageID:(int)imageId;
 
 @end

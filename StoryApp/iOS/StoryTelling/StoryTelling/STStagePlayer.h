@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
-@interface STStagePlayer : NSObject
+#import "STStoryDB.h"
+
+@interface STStagePlayer : NSObject{
+    STStoryDB *storyDB;
+}
+-(id)initWithDB:(STStoryDB *)db;
+
 
 @end

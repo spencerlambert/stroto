@@ -7,6 +7,8 @@
 //
 
 #import "STStoryDB.h"
+#import "STImageInstanceBackground.h"
+#import "STImageInstanceForeground.h"
 
 
 @implementation STStoryDB {
@@ -356,6 +358,39 @@
     
     // returns new image with mask applied
     return maskedImage;
+}
+
+-(NSArray*)getImageInstanceTable{
+    NSMutableArray *imageInstances = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from ImageInstance;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            int instanceID = sqlite3_column_int(compiled_stmt, 0);
+            int imageID = sqlite3_column_int(compiled_stmt, 1);
+            STImage *image = [self getImageByID:imageID];
+            if ([image.type isEqualToString:@"background"]) {
+                STImageInstanceBackground *instance = [[STImageInstanceBackground alloc]initBGInstanceWithID:instanceID imageID:imageID];
+                [imageInstances addObject:instance];
+            }else if([image.type isEqualToString:@"foreground"]){
+                STImageInstanceForeground *instance = [[STImageInstanceForeground alloc]initFGInstanceWithID:instanceID imageID:imageID];
+                [imageInstances addObject:instance];
+            }
+        }
+    }
+    return imageInstances;
+}
+
+- (BOOL)addImageInstance:(int)imageId{
+    NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstance values('',%d);", imageId ];
+    const char *sql_stmt = [sql UTF8String];
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Failed to insert ImageInstance");
+        return NO;
+    }
+    return YES;
 }
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STStoryDB.h"
 
-@interface STAudioRecording : NSObject
+@interface STAudioRecording : NSObject{
+    STStoryDB *storyDB;
+}
+-(id)initWithDB:(STStoryDB *)db;
+
 
 @end

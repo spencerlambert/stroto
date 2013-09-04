@@ -6,6 +6,11 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
-@interface STStageRecorder : NSObject
+#import "STStoryDB.h"
+
+@interface STStageRecorder : NSObject{
+    STStoryDB *storyDB;
+}
+-(id)initWithDB:(STStoryDB *)db;
 
 @end

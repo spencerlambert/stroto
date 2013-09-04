@@ -46,6 +46,7 @@
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
  */
+#import "STImage.h"
 
 @protocol ThumbImageViewDelegate;
 
@@ -65,7 +66,7 @@
 
 @property (nonatomic, assign) id <ThumbImageViewDelegate> thumbdelegate;
 @property (nonatomic, retain) NSString *imageName;
-@property (nonatomic, retain) UIImage *originalImage;
+@property (nonatomic, retain) STImage *originalImage;
 @property (nonatomic, assign) CGRect home;
 @property (nonatomic, assign) CGPoint touchLocation;
 

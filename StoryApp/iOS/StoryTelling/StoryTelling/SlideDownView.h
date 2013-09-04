@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ThumbImageView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "STImage.h"
 
 @protocol SlideDownViewDelegate;
 
@@ -31,5 +32,5 @@
 
 @optional
 - (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect)testframe;
-- (void)setForegroundImage:(UIImage *) selectedImage;
+- (void)setForegroundImage:(STImage *) selectedImage;
 @end

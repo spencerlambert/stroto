@@ -8,7 +8,18 @@
 
 #import "STStage.h"
 
+@interface STStage (Actor_Entry_Handlers)
+
+- (void) createImageInstanceEntry:(STImage *)actor;
+- (void) reLoadImageInstances;
+
+@end
+
+
+
 @implementation STStage
+
+@synthesize storyDB;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -19,13 +30,32 @@
     return self;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+-(void)initStage{
+    isRecording = NO;
+    stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
+    stagePlayer = [[STStagePlayer alloc]initWithDB:storyDB];
+    audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
+    [self reLoadImageInstances];
+}
+
+- (void) reLoadImageInstances{
+    imageInstances = [storyDB getImageInstanceTable];
+}
+
+- (void) createImageInstanceEntry:(STImage *)actor{
+    [storyDB addImageInstance:actor.imageId];
+}
+
+- (void) actortoStage:(STImage *)actor{
+    [self createImageInstanceEntry:actor];
+    [self reLoadImageInstances];
+}
+
+- (void) startRecording{
+    isRecording = YES;
+}
+- (void) stopRecording{
+    isRecording = NO;
+}
 
 @end

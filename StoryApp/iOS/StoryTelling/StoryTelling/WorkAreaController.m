@@ -62,7 +62,7 @@
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [backgroundimageview setUserInteractionEnabled:YES];
     [captureview addSubview:backgroundimageview];
-    [self setWorkspaceBackground:[UIImage imageNamed:@"RecordArea.png"]];
+    backgroundimageview.image = [UIImage imageNamed:@"RecordArea.png"];
     
     CGRect frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeight-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeight);
     UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
@@ -225,8 +225,9 @@
 
 #pragma mark SlideUpViewDelegate methods
 
-- (void) setWorkspaceBackground:(UIImage *)selectedImage{
-    backgroundimageview.image = selectedImage;
+- (void) setWorkspaceBackground:(STImage *)selectedImage{
+//    backgroundimageview.image = selectedImage;
+//    [captureview actortoStage:selectedImage];
 }
 
 //adding foreground image to work area

@@ -10,4 +10,6 @@
 
 @interface STImageInstanceForeground : STImageInstance
 
+- (id)initFGInstanceWithID:(int)instanceID imageID:(int)imageId;
+
 @end
