@@ -11,6 +11,7 @@ class StoryPackDB {
         $this->db = new SQLite3($db_file);
         $this->echo_sql = $echo_sql;
         
+/*
         $row = $this->fetch_array_single_row("SELECT Version FROM Version");
         if ($row['Version'] != "") {
             $this->db_version = $row['Version'];
@@ -22,6 +23,10 @@ class StoryPackDB {
         } else {
             $this->initDB();
         }
+*/
+
+        //Assuming this is a new DB every time.  Have not worked out how to check version on empty DB.
+        $this->initDB();
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
