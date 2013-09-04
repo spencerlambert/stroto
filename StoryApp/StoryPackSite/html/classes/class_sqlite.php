@@ -7,7 +7,7 @@ class StoryPackDB {
     protected $echo_sql;
     protected $last_res;
     
-    function __construct($db_file, $story_name, $echo_sql = false) {
+    function __construct($db_file, $story_name, $image_bin, $echo_sql = false) {
         $this->db = new SQLite3($db_file);
         $this->echo_sql = $echo_sql;
         
@@ -30,7 +30,7 @@ class StoryPackDB {
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
-        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".SQLite3::escapeString($story_name)."')");
+        $this->exec("INSERT INTO StoryPackInfo (Name, ImageDataPNG) VALUES('".SQLite3::escapeString($story_name)."', '".SQLite3::escapeString($image_bin)."')");
         
     }
     

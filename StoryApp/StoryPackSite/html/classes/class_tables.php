@@ -19,7 +19,8 @@ class tables {
 
     public static $story = "
     CREATE TABLE StoryPackInfo (
-        Name            text
+        Name            text,
+        ImageDataPNG    blob
     );
     ";
 
