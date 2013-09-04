@@ -29,7 +29,7 @@ if ($story_id != $row['StoryPackID']) {
     include('include/error_reply.php');                
 }
 
-$sqlite_filename = random_string(25)."db";
+$sqlite_filename = random_string(25).".db";
 
 $sqlite_db = new StoryPackDB(DOWNLOAD_PATH.$sqlite_filename, $row['Name']);
 
@@ -40,7 +40,7 @@ while ($row = mysql_fetch_assoc($res)) {
 }
 
 $json = array();
-$json['st_url'] = DOWNLOAD_URL.$sqlite_filename;
+$json['st_storypack_url'] = DOWNLOAD_URL.$sqlite_filename;
 $json['st_error'] = "";
 $json['st_result'] = "OK";
 

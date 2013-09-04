@@ -30,7 +30,7 @@ class StoryPackDB {
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
-        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".SQLite3::escapeString($story_name)."'");
+        $this->exec("INSERT INTO StoryPackInfo (Name) VALUES('".SQLite3::escapeString($story_name)."')");
         
     }
     
