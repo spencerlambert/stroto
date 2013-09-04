@@ -96,6 +96,11 @@ class StoryPackDB {
         return $insert;
     }
     
+    public function insert_image($type, $png_data, $scale) {
+        $sql = "INSERT INTO Images (DefaultScale, ImageType, ImageDataPNG) VALUES ('".$scale."', '".$type."','".sqlite_escape_string($png_data)."')";
+        return $this->exec($sql);
+    }
+    
     protected function check_table($table, $account_id, $extra_match) {
         $row = $this->fetch_array_single_row("SELECT AccountID FROM $table WHERE AccountID='$account_id'".$this->format_extra_where($extra_match));
         if ($row['AccountID'] == "") {

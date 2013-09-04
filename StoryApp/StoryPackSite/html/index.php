@@ -32,6 +32,11 @@ switch ($json_data->st_request) {
         include('request/get_story_details.php');
         break;
     case "purchase":
+        $story_id = numbers_only($json_data->st_story_id);
+        if ($story_id == "") {
+            $error_txt = "missing valid st_story_id";
+            include('include/error_reply.php');            
+        }
         include('request/purchase.php');
         break;
     default:
