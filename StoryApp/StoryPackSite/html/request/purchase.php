@@ -14,8 +14,7 @@ include_once('../classes/class_sqlite.php');
 
 
 //Build SQLite file
-
-$sql = "SELECT StoryPackID, Name, Description, ThumbnailURL, Price, AppleStoreKey, Type
+$sql = "SELECT StoryPackID, Name
         FROM
             StoryPack
         WHERE
