@@ -38,6 +38,8 @@
     
     [self setBackgroundImages:[NSMutableArray arrayWithArray:[storyDB getBackgroundImagesSorted]]];
     [self setForegroundImages:[NSMutableArray arrayWithArray:[storyDB getForegroundImagesSorted]]];
+    [captureview setStoryDB:storyDB];
+    [captureview initStage];
 }
 
 - (void)viewDidLoad
@@ -113,7 +115,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) doSingleTap:(UIGestureRecognizer *) gestureRecognizer {
@@ -129,6 +130,9 @@
         UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
         imageview.image=selectedForegroundImage;
         [captureview addSubview:imageview];
+        
+        [captureview actortoStage:selectedForegroundImage];
+        
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         pan.delegate = self;
@@ -140,10 +144,9 @@
         tap.delegate=self;
         [imageview setUserInteractionEnabled:YES];
         [imageview addGestureRecognizer:pan];
-//        [imageview addGestureRecognizer:pinch];
-//        [imageview addGestureRecognizer:rotate];
+        [imageview addGestureRecognizer:pinch];
+        [imageview addGestureRecognizer:rotate];
         [imageview addGestureRecognizer:tap];
-        
         
         [self setSelectedForegroundImage:nil];
     }
@@ -226,37 +229,37 @@
 #pragma mark SlideUpViewDelegate methods
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
-//    backgroundimageview.image = selectedImage;
-//    [captureview actortoStage:selectedImage];
+    backgroundimageview.image = selectedImage;
+    [captureview actortoStage:selectedImage];
 }
 
 //adding foreground image to work area
--(void) setForegroundImage:(UIImage *)selectedImage{
+-(void) setForegroundImage:(STImage *)selectedImage{
     [self setSelectedForegroundImage:selectedImage];
     NSLog(@"%@", [selectedImage description]);
     NSLog(@"foreground image set");
 }
 
-- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
-    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
-    if(CGRectIntersectsRect(mainframe, testframe)){
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
-        imageview.image = tiv;
-        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-        pan.delegate = self;
-        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-        pinch.delegate = self;
-        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
-        rotate.delegate = self;
-        [imageview setUserInteractionEnabled:YES];
-        [imageview addGestureRecognizer:pan];
-        [imageview addGestureRecognizer:pinch];
-        [imageview addGestureRecognizer:rotate];
-        [imageview setUserInteractionEnabled:YES];
-        [captureview addSubview:imageview];
-        [pickedimages addObject:imageview];
-    }
-}
+//- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
+//    CGRect mainframe = CGRectMake(0, CGRectGetHeight(slideupview.frame), CGRectGetWidth(slideupview.frame), CGRectGetHeight(captureview.frame)-CGRectGetHeight(slidedownview.frame));
+//    if(CGRectIntersectsRect(mainframe, testframe)){
+//        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(testframe.origin.x, testframe.origin.y, 100, 100)];
+//        imageview.image = tiv;
+//        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+//        pan.delegate = self;
+//        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+//        pinch.delegate = self;
+//        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+//        rotate.delegate = self;
+//        [imageview setUserInteractionEnabled:YES];
+//        [imageview addGestureRecognizer:pan];
+//        [imageview addGestureRecognizer:pinch];
+//        [imageview addGestureRecognizer:rotate];
+//        [imageview setUserInteractionEnabled:YES];
+//        [captureview addSubview:imageview];
+//        [pickedimages addObject:imageview];
+//    }
+//}
 
 #pragma mark UIGestureRecognizerDelegate methods
 

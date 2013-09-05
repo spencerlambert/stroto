@@ -383,11 +383,12 @@
 }
 
 - (BOOL)addImageInstance:(int)imageId{
-    NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstance values('',%d);", imageId ];
+    char *errMsg;
+    NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstance ('imageId') values(%d);", imageId ];
     const char *sql_stmt = [sql UTF8String];
-    if (sqlite3_exec(db, sql_stmt, NULL, NULL, NULL) != SQLITE_OK)
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
     {
-        NSLog(@"Failed to insert ImageInstance");
+        NSLog(@"Failed to insert ImageInstance : %s",errMsg);
         return NO;
     }
     return YES;
