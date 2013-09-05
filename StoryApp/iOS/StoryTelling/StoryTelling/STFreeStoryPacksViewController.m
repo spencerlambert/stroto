@@ -8,12 +8,15 @@
 
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define freeDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":\"%d\"}",storyPackID]
+#define AppleServerError [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"APPLE DOWN\"}",storyPackID]
 #define THUMB_HEIGHT 80
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
 
 #import "STFreeStoryPacksViewController.h"
-#import "STStoryPackIAPHelper.h"
+#import <StoreKit/StoreKit.h>
+//#import "STStoryPackIAPHelper.h"
+#import "STStoryPackDownload.h"
 
 @interface STFreeStoryPacksViewController () <SKProductsRequestDelegate>
 @end
@@ -21,6 +24,7 @@
 @implementation STFreeStoryPacksViewController
 
 @synthesize freeStoryPackDetailsJson;
+@synthesize freeStoryPackURL;
 @synthesize storyPackID;
 @synthesize freeStoryPackName;
 @synthesize backgroundImagesView;
@@ -38,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [STStoryPackIAPHelper sharedInstance];
+//    [STStoryPackIAPHelper sharedInstance];
 	// Do any additional setup after loading the view.
     NSLog(@"freeStoryPackID = %d",self.storyPackID);
     NSLog(@"string Defined : %@",freeDetailsBody);
@@ -192,11 +196,9 @@
     
     //    UIButton *buyButton = (UIButton *)sender;
     
-    //    NSSet * productIdentifiers = [NSSet setWithObject:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
-    
-    NSSet * productIdentifiers = [NSSet setWithObjects:
-                                  @"free_sp_test_1",
-                                  nil];
+        NSSet * productIdentifiers = [NSSet setWithObject:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
+    NSLog(@"product Identifier = %@",productIdentifiers);
+//    NSSet * productIdentifiers = [NSSet setWithObjects:@"free_sp_test_1",nil];
     
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
@@ -218,7 +220,30 @@
     NSLog(@"Loaded List of Products");
     //    SKProductsRequest *productsRequest = nil;
     NSArray *skProducts = response.products;
+    NSLog(@"invalidProductIdentifiers : ");
     NSLog(@"response.products : %@",response.products);
+    if(!response.products) //for testing db download only
+    {
+        NSURL *url = [NSURL URLWithString:urlAsString];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        [urlRequest setHTTPMethod:@"POST"];
+        [urlRequest setHTTPBody:[AppleServerError dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
+            if ([data length] >0 && error == nil){
+                freeStoryPackURL = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
+                [freedownload downloadStoryPack:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[freeStoryPackURL valueForKey:@"st_storypack_url" ]]]];
+                NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
+                NSLog(@"html= %@",html);
+            }
+            else if ([data length] == 0 && error == nil){
+                NSLog(@"Nothing was downloaded.");
+            }
+            else if (error != nil){
+                NSLog(@"Error happened = %@", error); }
+        }];
+    }
     for (SKProduct *skProduct in skProducts) {
         NSLog(@"Found product : %@ %@ %0.2f",
               skProduct.productIdentifier,
@@ -232,11 +257,36 @@
 -(void)requestDidFinish:(SKRequest *)request
 {
     NSLog(@"Loading request : %@",request.description);
+    
+//    [request start];
+    NSLog(@"Running : %@",request.observationInfo);
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"Failed to load the list of Products : %@",error.description);
+    NSLog(@"Failed to load the list of Products : %@",error);
+    if(error)
+    {
+        NSURL *url = [NSURL URLWithString:urlAsString];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        [urlRequest setHTTPMethod:@"POST"];
+        [urlRequest setHTTPBody:[AppleServerError dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
+            if ([data length] >0 && error == nil){
+                freeStoryPackURL = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
+                [freedownload downloadStoryPack:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[freeStoryPackURL valueForKey:@"st_storypack_url" ]]]];
+                NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
+                NSLog(@"html= %@",html);
+            }
+            else if ([data length] == 0 && error == nil){
+                NSLog(@"Nothing was downloaded.");
+            }
+            else if (error != nil){
+                NSLog(@"Error happened = %@", error); }
+        }];
+    }
     //    _productsRequest = nil;
     //    _completionhandler(NO, nil);
     //    _completionhandler = nil;

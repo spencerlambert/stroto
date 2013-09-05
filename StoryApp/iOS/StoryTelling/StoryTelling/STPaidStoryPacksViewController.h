@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIView *foregroundImagesView;
 
 @property (strong, nonatomic) NSDictionary *paidStoryPackDetailsJson;
+@property (strong, nonatomic) NSDictionary *paidStoryPackURL;
 @property (assign, nonatomic) int storyPackID;
 -(IBAction)buyButtonTapped:(id)sender;
 @end

@@ -45,7 +45,7 @@
 	// Do any additional setup after loading the view.
 //    self.navigationController.title = @"Story Packs";
     //for test white views
-    [STStoryPackIAPHelper sharedInstance];
+//    [STStoryPackIAPHelper sharedInstance];
     NSLog(@"paidStorypackID = %d",self.storyPackID);
     NSLog(@"string Defined : %@",paidDetailsBody);
     //Activity Indicator
@@ -211,18 +211,15 @@
     
     //    UIButton *buyButton = (UIButton *)sender;
     
-    //    NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
+        NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
 
-    NSSet * productIdentifiers = [NSSet setWithObjects:
-                                  @"paid_sp_test_1",
-                                  nil];
+//  NSSet * productIdentifiers = [NSSet setWithObject:@"paid_sp_test_1"];
     
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    
-    //    SKProductsRequest *productReq =  [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers ];
-    NSLog(@"response : %@",productReq.description );
+//    //    SKProductsRequest *productReq =  [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers ];
+    NSLog(@"productReq.descreiption : %@",productReq.description );
     
     //    SKProduct *product = ;// change the tag to product ID
     
@@ -237,7 +234,9 @@
     NSLog(@"Loaded List of Products");
     //    SKProductsRequest *productsRequest = nil;
     NSArray *skProducts = response.products;
+    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     NSLog(@"response.products : %@",response.products);
+    NSLog(@"request.description : %@",request.description);
     for (SKProduct *skProduct in skProducts) {
         NSLog(@"Found product : %@ %@ %0.2f",
               skProduct.productIdentifier,
@@ -251,11 +250,18 @@
 -(void)requestDidFinish:(SKRequest *)request
 {
     NSLog(@"Loading request : %@",request.description);
+    NSLog(@"dsff request : %@",request);
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"Failed to load the list of Products : %@",error.description);
+    NSLog(@"Failed to load the list of Products : %@",error);
+    if(error)
+    {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Apple server down, try again later..." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+
     //    _productsRequest = nil;
     //    _completionhandler(NO, nil);
     //    _completionhandler = nil;
