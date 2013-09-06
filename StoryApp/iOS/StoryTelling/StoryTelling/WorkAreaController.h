@@ -38,7 +38,7 @@
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;
-@property (strong, nonatomic) UIImage *selectedForegroundImage;
+@property (strong, nonatomic) STImage *selectedForegroundImage;
 @property STStoryDB *storyDB;
 
 

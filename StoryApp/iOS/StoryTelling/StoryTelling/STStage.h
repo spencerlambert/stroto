@@ -29,7 +29,7 @@
 }
 
 @property(assign) float frameRate;
-@property(assign,readonly)STStoryDB *storyDB;
+@property (nonatomic,retain) STStoryDB *storyDB;
 
 //for recording video
 - (void) startRecording;
