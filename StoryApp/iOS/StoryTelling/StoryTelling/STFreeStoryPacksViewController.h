@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "STImage.h"
 
-@interface STFreeStoryPacksViewController : UIViewController
+@interface STFreeStoryPacksViewController : UIViewController <UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UILabel *freeStoryPackName;
 
@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSDictionary *freeStoryPackDetailsJson;
 @property (strong, nonatomic) NSDictionary *freeStoryPackURL;
 @property (assign, nonatomic) int storyPackID;
+
 -(IBAction)buyButtonTapped:(id)sender;
 @end

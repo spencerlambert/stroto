@@ -691,8 +691,6 @@
 		EB7FE48117C716EB00E28B4F /* StoryPack */ = {
 			isa = PBXGroup;
 			children = (
-				4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */,
-				4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */,
 				EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */,
 				EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */,
 				EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */,
@@ -703,6 +701,8 @@
 				EB29DE0B17D462B0005B1F10 /* IAPHelper.m */,
 				EB29DE0D17D479DB005B1F10 /* STStoryPackIAPHelper.h */,
 				EB29DE0E17D479DB005B1F10 /* STStoryPackIAPHelper.m */,
+				4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */,
+				4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */,
 			);
 			name = StoryPack;
 			sourceTree = "<group>";

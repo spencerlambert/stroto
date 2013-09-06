@@ -11,11 +11,16 @@
 
 @implementation STStoryPackDownload
 
--(void)downloadStoryPack:(NSURL*)downloadURL
+-(void)downloadStoryPack:(NSString*)downloadURL
 {
     NSLog(@"URL : %@",downloadURL);
-    
-    NSData *dbFile = [[NSData alloc] initWithContentsOfURL:downloadURL];
+    NSMutableString *filename = (NSMutableString* )downloadURL;
+    NSString *staticURLPart = @"http://storypacks.stroto.com/download/";
+   if( [filename rangeOfString:staticURLPart].location!=NSNotFound)
+   {
+       NSLog(@"%@", filename);
+   }
+    NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
     NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents"]];
     
     NSString *filePath = [resourceDocPath stringByAppendingPathComponent:@"Database.sqlite"];

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface STStoryPackDownload : NSObject
--(void)downloadStoryPack:(NSURL*)downloadURL;
+-(void)downloadStoryPack:(NSString*)downloadURL;
 @end
