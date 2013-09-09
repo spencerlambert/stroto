@@ -140,10 +140,11 @@
 	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
 	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
 	UIImage* newImage = [UIImage imageWithCGImage:ref];
-    
 	CGContextRelease(bitmap);
 	CGImageRelease(ref);
     [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerOriginalImage"];
+    [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerThumbnailImage"];
+    [workingDictionary setObject:@"thumb.png" forKey:@"UIImagePickerControllerReferenceURL"];
     [returnArray addObject:workingDictionary];
     
     if(returnArray != NULL){

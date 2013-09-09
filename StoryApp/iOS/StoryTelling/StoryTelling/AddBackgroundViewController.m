@@ -138,21 +138,15 @@
 	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
 	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
 	UIImage* newImage = [UIImage imageWithCGImage:ref];
-    
 	CGContextRelease(bitmap);
 	CGImageRelease(ref);
-    
-    
-  
-    
-    
     [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerOriginalImage"];
+    [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerThumbnailImage"];
+    [workingDictionary setObject:@"thumb.png" forKey:@"UIImagePickerControllerReferenceURL"];
     //self.testimg.image = [workingDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
     //self.testimg.transform = CGAffineTransformMakeRotation(M_PI_2);
     [returnArray addObject:workingDictionary];
-    
     if(returnArray != NULL){
-    
 		
     backgroundImages = [[NSMutableArray alloc]initWithArray:returnArray];
         
