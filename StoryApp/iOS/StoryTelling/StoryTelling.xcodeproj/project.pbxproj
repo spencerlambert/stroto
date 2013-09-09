@@ -139,8 +139,6 @@
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB29DE0817D45C76005B1F10 /* StoreKit.framework */; };
-		EB29DE0C17D462B0005B1F10 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB29DE0B17D462B0005B1F10 /* IAPHelper.m */; };
-		EB29DE0F17D479DB005B1F10 /* STStoryPackIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB29DE0E17D479DB005B1F10 /* STStoryPackIAPHelper.m */; };
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
 		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
@@ -317,10 +315,6 @@
 		DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		EB29DE0817D45C76005B1F10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		EB29DE0A17D462B0005B1F10 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
-		EB29DE0B17D462B0005B1F10 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
-		EB29DE0D17D479DB005B1F10 /* STStoryPackIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackIAPHelper.h; sourceTree = "<group>"; };
-		EB29DE0E17D479DB005B1F10 /* STStoryPackIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackIAPHelper.m; sourceTree = "<group>"; };
 		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaidStoryPacksViewController.h; sourceTree = "<group>"; };
@@ -697,10 +691,6 @@
 				EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */,
 				EB7FE48817C743F000E28B4F /* STFreeStoryPacksViewController.h */,
 				EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */,
-				EB29DE0A17D462B0005B1F10 /* IAPHelper.h */,
-				EB29DE0B17D462B0005B1F10 /* IAPHelper.m */,
-				EB29DE0D17D479DB005B1F10 /* STStoryPackIAPHelper.h */,
-				EB29DE0E17D479DB005B1F10 /* STStoryPackIAPHelper.m */,
 				4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */,
 				4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */,
 			);
@@ -907,8 +897,6 @@
 				EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */,
 				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
 				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
-				EB29DE0C17D462B0005B1F10 /* IAPHelper.m in Sources */,
-				EB29DE0F17D479DB005B1F10 /* STStoryPackIAPHelper.m in Sources */,
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

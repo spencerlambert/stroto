@@ -14,11 +14,9 @@
 #define THUMB_H_PADDING 8
 
 #import "STFreeStoryPacksViewController.h"
-#import <StoreKit/StoreKit.h>
-//#import "STStoryPackIAPHelper.h"
 #import "STStoryPackDownload.h"
 
-@interface STFreeStoryPacksViewController () <SKProductsRequestDelegate>
+@interface STFreeStoryPacksViewController ()
 @end
 
 @implementation STFreeStoryPacksViewController
@@ -27,6 +25,7 @@
 @synthesize freeStoryPackURL;
 @synthesize storyPackID;
 @synthesize freeStoryPackName;
+@synthesize freeButton;
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
 
@@ -42,10 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [STStoryPackIAPHelper sharedInstance];
 	// Do any additional setup after loading the view.
-    NSLog(@"freeStoryPackID = %d",self.storyPackID);
-    NSLog(@"string Defined : %@",freeDetailsBody);
+//    NSLog(@"freeStoryPackID = %d",self.storyPackID);
+    [self.freeButton setHidden:YES];
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
     [self performSelectorInBackground:@selector(freeJsonDetails) withObject:nil];
@@ -79,7 +77,7 @@
     freeStoryPackName.text = [NSString stringWithFormat:@"%@",[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
     [self reloadBackgroundImages];
     [self reloadForegroundImages];
-    
+    [self.freeButton setHidden:NO];
 
 }
 -(void)reloadBackgroundImages
@@ -192,84 +190,37 @@
     [self.loader setHidden:TRUE];
     
 }
-- (IBAction)buyButtonTapped:(id)sender {
-    
-    //    UIButton *buyButton = (UIButton *)sender;
-    
-//        NSSet * productIdentifiers = [NSSet setWithObject:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
-    NSSet * productIdentifiers = [NSSet setWithObjects:@"free_sp_test_1",@"paid_sp_test_1",nil];
-//    NSLog(@"product Identifier = %@",productIdentifiers);
-//    NSSet * productIdentifiers = [NSSet setWithObjects:@"free_sp_test_1",nil];
-    
+- (IBAction)buyButtonTapped:(id)sender
+{
+    NSSet * productIdentifiers = [NSSet setWithObject:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    
-    //    SKProductsRequest *productReq =  [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers ];
-    NSLog(@"response : %@",productReq.description );
-    
-    //    SKProduct *product = ;// change the tag to product ID
-    
-    //    NSLog(@"Buying %@...", product.productIdentifier);
-    //    [[STStoryPackIAPHelper sharedInstance] buyProduct:product];
-    
 }
 
 #pragma mark - SKProductsRequestDelegate
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    NSLog(@"SKErrorDomain : %@",SKErrorDomain.description);
-    
-    NSArray *myProduct = response.products;
-    NSLog(@"Product count: %d",[myProduct count]);
-    NSLog(@"Loaded List of Products : %@",response);
-    //    SKProductsRequest *productsRequest = nil;
-    NSLog(@"response.debugDescription : %@",response.debugDescription);
-
-    NSArray *skProducts = response.products;
+    NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
+    NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
-    NSLog(@"response.products : %@",response.products);
-    NSLog(@"response.products count : %d",[response.products count]);
-    if([response.products count] == 0 ) //for testing db download only
-    {
-        NSURL *url = [NSURL URLWithString:urlAsString];
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-        [urlRequest setHTTPMethod:@"POST"];
-        [urlRequest setHTTPBody:[AppleServerError dataUsingEncoding:NSUTF8StringEncoding]];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
-            if ([data length] >0 && error == nil){
-                freeStoryPackURL = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
-                [freedownload downloadStoryPack:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[freeStoryPackURL valueForKey:@"st_storypack_url" ]]]];
-                NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
-                NSLog(@"html= %@",html);
-            }
-            else if ([data length] == 0 && error == nil){
-                NSLog(@"Nothing was downloaded.");
-            }
-            else if (error != nil){
-                NSLog(@"Error happened = %@", error); }
-        }];
-    }
-    for (SKProduct *skProduct in skProducts) {
-        NSLog(@"Found product : %@ %@ %0.2f",
-              skProduct.productIdentifier,
-              skProduct.localizedTitle,
-              skProduct.price.floatValue);
-    }
-    //    _completionhandler(YES, skProducts);
-    //    _completionhandler = nil;
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
     NSLog(@"requestDidFinish : %@",request.description);
-    
-//    [request start];
-    NSLog(@"request.debugDescription : %@",request.debugDescription);
 }
+-(void)request:(SKRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to load the list of Products : %@",error);
+    if(error)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Apple server down, Do you want to download from our server ?? " delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+        [alert show];
+        alert.delegate = self;
+    }
 
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"buttonIndex = %d",buttonIndex);
@@ -296,20 +247,7 @@
     }
 }
 
--(void)request:(SKRequest *)request didFailWithError:(NSError *)error
-{
-    NSLog(@"Failed to load the list of Products : %@",error);
-    if(error)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Apple server down, Do you want to download from our server ?? " delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-        [alert show];
-        alert.delegate = self;
-    }
-    //    _productsRequest = nil;
-    //    _completionhandler(NO, nil);
-    //    _completionhandler = nil;
-    
-}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -322,6 +260,7 @@
     [self setBackgroundImagesView:nil];
     [self setForegroundImagesView:nil];
     [self setLoader:nil];
+    [self setFreeButton:nil];
     [super viewDidUnload];
 }
 @end

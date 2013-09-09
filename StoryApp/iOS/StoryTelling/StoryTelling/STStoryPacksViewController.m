@@ -35,6 +35,8 @@
     self.navigationItem.hidesBackButton = YES;
 //Activity Indicator
     [self.loader setHidden:FALSE];
+    [self.loader setUserInteractionEnabled:NO];
+    [self.loader setOpaque:YES];
     [self.loader startAnimating];
 //json retrieval
     [self performSelectorInBackground:@selector(jsonPost) withObject:nil];
