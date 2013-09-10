@@ -42,38 +42,65 @@
         [self addSubview:startrecording];
         isRecording = NO;
         finishedRecording = NO;
+        startedRecording = NO;
     }
     return self;
 }
 
 - (void) startrecordingbtn_clicked{
-    if(!isRecording && !finishedRecording){
+    if (!startedRecording){
         if([mydelegate respondsToSelector:@selector(startcapturingview)]){
             UIImage *btnimage = [UIImage imageNamed:@"RecordOn.png"];
             [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
+            startedRecording  =YES;
             isRecording = YES;
             [mydelegate startcapturingview];
         }
-    }
-    else if (isRecording && !finishedRecording){
-        if([mydelegate respondsToSelector:@selector(stopcapturingview)]){
-            
-            //Quick change by Spence to make record/pause option.
-            // -- Just wanted to get a feel for the interface.  Sorry if I'm messing too much :)
-            //UIImage *btnimage = [UIImage imageNamed:@"VideoPlayButton.png"];
-            UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
-            [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
-            isRecording = NO;
-            //ToDo: Implement Pause
-            //finishedRecording = YES;
-            [mydelegate stopcapturingview];
+    }else{
+        if (isRecording){
+            if([mydelegate respondsToSelector:@selector(pausecapturingview)]){
+                UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
+                [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
+                isRecording = NO;
+                [mydelegate pausecapturingview];
+            }
+        }
+        else{
+            if([mydelegate respondsToSelector:@selector(resumecapturingview)]){
+                UIImage *btnimage = [UIImage imageNamed:@"RecordOn.png"];
+                [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
+                isRecording = YES;
+                [mydelegate resumecapturingview];
+            }
         }
     }
-    else if (isRecording && finishedRecording){
-        if([mydelegate respondsToSelector:@selector(playcapturedvideo)]){
-            [mydelegate playcapturedvideo];
-        }
-    }
+//    if(!isRecording && !finishedRecording){
+//        if([mydelegate respondsToSelector:@selector(startcapturingview)]){
+//            UIImage *btnimage = [UIImage imageNamed:@"RecordOn.png"];
+//            [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
+//            isRecording = YES;
+//            [mydelegate startcapturingview];
+//        }
+//    }
+//    else if (isRecording && !finishedRecording){
+//        if([mydelegate respondsToSelector:@selector(stopcapturingview)]){
+//            
+//            //Quick change by Spence to make record/pause option.
+//            // -- Just wanted to get a feel for the interface.  Sorry if I'm messing too much :)
+//            //UIImage *btnimage = [UIImage imageNamed:@"VideoPlayButton.png"];
+//            UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
+//            [startrecording setBackgroundImage:btnimage forState:UIControlStateNormal];
+//            isRecording = NO;
+//            //ToDo: Implement Pause
+//            //finishedRecording = YES;
+//            [mydelegate stopcapturingview];
+//        }
+//    }
+//    else if (isRecording && finishedRecording){
+//        if([mydelegate respondsToSelector:@selector(playcapturedvideo)]){
+//            [mydelegate playcapturedvideo];
+//        }
+//    }
 }
 
 /*

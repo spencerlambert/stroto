@@ -12,13 +12,17 @@
 
 @optional
 - (void)startcapturingview;
-- (void)stopcapturingview;
-- (void)playcapturedvideo;
+//- (void)stopcapturingview;
+//- (void)playcapturedvideo;
+- (void)pausecapturingview;
+- (void)resumecapturingview;
+
 @end
 
 @interface BottomRight : UIView{
     BOOL isRecording;
     BOOL finishedRecording;
+    BOOL startedRecording;
 }
 @property (nonatomic, assign) id<BottomRightViewDelegate> mydelegate;
 @property (nonatomic, assign) UIButton *startrecording;

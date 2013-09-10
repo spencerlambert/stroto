@@ -23,6 +23,8 @@
 	avAdaptor = nil;
 	startedAt = nil;
 	bitmapData = NULL;
+    pauseInterval = 0;
+    startedRecording = NO;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
@@ -132,7 +134,7 @@
 	//NOTE:  to record a scrollview while it is scrolling you need to implement your UIScrollViewDelegate such that it calls
 	//       'setNeedsDisplay' on the ScreenCaptureView.
 	if (_recording) {
-		float millisElapsed = [[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0;
+		float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
 		[self writeVideoFrameAtTime:CMTimeMake((int)millisElapsed, 1000)];
 	}
 	
@@ -262,6 +264,7 @@
 			result = [self setUpWriter];
 			startedAt = [[NSDate date] retain];
 			_recording = true;
+            startedRecording = YES;
 		}
 	}
 	
@@ -270,11 +273,30 @@
 
 - (void) stopRecording {
 	@synchronized(self) {
-		if (_recording) {
+		if (startedRecording) {
 			_recording = false;
 			[self completeRecordingSession];
 		}
 	}
+}
+
+- (void) pauseRecording {
+    @synchronized(self) {
+		if (_recording) {
+            pausedTime = [[NSDate date] retain];
+			_recording = false;
+        }
+    }
+}
+
+- (void) resumeRecording {
+    @synchronized(self) {
+		if (!_recording) {
+            pauseInterval += [[NSDate date] timeIntervalSinceDate:pausedTime] * 1000.0;
+			_recording = true;
+        }
+    }
+
 }
 
 -(void) writeVideoFrameAtTime:(CMTime)time {

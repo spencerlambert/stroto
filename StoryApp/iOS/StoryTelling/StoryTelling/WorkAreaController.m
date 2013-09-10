@@ -8,6 +8,7 @@
 
 #import "WorkAreaController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "SavedStoryDetailsViewController.h"
 
 
 #define THUMB_HEIGHT 60
@@ -38,8 +39,8 @@
     
     [self setBackgroundImages:[NSMutableArray arrayWithArray:[storyDB getBackgroundImagesSorted]]];
     [self setForegroundImages:[NSMutableArray arrayWithArray:[storyDB getForegroundImagesSorted]]];
-    [captureview setStoryDB:storyDB];
-    [captureview initStage];
+//    [captureview setStoryDB:storyDB];
+//    [captureview initStage];
 }
 
 - (void)viewDidLoad
@@ -108,7 +109,10 @@
     [self.view addSubview:record_btn_view];
     
     TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
+    
+    
     
 }
 
@@ -131,7 +135,7 @@
         imageview.image=selectedForegroundImage;
         [captureview addSubview:imageview];
         
-        [captureview actortoStage:selectedForegroundImage];
+//        [captureview actortoStage:selectedForegroundImage];
         
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -230,7 +234,7 @@
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
     backgroundimageview.image = selectedImage;
-    [captureview actortoStage:selectedImage];
+   // [captureview actortoStage:selectedImage];
 }
 
 //adding foreground image to work area
@@ -289,22 +293,40 @@
 }
 
 
-#pragma mark SlideLeftView Delegate Methods
+#pragma mark BottomRightView Delegate Methods
 
 - (void)startcapturingview{
-    slideleftview.startrecording.enabled = NO;
-    slideleftview.stoprecording.enabled = YES;
+//    slideleftview.startrecording.enabled = NO;
+//    slideleftview.stoprecording.enabled = YES;
     [audiorecorder recordAudio];
     //Changing record methods: captureview is now just a UIView
-    //[captureview startRecording];
+    [captureview startRecording];
 }
 
+-(void)pausecapturingview{
+    [audiorecorder pause];
+    [captureview pauseRecording];
+}
+
+-(void)resumecapturingview{
+    [audiorecorder recordAudio];
+    [captureview resumeRecording];
+}
+
+#pragma mark TopRightView Delegate Methods
+
 - (void)stopcapturingview{
-    slideleftview.stoprecording.enabled = NO;
+   // slideleftview.stoprecording.enabled = NO;
     //Changing record methods: captureview is now just a UIView
-    //[captureview stopRecording];
+    [captureview stopRecording];
     [audiorecorder stop];
-    //[self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
+    if (!loaderView) {
+        loaderView = [self getLoaderView];
+        [self.view addSubview:loaderView];
+    }
+    [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 -(void)CompileFilesToMakeMovie
@@ -317,10 +339,10 @@
     NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
     NSURL*    video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
     
-    NSString* outputFileName = @"outputFile.mov";
-    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], outputFileName];
+    NSString* outputFileName = [NSString stringWithFormat:@"%@.mov",[storyDB getDBName]];
+    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], outputFileName];
     NSURL*    outputFileUrl = [NSURL fileURLWithPath:outputFilePath];
-    
+    [[NSFileManager defaultManager] createDirectoryAtPath:outputFilePath withIntermediateDirectories:YES attributes:nil error:nil];
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
         [[NSFileManager defaultManager] removeItemAtPath:outputFilePath error:nil];
         
@@ -348,9 +370,12 @@
      ^(void ) {
              NSString *sourcePath = outputFilePath;
              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
-             slideleftview.playVideo.enabled = YES;
+//             slideleftview.playVideo.enabled = YES;
      }
-     ];  
+     ];
+    
+    [loaderView removeFromSuperview];
+    
 }
 
 - (void)playcapturedvideo{
@@ -360,6 +385,17 @@
     mp.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
     [self presentMoviePlayerViewControllerAnimated:mp];
 
+}
+
+- (UIView *) getLoaderView{
+    loaderView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [loaderView setBackgroundColor:[UIColor blackColor]];
+    [loaderView setAlpha:0.5f];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [indicator startAnimating];
+    [loaderView addSubview:indicator];
+    [indicator setCenter:loaderView.center];
+    return loaderView;
 }
 
 @end

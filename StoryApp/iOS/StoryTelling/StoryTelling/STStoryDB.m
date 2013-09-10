@@ -394,4 +394,8 @@
     return YES;
 }
 
+- (NSString *)getDBName{
+    return [[databasePath lastPathComponent]stringByDeletingPathExtension];
+}
+
 @end

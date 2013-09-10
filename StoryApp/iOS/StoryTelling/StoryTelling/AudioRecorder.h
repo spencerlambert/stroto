@@ -11,7 +11,10 @@
 
 @interface AudioRecorder : NSObject{
     AVAudioRecorder *audioRecorder;
+    BOOL startedRecording;
 }
 -(void) recordAudio;
 -(void) stop;
+-(void) pause;
+
 @end

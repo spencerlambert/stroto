@@ -16,6 +16,4 @@
 - (IBAction)uploadToFacebookButtonClicked:(id)sender;
 - (IBAction)editButtonClicked:(id)sender;
 - (IBAction)deleteButtonClicked:(id)sender;
-
-
 @end

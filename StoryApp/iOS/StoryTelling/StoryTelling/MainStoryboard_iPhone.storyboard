@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Story Telling Root View Controller - Stroto-->
         <scene sceneID="vrb-Vq-zMe">
             <objects>
-                <viewController id="k7h-sH-vLK" customClass="StoryTellingRootViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="storyRoot" id="k7h-sH-vLK" customClass="StoryTellingRootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1sD-QA-vJs">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -85,13 +85,13 @@
         <!--Saved Story Details View Controller - Story_Title-->
         <scene sceneID="7Tc-zm-a0x">
             <objects>
-                <viewController id="PeL-85-1Ea" customClass="SavedStoryDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="savedStory" id="PeL-85-1Ea" customClass="SavedStoryDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D4f-QW-DPJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="h4r-tt-Ooa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
+                                <rect key="frame" x="0.0" y="-8" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NIW-TC-yqw">
@@ -730,7 +730,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="STStage">
+                            <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.61835372117513321" green="0.66666666666666663" blue="0.66445533472134155" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -1027,127 +1027,6 @@
         <image name="app_bg.png" width="640" height="960"/>
         <image name="black.png" width="22" height="20"/>
     </resources>
-    <classes>
-        <class className="AddBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromCamraPackButtonClicked:"/>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="AddForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fromCameraButtonClicked:" candidateClass="UIButton"/>
-                <relationship kind="action" name="fromGalleryButtonClicked:"/>
-            </relationships>
-        </class>
-        <class className="CreateStoryRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="nextButtonClicked:"/>
-                <relationship kind="action" name="resigngTxtField"/>
-                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="STCropBackgroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="STCropForegroundViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="applyGrabcut:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="editForegroundSegment:"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="pickBG:"/>
-                <relationship kind="action" name="pickFG:"/>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="action" name="undoGrabcut:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="applyBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bgBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="cropMainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="eraseMainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="fgBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="grabcutView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="indicatorView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="sizeMainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="sizeView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="undoBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="STFreeStoryPacksViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buyButtonTapped:"/>
-                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="STPaidStoryPacksViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STPaidStoryPacksViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buyButtonTapped:"/>
-                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="paidStoryPackName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="STStage" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STStage.h"/>
-        </class>
-        <class className="STStoryPacksViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/STStoryPacksViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="previousView:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="freeStoryPacksView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="installedStoryPacksView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="paidStoryPacksView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
-                <relationship kind="action" name="deleteButtonClicked:"/>
-                <relationship kind="action" name="editButtonClicked:"/>
-                <relationship kind="action" name="playButtonClicked:"/>
-                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
-                <relationship kind="outlet" name="NavigationBarTitle" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="StoryTellingRootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WorkAreaController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="captureview" candidateClass="STStage"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -44,13 +44,19 @@
 	
 	//recording state
 	BOOL _recording;
+    BOOL startedRecording;
 	NSDate* startedAt;
 	void* bitmapData;
+    
+    float pauseInterval;
+    NSDate *pausedTime;
 }
 
 //for recording video
 - (bool) startRecording;
 - (void) stopRecording;
+- (void) pauseRecording;
+- (void) resumeRecording;
 
 //for accessing the current screen and adjusting the capture rate, etc.
 @property(retain) UIImage* currentScreen;
