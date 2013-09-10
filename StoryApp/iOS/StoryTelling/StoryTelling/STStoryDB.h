@@ -182,7 +182,7 @@ NSString *databasePath;
 - (NSArray*)getImageInstanceTable;
 - (BOOL)addImageInstance:(int)imageId;
 
-
+- (NSString *)getDBName;
 //Still need other methods for getting the timeline in playback mode.
 
 @end

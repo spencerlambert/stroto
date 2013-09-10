@@ -24,6 +24,7 @@
     STAudioRecording *audioRecorder;
     BOOL isRecording ;
     NSArray *imageInstances;
+    NSMutableArray *timeline;
     
 
 }

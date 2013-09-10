@@ -18,7 +18,7 @@
 #import "STStage.h"
 #import "STStoryDB.h"
 
-@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate>{
+@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate,TopRightViewDelegate>{
     SlideUpView *slideupview;
     SlideDownView *slidedownview;
     SlideLeftView *slideleftview;
@@ -32,9 +32,10 @@
     UIPinchGestureRecognizer *pinch;
     UIRotationGestureRecognizer *rotate;
     UITapGestureRecognizer *tap;
-    
+    UIView *loaderView;
 }
-@property (weak, nonatomic) IBOutlet STStage *captureview;
+//@property (weak, nonatomic) IBOutlet STStage *captureview;
+@property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;

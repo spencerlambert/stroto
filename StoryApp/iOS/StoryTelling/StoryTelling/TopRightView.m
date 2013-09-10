@@ -21,6 +21,7 @@
 @implementation TopRightView
 
 @synthesize done;
+@synthesize mydelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,16 +30,27 @@
     float paddingright = THUMB_HEIGHT + THUMB_V_PADDING * 2;
     frame = CGRectMake(CGRectGetMaxX(bounds)-paddingright, CGRectGetMinY(bounds), paddingright,paddingtop);
     //Replace with "Done" button
-    //UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
+    UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
     self = [super initWithFrame:frame];
     if (self) {
         done = [UIButton buttonWithType:UIButtonTypeCustom];
         [done setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        //[done setBackgroundImage:btnimage forState:UIControlStateNormal];
+        [done setBackgroundImage:btnimage forState:UIControlStateNormal];
+        [done addTarget:self action:@selector(donebtn_clicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:done];
+        finishedRecording = NO;
     }
     return self;
 }
+
+-(void)donebtn_clicked{
+    if(!finishedRecording){
+        if([mydelegate respondsToSelector:@selector(stopcapturingview)]){
+            [mydelegate stopcapturingview];
+            
+        }
+    }
+    }
 
 /*
 // Only override drawRect: if you perform custom drawing.

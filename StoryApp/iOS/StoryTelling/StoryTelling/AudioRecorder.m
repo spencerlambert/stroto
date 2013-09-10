@@ -11,6 +11,7 @@
 @implementation AudioRecorder
 
 - (id)init{
+    startedRecording = NO;
     NSString *soundFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"sound.caf"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSDictionary *recordSettings = [NSDictionary
@@ -46,14 +47,22 @@
     if (!audioRecorder.recording)
     {
         [audioRecorder record];
+        startedRecording = YES;
     }
 }
 -(void) stop
 {
+    if(startedRecording){
+    [audioRecorder stop];
+    }
+   
+}
+-(void) pause
+{
     if (audioRecorder.recording)
     {
-        [audioRecorder stop];
-    }
+        [audioRecorder pause];
+    } 
 }
 
 @end
