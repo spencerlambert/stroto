@@ -948,7 +948,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buyButtonTapped:" destination="RRX-6d-vFv" eventType="touchUpInside" id="p7d-Jo-KKh"/>
+                                    <action selector="buyProduct:" destination="RRX-6d-vFv" eventType="touchUpInside" id="VFm-sh-gna"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQo-bv-kjF">
@@ -1093,6 +1093,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
             <relationships>
                 <relationship kind="action" name="buyButtonTapped:"/>
+                <relationship kind="action" name="buyProduct:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
