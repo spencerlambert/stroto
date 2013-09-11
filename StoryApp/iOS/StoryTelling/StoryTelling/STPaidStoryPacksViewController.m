@@ -7,26 +7,30 @@
 //
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define paidDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":\"%d\"}",storyPackID]
+#define appleReceipt [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"%@\"}",storyPackID,appleReceiptData]
 #define THUMB_HEIGHT 80
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
 
 #import "STPaidStoryPacksViewController.h"
+#import "STStoryPackDownload.h"
 
-@interface STPaidStoryPacksViewController () <SKProductsRequestDelegate>
-{
-     NSArray *_products;
-}
+@interface STPaidStoryPacksViewController () 
 @end
 
 @implementation STPaidStoryPacksViewController
 
 @synthesize storyPackID;
+@synthesize paidStoryPackDetailsJson;
+@synthesize paidStoryPackURLJson;
+@synthesize paidProduct;
 @synthesize paidButtonLabel;
+@synthesize buyPackButton;
+@synthesize backgroundButton;
 @synthesize paidStoryPackName;
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
-@synthesize paidStoryPackDetailsJson;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,9 +78,9 @@
     while(!paidStoryPackDetailsJson){       //checking for data
         //        NSLog(@"NUll in paidStoryPackDetailsJson");
         continue;}
-    [self buyButtonTapped:nil];
+    
     paidStoryPackName.text = [NSString stringWithFormat:@"%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
-//    [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];
+    [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];
     [self reloadBackgroundImages];
     [self reloadForegroundImages];
 }
@@ -190,23 +194,47 @@
     [self.paidButtonLabel setHidden:NO];
     
 }
+#pragma mark - In App Purchase
 - (IBAction)buyButtonTapped:(id)sender
 {
     NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
+    //working of buy buttons
+    [self.paidButtonLabel setHidden:YES];
+    [self.buyPackButton setHidden:NO];
+    [self.backgroundButton setHidden:NO];
+    
 }
+-(IBAction)buyPack:(id)sender{
+    SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
+    NSLog(@"observationInfo : %@",[[SKPaymentQueue defaultQueue] observationInfo]);
+}
+
+- (IBAction)showPrice:(UIButton *)sender {
+    //touched Background
+    [self.buyPackButton setHidden:YES];
+    [self.backgroundButton setHidden:YES];
+    [self.paidButtonLabel setHidden:NO];
+
+}
+
 #pragma mark - SKProductsRequestDelegate
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
-    [self.paidButtonLabel setTitle:[NSString stringWithFormat:@"%0.2f",
-                                   [[response.products objectAtIndex:0] price].floatValue] forState:UIControlStateNormal];
-    NSLog(@"Product price locale : %@",[[response.products objectAtIndex:0] priceLocale]);
-    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+//    [self.paidButtonLabel setTitle:[NSString stringWithFormat:@"%0.2f",
+//                                   [[response.products objectAtIndex:0] price].floatValue] forState:UIControlStateNormal];
+//    NSLog(@"Product price locale : %@",[[response.products objectAtIndex:0] priceLocale]);
+//    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+    SKPayment *freePayment = [SKPayment paymentWithProduct:paidProduct];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    [[SKPaymentQueue defaultQueue] addPayment:freePayment];
 }
 
 -(void)requestDidFinish:(SKRequest *)request
@@ -225,6 +253,56 @@
     }
 
 }
+
+#pragma mark - SKPaymentTransactionObserver Protocol Methods
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    NSLog(@"Inside delegate of PAYMENT");
+    NSLog(@"TransactionArray : %@",transactions);
+    
+    for (SKPaymentTransaction* success in transactions)
+    {
+        NSLog(@"Transaction object@0 : %@",success);
+        if(success.transactionReceipt)
+            [self sendReceipt:success.transactionReceipt];
+        NSLog(@"TransactionReceipt : %@",success.transactionReceipt);
+        NSLog(@"TransactionIdentifier : %@",success.transactionIdentifier);
+        NSLog(@"TransactionState : %d",success.transactionState);
+        NSLog(@"TransactionDate : %@",success.transactionDate);
+    }
+}
+-(void) sendReceipt:(NSData*)appleReceiptData
+{
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[appleReceipt dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"receipt : %@", appleReceipt);
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
+        if ([data length] >0 && error == nil){
+            paidStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            STStoryPackDownload *paidDownload = [[STStoryPackDownload alloc] init];
+            [paidDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[paidStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
+            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
+            NSLog(@"html= %@",html);
+        }
+        else if ([data length] == 0 && error == nil){
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil){
+            NSLog(@"Error happened = %@", error); }
+    }];
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    
+}
+
+#pragma mark -
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -237,6 +315,8 @@
     [self setForegroundImagesView:nil];
     [self setPaidStoryPackName:nil];
     [self setLoader:nil];
+    [self setBuyPackButton:nil];
+    [self setBackgroundButton:nil];
     [super viewDidUnload];
 }
 @end

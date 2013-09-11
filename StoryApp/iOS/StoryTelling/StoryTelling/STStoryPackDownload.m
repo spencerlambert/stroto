@@ -14,16 +14,11 @@
 -(void)downloadStoryPack:(NSString*)downloadURL
 {
     NSLog(@"URL : %@",downloadURL);
-    NSMutableString *filename = (NSMutableString* )downloadURL;
-    NSString *staticURLPart = @"http://storypacks.stroto.com/download/";
-   if( [filename rangeOfString:staticURLPart].location!=NSNotFound)
-   {
-       NSLog(@"%@", filename);
-   }
+    NSString *filename = [downloadURL lastPathComponent];
+    NSLog(@"filename: %@",filename);
     NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
-    NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents"]];
-    
-    NSString *filePath = [resourceDocPath stringByAppendingPathComponent:@"Database.sqlite"];
+    NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents/story_dir"]];
+    NSString *filePath = [resourceDocPath stringByAppendingPathComponent:filename];
     [dbFile writeToFile:filePath atomically:YES];
 }
 @end
