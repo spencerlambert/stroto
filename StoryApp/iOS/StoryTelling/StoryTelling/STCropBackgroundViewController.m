@@ -9,6 +9,7 @@
 #import "STCropBackgroundViewController.h"
 #import "STImage.h"
 #import "AppDelegate.h"
+#import "CreateStoryRootViewController.h"
 
 #define THUMB_HEIGHT 78
 #define THUMB_V_PADDING 10
@@ -189,7 +190,16 @@ int selectedbackgroundimage = 0;
     //[self.navigationController popToRootViewControllerAnimated:YES];
     AppDelegate *backgroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [backgroundImagesDelegate.backgroundImagesArray addObjectsFromArray:[self backgroundimages]];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    [self.navigationController popToViewController:[self getCreateStoryController] animated:YES];
+}
+
+- (UIViewController *) getCreateStoryController{
+    for (UIViewController *temp in self.navigationController.viewControllers) {
+        if ([temp isKindOfClass:[CreateStoryRootViewController class]]) {
+            return temp;
+        }
+    }
+    return nil;
 }
 
 - (float)getMinimumZoomScale{

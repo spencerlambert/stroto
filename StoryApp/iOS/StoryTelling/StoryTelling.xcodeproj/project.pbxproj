@@ -97,6 +97,7 @@
 		DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
+		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */; };
@@ -277,6 +278,7 @@
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9D34F517CD98CC00845670 /* STStageExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporter.h; sourceTree = "<group>"; };
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
+		DB9E979C17E002C1009BD697 /* navbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbutton.png; sourceTree = "<group>"; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
 		DB9E9E881764A7DC00788373 /* CreateStoryRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateStoryRootViewController.m; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				DB93D7011774E36000437F40 /* BottomBar.png */,
 				DB93D7021774E36000437F40 /* RecordArea.png */,
 				DB93D7031774E36000437F40 /* RecordOff.png */,
+				DB9E979C17E002C1009BD697 /* navbutton.png */,
 				DB93D7041774E36000437F40 /* RecordOn.png */,
 				DB93D7051774E36000437F40 /* TopBar.png */,
 			);
@@ -803,6 +806,7 @@
 				DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */,
 				DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */,
 				DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */,
+				DB9E979D17E002C1009BD697 /* navbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

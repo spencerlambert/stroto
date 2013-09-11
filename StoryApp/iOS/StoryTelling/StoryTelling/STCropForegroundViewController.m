@@ -12,6 +12,7 @@
 #import "ACMagnifyingView.h"
 #import "ACMagnifyingGlass.h"
 #import "ACLoupe.h"
+#import "CreateStoryRootViewController.h"
 
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
@@ -717,7 +718,16 @@ CGRect grabcutFrame;
     [[self foregroundimages]replaceObjectAtIndex:selectedforegroundimage withObject:img];
     AppDelegate *foregroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [foregroundImagesDelegate.foregroundImagesArray addObjectsFromArray:[self foregroundimages]];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    [self.navigationController popToViewController:[self getCreateStoryController] animated:YES];
+}
+
+- (UIViewController *) getCreateStoryController{
+    for (UIViewController *temp in self.navigationController.viewControllers) {
+        if ([temp isKindOfClass:[CreateStoryRootViewController class]]) {
+            return temp;
+        }
+    }
+    return nil;
 }
 
 - (UIImage*) updateThumbImage1{

@@ -25,6 +25,7 @@
 @synthesize captureview;
 @synthesize selectedForegroundImage;
 @synthesize storyDB;
+@synthesize mydelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +49,7 @@
     [super viewDidLoad];
     [self initWorkArea];
     [self setSelectedForegroundImage:nil];
+    recordbtnClicked = NO;
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
     [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
@@ -298,6 +300,7 @@
 - (void)startcapturingview{
 //    slideleftview.startrecording.enabled = NO;
 //    slideleftview.stoprecording.enabled = YES;
+    recordbtnClicked = YES;
     [audiorecorder recordAudio];
     //Changing record methods: captureview is now just a UIView
     [captureview startRecording];
@@ -320,13 +323,16 @@
     //Changing record methods: captureview is now just a UIView
     [captureview stopRecording];
     [audiorecorder stop];
+    if(recordbtnClicked){
     if (!loaderView) {
         loaderView = [self getLoaderView];
         [self.view addSubview:loaderView];
     }
     [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+        [mydelegate finishedRecording];
 }
 
 -(void)CompileFilesToMakeMovie
@@ -374,17 +380,8 @@
      }
      ];
     
-    [loaderView removeFromSuperview];
-    
-}
-
-- (void)playcapturedvideo{
-    NSString *outputPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"outputFile.mov"];
-    NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-    MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:outputURL];
-    mp.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-    [self presentMoviePlayerViewControllerAnimated:mp];
-
+    [loaderView removeFromSuperview];  
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIView *) getLoaderView{

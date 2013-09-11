@@ -10,8 +10,9 @@
 #import "AddBackgroundViewController.h"
 #import "AppDelegate.h"
 #import "STStoryDB.h"
+#import "WorkAreaController.h"
 
-@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate>
+@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *storyNameTextField;
 @property (strong, nonatomic) IBOutlet UIView *BackgroundImagesView;
@@ -19,6 +20,9 @@
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) AppDelegate *imagesDelegate;
+@property BOOL isNewStory;
+@property (strong, nonatomic) NSString *dbname;
+
 
 - (IBAction)nextButtonClicked:(id)sender;
 - (BOOL) createStoryDirectories:(NSString *)storyName;

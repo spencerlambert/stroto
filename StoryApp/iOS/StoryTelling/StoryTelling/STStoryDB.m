@@ -60,7 +60,7 @@
             databasePath = [[NSString alloc]
                             initWithString: [newDir stringByAppendingPathComponent:
                                              @"1.db"]];
-            NSLog(@"%@",databasePath);
+           // NSLog(@"%@",databasePath);
             
         }
         else
@@ -68,7 +68,7 @@
            // NSLog(@"Count : %d",[self dbnumber:arrayFiles]);
             databasePath = [[NSString alloc]
                             initWithString: [newDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.db",[self dbnumber:arrayFiles]+1]]] ;
-            NSLog(@"%@",databasePath);
+             NSLog(@"%@",databasePath);
         }
         
         
@@ -139,6 +139,53 @@
         }
     }
     return self;
+}
+
+
++ (id)loadSTstoryDB:(NSString*)filePath{
+    
+    return [[self alloc]initWithFilename:filePath];
+}
+
+- (id)initWithFilename:(NSString*)filePath{
+   
+    self = [super init];
+    if (self) {
+        NSString *docsDir;
+        NSArray *dirPaths;
+        
+        // Get the documents directory
+        dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                       NSDocumentDirectory, NSUserDomainMask, YES);
+        
+        docsDir = dirPaths[0];
+        
+        NSString *newDir = [docsDir stringByAppendingPathComponent:STDIRECTORY];
+        // NSLog(@"newDir : %@",newDir);
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+       
+        databasePath = [newDir stringByAppendingPathComponent:filePath];
+       // databasePath = [databasePath stringByAppendingPathExtension:@".db"];
+        
+        if([fileManager fileExistsAtPath:databasePath]){
+            const char *dbpath = [databasePath UTF8String];
+            
+            if (sqlite3_open(dbpath, & db) == SQLITE_OK)
+            {
+                return  self;
+            }else{
+                NSLog(@"Error opening %@",databasePath);
+                return nil;
+            }
+
+        }else{
+            NSLog(@"Database is not found at path %@", databasePath);
+            return nil;
+        }
+    }
+    
+    return nil;
 }
 
 -(BOOL)updateVersion:(float)version{
@@ -396,6 +443,20 @@
 
 - (NSString *)getDBName{
     return [[databasePath lastPathComponent]stringByDeletingPathExtension];
+}
+
+- (NSString *)getStoryName{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT displayName from Story;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
+            return  temp;
+        }
+    }
+    return @"";
 }
 
 @end

@@ -18,6 +18,12 @@
 #import "STStage.h"
 #import "STStoryDB.h"
 
+@protocol WorkAreaDelegate <NSObject>
+
+-(void) finishedRecording;
+
+@end
+
 @interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate,TopRightViewDelegate>{
     SlideUpView *slideupview;
     SlideDownView *slidedownview;
@@ -33,6 +39,7 @@
     UIRotationGestureRecognizer *rotate;
     UITapGestureRecognizer *tap;
     UIView *loaderView;
+    BOOL recordbtnClicked;
 }
 //@property (weak, nonatomic) IBOutlet STStage *captureview;
 @property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;
@@ -42,5 +49,6 @@
 @property (strong, nonatomic) STImage *selectedForegroundImage;
 @property STStoryDB *storyDB;
 
+@property (weak, nonatomic) id<WorkAreaDelegate> mydelegate;
 
 @end

@@ -29,6 +29,8 @@
 @synthesize BackgroundImagesView;
 @synthesize ForegroundImagesView;
 @synthesize imagesDelegate;
+@synthesize isNewStory;
+@synthesize dbname;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,31 +45,41 @@
 {
     [super viewDidLoad];
     self.view.tag=20;
-    CGSize storySize = [AppDelegate deviceSize];
-    NSLog(@"Demo : %@",NSStringFromCGSize(storySize));
-    newStory = [STStoryDB createNewSTstoryDB:storySize];
-    NSDateFormatter *dateTimeFormat = [[NSDateFormatter alloc] init];
-    [dateTimeFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
-    NSDate *now = [[NSDate alloc] init];
-    NSString *dateTime = [dateTimeFormat stringFromDate:now];
-    NSLog(@"Title is %@", dateTime );
-    [storyNameTextField setText:dateTime];
-    [newStory updateDisplayName:dateTime];
+    if (isNewStory) {
+        CGSize storySize = [AppDelegate deviceSize];
+        newStory = [STStoryDB createNewSTstoryDB:storySize];
+        NSDateFormatter *dateTimeFormat = [[NSDateFormatter alloc] init];
+        [dateTimeFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+        NSDate *now = [[NSDate alloc] init];
+        NSString *dateTime = [dateTimeFormat stringFromDate:now];
+        //NSLog(@"Title is %@", dateTime );
+        [storyNameTextField setText:dateTime];
+        [newStory updateDisplayName:dateTime];
+    }
+    else{
+        newStory = [STStoryDB loadSTstoryDB:dbname];
+        [storyNameTextField setText:[newStory getStoryName]];
+        imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        imagesDelegate.backgroundImagesArray = [[NSMutableArray alloc]initWithArray:[newStory getBackgroundImagesSorted]];
+        imagesDelegate.foregroundImagesArray = [[NSMutableArray alloc]initWithArray:[newStory getForegroundImagesSorted]];
+        [imagesDelegate setIsNewStory:@"false"];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
     imagesDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if([imagesDelegate.isNewStory isEqual: @"true"]){
-       // [self setBackgroundImages:[[NSMutableArray alloc]init]];
-      //  [self setForegroundImages:[[NSMutableArray alloc]init]];
+        // [self setBackgroundImages:[[NSMutableArray alloc]init]];
+        //  [self setForegroundImages:[[NSMutableArray alloc]init]];
         [imagesDelegate setBackgroundImagesArray:[[NSMutableArray alloc]init]];
         [imagesDelegate setForegroundImagesArray:[[NSMutableArray alloc]init]];
         [imagesDelegate setIsNewStory:@"false"];
         
     }else{
-    backgroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.backgroundImagesArray];
-    foregroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.foregroundImagesArray];
+        backgroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.backgroundImagesArray];
+        foregroundImages = [[NSMutableArray alloc]initWithArray:imagesDelegate.foregroundImagesArray];
     }
     [self reloadBackgroundImagesView];
     [self reloadForegroundImagesView];
@@ -96,23 +108,23 @@
     
     float xPosition = THUMB_H_PADDING;
     
-//    for (NSMutableDictionary *imageDictionary in backgroundImages) {
-//        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
-//        if (thumbImage) {
-//            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-//                                             scale:(thumbImage.scale * 2.4)
-//                                       orientation:(thumbImage.imageOrientation)];
-//            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
-//            CGRect frame = [thumbView frame];
-//            frame.origin.y = THUMB_V_PADDING;
-//            frame.origin.x = xPosition;
-//            [thumbView setFrame:frame];
-//            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
-//            [thumbView setClipsToBounds:YES];
-//            [BackgroundImagesHolder addSubview:thumbView];
-//            xPosition += (frame.size.width + THUMB_H_PADDING);
-//        }
-//    }
+    //    for (NSMutableDictionary *imageDictionary in backgroundImages) {
+    //        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+    //        if (thumbImage) {
+    //            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+    //                                             scale:(thumbImage.scale * 2.4)
+    //                                       orientation:(thumbImage.imageOrientation)];
+    //            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+    //            CGRect frame = [thumbView frame];
+    //            frame.origin.y = THUMB_V_PADDING;
+    //            frame.origin.x = xPosition;
+    //            [thumbView setFrame:frame];
+    //            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
+    //            [thumbView setClipsToBounds:YES];
+    //            [BackgroundImagesHolder addSubview:thumbView];
+    //            xPosition += (frame.size.width + THUMB_H_PADDING);
+    //        }
+    //    }
     
     for (int i = 0; i<[[self backgroundImages]count];i++) {
         STImage *stimage = [[self backgroundImages]objectAtIndex:i];
@@ -144,16 +156,16 @@
 }
 
 - (IBAction)backButtonClicked:(UIBarButtonItem *)sender {
-//    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
-//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
-//    [alert show];
-//        
-//    }
-//    else{
-//        [newStory deleteSTstoryDB];
+    //    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
+    //        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
+    //    [alert show];
+    //
+    //    }
+    //    else{
+    //        [newStory deleteSTstoryDB];
     [self updateDB];
     [self.navigationController popViewControllerAnimated:YES];
-//            }
+    //            }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -170,23 +182,23 @@
     
     float xPosition = THUMB_H_PADDING;
     
-//    for (NSMutableDictionary *imageDictionary in foregroundImages) {
-//        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
-//        if (thumbImage) {
-//            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
-//                                             scale:(thumbImage.scale * 2.4)
-//                                       orientation:(thumbImage.imageOrientation)];
-//            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
-//            CGRect frame = [thumbView frame];
-//            frame.origin.y = THUMB_V_PADDING;
-//            frame.origin.x = xPosition;
-//            [thumbView setFrame:frame];
-//            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
-//            [thumbView setClipsToBounds:YES];
-//            [ForegroundImagesHolder addSubview:thumbView];
-//            xPosition += (frame.size.width + THUMB_H_PADDING);
-//        }
-//    }
+    //    for (NSMutableDictionary *imageDictionary in foregroundImages) {
+    //        UIImage *thumbImage = [imageDictionary objectForKey:@"UIImagePickerControllerThumbnailImage"];
+    //        if (thumbImage) {
+    //            thumbImage = [UIImage imageWithCGImage:[thumbImage CGImage]
+    //                                             scale:(thumbImage.scale * 2.4)
+    //                                       orientation:(thumbImage.imageOrientation)];
+    //            UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+    //            CGRect frame = [thumbView frame];
+    //            frame.origin.y = THUMB_V_PADDING;
+    //            frame.origin.x = xPosition;
+    //            [thumbView setFrame:frame];
+    //            //thumbView.contentMode = UIViewContentModeScaleAspectFit;
+    //            [thumbView setClipsToBounds:YES];
+    //            [ForegroundImagesHolder addSubview:thumbView];
+    //            xPosition += (frame.size.width + THUMB_H_PADDING);
+    //        }
+    //    }
     
     for (int i = 0; i<[[self foregroundImages]count];i++) {
         STImage *stimage = [[self foregroundImages]objectAtIndex:i];
@@ -205,7 +217,7 @@
         [ForegroundImagesHolder addSubview:thumbView];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
-
+    
     [ForegroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     for(UIView *view in ForegroundImagesView.subviews){
         [view removeFromSuperview];
@@ -227,11 +239,13 @@
     WorkAreaController *workarea =
     [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
-//    [workarea setBackgroundImages:backgroundImages];
-//    [workarea setForegroundImages:foregroundImages];
+    //    [workarea setBackgroundImages:backgroundImages];
+    //    [workarea setForegroundImages:foregroundImages];
     [workarea setStoryname:[storyNameTextField text]];
     [workarea setStoryDB:newStory];
+    [workarea setMydelegate:self];
     [self presentViewController:workarea animated:YES completion:nil];
+    
 }
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 //    if(buttonIndex==1){
@@ -249,6 +263,10 @@
     for (STImage *image in foregroundImages) {
         [newStory addImage:image];
     }
+}
+
+-(void)finishedRecording{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

@@ -30,15 +30,24 @@
     float paddingright = THUMB_HEIGHT + THUMB_V_PADDING * 2;
     frame = CGRectMake(CGRectGetMaxX(bounds)-paddingright, CGRectGetMinY(bounds), paddingright,paddingtop);
     //Replace with "Done" button
-    UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
+//    UIImage *btnimage = [UIImage imageNamed:@"Back.png"];
     self = [super initWithFrame:frame];
     if (self) {
-        done = [UIButton buttonWithType:UIButtonTypeCustom];
-        [done setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        [done setBackgroundImage:btnimage forState:UIControlStateNormal];
-        [done addTarget:self action:@selector(donebtn_clicked) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:done];
-        finishedRecording = NO;
+//        done = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [done setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+//        [done setBackgroundImage:btnimage forState:UIControlStateNormal];
+//        [done addTarget:self action:@selector(donebtn_clicked) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:done];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(donebtn_clicked)
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"navbutton.png"] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(frame.size.width*0.125,frame.size.height/4, frame.size.width*0.75,frame.size.height/2);
+    [self addSubview:button];
+    finishedRecording = NO;
     }
     return self;
 }

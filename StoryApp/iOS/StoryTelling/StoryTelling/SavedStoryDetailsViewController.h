@@ -10,7 +10,8 @@
 
 @interface SavedStoryDetailsViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UINavigationItem *NavigationBarTitle;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
+@property (strong, nonatomic) NSString *dbname;
 - (IBAction)playButtonClicked:(id)sender;
 - (IBAction)UploadToYoutubeButtonClicked:(id)sender;
 - (IBAction)uploadToFacebookButtonClicked:(id)sender;

@@ -153,7 +153,8 @@ NSString *databasePath;
 
 
 + (id)createNewSTstoryDB:(CGSize)size;
-+ (id)loadSTstoryDB:(STStoryFile*)stroyFile;
+//+ (id)loadSTstoryDB:(STStoryFile*)stroyFile;
++ (id)loadSTstoryDB:(NSString*)filePath;
 + (NSMutableArray*)getStoryFiles;  //This returns an array of local stories that have sqlite dbs as STStoryFile objects.
 
 - (id)initWithFilename:(NSString*)filePath;
@@ -183,6 +184,7 @@ NSString *databasePath;
 - (BOOL)addImageInstance:(int)imageId;
 
 - (NSString *)getDBName;
+- (NSString *)getStoryName;
 //Still need other methods for getting the timeline in playback mode.
 
 @end

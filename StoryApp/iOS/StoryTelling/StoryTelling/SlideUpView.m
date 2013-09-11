@@ -63,7 +63,7 @@
         float scrollViewWidth  = [self bounds].size.width;
         BackgroundImagesHolder = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeight)];
         [BackgroundImagesHolder setCanCancelContentTouches:NO];
-        [BackgroundImagesHolder setClipsToBounds:NO];
+        [BackgroundImagesHolder setClipsToBounds:YES];
         
         // now place all the thumb views as subviews of the scroll view
         // and in the course of doing so calculate the content width

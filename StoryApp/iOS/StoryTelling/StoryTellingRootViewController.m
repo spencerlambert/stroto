@@ -8,6 +8,7 @@
 
 #import "StoryTellingRootViewController.h"
 #import "STStoryDB.h"
+#import "SavedStoryDetailsViewController.h"
 
 @interface StoryTellingRootViewController ()
 
@@ -15,7 +16,8 @@
 
 @implementation StoryTellingRootViewController {
     STStoryDB* newStory;
-    NSMutableArray *displayNames ;
+    NSMutableArray *displayNames;
+    NSMutableArray *dbNames;
 }
 
 @synthesize newstoryFlag;
@@ -65,6 +67,7 @@
     NSString *docsDir;
     NSArray *dirPaths;
     displayNames = [[NSMutableArray alloc]init];
+    dbNames = [[NSMutableArray alloc]init];
     
     
     // Get the documents directory
@@ -87,6 +90,7 @@
         sqlite3 *db;
         if([[[filelist[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
             NSLog(@"%@",filelist[i]);
+            [dbNames addObject:filelist[i]];
             NSString *databasePath = [newDir stringByAppendingPathComponent:filelist[i]];
             const char *dbpath = [databasePath UTF8String];
             
@@ -115,6 +119,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
+   
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
@@ -122,8 +127,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    cell. accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [displayNames objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     SavedStoryDetailsViewController *savedStory =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
+    
+    [savedStory setDbname:dbNames[indexPath.row]];
+    [self.navigationController pushViewController:savedStory animated:YES];
+
 }
 
 - (void)viewDidUnload {
