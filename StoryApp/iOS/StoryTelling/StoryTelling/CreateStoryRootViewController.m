@@ -29,7 +29,7 @@
 @synthesize BackgroundImagesView;
 @synthesize ForegroundImagesView;
 @synthesize imagesDelegate;
-@synthesize isNewStory;
+@synthesize isEditStory;
 @synthesize dbname;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     self.view.tag=20;
-    if (isNewStory) {
+    if (!isEditStory) {
         CGSize storySize = [AppDelegate deviceSize];
         newStory = [STStoryDB createNewSTstoryDB:storySize];
         NSDateFormatter *dateTimeFormat = [[NSDateFormatter alloc] init];

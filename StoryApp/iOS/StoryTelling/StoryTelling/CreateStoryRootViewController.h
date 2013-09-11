@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSMutableArray *backgroundImages;
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) AppDelegate *imagesDelegate;
-@property BOOL isNewStory;
+@property BOOL isEditStory;
 @property (strong, nonatomic) NSString *dbname;
 
 

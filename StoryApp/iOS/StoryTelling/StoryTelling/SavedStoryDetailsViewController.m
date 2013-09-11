@@ -68,6 +68,7 @@
     [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"CreateStoryRootViewController"];
     [createStory setDbname:dbname];
+    [createStory setIsEditStory:YES];
     [self.navigationController pushViewController:createStory animated:YES];
 
     
