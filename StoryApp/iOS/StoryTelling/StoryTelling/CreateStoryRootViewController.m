@@ -258,14 +258,23 @@
 - (void)updateDB{
     [newStory updateDisplayName:storyNameTextField.text];
     for(STImage *image in backgroundImages){
-        [newStory addImage:image];
+        if(image.imageId == 0){
+            [newStory addImage:image];
+        }else{
+            [newStory updateImage:image];
+        }
     }
     for (STImage *image in foregroundImages) {
-        [newStory addImage:image];
+        if(image.imageId == 0){
+            [newStory addImage:image];
+        }else{
+            [newStory updateImage:image];
+        }
     }
 }
 
 -(void)finishedRecording{
+    [newStory closeDB];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

@@ -47,7 +47,7 @@
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) NSString *storyname;
 @property (strong, nonatomic) STImage *selectedForegroundImage;
-@property STStoryDB *storyDB;
+@property (weak, nonatomic) STStoryDB *storyDB;
 
 @property (weak, nonatomic) id<WorkAreaDelegate> mydelegate;
 

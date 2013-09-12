@@ -85,11 +85,11 @@
     int count = [filelist count];
     
     
-    NSLog (@"%i",count);
+    //NSLog (@"%i",count);
     for(int i=0; i<count; i++){
         sqlite3 *db;
         if([[[filelist[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
-            NSLog(@"%@",filelist[i]);
+            //NSLog(@"%@",filelist[i]);
             [dbNames addObject:filelist[i]];
             NSString *databasePath = [newDir stringByAppendingPathComponent:filelist[i]];
             const char *dbpath = [databasePath UTF8String];
@@ -102,9 +102,10 @@
                     if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
                         NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
                         [displayNames addObject:temp];
-                        NSLog(@"aaa is %@",temp);
                     }
                 }
+                sqlite3_finalize(compiled_stmt);
+                sqlite3_close(db);
             }
             
         }

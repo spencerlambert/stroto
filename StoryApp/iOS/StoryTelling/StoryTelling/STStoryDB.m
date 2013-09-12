@@ -222,13 +222,13 @@
 -(BOOL)deleteSTstoryDB{
     NSFileManager *manager = [NSFileManager defaultManager];
     if([manager fileExistsAtPath:databasePath]){
+        [self closeDB];
         return [manager removeItemAtPath:databasePath error:nil];
     }
     return  NO;
 }
 
 -(BOOL)addImage:(STImage *)image{
-   
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','thumbnailData') VALUES (?,?,?,?,?,?,?,?,?,?);"];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *statement;
@@ -253,14 +253,54 @@
         sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
         sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
         // Execute the statement.
-        if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"Failed to insert images");
+        int temp = sqlite3_step(statement);
+        if (temp != SQLITE_DONE) {
+            NSLog(@"Failed to insert image %s",sqlite3_errmsg(db));
+            sqlite3_finalize(statement);
             return  false;
         }
     }
     // Clean up and delete the resources used by the prepared statement.
     sqlite3_finalize(statement);
     return  true; 
+}
+
+- (BOOL)updateImage:(STImage*)image{
+    NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, thumbnailData =?) where imageId = %d;",image.imageId];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *statement;
+    // Prepare the statement.
+    if (sqlite3_prepare_v2(db, sql_stmt, -1, &statement, NULL) == SQLITE_OK) {
+        
+        sqlite3_bind_int(statement, 1, image.listDisplayOrder);
+        sqlite3_bind_int(statement, 2, image.sizeX);
+        sqlite3_bind_int(statement, 3, image.sizeY);
+        sqlite3_bind_text(statement, 4, [image.fileType UTF8String], -1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [image.type UTF8String], -1,SQLITE_TRANSIENT);
+        sqlite3_bind_int(statement, 6, image.defaultX);
+        sqlite3_bind_int(statement, 7, image.defaultY);
+        sqlite3_bind_double(statement, 8, image.defaultScale);
+        NSData *imageData;
+        if ([image.masks count]>0 && [image.maskImgs count]>0) {
+            imageData = [self getImageData:image];
+        }
+        else{
+            imageData = UIImagePNGRepresentation([UIImage imageWithCGImage:image.thumbimage.CGImage]);
+        }
+        sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
+        // Execute the statement.
+        int temp = sqlite3_step(statement);
+        if (temp != SQLITE_DONE) {
+            NSLog(@"Failed to update image %s",sqlite3_errmsg(db));
+            sqlite3_finalize(statement);
+            return  false;
+        }
+    }
+    // Clean up and delete the resources used by the prepared statement.
+    sqlite3_finalize(statement);
+    return  true;
+
 }
 
 - (STImage*)getImageByID:(int)img_id{
@@ -289,9 +329,11 @@
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
             temp.thumbimage = image1;
+            sqlite3_finalize(compiled_stmt);
             return  temp;
         }
     }
+     sqlite3_finalize(compiled_stmt);
     return  nil;
 }
 
@@ -325,6 +367,7 @@
         }
         
     }
+    sqlite3_finalize(compiled_stmt);
     return bgImages;
 }
 
@@ -358,6 +401,7 @@
         }
         
     }
+    sqlite3_finalize(compiled_stmt);
     return fgImages;
 }
 
@@ -372,11 +416,12 @@
    }
 
 - (BOOL)updateDisplayName:(NSString*)name{
+    char *errMsg;
     NSString *sql = [NSString stringWithFormat:@"UPDATE Story set displayName='%@';",name];
     const char *sql_stmt = [sql UTF8String];
-    if (sqlite3_exec(db, sql_stmt, NULL, NULL, NULL) != SQLITE_OK)
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
     {
-        NSLog(@"Failed to update story name");
+        NSLog(@"Failed to update story name : %s",errMsg);
         return  false;
     }
     return true;
@@ -426,6 +471,7 @@
             }
         }
     }
+    sqlite3_finalize(compiled_stmt);
     return imageInstances;
 }
 
@@ -453,10 +499,16 @@
     if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
         if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
+            sqlite3_finalize(compiled_stmt);
             return  temp;
         }
     }
+    sqlite3_finalize(compiled_stmt);
     return @"";
+}
+- (void)closeDB
+{
+    sqlite3_close(db);
 }
 
 @end

@@ -319,20 +319,23 @@
 #pragma mark TopRightView Delegate Methods
 
 - (void)stopcapturingview{
-   // slideleftview.stoprecording.enabled = NO;
+    // slideleftview.stoprecording.enabled = NO;
     //Changing record methods: captureview is now just a UIView
     [captureview stopRecording];
     [audiorecorder stop];
     if(recordbtnClicked){
-    if (!loaderView) {
-        loaderView = [self getLoaderView];
-        [self.view addSubview:loaderView];
-    }
-    [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
+        if (!loaderView) {
+            loaderView = [self getLoaderView];
+            [self.view addSubview:loaderView];
+        }
+        [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
     }else{
+        [storyDB closeDB];
+        [mydelegate finishedRecording];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-        [mydelegate finishedRecording];
+    
+    
 }
 
 -(void)CompileFilesToMakeMovie
@@ -374,13 +377,15 @@
     
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-             NSString *sourcePath = outputFilePath;
-             UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
+//             NSString *sourcePath = outputFilePath;
+//             UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
 //             slideleftview.playVideo.enabled = YES;
      }
      ];
     
-    [loaderView removeFromSuperview];  
+    [loaderView removeFromSuperview];
+    [mydelegate finishedRecording];
+    [storyDB closeDB];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

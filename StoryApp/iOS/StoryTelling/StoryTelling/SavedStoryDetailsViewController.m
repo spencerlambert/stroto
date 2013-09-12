@@ -36,6 +36,7 @@
     [super viewDidLoad];
     storyDB = [STStoryDB loadSTstoryDB:dbname];
     [navigationBarTitle setTitle:[storyDB getStoryName]];
+    [storyDB closeDB];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,5 +76,8 @@
 }
 
 - (IBAction)deleteButtonClicked:(id)sender {
+    storyDB = [STStoryDB loadSTstoryDB:dbname];
+    [storyDB deleteSTstoryDB];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end

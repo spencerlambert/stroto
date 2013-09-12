@@ -185,6 +185,7 @@ NSString *databasePath;
 
 - (NSString *)getDBName;
 - (NSString *)getStoryName;
+-(void) closeDB;
 //Still need other methods for getting the timeline in playback mode.
 
 @end
