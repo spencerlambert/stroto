@@ -81,7 +81,7 @@
     
     paidStoryPackName.text = [NSString stringWithFormat:@"%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
     [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];
-    [self reloadBackgroundImages];
+    [self performSelectorInBackground:@selector(reloadBackgroundImages) withObject:nil];
     [self reloadForegroundImages];
 }
 -(void)reloadBackgroundImages
@@ -125,14 +125,15 @@
         [thumbView setUserInteractionEnabled:YES];
         [thumbView setHidden:NO];
         [backgroundImagesHolder addSubview:thumbView];
+        [backgroundImagesView addSubview:backgroundImagesHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
     //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
-    for(UIView *view in backgroundImagesView.subviews){
-        [view removeFromSuperview];
-    }
+//    for(UIView *view in backgroundImagesView.subviews){
+//        [view removeFromSuperview];
+//    } //testing is needed.
     [backgroundImagesView addSubview:backgroundImagesHolder];
   }
 }
@@ -178,14 +179,15 @@
         [thumbView setUserInteractionEnabled:YES];
         [thumbView setHidden:NO];
         [foregroundImagesHolder addSubview:thumbView];
+        [foregroundImagesView addSubview:foregroundImagesHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
     //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
-    for(UIView *view in foregroundImagesView.subviews){
-        [view removeFromSuperview];
-    }
+//    for(UIView *view in foregroundImagesView.subviews){
+//        [view removeFromSuperview];
+//    } //testing is needed.
     [foregroundImagesView addSubview:foregroundImagesHolder];
     }
     //stoping activity indicator
@@ -201,10 +203,10 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    //working of buy buttons
-    [self.paidButtonLabel setHidden:YES];
-    [self.buyPackButton setHidden:NO];
-    [self.backgroundButton setHidden:NO];
+//    //working of buy buttons
+//    [self.paidButtonLabel setHidden:YES];
+//    [self.buyPackButton setHidden:NO];
+//    [self.backgroundButton setHidden:NO];
     
 }
 -(IBAction)buyPack:(id)sender{
@@ -225,22 +227,25 @@
 #pragma mark - SKProductsRequestDelegate
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
+    paidProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
 //    [self.paidButtonLabel setTitle:[NSString stringWithFormat:@"%0.2f",
 //                                   [[response.products objectAtIndex:0] price].floatValue] forState:UIControlStateNormal];
 //    NSLog(@"Product price locale : %@",[[response.products objectAtIndex:0] priceLocale]);
-//    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
-    SKPayment *freePayment = [SKPayment paymentWithProduct:paidProduct];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:freePayment];
+    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
     NSLog(@"Loading request.description : %@",request.description);
     NSLog(@"Request : %@",request);
+    
+    //working of buy buttons
+    [self.paidButtonLabel setHidden:YES];
+    [self.buyPackButton setHidden:NO];
+    [self.backgroundButton setHidden:NO];
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
@@ -263,8 +268,9 @@
     for (SKPaymentTransaction* success in transactions)
     {
         NSLog(@"Transaction object@0 : %@",success);
+//        if(success.transactionState == 1)
         if(success.transactionReceipt)
-            [self sendReceipt:success.transactionReceipt];
+        [self sendReceipt:success.transactionReceipt];
         NSLog(@"TransactionReceipt : %@",success.transactionReceipt);
         NSLog(@"TransactionIdentifier : %@",success.transactionIdentifier);
         NSLog(@"TransactionState : %d",success.transactionState);
@@ -278,7 +284,7 @@
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[appleReceipt dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSLog(@"receipt : %@", appleReceipt);
+//    NSLog(@"receipt : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
@@ -296,12 +302,32 @@
             NSLog(@"Error happened = %@", error); }
     }];
 }
-
+-(void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
+{
+    NSLog(@"Removed Transactions : %@",transactions);
+    NSLog(@"END OF removedTransactions");
+}
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
-    
+    NSLog(@"restore finished QUEUE: %@",queue);
+    NSLog(@"END OF restore FIninshed QUEUE");
+
 }
 
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    NSLog(@"SKPayment QUEUE : %@",queue);
+    NSLog(@"Error in payment : %@", error);
+    NSLog(@"END OF restoreCompletedTransactionsFailedWithError");
+
+}
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
+{
+    NSLog(@"updatedDownloads \\ SKPayment queue : %@ ",queue);
+    NSLog(@"updatedDownloads \\ downloads : %@",downloads);
+    NSLog(@"END OF paymentQueueupdatedDownloads");
+    
+}
 #pragma mark -
 - (void)didReceiveMemoryWarning
 {

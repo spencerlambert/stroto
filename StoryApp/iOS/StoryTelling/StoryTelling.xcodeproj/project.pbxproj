@@ -140,6 +140,7 @@
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB29DE0817D45C76005B1F10 /* StoreKit.framework */; };
+		EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */; };
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
 		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
@@ -317,6 +318,8 @@
 		DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		EB29DE0817D45C76005B1F10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STInstalledStoryPacksViewController.h; sourceTree = "<group>"; };
+		EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STInstalledStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaidStoryPacksViewController.h; sourceTree = "<group>"; };
@@ -690,6 +693,8 @@
 			children = (
 				EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */,
 				EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */,
+				EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */,
+				EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */,
 				EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */,
 				EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */,
 				EB7FE48817C743F000E28B4F /* STFreeStoryPacksViewController.h */,
@@ -902,6 +907,7 @@
 				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
 				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
+				EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

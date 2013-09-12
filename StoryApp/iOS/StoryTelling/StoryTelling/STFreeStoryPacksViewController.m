@@ -86,7 +86,7 @@
         //        NSLog(@"NUll in freeStoryPackDetailsJson");
         continue;}
     freeStoryPackName.text = [NSString stringWithFormat:@"%@",[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
-    [self reloadBackgroundImages];
+    [self performSelectorInBackground:@selector(reloadBackgroundImages)  withObject:nil];
     [self reloadForegroundImages];
     [self.freeButton setHidden:NO];
 
@@ -133,14 +133,17 @@
         [thumbView setUserInteractionEnabled:YES];
         [thumbView setHidden:NO];
         [backgroundImagesHolder addSubview:thumbView];
+        [backgroundImagesView addSubview:backgroundImagesHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
     //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
-    for(UIView *view in backgroundImagesView.subviews){
-        [view removeFromSuperview];
-    }
+        
+//    for(UIView *view in backgroundImagesView.subviews){
+//        [view removeFromSuperview];
+//    }//testing is needed.
+        
     [backgroundImagesView addSubview:backgroundImagesHolder];
     }
 }
@@ -186,14 +189,15 @@
         [thumbView setUserInteractionEnabled:YES];
         [thumbView setHidden:NO];
         [foregroundImagesHolder addSubview:thumbView];
+        [foregroundImagesView addSubview:foregroundImagesHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
     //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
-    for(UIView *view in foregroundImagesView.subviews){
-        [view removeFromSuperview];
-    }
+//    for(UIView *view in foregroundImagesView.subviews){
+//        [view removeFromSuperview];
+//    }//testing is needed.
     [foregroundImagesView addSubview:foregroundImagesHolder];
     }
     //stoping activity indicator
@@ -211,19 +215,19 @@
     //adding payment observer
 //    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 //    [SKPaymentQueue defaultQueue] delete:<#(id)#>
-    NSLog(@"Inside product Request");
-    NSLog(@"productIdentifiers: %@",productIdentifiers);
+//    NSLog(@"Inside product Request");
+//    NSLog(@"productIdentifiers: %@",productIdentifiers);
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
     //working of buy buttons
-    [self.installButton setHidden:NO];
-    [self.backgroundButton setHidden:NO];
-    [self.freeButton setHidden:YES];
+    //    [self.installButton setHidden:NO];
+    //    [self.backgroundButton setHidden:NO];
+    //    [self.freeButton setHidden:YES];
     //
-    NSLog(@"productReq.debugDescription :%@",productReq.debugDescription);
-    NSLog(@"productReq.description :%@",productReq.description);
-    NSLog(@"END");
+//    NSLog(@"productReq.debugDescription :%@",productReq.debugDescription);
+//    NSLog(@"productReq.description :%@",productReq.description);
+    NSLog(@"END of buyButtonTapped:");
 }
 
 - (IBAction)InstallPack:(UIButton*)sender{
@@ -245,18 +249,30 @@
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
+    NSLog(@"BEGIN -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response");
     freeProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+    NSLog(@"END -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response");
+
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
+    NSLog(@"BEGIN -(void)requestDidFinish:(SKRequest *)request");
     NSLog(@"requestDidFinish : %@",request.description);
+//working of buy buttons
+        [self.installButton setHidden:NO];
+        [self.backgroundButton setHidden:NO];
+        [self.freeButton setHidden:YES];
+    //
+    NSLog(@"END -(void)requestDidFinish:(SKRequest *)request");
 }
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
+    NSLog(@"BEGIN -(void)request:(SKRequest *)request didFailWithError:(NSError *)error");
+    
     NSLog(@"Failed to load the list of Products : %@",error);
     if(error)
     {
@@ -264,10 +280,11 @@
         [alert show];
         alert.delegate = self;
     }
-
+    NSLog(@"END -(void)request:(SKRequest *)request didFailWithError:(NSError *)error");
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    NSLog(@"BEGIN - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex");
     NSLog(@"buttonIndex = %d",buttonIndex);
     if (buttonIndex == 0) {
     NSURL *url = [NSURL URLWithString:urlAsString];
@@ -290,13 +307,14 @@
             NSLog(@"Error happened = %@", error); }
     }];
     }
+  NSLog(@"BEGIN - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex");
 }
 
 #pragma mark - SKPaymentTransactionObserver Protocol Methods
 
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    NSLog(@"Inside delegate of PAYMENT");
+    NSLog(@"BEGIN -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions");
     NSLog(@"TransactionArray : %@",transactions);
     
     for (SKPaymentTransaction* fail in transactions)
@@ -310,15 +328,13 @@
          NSLog(@"TransactionDate : %@",fail.transactionDate);
     }
     
-//    NSLog(@"Transaction object@0 : %@",((SKPaymentTransaction*)[transactions objectAtIndex:0]));
-//    NSLog(@"TransactionReceipt : %@",((SKPaymentTransaction*)[transactions objectAtIndex:0]).transactionReceipt);
-//    NSLog(@"TransactionIdentifier : %@",((SKPaymentTransaction*)[transactions objectAtIndex:0]).transactionIdentifier);
-//    NSLog(@"TransactionState : %d",((SKPaymentTransaction*)[transactions objectAtIndex:0]).transactionState);
-   
+    NSLog(@"END -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions");
 }
 
 -(void) sendReceipt:(NSData*)appleReceiptData
 {
+    NSLog(@"BEGIN sendReceipt:appleReceiptData");
+    
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     [urlRequest setHTTPMethod:@"POST"];
@@ -341,12 +357,20 @@
         else if (error != nil){
             NSLog(@"Error happened = %@", error); }
     }];
+    NSLog(@"END appleSendReceipt");
 }
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
+    NSLog(@"BEGIN -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue");
+    NSLog(@"END -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue");
     
 }
-
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
+{
+    NSLog(@"BEGIN -(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads");
+    NSLog(@"downloads array :%@",downloads);
+    NSLog(@"End -(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads");
+}
 #pragma mark -
 - (void)didReceiveMemoryWarning
 {

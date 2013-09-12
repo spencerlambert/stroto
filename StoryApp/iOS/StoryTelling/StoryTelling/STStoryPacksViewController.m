@@ -86,8 +86,8 @@
         isPaid = YES;
         body = paidBody;
     }
-    [self reloadPaidView];
-    [self reloadFreeView];
+    [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
+    [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
 }
 
 -(void)reloadPaidView
@@ -171,6 +171,7 @@
         [storyPackPrice addGestureRecognizer:priceClick];
         [storyPackPrice setUserInteractionEnabled:YES];
         [paidStoryPacksHolder addSubview:storyPackPrice];
+        [paidStoryPacksView addSubview:paidStoryPacksHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
 //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
@@ -233,12 +234,13 @@
         [storyPackName addGestureRecognizer:nameClick];
         [storyPackName setUserInteractionEnabled:YES];
         [freeStoryPacksHolder addSubview:storyPackName];
+        [freeStoryPacksView addSubview:freeStoryPacksHolder];
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [freeStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
-    for(UIView *view in freeStoryPacksView.subviews){
-        [view removeFromSuperview];
-    }
+//    for(UIView *view in freeStoryPacksView.subviews){
+//        [view removeFromSuperview];
+//    }
     [freeStoryPacksHolder setHidden:NO];
 //    [freeStoryPacksHolder setAlpha:0.5];//for knowing the bounds
 //    [freeStoryPacksHolder setBackgroundColor:[UIColor blueColor]];//for knowing the bounds
