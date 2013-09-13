@@ -45,7 +45,7 @@
     [button setTitle:@"Done" forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"navbutton.png"] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.frame = CGRectMake(frame.size.width*0.125,frame.size.height/4, frame.size.width*0.75,frame.size.height/2);
+    button.frame = CGRectMake(frame.size.width*0.25,frame.size.height/4, frame.size.width*0.75,frame.size.height/2);
     [self addSubview:button];
     finishedRecording = NO;
     }

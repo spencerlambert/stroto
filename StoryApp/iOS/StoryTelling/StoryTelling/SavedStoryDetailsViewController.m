@@ -76,8 +76,22 @@
 }
 
 - (IBAction)deleteButtonClicked:(id)sender {
-    storyDB = [STStoryDB loadSTstoryDB:dbname];
-    [storyDB deleteSTstoryDB];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Do you want to delete the story ?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No" , nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+//        NSLog(@"Clicked button index 0");
+        storyDB = [STStoryDB loadSTstoryDB:dbname];
+        [storyDB deleteSTstoryDB];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        // Add the action here
+    } else if(buttonIndex == 1)
+    {
+//        NSLog(@"Clicked button index other than 0");
+        
+        // Add another action here
+    }
 }
 @end
