@@ -14,7 +14,7 @@
 
 #import "STPaidStoryPacksViewController.h"
 #import "STStoryPackDownload.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface STPaidStoryPacksViewController () 
 @end
 
@@ -50,6 +50,9 @@
     //for test white views
     NSLog(@"paidStorypackID = %d",self.storyPackID);
     //Activity Indicator
+    [self.buyPackButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.buyPackButton.layer.borderWidth = 1.0f;
+    [self.buyPackButton.layer setCornerRadius:10.0f];
     [self.paidButtonLabel setHidden:YES];
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];

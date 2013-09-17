@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -830,13 +830,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6ey-qN-mrI">
-                                <rect key="frame" x="232" y="51" width="70" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6ey-qN-mrI">
+                                <rect key="frame" x="231" y="51" width="70" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -896,10 +895,10 @@
                                     <action selector="showPrice:" destination="BTs-AR-N9X" eventType="touchUpInside" id="z8L-Jb-nVw"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zCY-5C-2uU">
-                                <rect key="frame" x="212" y="51" width="90" height="36"/>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zCY-5C-2uU">
+                                <rect key="frame" x="208" y="51" width="93" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.00088346818349732323" green="0.42715640943877553" blue="0.0013707182034121601" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.00070638707883141064" green="0.34153778698979587" blue="0.0010959733985850875" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Buy Pack">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1034,13 +1033,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mi3-23-H2m">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mi3-23-H2m">
                                 <rect key="frame" x="231" y="51" width="70" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" title="Free">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -1100,11 +1098,11 @@
                                     <action selector="showFree:" destination="RRX-6d-vFv" eventType="touchUpInside" id="F6W-do-XX6"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mfU-Pz-QWP">
-                                <rect key="frame" x="202" y="51" width="99" height="36"/>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mfU-Pz-QWP">
+                                <rect key="frame" x="209" y="51" width="93" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.00088181938364009858" green="0.42635921556122447" blue="0.0013681600581158184" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="backgroundColor" red="0.00066088020277201421" green="0.31953523596938771" blue="0.0010253685884060635" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Install Pack">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1160,13 +1158,151 @@
         <image name="app_bg.png" width="640" height="960"/>
         <image name="black.png" width="22" height="20"/>
     </resources>
+    <classes>
+        <class className="AddBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromCamraPackButtonClicked:"/>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="AddForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromCameraButtonClicked:" candidateClass="UIButton"/>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="CreateStoryRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="nextButtonClicked:"/>
+                <relationship kind="action" name="resigngTxtField"/>
+                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="STCropBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="STCropForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="applyGrabcut:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="editForegroundSegment:"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="pickBG:"/>
+                <relationship kind="action" name="pickFG:"/>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="action" name="undoGrabcut:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="applyBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bgBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cropMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="eraseMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fgBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="grabcutView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="sizeMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="sizeView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="undoBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="STFreeStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="InstallPack:" candidateClass="UIButton"/>
+                <relationship kind="action" name="buyButtonTapped:"/>
+                <relationship kind="action" name="showFree:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="installButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="STInstalledStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STInstalledStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="installedStoryPackName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="STPaidStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STPaidStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buyButtonTapped:"/>
+                <relationship kind="action" name="buyPack:"/>
+                <relationship kind="action" name="showPrice:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="buyPackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="paidStoryPackName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="STStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="previousView:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="freeStoryPacksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="installedStoryPacksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="paidStoryPacksView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
+                <relationship kind="action" name="deleteButtonClicked:"/>
+                <relationship kind="action" name="editButtonClicked:"/>
+                <relationship kind="action" name="playButtonClicked:"/>
+                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
+                <relationship kind="outlet" name="navigationBarTitle" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="ScreenCaptureView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
+        </class>
+        <class className="StoryTellingRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createNewStory:"/>
+                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="WorkAreaController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="captureview" candidateClass="ScreenCaptureView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fUv-Rg-gK0"/>
+        <segue reference="9Ng-ir-cti"/>
         <segue reference="W1k-dM-k0t"/>
     </inferredMetricsTieBreakers>
 </document>

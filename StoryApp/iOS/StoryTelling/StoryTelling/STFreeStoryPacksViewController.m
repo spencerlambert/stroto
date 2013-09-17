@@ -16,7 +16,7 @@
 
 #import "STFreeStoryPacksViewController.h"
 #import "STStoryPackDownload.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface STFreeStoryPacksViewController () 
 @end
 
@@ -48,15 +48,11 @@
 	// Do any additional setup after loading the view.
 //    NSLog(@"freeStoryPackID = %d",self.storyPackID);
     [self.freeButton setHidden:YES];
+    [self.installButton.layer setCornerRadius:10.0f];
+    [self.installButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.installButton.layer.borderWidth = 1.0f;
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
-//    
-//    
-//    [self.loader stopAnimating];
-//    [self.freeButton setHidden:NO];
-//    
-//    
-//    
     [self performSelectorInBackground:@selector(freeJsonDetails) withObject:nil];
 }
 -(void)freeJsonDetails

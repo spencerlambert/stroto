@@ -8,6 +8,7 @@
 
 #import "STStoryPackDownload.h"
 #import "STFreeStoryPacksViewController.h"
+#import "STInstalledStoryPacksViewController.h"
 
 @implementation STStoryPackDownload
 
@@ -17,8 +18,15 @@
     NSString *filename = [downloadURL lastPathComponent];
     NSLog(@"filename: %@",filename);
     NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
-    NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents/story_dir"]];
-    NSString *filePath = [resourceDocPath stringByAppendingPathComponent:filename];
-    [dbFile writeToFile:filePath atomically:YES];
+    NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents/story_dir/story_packs"]];
+    STInstalledStoryPacksViewController *installedPack = [[STInstalledStoryPacksViewController alloc] init];
+    
+    installedPack->filePath = [resourceDocPath stringByAppendingPathComponent:filename];
+    [dbFile writeToFile:installedPack->filePath atomically:YES];
+    
+    installedPack->filePath = [NSString stringWithFormat:@"story_dir/story_packs/%@",filename];
+    
+    if(!installedPack->filePath)
+        NSLog(@"no file!");
 }
 @end
