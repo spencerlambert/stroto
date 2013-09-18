@@ -15,6 +15,8 @@
 #import "STPaidStoryPacksViewController.h"
 #import "STStoryPackDownload.h"
 #import <QuartzCore/QuartzCore.h>
+#import "STInstalledStoryPacksViewController.h"
+
 @interface STPaidStoryPacksViewController () 
 @end
 
@@ -206,7 +208,7 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-//    //working of buy buttons
+    //working of buy buttons
 //    [self.paidButtonLabel setHidden:YES];
 //    [self.buyPackButton setHidden:NO];
 //    [self.backgroundButton setHidden:NO];
@@ -238,6 +240,7 @@
 //                                   [[response.products objectAtIndex:0] price].floatValue] forState:UIControlStateNormal];
 //    NSLog(@"Product price locale : %@",[[response.products objectAtIndex:0] priceLocale]);
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+    [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
 -(void)requestDidFinish:(SKRequest *)request
@@ -263,21 +266,50 @@
 }
 
 #pragma mark - SKPaymentTransactionObserver Protocol Methods
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    NSLog(@"Inside delegate of PAYMENT");
-    NSLog(@"TransactionArray : %@",transactions);
-    
-    for (SKPaymentTransaction* success in transactions)
+    NSLog(@"paymentQueue:(SKPaymentQueue *)queue updatedTransactions");
+    for (SKPaymentTransaction *transaction in transactions)
     {
-        NSLog(@"Transaction object@0 : %@",success);
-//        if(success.transactionState == 1)
-        if(success.transactionReceipt)
-        [self sendReceipt:success.transactionReceipt];
-        NSLog(@"TransactionReceipt : %@",success.transactionReceipt);
-        NSLog(@"TransactionIdentifier : %@",success.transactionIdentifier);
-        NSLog(@"TransactionState : %d",success.transactionState);
-        NSLog(@"TransactionDate : %@",success.transactionDate);
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                [self completeTransaction:transaction];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                //                [self restoreTransaction:transaction];
+                //                [self dismissViewControllerAnimated:YES completion:nil];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)completeTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"completeTransaction");
+    [self recordTransaction:transaction];
+    [self finishTransaction:transaction wasSuccessful:YES];
+    STInstalledStoryPacksViewController *installController =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    [self.navigationController pushViewController:installController animated:YES];
+}
+// sends the receipt to json server.
+//
+- (void)recordTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"recordTransaction");
+    if ([transaction.payment.productIdentifier isEqualToString:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]])
+    {
+        NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
+        [self sendReceipt:transaction.transactionReceipt];
     }
 }
 -(void) sendReceipt:(NSData*)appleReceiptData
@@ -287,7 +319,7 @@
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[appleReceipt dataUsingEncoding:NSUTF8StringEncoding]];
     
-//    NSLog(@"receipt : %@", appleReceipt);
+    NSLog(@"receipt ( inside sendReceipt:) : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
@@ -305,32 +337,57 @@
             NSLog(@"Error happened = %@", error); }
     }];
 }
--(void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
-{
-    NSLog(@"Removed Transactions : %@",transactions);
-    NSLog(@"END OF removedTransactions");
-}
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
-    NSLog(@"restore finished QUEUE: %@",queue);
-    NSLog(@"END OF restore FIninshed QUEUE");
 
-}
-
--(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+//
+// removes the transaction from the queue and posts a notification with the transaction result
+//
+- (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful
 {
-    NSLog(@"SKPayment QUEUE : %@",queue);
-    NSLog(@"Error in payment : %@", error);
-    NSLog(@"END OF restoreCompletedTransactionsFailedWithError");
-
-}
--(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
-{
-    NSLog(@"updatedDownloads \\ SKPayment queue : %@ ",queue);
-    NSLog(@"updatedDownloads \\ downloads : %@",downloads);
-    NSLog(@"END OF paymentQueueupdatedDownloads");
+    NSLog(@"finishTransaction");
+    // remove the transaction from the payment queue.
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
+    if (wasSuccessful)
+    {
+        NSLog(@"sucess Transaction 22!!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inapp Purchase"
+                                                        message:@"Sucessful"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        // send out a notification that we’ve finished the transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionSucceededNotification object:self userInfo:userInfo];
+    }
+    else
+    {
+        NSLog(@"failed Transaction 22!!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inapp Purchase"
+                                                        message:@"Failed"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        // send out a notification for the failed transaction
+        //[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
+    }
 }
+
+
+- (void)failedTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"failedTransaction");
+    if (transaction.error.code != SKErrorPaymentCancelled)
+    {
+        // error!
+        [self finishTransaction:transaction wasSuccessful:NO];
+    }
+    else
+    {
+        // this is fine, the user just cancelled, so don’t notify
+        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    }
+}
+
 #pragma mark -
 - (void)didReceiveMemoryWarning
 {

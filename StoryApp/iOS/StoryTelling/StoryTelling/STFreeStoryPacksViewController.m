@@ -17,6 +17,7 @@
 #import "STFreeStoryPacksViewController.h"
 #import "STStoryPackDownload.h"
 #import <QuartzCore/QuartzCore.h>
+#import "STInstalledStoryPacksViewController.h"
 @interface STFreeStoryPacksViewController () 
 @end
 
@@ -346,6 +347,10 @@
             [freedownload downloadStoryPack:[NSString stringWithFormat:@"%@",[freeStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
+            STInstalledStoryPacksViewController *installController =
+            [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                                       bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+            [self.navigationController pushViewController:installController animated:YES];
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
