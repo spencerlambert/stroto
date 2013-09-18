@@ -351,42 +351,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="BlJ-mG-lRz">
-                                <rect key="frame" x="-1" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4WR-WA-23m">
-                                <rect key="frame" x="-1" y="10" width="320" height="25"/>
+                                <rect key="frame" x="0.0" y="10" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dwj-Yo-ve4">
-                                <rect key="frame" x="20" y="102" width="166" height="30"/>
+                                <rect key="frame" x="21" y="102" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" id="cMZ-56-Rvl">
-                                <rect key="frame" x="-2" y="140" width="321" height="98"/>
+                                <rect key="frame" x="-1" y="140" width="321" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="3km-Ya-F4l">
-                                <rect key="frame" x="-1" y="242" width="320" height="18"/>
+                                <rect key="frame" x="0.0" y="242" width="320" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Foreground Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oai-m1-rAi">
-                                <rect key="frame" x="20" y="264" width="165" height="30"/>
+                                <rect key="frame" x="21" y="264" width="165" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" contentMode="scaleToFill" id="zrA-RH-Hho">
-                                <rect key="frame" x="-1" y="302" width="321" height="98"/>
+                                <rect key="frame" x="0.0" y="302" width="321" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -909,7 +909,6 @@
                                 </state>
                                 <connections>
                                     <action selector="buyPack:" destination="BTs-AR-N9X" eventType="touchUpInside" id="Ftd-An-IBP"/>
-                                    <segue destination="E9O-0c-x4e" kind="push" id="XA0-ph-47b"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1112,7 +1111,6 @@
                                 </state>
                                 <connections>
                                     <action selector="InstallPack:" destination="RRX-6d-vFv" eventType="touchUpInside" id="QRd-bB-GIL"/>
-                                    <segue destination="E9O-0c-x4e" kind="push" id="W1k-dM-k0t"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1285,7 +1283,6 @@
         <class className="StoryTellingRootViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
             <relationships>
-                <relationship kind="action" name="createNewStory:"/>
                 <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -1303,6 +1300,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="9Ng-ir-cti"/>
-        <segue reference="W1k-dM-k0t"/>
     </inferredMetricsTieBreakers>
 </document>

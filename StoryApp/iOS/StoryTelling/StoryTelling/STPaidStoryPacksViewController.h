@@ -10,6 +10,9 @@
 #import <StoreKit/StoreKit.h>
 #import "STImage.h"
 
+#define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
+#define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
+
 @interface STPaidStoryPacksViewController : UIViewController<SKProductsRequestDelegate, SKPaymentTransactionObserver,SKRequestDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UILabel *paidStoryPackName;
