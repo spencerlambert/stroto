@@ -20,7 +20,7 @@
         [self setDefaultX:0];
         [self setDefaultY:0];
         [self setImageData: UIImagePNGRepresentation(self)];
-        [self setSizeScale:269];
+        [self setSizeScale:100];
         [self setIsEdited:NO];
         [self setMasks:[[NSMutableArray alloc]init]];
         [self setMaskImgs:[[NSMutableArray alloc]init]];

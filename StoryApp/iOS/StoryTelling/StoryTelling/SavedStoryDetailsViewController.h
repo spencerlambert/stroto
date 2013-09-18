@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface SavedStoryDetailsViewController : UIViewController
+@interface SavedStoryDetailsViewController : UIViewController{
+    MPMoviePlayerViewController *mp;
+}
 
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
 @property (strong, nonatomic) NSString *dbname;

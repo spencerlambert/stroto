@@ -133,7 +133,8 @@
         CGPoint point=[gestureRecognizer locationInView:self.view];
         NSLog(@"%f %f",point.x,point.y);
         
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
+//        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-(selectedForegroundImage.sizeScale/2),point.y-(60+20)-(selectedForegroundImage.sizeScale/2), selectedForegroundImage.sizeScale, selectedForegroundImage.sizeScale)];
         imageview.image=selectedForegroundImage;
         [captureview addSubview:imageview];
         

@@ -65,7 +65,8 @@
     defaultY            INTEGER,
     defaultScale        INTEGER,
     imageData           BLOB,
-    thumbnailData       BLOB
+    thumbnailData       BLOB,
+    sizeScale           NUMERIC
  );
  
  // Keeps a copy of sound effects/music to be used in stories.

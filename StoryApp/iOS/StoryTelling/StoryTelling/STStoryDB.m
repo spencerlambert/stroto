@@ -97,7 +97,7 @@
                 
                 [self initStoryTable:size];
                 
-                sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, thumbnailData BLOB);";
+                sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, thumbnailData BLOB, sizeScale NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
                     NSLog(@"Failed to create table3");
@@ -229,7 +229,7 @@
 }
 
 -(BOOL)addImage:(STImage *)image{
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','thumbnailData') VALUES (?,?,?,?,?,?,?,?,?,?);"];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','thumbnailData','sizeScale') VALUES (?,?,?,?,?,?,?,?,?,?,?);"];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *statement;
         // Prepare the statement.
@@ -252,6 +252,7 @@
         }
         sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
         sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_double(statement, 11, image.sizeScale);
         // Execute the statement.
         int temp = sqlite3_step(statement);
         if (temp != SQLITE_DONE) {
@@ -266,7 +267,7 @@
 }
 
 - (BOOL)updateImage:(STImage*)image{
-    NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, thumbnailData =?) where imageId = %d;",image.imageId];
+    NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, thumbnailData =?, sizeScale =?) where imageId = %d;",image.imageId];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *statement;
     // Prepare the statement.
@@ -289,6 +290,7 @@
         }
         sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
         sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_double(statement, 11, image.sizeScale);
         // Execute the statement.
         int temp = sqlite3_step(statement);
         if (temp != SQLITE_DONE) {
@@ -329,6 +331,7 @@
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
             temp.thumbimage = image1;
+            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt, 11);
             sqlite3_finalize(compiled_stmt);
             return  temp;
         }
@@ -363,6 +366,7 @@
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
             temp.thumbimage = image1;
+            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt,11);
             [bgImages addObject:temp];
         }
         
@@ -397,6 +401,7 @@
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
             temp.thumbimage = image1;
+            temp.sizeScale= (float)sqlite3_column_double(compiled_stmt, 11);
             [fgImages addObject:temp];
         }
         
