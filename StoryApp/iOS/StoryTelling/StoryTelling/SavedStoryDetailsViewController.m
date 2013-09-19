@@ -50,18 +50,11 @@
         NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
         mp = [[MPMoviePlayerViewController alloc] initWithContentURL:outputURL];
         mp.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(playbackStateChanged)
-                                                     name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
         [self presentMoviePlayerViewControllerAnimated:mp];
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
-}
-
-- (void) playbackStateChanged {
-    NSLog(@"playbackState = %d",mp.moviePlayer.playbackState); // reading the playback
 }
 
 - (IBAction)UploadToYoutubeButtonClicked:(id)sender {

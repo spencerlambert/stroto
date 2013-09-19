@@ -384,6 +384,12 @@
      }
      ];
     
+    
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:audio_inputFilePath])
+//        [[NSFileManager defaultManager] removeItemAtPath:audio_inputFilePath error:nil];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:video_inputFilePath])
+//        [[NSFileManager defaultManager] removeItemAtPath:video_inputFilePath error:nil];
+    
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
     [storyDB closeDB];

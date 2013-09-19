@@ -46,23 +46,37 @@
 {
     if (!audioRecorder.recording)
     {
-        [audioRecorder record];
-        startedRecording = YES;
+        @try {
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [session setCategory:AVAudioSessionCategoryRecord error:nil];
+            [audioRecorder record];
+            startedRecording = YES;
+        }@catch (NSException *e) {
+            NSLog(@"%@",e);
+        }
     }
 }
+
 -(void) stop
 {
-    if(startedRecording){
-    [audioRecorder stop];
+    if(startedRecording)
+    {
+        @try {
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+            [audioRecorder stop];
+        }@catch (NSException *e) {
+            NSLog(@"%@",e);
+        }
     }
-   
 }
+
 -(void) pause
 {
     if (audioRecorder.recording)
     {
         [audioRecorder pause];
-    } 
+    }
 }
 
 @end

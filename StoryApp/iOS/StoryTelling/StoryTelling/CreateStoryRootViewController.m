@@ -49,7 +49,7 @@
         CGSize storySize = [AppDelegate deviceSize];
         newStory = [STStoryDB createNewSTstoryDB:storySize];
         NSDateFormatter *dateTimeFormat = [[NSDateFormatter alloc] init];
-        [dateTimeFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+        [dateTimeFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *now = [[NSDate alloc] init];
         NSString *dateTime = [dateTimeFormat stringFromDate:now];
         //NSLog(@"Title is %@", dateTime );
