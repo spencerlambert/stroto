@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface STStoryPackDownload : NSObject
+
+@property (nonatomic, weak) NSString *installedFilePath;
+
 -(void)downloadStoryPack:(NSString*)downloadURL;
+
 @end

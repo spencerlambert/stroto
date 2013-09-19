@@ -12,11 +12,12 @@
 
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
+#define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
 
 @interface STPaidStoryPacksViewController : UIViewController<SKProductsRequestDelegate, SKPaymentTransactionObserver,SKRequestDelegate>
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UILabel *paidStoryPackName;
-
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;
 @property (strong, nonatomic) IBOutlet UIView *foregroundImagesView;
@@ -33,4 +34,5 @@
 -(IBAction)buyButtonTapped:(id)sender;
 -(IBAction)buyPack:(id)sender;
 - (IBAction)showPrice:(UIButton *)sender;
+
 @end

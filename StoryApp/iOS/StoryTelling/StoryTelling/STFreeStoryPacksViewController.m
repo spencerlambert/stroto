@@ -10,6 +10,7 @@
 #define freeDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":\"%d\"}",storyPackID]
 #define AppleServerError [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"APPLE DOWN\"}",storyPackID]
 #define appleReceipt [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"%@\"}",storyPackID,appleReceiptData]
+
 #define THUMB_HEIGHT 80
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
@@ -18,6 +19,7 @@
 #import "STStoryPackDownload.h"
 #import <QuartzCore/QuartzCore.h>
 #import "STInstalledStoryPacksViewController.h"
+
 @interface STFreeStoryPacksViewController () 
 @end
 
@@ -52,6 +54,7 @@
     [self.installButton.layer setCornerRadius:10.0f];
     [self.installButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     self.installButton.layer.borderWidth = 1.0f;
+    //Activity Indicator
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
     [self performSelectorInBackground:@selector(freeJsonDetails) withObject:nil];
@@ -208,23 +211,9 @@
 - (IBAction)buyButtonTapped:(id)sender
 {
     NSSet * productIdentifiers = [NSSet setWithObject:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
-//    NSSet * productIdentifiers = [NSSet setWithObject:@"free_App_Test_2"];
-    //adding payment observer
-//    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-//    [SKPaymentQueue defaultQueue] delete:<#(id)#>
-//    NSLog(@"Inside product Request");
-//    NSLog(@"productIdentifiers: %@",productIdentifiers);
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    //working of buy buttons
-    //    [self.installButton setHidden:NO];
-    //    [self.backgroundButton setHidden:NO];
-    //    [self.freeButton setHidden:YES];
-    //
-//    NSLog(@"productReq.debugDescription :%@",productReq.debugDescription);
-//    NSLog(@"productReq.description :%@",productReq.description);
-    NSLog(@"END of buyButtonTapped:");
 }
 
 - (IBAction)InstallPack:(UIButton*)sender{
@@ -246,38 +235,29 @@
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    NSLog(@"BEGIN -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response");
     freeProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
-    NSLog(@"END -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response");
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
-    NSLog(@"BEGIN -(void)requestDidFinish:(SKRequest *)request");
-    NSLog(@"requestDidFinish : %@",request.description);
 //working of buy buttons
         [self.installButton setHidden:NO];
         [self.backgroundButton setHidden:NO];
         [self.freeButton setHidden:YES];
     //
-    NSLog(@"END -(void)requestDidFinish:(SKRequest *)request");
 }
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"BEGIN -(void)request:(SKRequest *)request didFailWithError:(NSError *)error");
-    
     NSLog(@"Failed to load the list of Products : %@",error);
     if(error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Apple server down, Do you want to download from our server ?? " delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
         [alert show];
-        alert.delegate = self;
     }
-    NSLog(@"END -(void)request:(SKRequest *)request didFailWithError:(NSError *)error");
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -304,52 +284,75 @@
             NSLog(@"Error happened = %@", error); }
     }];
     }
-  NSLog(@"BEGIN - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex");
 }
 
 #pragma mark - SKPaymentTransactionObserver Protocol Methods
 
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    NSLog(@"BEGIN -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions");
-    NSLog(@"TransactionArray : %@",transactions);
-    
-    for (SKPaymentTransaction* fail in transactions)
+    NSLog(@"paymentQueue:(SKPaymentQueue *)queue updatedTransactions");
+    for (SKPaymentTransaction *transaction in transactions)
     {
-        NSLog(@"Transaction object@0 : %@",fail);
-        if(fail.transactionReceipt)
-            [self sendReceipt:fail.transactionReceipt];
-        NSLog(@"TransactionReceipt : %@",fail.transactionReceipt);
-        NSLog(@"TransactionIdentifier : %@",fail.transactionIdentifier);
-        NSLog(@"TransactionState : %d",fail.transactionState);
-         NSLog(@"TransactionDate : %@",fail.transactionDate);
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                //                [self restoreTransaction:transaction];
+                //                [self dismissViewControllerAnimated:YES completion:nil];
+                break;
+            default:
+                break;
+        }
     }
-    
-    NSLog(@"END -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions");
+}
+
+- (void)completeTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"completeTransaction");
+    [self recordTransaction:transaction];
+    [self finishTransaction:transaction wasSuccessful:YES];
+}
+
+// sends the receipt to json server.
+//
+- (void)recordTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"recordTransaction");
+    if ([transaction.payment.productIdentifier isEqualToString:[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]])
+    {
+        [self.loader startAnimating];
+        NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
+        [self sendReceipt:transaction.transactionReceipt];
+    }
 }
 
 -(void) sendReceipt:(NSData*)appleReceiptData
 {
-    NSLog(@"BEGIN sendReceipt:appleReceiptData");
-    
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:[appleReceipt dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSLog(@"receipt : %@", appleReceipt);
+    NSLog(@"receipt ( inside sendReceipt:) : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
             freeStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
-            [freedownload downloadStoryPack:[NSString stringWithFormat:@"%@",[freeStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
+            STStoryPackDownload *freeDownload = [[STStoryPackDownload alloc] init];
+            [freeDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[freeStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
+            [self.loader stopAnimating];
             STInstalledStoryPacksViewController *installController =
             [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                        bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+            installController.filePath = freeDownload.installedFilePath;
             [self.navigationController pushViewController:installController animated:YES];
         }
         else if ([data length] == 0 && error == nil){
@@ -358,20 +361,57 @@
         else if (error != nil){
             NSLog(@"Error happened = %@", error); }
     }];
-    NSLog(@"END appleSendReceipt");
 }
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+
+//
+// removes the transaction from the queue and posts a notification with the transaction result
+//
+- (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful
 {
-    NSLog(@"BEGIN -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue");
-    NSLog(@"END -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue");
+    NSLog(@"finishTransaction");
+    // remove the transaction from the payment queue.
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
+    if (wasSuccessful)
+    {
+        NSLog(@"success Transaction !!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Free StoryPack Purchase"
+                                                        message:@"Successful"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        // send out a notification that we’ve finished the transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionSucceededNotification object:self userInfo:userInfo];
+    }
+    else
+    {
+        NSLog(@"failed Transaction !!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Free Story Pack Purchase"
+                                                        message:@"Failed"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+//         send out a notification for the failed transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
+    }
 }
--(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
+
+- (void)failedTransaction:(SKPaymentTransaction *)transaction
 {
-    NSLog(@"BEGIN -(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads");
-    NSLog(@"downloads array :%@",downloads);
-    NSLog(@"End -(void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads");
+    NSLog(@"failedTransaction");
+    if (transaction.error.code != SKErrorPaymentCancelled)
+    {
+        // error!
+        [self finishTransaction:transaction wasSuccessful:NO];
+    }
+    else
+    {
+        // this is fine, the user just cancelled, so don’t notify
+        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    }
 }
+
 #pragma mark -
 - (void)didReceiveMemoryWarning
 {

@@ -22,6 +22,7 @@
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
 @synthesize installedStoryPackName;
+@synthesize filePath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,9 +58,9 @@
     
 }
 - (void)initializeDB {
-    NSString *sqLiteDb = [[NSBundle mainBundle] pathForResource:filePath ofType:@"sqlite3"];
-    NSLog(@"sqLiteDb = %@",sqLiteDb);
-        if (sqlite3_open([sqLiteDb UTF8String], &database) != SQLITE_OK) {
+
+    NSLog(@"sqLiteDb = %@",filePath);
+        if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {
             NSLog(@"Failed to open database!");
         }
 }
@@ -87,8 +88,10 @@
     {
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
-                        
-            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
+            const void *ptr = sqlite3_column_blob(statement, 0);
+            int size = sqlite3_column_bytes(statement, 0);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+//            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
             UIImage *image = [UIImage imageWithData:data];
             STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
             //showing installed story pack's thubnail images
@@ -135,8 +138,10 @@
     {
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
-            
-            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
+            const void *ptr = sqlite3_column_blob(statement, 0);
+            int size = sqlite3_column_bytes(statement, 0);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+//            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
             UIImage *image = [UIImage imageWithData:data];
             STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
             //showing installed story pack's thubnail images

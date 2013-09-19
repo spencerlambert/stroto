@@ -7,10 +7,10 @@
 //
 
 #import "STStoryPackDownload.h"
-#import "STFreeStoryPacksViewController.h"
-#import "STInstalledStoryPacksViewController.h"
 
 @implementation STStoryPackDownload
+
+@synthesize installedFilePath;
 
 -(void)downloadStoryPack:(NSString*)downloadURL
 {
@@ -18,13 +18,17 @@
     NSString *filename = [downloadURL lastPathComponent];
     NSLog(@"filename: %@",filename);
     NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
-    NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle]  resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents/story_dir/story_packs"]];
-    STInstalledStoryPacksViewController *installedPack = [[STInstalledStoryPacksViewController alloc] init];
-    installedPack->filePath = [resourceDocPath stringByAppendingPathComponent:filename];
-    [dbFile writeToFile:installedPack->filePath atomically:YES];
-    installedPack->filePath = [NSString stringWithFormat:@"story_dir/story_packs/%@",filename];
-    
-    if(!installedPack->filePath)
-        NSLog(@"no file!");
+    installedFilePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"story_dir/story_packs/"];
+    NSLog(@"installedFilePath : %@",installedFilePath);
+    NSFileManager *fileManger = [NSFileManager defaultManager];
+    NSError *error = nil;
+    [fileManger createDirectoryAtPath:installedFilePath withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error != nil) {
+        NSLog(@"error creating directory: %@", error);
+    }
+    installedFilePath = [installedFilePath stringByAppendingPathComponent:filename];
+    BOOL dbSuccess = [dbFile writeToFile:installedFilePath atomically:YES];
+    NSLog(@"Save Success : %@",dbSuccess?@"Yes":@"No");
 }
+
 @end

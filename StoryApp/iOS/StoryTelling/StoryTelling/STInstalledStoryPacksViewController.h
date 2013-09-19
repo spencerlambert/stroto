@@ -15,12 +15,11 @@
     NSDictionary * selectedBGImages;
     sqlite3 *database;
 //    STStoryDB *newDB;
-    @public
-    NSString *filePath;
 }
 @property (strong, nonatomic) IBOutlet UILabel *installedStoryPackName;
 @property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;
 @property (strong, nonatomic) IBOutlet UIView *foregroundImagesView;
+@property (nonatomic, weak) NSString *filePath;
 
 -(void)initializeDB;
 -(void)loadFGImages;

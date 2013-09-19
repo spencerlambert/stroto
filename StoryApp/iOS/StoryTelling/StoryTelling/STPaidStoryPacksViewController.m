@@ -5,9 +5,11 @@
 //  Created by Nandakumar on 23/08/13.
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
+
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define paidDetailsBody [NSString stringWithFormat:@"{\"st_request\":\"get_story_details\",\"st_story_id\":\"%d\"}",storyPackID]
 #define appleReceipt [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"%@\"}",storyPackID,appleReceiptData]
+
 #define THUMB_HEIGHT 80
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
@@ -48,14 +50,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-//    self.navigationController.title = @"Story Packs";
-    //for test white views
     NSLog(@"paidStorypackID = %d",self.storyPackID);
-    //Activity Indicator
     [self.buyPackButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     self.buyPackButton.layer.borderWidth = 1.0f;
     [self.buyPackButton.layer setCornerRadius:10.0f];
     [self.paidButtonLabel setHidden:YES];
+    //Activity Indicator
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
     [self performSelectorInBackground:@selector(paidJsonDetails) withObject:nil];
@@ -208,11 +208,6 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    //working of buy buttons
-//    [self.paidButtonLabel setHidden:YES];
-//    [self.buyPackButton setHidden:NO];
-//    [self.backgroundButton setHidden:NO];
-    
 }
 -(IBAction)buyPack:(id)sender{
     SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
@@ -236,19 +231,13 @@
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
-//    [self.paidButtonLabel setTitle:[NSString stringWithFormat:@"%0.2f",
-//                                   [[response.products objectAtIndex:0] price].floatValue] forState:UIControlStateNormal];
-//    NSLog(@"Product price locale : %@",[[response.products objectAtIndex:0] priceLocale]);
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
-    NSLog(@"Loading request.description : %@",request.description);
-    NSLog(@"Request : %@",request);
-    
-    //working of buy buttons
+//working of buy buttons
     [self.paidButtonLabel setHidden:YES];
     [self.buyPackButton setHidden:NO];
     [self.backgroundButton setHidden:NO];
@@ -262,7 +251,10 @@
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Apple server down, try again later..." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
-
+//for retrying, enabling product request button
+    [self.buyPackButton setHidden:YES];
+    [self.backgroundButton setHidden:YES];
+    [self.paidButtonLabel setHidden:NO];
 }
 
 #pragma mark - SKPaymentTransactionObserver Protocol Methods
@@ -276,7 +268,6 @@
         {
             case SKPaymentTransactionStatePurchased:
                 [self completeTransaction:transaction];
-//                [self dismissViewControllerAnimated:YES completion:nil];
                 break;
             case SKPaymentTransactionStateFailed:
                 [self failedTransaction:transaction];
@@ -296,10 +287,13 @@
     NSLog(@"completeTransaction");
     [self recordTransaction:transaction];
     [self finishTransaction:transaction wasSuccessful:YES];
-    STInstalledStoryPacksViewController *installController =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
-    [self.navigationController pushViewController:installController animated:YES];
+    
+    //    STInstalledStoryPacksViewController *installController =
+    //    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+    //                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    //    
+    //    [self.navigationController pushViewController:installController animated:YES];
+    
 }
 // sends the receipt to json server.
 //
@@ -308,6 +302,7 @@
     NSLog(@"recordTransaction");
     if ([transaction.payment.productIdentifier isEqualToString:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]])
     {
+        [self.loader startAnimating];
         NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
         [self sendReceipt:transaction.transactionReceipt];
     }
@@ -329,6 +324,12 @@
             [paidDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[paidStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
+            [self.loader startAnimating];
+            STInstalledStoryPacksViewController *installController =
+            [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                                       bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+            installController.filePath = paidDownload.installedFilePath;
+            [self.navigationController pushViewController:installController animated:YES];
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
@@ -350,9 +351,9 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
     if (wasSuccessful)
     {
-        NSLog(@"sucess Transaction 22!!");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inapp Purchase"
-                                                        message:@"Sucessful"
+        NSLog(@"success Transaction !!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Paid StoryPack Purchase"
+                                                        message:@"Successful"
                                                        delegate:self
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -361,14 +362,14 @@
     }
     else
     {
-        NSLog(@"failed Transaction 22!!");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inapp Purchase"
+        NSLog(@"failed Transaction !!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Paid StoryPack Purchase"
                                                         message:@"Failed"
                                                        delegate:self
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        // send out a notification for the failed transaction
-        //[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
+//         send out a notification for the failed transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
     }
 }
 
