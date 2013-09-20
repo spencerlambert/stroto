@@ -8,7 +8,8 @@
 
 #import "STInstalledStoryPacksViewController.h"
 #import "CreateStoryRootViewController.h"
-
+//
+#import "NSData+Base64.h"
 #define THUMB_HEIGHT 80
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
@@ -39,7 +40,7 @@
 	// Do any additional setup after loading the view.
     
     //for testing
-    [self.navigationItem setHidesBackButton:NO]; //do Yes and activate done button.
+    [self.navigationItem setHidesBackButton:NO]; //do Yes and activate done button after testing..
     
     
     [self.navigationItem setTitle:@"Select Images To Use"];
@@ -50,7 +51,7 @@
     
 
     
-//    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
+    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
     //done button.
 //    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
 //    [self.navigationItem setRightBarButtonItem:doneButton];
@@ -88,13 +89,18 @@
     {
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
-            const void *ptr = sqlite3_column_blob(statement, 0);
-            int size = sqlite3_column_bytes(statement, 0);
-            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
-//            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
+//            const void *ptr = sqlite3_column_blob(statement, 0);
+//            int size = sqlite3_column_bytes(statement, 0);
+//            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+        //from db
+            NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(statement, 0)];
+        //base64_encode local test
+//            NSError * error;
+//            NSString *dataAsString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://192.168.1.205/sajin/test2/iphone/connection.php"] encoding:NSUTF8StringEncoding error:&error];
+            NSData *data = [NSData dataFromBase64String:dataAsString];
             UIImage *image = [UIImage imageWithData:data];
             STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
-            //showing installed story pack's thubnail images
+        //showing installed story pack's thubnail images
             UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
             CGRect frame = [thumbView frame];
             [thumbView setContentMode:UIViewContentModeScaleAspectFit];
@@ -105,6 +111,12 @@
             [thumbView setFrame:frame];
             [thumbView setUserInteractionEnabled:YES];
             [thumbView setHidden:NO];
+        //selecting images for use.
+            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlay.png"]];
+            frame.origin.x = 0;
+            frame.origin.y = 0;
+            [checkmarkImageView setFrame:frame];
+            [thumbView addSubview:checkmarkImageView];
             [backgroundImagesHolder addSubview:thumbView];
             [backgroundImagesView addSubview:backgroundImagesHolder];
             xPosition += (frame.size.width + THUMB_H_PADDING);
@@ -114,7 +126,6 @@
             ////////////////////////////////////////////
         }
 }
-
 
 -(void)loadFGImages
 {
@@ -138,10 +149,15 @@
     {
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
-            const void *ptr = sqlite3_column_blob(statement, 0);
-            int size = sqlite3_column_bytes(statement, 0);
-            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
-//            NSData* data = (__bridge NSData*) sqlite3_column_blob(statement, 0);
+//            const void *ptr = sqlite3_column_blob(statement, 0);
+//            int size = sqlite3_column_bytes(statement, 0);
+//            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+        //from db
+            NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(statement, 0)];
+        //base64_encode local test
+//            NSError * error;
+//            NSString *dataAsString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://192.168.1.205/sajin/test2/iphone/connection.php"] encoding:NSUTF8StringEncoding error:&error];
+            NSData *data = [NSData dataFromBase64String:dataAsString];
             UIImage *image = [UIImage imageWithData:data];
             STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
             //showing installed story pack's thubnail images
@@ -156,6 +172,12 @@
             [thumbView setUserInteractionEnabled:YES];
             [thumbView setHidden:NO];
             [foregroundImagesHolder addSubview:thumbView];
+            //selecting images for use.
+            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlay.png"]];
+            frame.origin.x = 0;
+            frame.origin.y = 0;
+            [checkmarkImageView setFrame:frame];
+            [thumbView addSubview:checkmarkImageView];
             [foregroundImagesView addSubview:foregroundImagesHolder];
             xPosition += (frame.size.width + THUMB_H_PADDING);
         }
