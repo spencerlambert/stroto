@@ -136,6 +136,7 @@
 //        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
         UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-(selectedForegroundImage.sizeScale/2),point.y-(60+20)-(selectedForegroundImage.sizeScale/2), selectedForegroundImage.sizeScale, selectedForegroundImage.sizeScale)];
         imageview.image=selectedForegroundImage;
+        [imageview setContentMode:UIViewContentModeScaleAspectFit];
         [captureview addSubview:imageview];
         
 //        [captureview actortoStage:selectedForegroundImage];
@@ -378,8 +379,8 @@
     
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-//             NSString *sourcePath = outputFilePath;
-//             UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
+             NSString *sourcePath = outputFilePath;
+             UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
 //             slideleftview.playVideo.enabled = YES;
      }
      ];

@@ -90,7 +90,7 @@
                 frame.size.width = THUMB_HEIGHT;
                 [thumbView setFrame:frame];
                 [thumbView setHome:frame];
-                thumbView.contentMode = UIViewContentModeScaleAspectFill;
+                //thumbView.contentMode = UIViewContentModeScaleAspectFit;
                 [thumbView setClipsToBounds:YES];
                 [thumbView setOriginalImage:stimage];
                 [CutoutImagesHolder addSubview:thumbView];
