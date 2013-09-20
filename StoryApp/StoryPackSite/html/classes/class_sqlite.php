@@ -30,7 +30,7 @@ class StoryPackDB {
 
         if ($this->echo_sql) echo "DB Version: ".$this->db_version."\n";   
         
-        $this->exec("INSERT INTO StoryPackInfo (Name, ImageDataPNG) VALUES('".SQLite3::escapeString($story_name)."', '".SQLite3::escapeString($image_bin)."')");
+        $this->exec("INSERT INTO StoryPackInfo (Name, ImageDataPNG_Base64) VALUES('".SQLite3::escapeString($story_name)."', '".SQLite3::escapeString(base64_encode($image_bin))."')");
         
     }
     
@@ -103,7 +103,7 @@ class StoryPackDB {
     }
     
     public function insert_image($type, $png_data, $scale) {
-        $sql = "INSERT INTO Images (DefaultScale, ImageType, ImageDataPNG) VALUES ('".$scale."', '".$type."','".SQLite3::escapeString($png_data)."')";
+        $sql = "INSERT INTO Images (DefaultScale, ImageType, ImageDataPNG_Base64) VALUES ('".$scale."', '".$type."','".SQLite3::escapeString(base64_encode($png_data))."')";
         return $this->exec($sql);
     }
     

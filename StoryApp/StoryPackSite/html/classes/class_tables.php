@@ -11,16 +11,16 @@ class tables {
 
     public static $images = "
     CREATE TABLE Images (
-        ImageDataPNG    blob,
-        ImageType       text,
-        DefaultScale    real
+        ImageDataPNG_Base64 blob,
+        ImageType           text,
+        DefaultScale        real
     );
     ";
 
     public static $story = "
     CREATE TABLE StoryPackInfo (
-        Name            text,
-        ImageDataPNG    blob
+        Name                text,
+        ImageDataPNG_Base64 blob
     );
     ";
 
