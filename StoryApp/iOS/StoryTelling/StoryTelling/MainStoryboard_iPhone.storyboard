@@ -911,6 +911,10 @@
                                     <action selector="buyPack:" destination="BTs-AR-N9X" eventType="touchUpInside" id="Ftd-An-IBP"/>
                                 </connections>
                             </button>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" id="GJ6-8d-rVW">
+                                <rect key="frame" x="85" y="215" width="150" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -922,6 +926,7 @@
                         <outlet property="loader" destination="ynD-0V-vCJ" id="aoX-UJ-VI5"/>
                         <outlet property="paidButtonLabel" destination="6ey-qN-mrI" id="uGx-tQ-fPR"/>
                         <outlet property="paidStoryPackName" destination="tkP-Ob-lZa" id="SNS-VX-mz4"/>
+                        <outlet property="progressView" destination="GJ6-8d-rVW" id="URP-F3-ccv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uxb-Bx-epY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1113,6 +1118,10 @@
                                     <action selector="InstallPack:" destination="RRX-6d-vFv" eventType="touchUpInside" id="QRd-bB-GIL"/>
                                 </connections>
                             </button>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" id="fXy-xt-H1x">
+                                <rect key="frame" x="85" y="220" width="150" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1124,6 +1133,7 @@
                         <outlet property="freeStoryPackName" destination="AkV-RR-Hph" id="dj6-aR-dff"/>
                         <outlet property="installButton" destination="mfU-Pz-QWP" id="oPs-Yc-pjD"/>
                         <outlet property="loader" destination="FND-CI-GA7" id="JpB-mk-6cW"/>
+                        <outlet property="progressView" destination="fXy-xt-H1x" id="z6n-8q-91d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQf-kN-SCI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1231,6 +1241,7 @@
                 <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="installButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
             </relationships>
         </class>
         <class className="STInstalledStoryPacksViewController" superclassName="UIViewController">
@@ -1254,6 +1265,7 @@
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="paidStoryPackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
             </relationships>
         </class>
         <class className="STStoryPacksViewController" superclassName="UIViewController">

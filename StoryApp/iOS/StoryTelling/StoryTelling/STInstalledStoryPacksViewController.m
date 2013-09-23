@@ -45,12 +45,10 @@
     
     [self.navigationItem setTitle:@"Select Images To Use"];
     //initializing DB.
-    [self performSelectorOnMainThread:@selector(initializeDB) withObject:nil waitUntilDone:YES];
+//    [self performSelectorOnMainThread:@selector(initializeDB) withObject:nil waitUntilDone:YES];
+    [self initializeDB];
     //loading bg and fg images.
     [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
-    
-
-    
     [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
     //done button.
 //    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
@@ -61,14 +59,18 @@
 - (void)initializeDB {
 
     NSLog(@"sqLiteDb = %@",filePath);
-        if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {
+    int code = sqlite3_open([filePath UTF8String], &database);
+        if (code != SQLITE_OK) {
             NSLog(@"Failed to open database!");
+        }
+        else{
+            NSLog(@"DB Successfully Initialized with code : %d", code);
         }
 }
 
 -(void)loadBGImages
 {
-    NSString *query = @"SELECT ImageDataPNG, ImageType, DefaultScale  FROM Images WHERE ImageType='Background'";
+    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Background'";
     sqlite3_stmt *statement;
     float scrollViewHeight = [backgroundImagesView bounds].size.height;
     float scrollViewWidth  = [backgroundImagesView bounds].size.width;
@@ -129,7 +131,7 @@
 
 -(void)loadFGImages
 {
-    NSString *query = @"SELECT ImageDataPNG, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground'";
+    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground'";
     sqlite3_stmt *statement;
     float scrollViewHeight = [foregroundImagesView bounds].size.height;
     float scrollViewWidth  = [foregroundImagesView bounds].size.width;

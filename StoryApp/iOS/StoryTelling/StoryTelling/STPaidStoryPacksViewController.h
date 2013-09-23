@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <StoreKit/StoreKit.h>
 #import "STImage.h"
+#import "STStoryPackDownload.h"
 
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
 
-@interface STPaidStoryPacksViewController : UIViewController<SKProductsRequestDelegate, SKPaymentTransactionObserver,SKRequestDelegate>
+@interface STPaidStoryPacksViewController : UIViewController<SKProductsRequestDelegate, SKPaymentTransactionObserver,SKRequestDelegate,STStoryPackDownloadDelegate>
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UILabel *paidStoryPackName;
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;

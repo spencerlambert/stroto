@@ -15,7 +15,6 @@
 #define THUMB_H_PADDING 8
 
 #import "STPaidStoryPacksViewController.h"
-#import "STStoryPackDownload.h"
 #import <QuartzCore/QuartzCore.h>
 #import "STInstalledStoryPacksViewController.h"
 
@@ -34,7 +33,8 @@
 @synthesize paidStoryPackName;
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
-
+@synthesize loader;
+@synthesize progressView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -302,7 +302,7 @@
     NSLog(@"recordTransaction");
     if ([transaction.payment.productIdentifier isEqualToString:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]])
     {
-        [self.loader startAnimating];
+//        [self.loader startAnimating];
         NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
         [self sendReceipt:transaction.transactionReceipt];
     }
@@ -321,10 +321,22 @@
         if ([data length] >0 && error == nil){
             paidStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             STStoryPackDownload *paidDownload = [[STStoryPackDownload alloc] init];
+            
+            //progress bar delegate.
+            [self.loader setHidden:NO];
+            [self.loader startAnimating];
+            [paidDownload setProgressDelegate:self];
+            [self.progressView setHidden:NO];
+            
             [paidDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[paidStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
-            [self.loader startAnimating];
+            
+            //stopping progressBar.
+            [self.loader stopAnimating];
+            [self.loader setHidden:YES];
+            [self.progressView setHidden:YES];
+            
             STInstalledStoryPacksViewController *installController =
             [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                        bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
@@ -404,6 +416,12 @@
     [self setLoader:nil];
     [self setBuyPackButton:nil];
     [self setBackgroundButton:nil];
+    [self setProgressView:nil];
     [super viewDidUnload];
+}
+-(void)updateProgress:(float)count{
+    
+    [self.progressView setProgress:count animated:YES];
+    [self.progressView setProgressTintColor:[UIColor blueColor]];
 }
 @end

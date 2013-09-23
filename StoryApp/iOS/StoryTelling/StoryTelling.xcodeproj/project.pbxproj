@@ -140,6 +140,8 @@
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB29DE0817D45C76005B1F10 /* StoreKit.framework */; };
+		EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; };
+		EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */; };
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
@@ -318,6 +320,8 @@
 		DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		EB29DE0817D45C76005B1F10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EB382FBF17EFF36800A3FB1F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "StoryTelling/NSData+Base64.h"; sourceTree = "<group>"; };
+		EB382FC017EFF36800A3FB1F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "StoryTelling/NSData+Base64.m"; sourceTree = "<group>"; };
 		EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STInstalledStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STInstalledStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
@@ -435,6 +439,8 @@
 		DB28D6FD1742E1460071B5C2 = {
 			isa = PBXGroup;
 			children = (
+				EB382FBF17EFF36800A3FB1F /* NSData+Base64.h */,
+				EB382FC017EFF36800A3FB1F /* NSData+Base64.m */,
 				EB29DE0817D45C76005B1F10 /* StoreKit.framework */,
 				4D2A0A20177BD21700C78EE0 /* Default-568h@2x.png */,
 				4D2A0A1E177BD1FD00C78EE0 /* Default@2x.png */,
@@ -854,6 +860,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */,
 				DB9D34F917CD997500845670 /* STStageExporter.m in Sources */,
 				DB98581F17C3596A001AD854 /* UIImageCVMatConverter.mm in Sources */,
 				DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */,
@@ -938,6 +945,7 @@
 				DB93D7131774EC0000437F40 /* BottomRight.m in Sources */,
 				DB4CA88817A23B1900C21E7D /* CvGrabCutController.mm in Sources */,
 				DB98581D17C35751001AD854 /* UIImageCVMatConverter.mm in Sources */,
+				EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

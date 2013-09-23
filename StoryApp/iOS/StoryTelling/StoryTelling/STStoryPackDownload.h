@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface STStoryPackDownload : NSObject
+@protocol STStoryPackDownloadDelegate
+
+-(void)updateProgress:(float)count;
+
+@end
+
+@interface STStoryPackDownload : NSObject<NSURLConnectionDataDelegate,NSURLConnectionDownloadDelegate>
 
 @property (nonatomic, weak) NSString *installedFilePath;
+@property (nonatomic, strong) NSMutableData *fileData;
+@property (nonatomic, weak) id<STStoryPackDownloadDelegate> progressDelegate;
 
 -(void)downloadStoryPack:(NSString*)downloadURL;
 

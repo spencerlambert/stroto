@@ -11,13 +11,26 @@
 @implementation STStoryPackDownload
 
 @synthesize installedFilePath;
+@synthesize fileData;
+@synthesize progressDelegate;
 
 -(void)downloadStoryPack:(NSString*)downloadURL
 {
     NSLog(@"URL : %@",downloadURL);
     NSString *filename = [downloadURL lastPathComponent];
     NSLog(@"filename: %@",filename);
-    NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
+    self.fileData = [[NSMutableData alloc]init];
+    NSURLConnection *downloadConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:downloadURL]] delegate:self];
+   [downloadConnection start];
+    installedFilePath = [installedFilePath stringByAppendingPathComponent:filename];
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+//    NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
+    [self.fileData appendData:data];
+    }
+-(void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
+{
     installedFilePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"story_dir/story_packs/"];
     NSLog(@"installedFilePath : %@",installedFilePath);
     NSFileManager *fileManger = [NSFileManager defaultManager];
@@ -26,9 +39,18 @@
     if (error != nil) {
         NSLog(@"error creating directory: %@", error);
     }
-    installedFilePath = [installedFilePath stringByAppendingPathComponent:filename];
-    BOOL dbSuccess = [dbFile writeToFile:installedFilePath atomically:YES];
+    BOOL dbSuccess = [self.fileData writeToFile:installedFilePath atomically:YES];
     NSLog(@"Save Success : %@",dbSuccess?@"Yes":@"No");
+
+}
+- (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes
+{
+    int percentage = totalBytesWritten / expectedTotalBytes;
+    [progressDelegate updateProgress:percentage];
+}
+- (void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes
+{
+    
 }
 
 @end
