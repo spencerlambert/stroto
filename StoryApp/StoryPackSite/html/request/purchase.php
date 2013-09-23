@@ -42,8 +42,11 @@ while ($row = mysql_fetch_assoc($res)) {
     $sqlite_db->insert_image($row['ImageType'], $row['ImageDataPNG'], $row['DefaultScale']);
 }
 
+$bytes = filesize(DOWNLOAD_PATH.$sqlite_filename);
+
 $json = array();
 $json['st_storypack_url'] = DOWNLOAD_URL.$sqlite_filename;
+$json['st_storypack_bytes'] = $bytes;
 $json['st_error'] = "";
 $json['st_result'] = "OK";
 
