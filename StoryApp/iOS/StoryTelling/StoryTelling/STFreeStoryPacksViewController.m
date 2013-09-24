@@ -36,6 +36,8 @@
 @synthesize foregroundImagesView;
 @synthesize loader;
 @synthesize progressView;
+@synthesize downloadPercentageLabel;
+@synthesize BGHideDownload;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -352,22 +354,14 @@
             [self.loader startAnimating];
             [freeDownload setProgressDelegate:self];
             [self.progressView setHidden:NO];
+            [self.downloadPercentageLabel setHidden:NO];
+            [self.BGHideDownload setHidden:NO];
             
             [freeDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[freeStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
-            
-            //stopping progress bar
-            [self.loader stopAnimating];
-            [self.loader setHidden:YES];
-            [self.progressView setHidden:YES];
-            
-            STInstalledStoryPacksViewController *installController =
-            [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                                       bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
-            installController.filePath = freeDownload.installedFilePath;
-            [self.navigationController pushViewController:installController animated:YES];
+
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
@@ -376,6 +370,23 @@
             NSLog(@"Error happened = %@", error); }
     }];
 }
+//show installed View.
+-(void)finishedDownloadingDB:(NSString*)DBFilePath
+{
+    //stopping progressBar.
+    [self.loader stopAnimating];
+    [self.loader setHidden:YES];
+    [self.progressView setHidden:YES];
+    [self.downloadPercentageLabel setHidden:YES];
+    [self.BGHideDownload setHidden:YES];
+    
+    STInstalledStoryPacksViewController *installController =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    installController.filePath = DBFilePath;
+    [self.navigationController pushViewController:installController animated:YES];
+}
+
 
 //
 // removes the transaction from the queue and posts a notification with the transaction result
@@ -442,11 +453,15 @@
     [self setInstallButton:nil];
     [self setBackgroundButton:nil];
     [self setProgressView:nil];
+    [self setDownloadPercentageLabel:nil];
+    [self setBGHideDownload:nil];
     [super viewDidUnload];
 }
 
--(void)updateProgress:(float)count{
-    [self.progressView setProgress:count animated:YES];
+-(void)updateProgress:(float)progress{
+    NSLog(@"progress : %f",progress);
+    [self.progressView setProgress:progress animated:YES];
+    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %f\%",(progress*100)];
     [self.progressView setProgressTintColor:[UIColor blueColor]];
 }
 

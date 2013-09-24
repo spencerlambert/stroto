@@ -19,6 +19,8 @@
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *downloadPercentageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *BGHideDownload;
 @property (strong, nonatomic) IBOutlet UILabel *paidStoryPackName;
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;

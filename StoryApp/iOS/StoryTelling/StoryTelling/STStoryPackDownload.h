@@ -10,11 +10,12 @@
 
 @protocol STStoryPackDownloadDelegate
 
--(void)updateProgress:(float)count;
+-(void)updateProgress:(float)progress;
+-(void)finishedDownloadingDB:(NSString*)DBFilePath;
 
 @end
 
-@interface STStoryPackDownload : NSObject<NSURLConnectionDataDelegate,NSURLConnectionDownloadDelegate>
+@interface STStoryPackDownload : NSObject<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
 
 @property (nonatomic, weak) NSString *installedFilePath;
 @property (nonatomic, strong) NSMutableData *fileData;

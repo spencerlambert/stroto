@@ -875,11 +875,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
-                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="ynD-0V-vCJ">
-                                <rect key="frame" x="142" y="170" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lol-yJ-qdX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -911,17 +906,43 @@
                                     <action selector="buyPack:" destination="BTs-AR-N9X" eventType="touchUpInside" id="Ftd-An-IBP"/>
                                 </connections>
                             </button>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" id="GJ6-8d-rVW">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDo-hG-k1V">
+                                <rect key="frame" x="-1" y="1" width="322" height="459"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="ynD-0V-vCJ">
+                                <rect key="frame" x="142" y="170" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" id="GJ6-8d-rVW">
                                 <rect key="frame" x="85" y="215" width="150" height="9"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZbM-Jh-Y9w">
+                                <rect key="frame" x="110" y="225" width="100" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="BGHideDownload" destination="jDo-hG-k1V" id="ydq-Ti-wyG"/>
                         <outlet property="backgroundButton" destination="Lol-yJ-qdX" id="bpV-2r-pZK"/>
                         <outlet property="backgroundImagesView" destination="xbt-ZB-gZQ" id="HkW-UN-BjF"/>
                         <outlet property="buyPackButton" destination="zCY-5C-2uU" id="Y0v-KA-52H"/>
+                        <outlet property="downloadPercentageLabel" destination="ZbM-Jh-Y9w" id="VXW-7j-Gi8"/>
                         <outlet property="foregroundImagesView" destination="f0p-7k-8hj" id="GOm-n0-axA"/>
                         <outlet property="loader" destination="ynD-0V-vCJ" id="aoX-UJ-VI5"/>
                         <outlet property="paidButtonLabel" destination="6ey-qN-mrI" id="uGx-tQ-fPR"/>
@@ -1082,11 +1103,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
-                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="FND-CI-GA7">
-                                <rect key="frame" x="142" y="170" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bo1-DO-uBl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1118,16 +1134,43 @@
                                     <action selector="InstallPack:" destination="RRX-6d-vFv" eventType="touchUpInside" id="QRd-bB-GIL"/>
                                 </connections>
                             </button>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" id="fXy-xt-H1x">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MSh-Y3-3cW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="FND-CI-GA7">
+                                <rect key="frame" x="142" y="170" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" id="fXy-xt-H1x">
                                 <rect key="frame" x="85" y="220" width="150" height="9"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O9d-fm-jsY">
+                                <rect key="frame" x="110" y="229" width="100" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="BGHideDownload" destination="MSh-Y3-3cW" id="66V-fk-QQr"/>
                         <outlet property="backgroundButton" destination="bo1-DO-uBl" id="Ofc-YL-ksQ"/>
                         <outlet property="backgroundImagesView" destination="Gcc-fO-arI" id="sAM-fO-WiJ"/>
+                        <outlet property="downloadPercentageLabel" destination="O9d-fm-jsY" id="z7E-UZ-hUq"/>
                         <outlet property="foregroundImagesView" destination="xiL-vv-74W" id="5N6-I6-qgw"/>
                         <outlet property="freeButton" destination="Mi3-23-H2m" id="TM1-VQ-2aU"/>
                         <outlet property="freeStoryPackName" destination="AkV-RR-Hph" id="dj6-aR-dff"/>
@@ -1234,8 +1277,10 @@
                 <relationship kind="action" name="InstallPack:" candidateClass="UIButton"/>
                 <relationship kind="action" name="buyButtonTapped:"/>
                 <relationship kind="action" name="showFree:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="BGHideDownload" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
@@ -1258,9 +1303,11 @@
                 <relationship kind="action" name="buyButtonTapped:"/>
                 <relationship kind="action" name="buyPack:"/>
                 <relationship kind="action" name="showPrice:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="BGHideDownload" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buyPackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>

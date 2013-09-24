@@ -89,6 +89,7 @@
     if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
         == SQLITE_OK)
     {
+        NSLog(@"sql statement for foreground : %@",statement);
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
 //            const void *ptr = sqlite3_column_blob(statement, 0);
@@ -132,6 +133,7 @@
 -(void)loadFGImages
 {
     NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground'";
+    
     sqlite3_stmt *statement;
     float scrollViewHeight = [foregroundImagesView bounds].size.height;
     float scrollViewWidth  = [foregroundImagesView bounds].size.width;
@@ -149,6 +151,7 @@
     if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
         == SQLITE_OK)
     {
+        NSLog(@"sql statement for background : %@",statement);
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
 //            const void *ptr = sqlite3_column_blob(statement, 0);
