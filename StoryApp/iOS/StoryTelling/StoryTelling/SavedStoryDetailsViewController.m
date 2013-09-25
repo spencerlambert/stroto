@@ -84,6 +84,12 @@
 //        NSLog(@"Clicked button index 0");
         storyDB = [STStoryDB loadSTstoryDB:dbname];
         [storyDB deleteSTstoryDB];
+        NSString *moviePath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        moviePath = [moviePath stringByAppendingString:[NSString stringWithFormat:@"/mov_dir/%@.mov",[dbname stringByDeletingPathExtension]] ];
+        NSFileManager *file = [NSFileManager defaultManager];
+        if([file fileExistsAtPath:moviePath]){
+            [file removeItemAtPath:moviePath error:nil];
+        }
         [self.navigationController popToRootViewControllerAnimated:YES];
         // Add the action here
     } else if(buttonIndex == 1)

@@ -330,7 +330,7 @@
             loaderView = [self getLoaderView];
             [self.view addSubview:loaderView];
         }
-        [self performSelector:@selector(CompileFilesToMakeMovie) withObject:nil afterDelay:10.0];
+        [self performSelector:@selector(CompileRecording) withObject:nil afterDelay:10.0];
     }else{
         [storyDB closeDB];
         [mydelegate finishedRecording];
@@ -340,14 +340,184 @@
     
 }
 
+-(void)CompileRecording
+{
+    [self mergeAudioRecording];
+}
+
+-(void)mergeAudioRecording{
+    NSFileManager *file = [NSFileManager defaultManager];
+    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"sound.caf"];
+    NSString* audio_FilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
+    NSString *tempSoundFile = [[NSString alloc] initWithFormat:@"%@/mov_dir/temp.m4a", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
+    if([file fileExistsAtPath:audio_FilePath]){
+        
+        CMTime nextClipStartTime = kCMTimeZero;
+        //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
+        AVMutableComposition *composition = [[AVMutableComposition alloc] init];
+        
+        AVMutableCompositionTrack *compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        [compositionAudioTrack setPreferredVolume:0.8];
+        NSURL *url = [NSURL fileURLWithPath:audio_FilePath];
+        AVAsset *avAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+        NSArray *tracks = [avAsset tracksWithMediaType:AVMediaTypeAudio];
+        AVAssetTrack *clipAudioTrack = [[avAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+        [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, avAsset.duration) ofTrack:clipAudioTrack atTime:kCMTimeZero error:nil];
+        
+        AVMutableCompositionTrack *compositionAudioTrack1 = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        [compositionAudioTrack setPreferredVolume:0.3];
+        NSURL *url1 = [NSURL fileURLWithPath:audio_inputFilePath ];
+        AVAsset *avAsset1 = [AVURLAsset URLAssetWithURL:url1 options:nil];
+        NSArray *tracks1 = [avAsset1 tracksWithMediaType:AVMediaTypeAudio];
+        AVAssetTrack *clipAudioTrack1 = [[avAsset1 tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+        [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero, avAsset1.duration) ofTrack:clipAudioTrack1 atTime:avAsset.duration error:nil];
+        
+        
+        AVAssetExportSession *exportSession = [AVAssetExportSession
+                                               exportSessionWithAsset:composition
+                                               presetName:AVAssetExportPresetAppleM4A];
+        if (nil == exportSession) return;
+        
+        
+        // configure export session  output with all our parameters
+        exportSession.outputURL = [NSURL fileURLWithPath:tempSoundFile]; // output path
+        exportSession.outputFileType = AVFileTypeAppleM4A; // output file type
+        
+        // perform the export
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            
+            if (AVAssetExportSessionStatusCompleted == exportSession.status) {
+                NSLog(@"AVAssetExportSessionStatusCompleted");
+                [file removeItemAtPath:audio_FilePath error:nil];
+                [file moveItemAtPath:tempSoundFile toPath:audio_FilePath error:nil];
+                [self mergeVideoRecording];
+            } else if (AVAssetExportSessionStatusFailed == exportSession.status) {
+                NSLog(@"AVAssetExportSessionStatusFailed");
+            } else {
+                NSLog(@"Export Session Status: %d", exportSession.status);
+            }
+        }];
+        
+    }
+    else{
+        [file copyItemAtPath:audio_inputFilePath toPath:audio_FilePath error:nil];
+        [self mergeVideoRecording];
+    }
+}
+
+-(void)mergeVideoRecording{
+    NSFileManager *file = [NSFileManager defaultManager];
+    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
+    NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
+    NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/mov_dir/temp.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
+    if([file fileExistsAtPath:secondAsset1]){
+        
+    
+    NSURL *url1 = [NSURL fileURLWithPath:secondAsset1];
+     AVAsset *firstAsset = [AVURLAsset URLAssetWithURL:url1 options:nil];
+    NSURL *url2 = [NSURL fileURLWithPath:firstAsset1];
+    AVAsset *secondAsset = [AVURLAsset URLAssetWithURL:url2 options:nil];
+    //[ActivityView startAnimating];
+    //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
+    AVMutableComposition* mixComposition = [[AVMutableComposition alloc] init];
+    
+    //VIDEO TRACK
+    AVMutableCompositionTrack *firstTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration ) ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    AVMutableCompositionTrack *secondTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    [secondTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration) ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:(CMTimeMakeWithSeconds(CMTimeGetSeconds(firstAsset.duration) - .001, firstAsset.duration.timescale)) error:nil];
+    
+    
+    
+    AVMutableVideoCompositionInstruction * MainInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    MainInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd(firstAsset.duration, secondAsset.duration));
+    
+    //FIXING ORIENTATION//
+    AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:firstTrack];
+    AVAssetTrack *FirstAssetTrack = [[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    UIImageOrientation FirstAssetOrientation_  = UIImageOrientationUp;
+    BOOL  isFirstAssetPortrait_  = NO;
+    CGAffineTransform firstTransform = FirstAssetTrack.preferredTransform;
+    if(firstTransform.a == 0 && firstTransform.b == 1.0 && firstTransform.c == -1.0 && firstTransform.d == 0)  {FirstAssetOrientation_= UIImageOrientationRight; isFirstAssetPortrait_ = YES;}
+    if(firstTransform.a == 0 && firstTransform.b == -1.0 && firstTransform.c == 1.0 && firstTransform.d == 0)  {FirstAssetOrientation_ =  UIImageOrientationLeft; isFirstAssetPortrait_ = YES;}
+    if(firstTransform.a == 1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == 1.0)   {FirstAssetOrientation_ =  UIImageOrientationUp;}
+    if(firstTransform.a == -1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == -1.0) {FirstAssetOrientation_ = UIImageOrientationDown;}
+    CGFloat FirstAssetScaleToFitRatio = 320.0/FirstAssetTrack.naturalSize.width;
+    if(isFirstAssetPortrait_){
+        FirstAssetScaleToFitRatio = 320.0/FirstAssetTrack.naturalSize.height;
+        CGAffineTransform FirstAssetScaleFactor = CGAffineTransformMakeScale(FirstAssetScaleToFitRatio,FirstAssetScaleToFitRatio);
+        [FirstlayerInstruction setTransform:CGAffineTransformConcat(FirstAssetTrack.preferredTransform, FirstAssetScaleFactor) atTime:kCMTimeZero];
+    }else{
+        CGAffineTransform FirstAssetScaleFactor = CGAffineTransformMakeScale(FirstAssetScaleToFitRatio,FirstAssetScaleToFitRatio);
+        [FirstlayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(FirstAssetTrack.preferredTransform, FirstAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:kCMTimeZero];
+    }
+    [FirstlayerInstruction setOpacity:0.0 atTime:firstAsset.duration];
+    
+    AVMutableVideoCompositionLayerInstruction *SecondlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:secondTrack];
+    AVAssetTrack *SecondAssetTrack = [[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    UIImageOrientation SecondAssetOrientation_  = UIImageOrientationUp;
+    BOOL  isSecondAssetPortrait_  = NO;
+    CGAffineTransform secondTransform = SecondAssetTrack.preferredTransform;
+    if(secondTransform.a == 0 && secondTransform.b == 1.0 && secondTransform.c == -1.0 && secondTransform.d == 0)  {SecondAssetOrientation_= UIImageOrientationRight; isSecondAssetPortrait_ = YES;}
+    if(secondTransform.a == 0 && secondTransform.b == -1.0 && secondTransform.c == 1.0 && secondTransform.d == 0)  {SecondAssetOrientation_ =  UIImageOrientationLeft; isSecondAssetPortrait_ = YES;}
+    if(secondTransform.a == 1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == 1.0)   {SecondAssetOrientation_ =  UIImageOrientationUp;}
+    if(secondTransform.a == -1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == -1.0) {SecondAssetOrientation_ = UIImageOrientationDown;}
+    CGFloat SecondAssetScaleToFitRatio = 320.0/SecondAssetTrack.naturalSize.width;
+    if(isSecondAssetPortrait_){
+        SecondAssetScaleToFitRatio = 320.0/SecondAssetTrack.naturalSize.height;
+        CGAffineTransform SecondAssetScaleFactor = CGAffineTransformMakeScale(SecondAssetScaleToFitRatio,SecondAssetScaleToFitRatio);
+        [SecondlayerInstruction setTransform:CGAffineTransformConcat(SecondAssetTrack.preferredTransform, SecondAssetScaleFactor) atTime:firstAsset.duration];
+    }else{
+        ;
+        CGAffineTransform SecondAssetScaleFactor = CGAffineTransformMakeScale(SecondAssetScaleToFitRatio,SecondAssetScaleToFitRatio);
+        [SecondlayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(SecondAssetTrack.preferredTransform, SecondAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:firstAsset.duration];
+    }
+    
+    
+    MainInstruction.layerInstructions = [NSArray arrayWithObjects:FirstlayerInstruction,SecondlayerInstruction,nil];;
+    
+    AVMutableVideoComposition *MainCompositionInst = [AVMutableVideoComposition videoComposition];
+    MainCompositionInst.instructions = [NSArray arrayWithObject:MainInstruction];
+    MainCompositionInst.frameDuration = CMTimeMake(1, 30);
+    MainCompositionInst.renderSize = CGSizeMake(320.0, 480.0);
+    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",[storyDB getDBName]]];
+    
+    NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
+    
+    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
+    exporter.outputURL=url;
+    exporter.outputFileType = AVFileTypeQuickTimeMovie;
+    exporter.videoComposition = MainCompositionInst;
+    exporter.shouldOptimizeForNetworkUse = YES;
+    [exporter exportAsynchronouslyWithCompletionHandler:^
+     {
+         [file removeItemAtPath:secondAsset1 error:nil];
+         [file moveItemAtPath:tempVideoFile toPath:secondAsset1 error:nil];
+         [self CompileFilesToMakeMovie];
+     }];
+
+    }
+    else{
+        [file copyItemAtPath:firstAsset1 toPath:secondAsset1 error:nil];
+        [self CompileFilesToMakeMovie];
+    }
+    
+}
+
 -(void)CompileFilesToMakeMovie
 {
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
     
-    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"sound.caf"];
+    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
     NSURL*    audio_inputFileUrl = [NSURL fileURLWithPath:audio_inputFilePath];
     
-    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
+    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
     NSURL*    video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
     
     NSString* outputFileName = [NSString stringWithFormat:@"%@.mov",[storyDB getDBName]];
@@ -360,7 +530,7 @@
     CMTime nextClipStartTime = kCMTimeZero;
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:video_inputFileUrl options:nil];
-    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero,videoAsset.duration);
+    CMTimeRange video_timeRange = CMTimeRangeMake(CMTimeMakeWithSeconds(1,1),CMTimeAdd(videoAsset.duration,CMTimeMakeWithSeconds(-1,1)));
     AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:nextClipStartTime error:nil];
     

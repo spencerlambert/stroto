@@ -188,26 +188,26 @@ int selectedbackgroundimage = 0;
     [img setThumbimage:[self updateThumbImage]];
     [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
     //[self.navigationController popToRootViewControllerAnimated:YES];
-    for (int i=0; i<[[self backgroundimages]count]; i++){
-        selectedbackgroundimage =i;
-        [self clearScrollView];
-        self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:selectedbackgroundimage]];
-        [self.cropbackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
-        [self.cropView addSubview:self.cropbackgroundImage];
-        [self prepareScrollView];
-        
-        STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
-        CGFloat currentScale = self.cropbackgroundImage.frame.size.width / self.cropbackgroundImage.bounds.size.width;
-        [img setDefaultScale:currentScale];
-        [img setMinZoomScale:[self.cropView minimumZoomScale]];
-        [img setDefaultX:[self cropView].contentOffset.x];
-        [img setDefaultY:[self cropView].contentOffset.y];
-        [img setThumbimage:[self updateThumbImage]];
-        [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
-        //[self.navigationController popToRootViewControllerAnimated:YES];
-
-        
-    }
+//    for (int i=0; i<[[self backgroundimages]count]; i++){
+//        selectedbackgroundimage =i;
+//        [self clearScrollView];
+//        self.cropbackgroundImage = [[UIImageView alloc] initWithImage:[[self backgroundimages]objectAtIndex:selectedbackgroundimage]];
+//        [self.cropbackgroundImage setContentMode:UIViewContentModeScaleAspectFill];
+//        [self.cropView addSubview:self.cropbackgroundImage];
+//        [self prepareScrollView];
+//        
+//        STImage *img = [[self backgroundimages]objectAtIndex:selectedbackgroundimage];
+//        CGFloat currentScale = self.cropbackgroundImage.frame.size.width / self.cropbackgroundImage.bounds.size.width;
+//        [img setDefaultScale:currentScale];
+//        [img setMinZoomScale:[self.cropView minimumZoomScale]];
+//        [img setDefaultX:[self cropView].contentOffset.x];
+//        [img setDefaultY:[self cropView].contentOffset.y];
+//        [img setThumbimage:[self updateThumbImage]];
+//        [[self backgroundimages]replaceObjectAtIndex:selectedbackgroundimage withObject:img];
+//        //[self.navigationController popToRootViewControllerAnimated:YES];
+//
+//        
+//    }
     AppDelegate *backgroundImagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [backgroundImagesDelegate.backgroundImagesArray addObjectsFromArray:[self backgroundimages]];
     [self.navigationController popToViewController:[self getCreateStoryController] animated:YES];
