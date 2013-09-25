@@ -56,8 +56,15 @@ NSString *filename;
     installedFilePath = [installedFilePath stringByAppendingPathComponent:filename];
     BOOL dbSuccess = [self.fileData writeToFile:installedFilePath atomically:YES];
     NSLog(@"Save Success : %@",dbSuccess?@"Yes":@"No");
+    if(dbSuccess)
+    {
+        NSLog(@"DB writing success!!");
     [progressDelegate finishedDownloadingDB:installedFilePath];
-
+    }
+    else
+    {
+        NSLog(@"DB writing not success!!");
+    }
 }
 
 @end

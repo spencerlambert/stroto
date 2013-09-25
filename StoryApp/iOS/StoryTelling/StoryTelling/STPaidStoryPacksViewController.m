@@ -28,7 +28,6 @@
 @synthesize paidStoryPackURLJson;
 @synthesize paidProduct;
 @synthesize paidButtonLabel;
-@synthesize buyPackButton;
 @synthesize backgroundButton;
 @synthesize paidStoryPackName;
 @synthesize backgroundImagesView;
@@ -53,9 +52,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     NSLog(@"paidStorypackID = %d",self.storyPackID);
-    [self.buyPackButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    self.buyPackButton.layer.borderWidth = 1.0f;
-    [self.buyPackButton.layer setCornerRadius:10.0f];
     [self.paidButtonLabel setHidden:YES];
     //Activity Indicator
     [self.loader setHidden:FALSE];
@@ -199,34 +195,34 @@
     }
     //stoping activity indicator
     [self.loader stopAnimating];
-    [self.loader setHidden:TRUE];
+    [self.loader setHidden:YES];
     [self.paidButtonLabel setHidden:NO];
     
 }
+
 #pragma mark - In App Purchase
+
+- (IBAction)showPrice:(UIButton *)sender {
+    //touched Background
+    [self.backgroundButton setHidden:YES];
+    [self.paidButtonLabel setHidden:NO];
+}
+
 - (IBAction)buyButtonTapped:(id)sender
 {
     NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-}
--(IBAction)buyPack:(id)sender{
-    SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
-    NSLog(@"observationInfo : %@",[[SKPaymentQueue defaultQueue] observationInfo]);
-}
-
-- (IBAction)showPrice:(UIButton *)sender {
-    //touched Background
-    [self.buyPackButton setHidden:YES];
+    [self.paidButtonLabel setHidden:YES];
+    [self.loader startAnimating];
+    [self.loader setHidden:NO];
+    [self.BGHideDownload setHidden:NO];
     [self.backgroundButton setHidden:YES];
-    [self.paidButtonLabel setHidden:NO];
-
 }
 
 #pragma mark - SKProductsRequestDelegate
+
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     paidProduct = [response.products objectAtIndex:0];
@@ -239,10 +235,11 @@
 
 -(void)requestDidFinish:(SKRequest *)request
 {
-//working of buy buttons
-    [self.paidButtonLabel setHidden:YES];
-    [self.buyPackButton setHidden:NO];
-    [self.backgroundButton setHidden:NO];
+    SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
+    [self.loader stopAnimating];
+    [self.loader setHidden:YES];
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
@@ -254,8 +251,10 @@
         [alert show];
     }
 //for retrying, enabling product request button
-    [self.buyPackButton setHidden:YES];
+    [self.loader stopAnimating];
+    [self.loader setHidden:YES];
     [self.backgroundButton setHidden:YES];
+    [self.BGHideDownload setHidden:YES];
     [self.paidButtonLabel setHidden:NO];
 }
 
@@ -270,6 +269,7 @@
         {
             case SKPaymentTransactionStatePurchased:
                 [self completeTransaction:transaction];
+                [self finishTransaction:transaction wasSuccessful:YES];
                 break;
             case SKPaymentTransactionStateFailed:
                 [self failedTransaction:transaction];
@@ -288,7 +288,7 @@
 {
     NSLog(@"completeTransaction");
     [self recordTransaction:transaction];
-    [self finishTransaction:transaction wasSuccessful:YES];
+    
 }
 // sends the receipt to json server.
 //
@@ -312,18 +312,21 @@
     NSLog(@"receipt ( inside sendReceipt:) : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [self.loader setHidden:NO];
+    [self.loader startAnimating];
+    [self.progressView setHidden:NO];
+    [self.downloadPercentageLabel setHidden:NO];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
             paidStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             STStoryPackDownload *paidDownload = [[STStoryPackDownload alloc] init];
-            
             //progress bar delegate.
             [self.loader setHidden:NO];
             [self.loader startAnimating];
             [paidDownload setProgressDelegate:self];
-            [self.BGHideDownload setHidden:NO];
             [self.progressView setHidden:NO];
             [self.downloadPercentageLabel setHidden:NO];
+            [self.BGHideDownload setHidden:NO];
             
             [paidDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[paidStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
@@ -379,12 +382,18 @@
     {
         NSLog(@"failed Transaction !!");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Paid StoryPack Purchase"
-                                                        message:@"Failed"
+                                                        message:@"Failed, Try Again Later."
                                                        delegate:self
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 //         send out a notification for the failed transaction
         [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
+        //for retrying, enabling product request button
+        [self.loader stopAnimating];
+        [self.loader setHidden:YES];
+        [self.backgroundButton setHidden:YES];
+        [self.BGHideDownload setHidden:YES];
+        [self.paidButtonLabel setHidden:NO];
     }
 }
 
@@ -417,7 +426,6 @@
     [self setForegroundImagesView:nil];
     [self setPaidStoryPackName:nil];
     [self setLoader:nil];
-    [self setBuyPackButton:nil];
     [self setBackgroundButton:nil];
     [self setProgressView:nil];
     [self setDownloadPercentageLabel:nil];
@@ -426,7 +434,7 @@
 }
 -(void)updateProgress:(float)progress{
     NSLog(@"progress : %f",progress);
-    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %f",(progress*100)];
+    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];
     [self.progressView setProgress:progress animated:YES];
     [self.progressView setProgressTintColor:[UIColor blueColor]];
 }

@@ -48,8 +48,8 @@
 //    [self performSelectorOnMainThread:@selector(initializeDB) withObject:nil waitUntilDone:YES];
     [self initializeDB];
     //loading bg and fg images.
-    [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
-    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
+//    [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
+//    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
     //done button.
 //    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
 //    [self.navigationItem setRightBarButtonItem:doneButton];
@@ -59,18 +59,19 @@
 - (void)initializeDB {
 
     NSLog(@"sqLiteDb = %@",filePath);
-    int code = sqlite3_open([filePath UTF8String], &database);
+    int code = sqlite3_open_v2([filePath UTF8String], &database,SQLITE_OPEN_READWRITE,NULL);
         if (code != SQLITE_OK) {
             NSLog(@"Failed to open database!");
         }
         else{
             NSLog(@"DB Successfully Initialized with code : %d", code);
+            [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
         }
 }
 
 -(void)loadBGImages
 {
-    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Background'";
+    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Background';";
     sqlite3_stmt *statement;
     float scrollViewHeight = [backgroundImagesView bounds].size.height;
     float scrollViewWidth  = [backgroundImagesView bounds].size.width;
@@ -85,11 +86,12 @@
     [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [backgroundImagesHolder setHidden:NO];
     [backgroundImagesView addSubview:backgroundImagesHolder];
-    
-    if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
-        == SQLITE_OK)
+    switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
-        NSLog(@"sql statement for foreground : %@",statement);
+        case SQLITE_OK:
+            NSLog(@"SQLITE_OK");
+            
+            NSLog(@"Inside BG SQLITE_OK ");    //    NSLog(@"sql statement for background : %@",statement);
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
 //            const void *ptr = sqlite3_column_blob(statement, 0);
@@ -126,13 +128,34 @@
         }
         [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
         [backgroundImagesView addSubview:backgroundImagesHolder];
-            ////////////////////////////////////////////
-        }
+            
+            break;
+        case SQLITE_ERROR:
+            
+            NSLog(@"SQLITE_ERROR : %d", sqlite3_step(statement));
+            break;
+            
+        case SQLITE_INTERNAL:
+            NSLog(@"SQLITE_INTERNAL");
+            break;
+            
+        case SQLITE_BUSY:
+            NSLog(@"SQLITE_BUSY");
+            break;
+            
+        case SQLITE_MISMATCH:
+            NSLog(@"SQLITE_MISMATCH");
+            break;
+        default:
+            NSLog(@"Default...");
+            break;
+    }
+    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
 }
 
 -(void)loadFGImages
 {
-    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground'";
+    NSString *query = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground';";
     
     sqlite3_stmt *statement;
     float scrollViewHeight = [foregroundImagesView bounds].size.height;
@@ -148,10 +171,12 @@
     [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [foregroundImagesHolder setHidden:NO];
     [foregroundImagesView addSubview:foregroundImagesHolder];
-    if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil)
-        == SQLITE_OK)
+    switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
-        NSLog(@"sql statement for background : %@",statement);
+        case SQLITE_OK:
+            NSLog(@"SQLITE_OK");
+            
+            NSLog(@"Inside FG SQLITE_OK ");
         while (sqlite3_step(statement) == SQLITE_ROW){
             ////////////////////////////////////////////
 //            const void *ptr = sqlite3_column_blob(statement, 0);
@@ -188,7 +213,28 @@
         }
         [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
         [foregroundImagesView addSubview:foregroundImagesHolder];
-        ////////////////////////////////////////////
+            
+            break;
+        case SQLITE_ERROR:
+            NSLog(@"SQLITE_ERROR");
+            
+            NSLog(@"SQLITE_ERROR : %d", sqlite3_step(statement));
+            break;
+            
+        case SQLITE_INTERNAL:
+            NSLog(@"SQLITE_INTERNAL");
+            break;
+            
+        case SQLITE_BUSY:
+            NSLog(@"SQLITE_BUSY");
+            break;
+            
+        case SQLITE_MISMATCH:
+            NSLog(@"SQLITE_MISMATCH");
+            break;
+        default:
+            NSLog(@"Default...");
+            break;
     }
     
 }

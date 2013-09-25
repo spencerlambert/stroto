@@ -33,11 +33,9 @@
 @property (assign, nonatomic) int storyPackID;
 
 @property (strong, nonatomic) IBOutlet UIButton *freeButton;
-@property (strong, nonatomic) IBOutlet UIButton *installButton;
 @property (strong, nonatomic) IBOutlet UIButton *backgroundButton;
 
 -(IBAction)buyButtonTapped:(id)sender;
-- (IBAction)InstallPack:(UIButton*)sender;
 - (IBAction)showFree:(UIButton *)sender;
 
 @end

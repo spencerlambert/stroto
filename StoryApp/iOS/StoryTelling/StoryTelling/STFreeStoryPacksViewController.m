@@ -30,7 +30,6 @@
 @synthesize freeProduct;
 @synthesize freeStoryPackName;
 @synthesize freeButton;
-@synthesize installButton;
 @synthesize backgroundButton;
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
@@ -54,9 +53,6 @@
 	// Do any additional setup after loading the view.
 //    NSLog(@"freeStoryPackID = %d",self.storyPackID);
     [self.freeButton setHidden:YES];
-    [self.installButton.layer setCornerRadius:10.0f];
-    [self.installButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    self.installButton.layer.borderWidth = 1.0f;
     //Activity Indicator
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
@@ -205,7 +201,8 @@
     }
     //stoping activity indicator
     [self.loader stopAnimating];
-    [self.loader setHidden:TRUE];
+    [self.loader setHidden:YES];
+    [self.freeButton setHidden:NO];
     
 }
 
@@ -217,19 +214,17 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
+    [self.freeButton setHidden:YES];
+    [self.loader startAnimating];
+    [self.loader setHidden:NO];
+    [self.BGHideDownload setHidden:NO];
+    [self.backgroundButton setHidden:YES];
 }
 
-- (IBAction)InstallPack:(UIButton*)sender{
-    SKPayment *freePayment = [SKPayment paymentWithProduct:freeProduct];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:freePayment];
-    NSLog(@"observationInfo : %@",[[SKPaymentQueue defaultQueue] observationInfo]);
-}
 
 - (IBAction)showFree:(UIButton *)sender {
     //touched background.
     [self.backgroundButton setHidden:YES];
-    [self.installButton setHidden:YES];
     [self.freeButton setHidden:NO];
 
 }
@@ -247,11 +242,12 @@
 
 -(void)requestDidFinish:(SKRequest *)request
 {
-//working of buy buttons
-        [self.installButton setHidden:NO];
-        [self.backgroundButton setHidden:NO];
-        [self.freeButton setHidden:YES];
-    //
+    SKPayment *freePayment = [SKPayment paymentWithProduct:freeProduct];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    [[SKPaymentQueue defaultQueue] addPayment:freePayment];
+    [self.loader stopAnimating];
+    [self.loader setHidden:YES];
+
 }
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
@@ -300,6 +296,7 @@
         {
             case SKPaymentTransactionStatePurchased:
                 [self completeTransaction:transaction];
+                [self finishTransaction:transaction wasSuccessful:YES];
                 break;
             case SKPaymentTransactionStateFailed:
                 [self failedTransaction:transaction];
@@ -318,7 +315,6 @@
 {
     NSLog(@"completeTransaction");
     [self recordTransaction:transaction];
-    [self finishTransaction:transaction wasSuccessful:YES];
 }
 
 // sends the receipt to json server.
@@ -344,6 +340,11 @@
     NSLog(@"receipt ( inside sendReceipt:) : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [self.loader setHidden:NO];
+    [self.loader startAnimating];
+    [self.progressView setHidden:NO];
+    [self.downloadPercentageLabel setHidden:NO];
+    
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
             freeStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -413,12 +414,19 @@
     {
         NSLog(@"failed Transaction !!");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Free Story Pack Purchase"
-                                                        message:@"Failed"
+                                                        message:@"Failed, Try Again Later."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 //         send out a notification for the failed transaction
         [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseTransactionFailedNotification object:self userInfo:userInfo];
+        //for retrying, enabling product request button
+        [self.loader stopAnimating];
+        [self.loader setHidden:YES];
+        [self.backgroundButton setHidden:YES];
+        [self.BGHideDownload setHidden:YES];
+        [self.freeButton setHidden:NO];
+
     }
 }
 
@@ -450,7 +458,6 @@
     [self setForegroundImagesView:nil];
     [self setLoader:nil];
     [self setFreeButton:nil];
-    [self setInstallButton:nil];
     [self setBackgroundButton:nil];
     [self setProgressView:nil];
     [self setDownloadPercentageLabel:nil];
@@ -460,8 +467,8 @@
 
 -(void)updateProgress:(float)progress{
     NSLog(@"progress : %f",progress);
+    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];
     [self.progressView setProgress:progress animated:YES];
-    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %f\%",(progress*100)];
     [self.progressView setProgressTintColor:[UIColor blueColor]];
 }
 

@@ -32,11 +32,9 @@
 @property (assign, nonatomic) int storyPackID;
 
 @property (strong, nonatomic) IBOutlet UIButton *paidButtonLabel;
-@property (strong, nonatomic) IBOutlet UIButton *buyPackButton;
 @property (strong, nonatomic) IBOutlet UIButton *backgroundButton;
 
 -(IBAction)buyButtonTapped:(id)sender;
--(IBAction)buyPack:(id)sender;
 - (IBAction)showPrice:(UIButton *)sender;
 
 @end
