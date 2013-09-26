@@ -40,8 +40,8 @@
     
     [self setBackgroundImages:[NSMutableArray arrayWithArray:[storyDB getBackgroundImagesSorted]]];
     [self setForegroundImages:[NSMutableArray arrayWithArray:[storyDB getForegroundImagesSorted]]];
-//    [captureview setStoryDB:storyDB];
-//    [captureview initStage];
+    //    [captureview setStoryDB:storyDB];
+    //    [captureview initStage];
 }
 
 - (void)viewDidLoad
@@ -79,9 +79,9 @@
     [topbar setImage:[UIImage imageNamed:@"TopBar.png"]];
     [self.view addSubview:topbar];
     
-//    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-//    pinch.delegate = self;
-//    [backgroundimageview addGestureRecognizer:pinch];
+    //    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+    //    pinch.delegate = self;
+    //    [backgroundimageview addGestureRecognizer:pinch];
     
     slideupview = [[SlideUpView alloc]initWithFrame:CGRectMake(0,0,0,0)];
     slideupview.mydelegate = self;
@@ -95,9 +95,9 @@
     [slidedownview createThumbScrollViewIfNecessary];
     [self.view addSubview:slidedownview];
     
-//    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
-//    slideleftview.mydelegate = self;
-//    [self.view addSubview:slideleftview];
+    //    slideleftview = [[SlideLeftView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+    //    slideleftview.mydelegate = self;
+    //    [self.view addSubview:slideleftview];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doSingleTap:)];
     singleTap.numberOfTapsRequired = 1;
@@ -133,13 +133,13 @@
         CGPoint point=[gestureRecognizer locationInView:self.view];
         NSLog(@"%f %f",point.x,point.y);
         
-//        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
+        //        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
         UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-(selectedForegroundImage.sizeScale/2),point.y-(60+20)-(selectedForegroundImage.sizeScale/2), selectedForegroundImage.sizeScale, selectedForegroundImage.sizeScale)];
         imageview.image=selectedForegroundImage;
         [imageview setContentMode:UIViewContentModeScaleAspectFit];
         [captureview addSubview:imageview];
         
-//        [captureview actortoStage:selectedForegroundImage];
+        //        [captureview actortoStage:selectedForegroundImage];
         
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -158,7 +158,7 @@
         
         [self setSelectedForegroundImage:nil];
     }
-
+    
 }
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -178,44 +178,44 @@
         }
     }
     
-//    for (UIImageView *temp in pickedimages) {
-//        if([touch.view isDescendantOfView:temp])
-//        {
-//            [temp bringToFront];
-//        }
-//    }
-
+    //    for (UIImageView *temp in pickedimages) {
+    //        if([touch.view isDescendantOfView:temp])
+    //        {
+    //            [temp bringToFront];
+    //        }
+    //    }
     
-//    if(!imageselected)
-//        for (UIImageView *temp in pickedimages) {
-//            if([touch.view isDescendantOfView:temp])
-//            {
-//                imageselected = YES;
-//                selectedimage = temp;
-//                [temp.layer setBorderColor:[[UIColor blackColor] CGColor]];
-//                [temp.layer setBorderWidth: 2.0];
-//                [temp addGestureRecognizer:pan];
-//                [temp addGestureRecognizer:pinch];
-//                [temp addGestureRecognizer:rotate];
-//                UIView *temp1 = temp;
-//                [temp1 bringToFront];
-//                return NO;
-//                
-//            }
-//        }
-//    else
-//    {
-//        if(![touch.view isDescendantOfView:selectedimage]){
-//            imageselected = NO;
-//            [selectedimage.layer setBorderColor:[[UIColor clearColor] CGColor]];
-//            [selectedimage.layer setBorderWidth: 0.0];
-//            [selectedimage removeGestureRecognizer:pinch];
-//            [selectedimage removeGestureRecognizer:pan];
-//            [selectedimage removeGestureRecognizer:rotate];
-//            selectedimage = NULL;
-//            return NO;
-//        }
-//    }
+    
+    //    if(!imageselected)
+    //        for (UIImageView *temp in pickedimages) {
+    //            if([touch.view isDescendantOfView:temp])
+    //            {
+    //                imageselected = YES;
+    //                selectedimage = temp;
+    //                [temp.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    //                [temp.layer setBorderWidth: 2.0];
+    //                [temp addGestureRecognizer:pan];
+    //                [temp addGestureRecognizer:pinch];
+    //                [temp addGestureRecognizer:rotate];
+    //                UIView *temp1 = temp;
+    //                [temp1 bringToFront];
+    //                return NO;
+    //
+    //            }
+    //        }
+    //    else
+    //    {
+    //        if(![touch.view isDescendantOfView:selectedimage]){
+    //            imageselected = NO;
+    //            [selectedimage.layer setBorderColor:[[UIColor clearColor] CGColor]];
+    //            [selectedimage.layer setBorderWidth: 0.0];
+    //            [selectedimage removeGestureRecognizer:pinch];
+    //            [selectedimage removeGestureRecognizer:pan];
+    //            [selectedimage removeGestureRecognizer:rotate];
+    //            selectedimage = NULL;
+    //            return NO;
+    //        }
+    //    }
     
     return YES;
 }
@@ -238,7 +238,7 @@
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
     backgroundimageview.image = selectedImage;
-   // [captureview actortoStage:selectedImage];
+    // [captureview actortoStage:selectedImage];
 }
 
 //adding foreground image to work area
@@ -300,8 +300,8 @@
 #pragma mark BottomRightView Delegate Methods
 
 - (void)startcapturingview{
-//    slideleftview.startrecording.enabled = NO;
-//    slideleftview.stoprecording.enabled = YES;
+    //    slideleftview.startrecording.enabled = NO;
+    //    slideleftview.stoprecording.enabled = YES;
     recordbtnClicked = YES;
     [audiorecorder recordAudio];
     //Changing record methods: captureview is now just a UIView
@@ -353,7 +353,7 @@
     [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
     if([file fileExistsAtPath:audio_FilePath]){
         
-        CMTime nextClipStartTime = kCMTimeZero;
+        
         //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
         AVMutableComposition *composition = [[AVMutableComposition alloc] init];
         
@@ -361,7 +361,7 @@
         [compositionAudioTrack setPreferredVolume:0.8];
         NSURL *url = [NSURL fileURLWithPath:audio_FilePath];
         AVAsset *avAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-        NSArray *tracks = [avAsset tracksWithMediaType:AVMediaTypeAudio];
+        
         AVAssetTrack *clipAudioTrack = [[avAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
         [compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, avAsset.duration) ofTrack:clipAudioTrack atTime:kCMTimeZero error:nil];
         
@@ -369,7 +369,6 @@
         [compositionAudioTrack setPreferredVolume:0.3];
         NSURL *url1 = [NSURL fileURLWithPath:audio_inputFilePath ];
         AVAsset *avAsset1 = [AVURLAsset URLAssetWithURL:url1 options:nil];
-        NSArray *tracks1 = [avAsset1 tracksWithMediaType:AVMediaTypeAudio];
         AVAssetTrack *clipAudioTrack1 = [[avAsset1 tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
         [compositionAudioTrack1 insertTimeRange:CMTimeRangeMake(kCMTimeZero, avAsset1.duration) ofTrack:clipAudioTrack1 atTime:avAsset.duration error:nil];
         
@@ -414,94 +413,36 @@
     [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
     if([file fileExistsAtPath:secondAsset1]){
         
-    
-    NSURL *url1 = [NSURL fileURLWithPath:secondAsset1];
-     AVAsset *firstAsset = [AVURLAsset URLAssetWithURL:url1 options:nil];
-    NSURL *url2 = [NSURL fileURLWithPath:firstAsset1];
-    AVAsset *secondAsset = [AVURLAsset URLAssetWithURL:url2 options:nil];
-    //[ActivityView startAnimating];
-    //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
-    AVMutableComposition* mixComposition = [[AVMutableComposition alloc] init];
-    
-    //VIDEO TRACK
-    AVMutableCompositionTrack *firstTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration ) ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
-    
-    AVMutableCompositionTrack *secondTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    [secondTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration) ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:(CMTimeMakeWithSeconds(CMTimeGetSeconds(firstAsset.duration) - .001, firstAsset.duration.timescale)) error:nil];
-    
-    
-    
-    AVMutableVideoCompositionInstruction * MainInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    MainInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd(firstAsset.duration, secondAsset.duration));
-    
-    //FIXING ORIENTATION//
-    AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:firstTrack];
-    AVAssetTrack *FirstAssetTrack = [[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-    UIImageOrientation FirstAssetOrientation_  = UIImageOrientationUp;
-    BOOL  isFirstAssetPortrait_  = NO;
-    CGAffineTransform firstTransform = FirstAssetTrack.preferredTransform;
-    if(firstTransform.a == 0 && firstTransform.b == 1.0 && firstTransform.c == -1.0 && firstTransform.d == 0)  {FirstAssetOrientation_= UIImageOrientationRight; isFirstAssetPortrait_ = YES;}
-    if(firstTransform.a == 0 && firstTransform.b == -1.0 && firstTransform.c == 1.0 && firstTransform.d == 0)  {FirstAssetOrientation_ =  UIImageOrientationLeft; isFirstAssetPortrait_ = YES;}
-    if(firstTransform.a == 1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == 1.0)   {FirstAssetOrientation_ =  UIImageOrientationUp;}
-    if(firstTransform.a == -1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == -1.0) {FirstAssetOrientation_ = UIImageOrientationDown;}
-    CGFloat FirstAssetScaleToFitRatio = 320.0/FirstAssetTrack.naturalSize.width;
-    if(isFirstAssetPortrait_){
-        FirstAssetScaleToFitRatio = 320.0/FirstAssetTrack.naturalSize.height;
-        CGAffineTransform FirstAssetScaleFactor = CGAffineTransformMakeScale(FirstAssetScaleToFitRatio,FirstAssetScaleToFitRatio);
-        [FirstlayerInstruction setTransform:CGAffineTransformConcat(FirstAssetTrack.preferredTransform, FirstAssetScaleFactor) atTime:kCMTimeZero];
-    }else{
-        CGAffineTransform FirstAssetScaleFactor = CGAffineTransformMakeScale(FirstAssetScaleToFitRatio,FirstAssetScaleToFitRatio);
-        [FirstlayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(FirstAssetTrack.preferredTransform, FirstAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:kCMTimeZero];
-    }
-    [FirstlayerInstruction setOpacity:0.0 atTime:firstAsset.duration];
-    
-    AVMutableVideoCompositionLayerInstruction *SecondlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:secondTrack];
-    AVAssetTrack *SecondAssetTrack = [[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-    UIImageOrientation SecondAssetOrientation_  = UIImageOrientationUp;
-    BOOL  isSecondAssetPortrait_  = NO;
-    CGAffineTransform secondTransform = SecondAssetTrack.preferredTransform;
-    if(secondTransform.a == 0 && secondTransform.b == 1.0 && secondTransform.c == -1.0 && secondTransform.d == 0)  {SecondAssetOrientation_= UIImageOrientationRight; isSecondAssetPortrait_ = YES;}
-    if(secondTransform.a == 0 && secondTransform.b == -1.0 && secondTransform.c == 1.0 && secondTransform.d == 0)  {SecondAssetOrientation_ =  UIImageOrientationLeft; isSecondAssetPortrait_ = YES;}
-    if(secondTransform.a == 1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == 1.0)   {SecondAssetOrientation_ =  UIImageOrientationUp;}
-    if(secondTransform.a == -1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == -1.0) {SecondAssetOrientation_ = UIImageOrientationDown;}
-    CGFloat SecondAssetScaleToFitRatio = 320.0/SecondAssetTrack.naturalSize.width;
-    if(isSecondAssetPortrait_){
-        SecondAssetScaleToFitRatio = 320.0/SecondAssetTrack.naturalSize.height;
-        CGAffineTransform SecondAssetScaleFactor = CGAffineTransformMakeScale(SecondAssetScaleToFitRatio,SecondAssetScaleToFitRatio);
-        [SecondlayerInstruction setTransform:CGAffineTransformConcat(SecondAssetTrack.preferredTransform, SecondAssetScaleFactor) atTime:firstAsset.duration];
-    }else{
-        ;
-        CGAffineTransform SecondAssetScaleFactor = CGAffineTransformMakeScale(SecondAssetScaleToFitRatio,SecondAssetScaleToFitRatio);
-        [SecondlayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(SecondAssetTrack.preferredTransform, SecondAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:firstAsset.duration];
-    }
-    
-    
-    MainInstruction.layerInstructions = [NSArray arrayWithObjects:FirstlayerInstruction,SecondlayerInstruction,nil];;
-    
-    AVMutableVideoComposition *MainCompositionInst = [AVMutableVideoComposition videoComposition];
-    MainCompositionInst.instructions = [NSArray arrayWithObject:MainInstruction];
-    MainCompositionInst.frameDuration = CMTimeMake(1, 30);
-    MainCompositionInst.renderSize = CGSizeMake(320.0, 480.0);
-    
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",[storyDB getDBName]]];
-    
-    NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
-    
-    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
-    exporter.outputURL=url;
-    exporter.outputFileType = AVFileTypeQuickTimeMovie;
-    exporter.videoComposition = MainCompositionInst;
-    exporter.shouldOptimizeForNetworkUse = YES;
-    [exporter exportAsynchronouslyWithCompletionHandler:^
-     {
-         [file removeItemAtPath:secondAsset1 error:nil];
-         [file moveItemAtPath:tempVideoFile toPath:secondAsset1 error:nil];
-         [self CompileFilesToMakeMovie];
-     }];
-
+        
+        NSURL *url1 = [NSURL fileURLWithPath:secondAsset1];
+        AVAsset *firstAsset = [AVURLAsset URLAssetWithURL:url1 options:nil];
+        NSURL *url2 = [NSURL fileURLWithPath:firstAsset1];
+        AVAsset *secondAsset = [AVURLAsset URLAssetWithURL:url2 options:nil];
+        
+        //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
+        AVMutableComposition* mixComposition = [[AVMutableComposition alloc] init];
+        
+        AVMutableCompositionTrack *firstTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
+                                                                            preferredTrackID:kCMPersistentTrackID_Invalid];
+        [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
+                            ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+        [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration)
+                            ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:firstAsset.duration error:nil];
+        
+        
+        NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
+        
+        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
+        exporter.outputURL=url;
+        exporter.outputFileType = AVFileTypeQuickTimeMovie;
+        exporter.shouldOptimizeForNetworkUse = YES;
+        [exporter exportAsynchronouslyWithCompletionHandler:^
+         {
+             [file removeItemAtPath:secondAsset1 error:nil];
+             [file moveItemAtPath:tempVideoFile toPath:secondAsset1 error:nil];
+             [self CompileFilesToMakeMovie];
+         }];
+        
     }
     else{
         [file copyItemAtPath:firstAsset1 toPath:secondAsset1 error:nil];
@@ -526,7 +467,7 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:outputFilePath withIntermediateDirectories:YES attributes:nil error:nil];
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
         [[NSFileManager defaultManager] removeItemAtPath:outputFilePath error:nil];
-        
+    
     CMTime nextClipStartTime = kCMTimeZero;
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:video_inputFileUrl options:nil];
@@ -534,14 +475,10 @@
     AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:nextClipStartTime error:nil];
     
-    //nextClipStartTime = CMTimeAdd(nextClipStartTime, a_timeRange.duration);
-    
     AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
     [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:nextClipStartTime error:nil];
-    
-    
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
@@ -549,17 +486,17 @@
     
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-             NSString *sourcePath = outputFilePath;
-             UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
-//             slideleftview.playVideo.enabled = YES;
+//         NSString *sourcePath = outputFilePath;
+//         UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
+         //             slideleftview.playVideo.enabled = YES;
      }
      ];
     
     
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:audio_inputFilePath])
-//        [[NSFileManager defaultManager] removeItemAtPath:audio_inputFilePath error:nil];
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:video_inputFilePath])
-//        [[NSFileManager defaultManager] removeItemAtPath:video_inputFilePath error:nil];
+    //    if ([[NSFileManager defaultManager] fileExistsAtPath:audio_inputFilePath])
+    //        [[NSFileManager defaultManager] removeItemAtPath:audio_inputFilePath error:nil];
+    //    if ([[NSFileManager defaultManager] fileExistsAtPath:video_inputFilePath])
+    //        [[NSFileManager defaultManager] removeItemAtPath:video_inputFilePath error:nil];
     
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
