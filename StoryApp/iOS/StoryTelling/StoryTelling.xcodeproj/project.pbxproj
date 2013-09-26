@@ -143,6 +143,7 @@
 		EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; };
 		EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */; };
+		EB743B7317F41119002D3B34 /* lightGray.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EB743B7217F41119002D3B34 /* lightGray.jpeg */; };
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
 		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
@@ -324,6 +325,7 @@
 		EB382FC017EFF36800A3FB1F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "StoryTelling/NSData+Base64.m"; sourceTree = "<group>"; };
 		EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STInstalledStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STInstalledStoryPacksViewController.m; sourceTree = "<group>"; };
+		EB743B7217F41119002D3B34 /* lightGray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightGray.jpeg; sourceTree = "<group>"; };
 		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48517C7439B00E28B4F /* STPaidStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaidStoryPacksViewController.h; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */,
 				DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */,
 				4D696D7C17BAE05800F7D47C /* Divider.png */,
+				EB743B7217F41119002D3B34 /* lightGray.jpeg */,
 				DBE496CB17B372FC009B5C31 /* MagnifyingGlass */,
 				DB95AEAC17A61AB70006FDC9 /* black.png */,
 				DB8ADED11770D97C0094BB3A /* 57.png */,
@@ -818,6 +821,7 @@
 				DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */,
 				DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */,
 				DB9E979D17E002C1009BD697 /* navbutton.png in Resources */,
+				EB743B7317F41119002D3B34 /* lightGray.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

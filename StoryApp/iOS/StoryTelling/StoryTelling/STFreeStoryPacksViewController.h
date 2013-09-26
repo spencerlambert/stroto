@@ -19,6 +19,7 @@
 @interface STFreeStoryPacksViewController : UIViewController <UIAlertViewDelegate,SKProductsRequestDelegate,SKRequestDelegate,SKPaymentTransactionObserver,STStoryPackDownloadDelegate>
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+@property (weak, nonatomic) IBOutlet UIView *downloadRectView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *downloadPercentageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *BGHideDownload;

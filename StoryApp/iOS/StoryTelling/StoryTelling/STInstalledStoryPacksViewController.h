@@ -11,8 +11,8 @@
 #import "STStoryDB.h"
 @interface STInstalledStoryPacksViewController : UIViewController
 {
-    NSDictionary * selectedFGImages;
-    NSDictionary * selectedBGImages;
+    NSMutableArray * selectedFGImages;
+    NSMutableArray * selectedBGImages;
     sqlite3 *database;
 //    STStoryDB *newDB;
 }

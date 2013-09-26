@@ -8,6 +8,7 @@
 
 #import "STInstalledStoryPacksViewController.h"
 #import "CreateStoryRootViewController.h"
+#import "AppDelegate.h"
 //
 #import "NSData+Base64.h"
 #define THUMB_HEIGHT 80
@@ -40,7 +41,7 @@
 	// Do any additional setup after loading the view.
     
     //for testing
-    [self.navigationItem setHidesBackButton:NO]; //do Yes and activate done button after testing..
+    [self.navigationItem setHidesBackButton:YES]; //do Yes and activate done button after testing..
     
     
     [self.navigationItem setTitle:@"Select Images To Use"];
@@ -51,8 +52,8 @@
 //    [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
 //    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
     //done button.
-//    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
-//    [self.navigationItem setRightBarButtonItem:doneButton];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
+    [self.navigationItem setRightBarButtonItem:doneButton];
     
     
 }
@@ -121,11 +122,25 @@
             frame.origin.x = 0;
             frame.origin.y = 0;
             [checkmarkImageView setFrame:frame];
+            
+        //Adding tap for checkmark
+            checkmarkImageView.tag =2;
+            UITapGestureRecognizer *checkmarkClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+            checkmarkClick.numberOfTapsRequired = 1;
+            [checkmarkImageView addGestureRecognizer:checkmarkClick];
+            [checkmarkImageView setUserInteractionEnabled:YES];
             [thumbView addSubview:checkmarkImageView];
+            //Adding tap for bg images
+            thumbView.tag = 1;
+            [selectedBGImages addObject:thumbView.image];
+            UITapGestureRecognizer *imageClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+            imageClick.numberOfTapsRequired = 1;
+            [thumbView addGestureRecognizer:imageClick];
             [backgroundImagesHolder addSubview:thumbView];
             [backgroundImagesView addSubview:backgroundImagesHolder];
             xPosition += (frame.size.width + THUMB_H_PADDING);
         }
+            [backgroundImagesHolder setTag:100];
         [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
         [backgroundImagesView addSubview:backgroundImagesHolder];
             
@@ -207,10 +222,24 @@
             frame.origin.x = 0;
             frame.origin.y = 0;
             [checkmarkImageView setFrame:frame];
+            //Adding tap for checkmark
+            checkmarkImageView.tag =2;
+            UITapGestureRecognizer *checkmarkClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+            checkmarkClick.numberOfTapsRequired = 1;
+            [checkmarkImageView addGestureRecognizer:checkmarkClick];
+            [checkmarkImageView setUserInteractionEnabled:YES];
+            [thumbView addSubview:checkmarkImageView];
+            //Adding tap for bg images
+            thumbView.tag = 1;
+            [selectedFGImages addObject:thumbView.image];
+            UITapGestureRecognizer *imageClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+            imageClick.numberOfTapsRequired = 1;
+            [thumbView addGestureRecognizer:imageClick];
             [thumbView addSubview:checkmarkImageView];
             [foregroundImagesView addSubview:foregroundImagesHolder];
             xPosition += (frame.size.width + THUMB_H_PADDING);
         }
+            [foregroundImagesHolder setTag:101];
         [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
         [foregroundImagesView addSubview:foregroundImagesHolder];
             
@@ -238,9 +267,54 @@
     }
     
 }
-
+-(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
+{
+    if(recognizer.view.tag == 2)
+    {
+//        [recognizer.view setTag:0];
+        [recognizer.view.superview setTag:0];
+        [recognizer.view setHidden:YES];
+        
+    }
+    else if (recognizer.view.tag == 0)
+    {
+        recognizer.view.tag = 1;
+        [recognizer.view.subviews[0] setTag:2];
+        [recognizer.view.subviews[0] setHidden:NO];
+    }
+}
 -(void)doneButtonPressed
 {
+//    AppDelegate *appobject = [[AppDelegate alloc]init];
+    UIScrollView *foregroundImagesHolder = (UIScrollView *)[self.view viewWithTag:101];
+    UIScrollView *backgroundImagesHolder = (UIScrollView *)[self.view viewWithTag:100];
+ for(UIView * demo in foregroundImagesHolder.subviews)
+ {
+     if([demo class]== [UIImageView class])
+     {
+         if(demo.tag == 1)
+         {
+             UIImageView* fg = (UIImageView *)demo;
+             [selectedFGImages addObject:fg.image];
+         }
+     }
+ }
+    
+    for(UIView * demo in backgroundImagesHolder.subviews)
+    {
+        if([demo class]== [UIImageView class])
+        {
+            if(demo.tag == 1)
+            {
+                UIImageView* bg = (UIImageView *)demo;
+                [selectedBGImages addObject:bg.image];
+            }
+        }
+    }
+    
+    NSLog(@"fg : %@",selectedFGImages);
+    NSLog(@"bg : %@",selectedBGImages);
+
 //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning

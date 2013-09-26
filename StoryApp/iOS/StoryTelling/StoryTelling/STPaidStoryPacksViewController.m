@@ -33,6 +33,7 @@
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
 @synthesize loader;
+@synthesize downloadRectView;
 @synthesize progressView;
 @synthesize downloadPercentageLabel;
 @synthesize BGHideDownload;
@@ -214,7 +215,7 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    [self.paidButtonLabel setHidden:YES];
+//    [self.paidButtonLabel setHidden:YES];
     [self.loader startAnimating];
     [self.loader setHidden:NO];
     [self.BGHideDownload setHidden:NO];
@@ -312,22 +313,22 @@
     NSLog(@"receipt ( inside sendReceipt:) : %@", appleReceipt);
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [self.downloadRectView.layer setCornerRadius:9];
+    [self.downloadRectView.layer setMasksToBounds:YES];
+//    [self.downloadRectView setBackgroundColor:[UIColor blackColor]];
+    [self.downloadRectView setHidden:NO];
     [self.loader setHidden:NO];
     [self.loader startAnimating];
     [self.progressView setHidden:NO];
     [self.downloadPercentageLabel setHidden:NO];
+    [self.BGHideDownload setHidden:NO];
+    [self.navigationItem setHidesBackButton:YES];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
             paidStoryPackURLJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             STStoryPackDownload *paidDownload = [[STStoryPackDownload alloc] init];
             //progress bar delegate.
-            [self.loader setHidden:NO];
-            [self.loader startAnimating];
-            [paidDownload setProgressDelegate:self];
-            [self.progressView setHidden:NO];
-            [self.downloadPercentageLabel setHidden:NO];
-            [self.BGHideDownload setHidden:NO];
-            
+            [paidDownload setProgressDelegate:self];            
             [paidDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[paidStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
             NSLog(@"html= %@",html);
@@ -347,6 +348,7 @@
     //stopping progressBar.
     [self.loader stopAnimating];
     [self.loader setHidden:YES];
+    [self.downloadRectView setHidden:YES];
     [self.progressView setHidden:YES];
     [self.downloadPercentageLabel setHidden:YES];
     [self.BGHideDownload setHidden:YES];
@@ -430,6 +432,7 @@
     [self setProgressView:nil];
     [self setDownloadPercentageLabel:nil];
     [self setBGHideDownload:nil];
+    [self setDownloadRectView:nil];
     [super viewDidUnload];
 }
 -(void)updateProgress:(float)progress{

@@ -34,6 +34,7 @@
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
 @synthesize loader;
+@synthesize downloadRectView;
 @synthesize progressView;
 @synthesize downloadPercentageLabel;
 @synthesize BGHideDownload;
@@ -214,7 +215,7 @@
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    [self.freeButton setHidden:YES];
+//    [self.freeButton setHidden:YES];
     [self.loader startAnimating];
     [self.loader setHidden:NO];
     [self.BGHideDownload setHidden:NO];
@@ -342,8 +343,13 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [self.loader setHidden:NO];
     [self.loader startAnimating];
+    [self.downloadRectView.layer setCornerRadius:9];
+    [self.downloadRectView.layer setMasksToBounds:YES];
+    [self.downloadRectView setHidden:NO];
+    [self.navigationItem setHidesBackButton:YES];
     [self.progressView setHidden:NO];
     [self.downloadPercentageLabel setHidden:NO];
+    [self.BGHideDownload setHidden:NO];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
@@ -351,12 +357,10 @@
             STStoryPackDownload *freeDownload = [[STStoryPackDownload alloc] init];
             
             //progress bar delegate.
-            [self.loader setHidden:NO];
-            [self.loader startAnimating];
             [freeDownload setProgressDelegate:self];
-            [self.progressView setHidden:NO];
-            [self.downloadPercentageLabel setHidden:NO];
-            [self.BGHideDownload setHidden:NO];
+//            [self.progressView setHidden:NO];
+//            [self.downloadPercentageLabel setHidden:NO];
+            
             
             [freeDownload downloadStoryPack:[NSString stringWithFormat:@"%@",[freeStoryPackURLJson valueForKey:@"st_storypack_url" ]]];
             
@@ -377,6 +381,7 @@
     //stopping progressBar.
     [self.loader stopAnimating];
     [self.loader setHidden:YES];
+    [self.downloadRectView setHidden:YES];
     [self.progressView setHidden:YES];
     [self.downloadPercentageLabel setHidden:YES];
     [self.BGHideDownload setHidden:YES];
@@ -462,6 +467,7 @@
     [self setProgressView:nil];
     [self setDownloadPercentageLabel:nil];
     [self setBGHideDownload:nil];
+    [self setDownloadRectView:nil];
     [super viewDidUnload];
 }
 

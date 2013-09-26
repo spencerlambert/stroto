@@ -402,6 +402,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccS-xE-XBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yLw-mU-nRp"/>
             </objects>
             <point key="canvasLocation" x="1115" y="-1371"/>
         </scene>
@@ -876,7 +877,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lol-yJ-qdX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="-1" width="320" height="462"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -890,10 +891,10 @@
                                     <action selector="showPrice:" destination="BTs-AR-N9X" eventType="touchUpInside" id="z8L-Jb-nVw"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDo-hG-k1V">
-                                <rect key="frame" x="-1" y="1" width="322" height="459"/>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDo-hG-k1V">
+                                <rect key="frame" x="-1" y="0.0" width="322" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.31" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -903,18 +904,28 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZbM-Jh-Y9w">
-                                <rect key="frame" x="98" y="225" width="125" height="20"/>
+                            <view hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="ywt-9Z-m4f">
+                                <rect key="frame" x="65" y="206" width="190" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <progressView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="GJ6-8d-rVW">
-                                <rect key="frame" x="85" y="215" width="150" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0007063870788" green="0.34153778699999998" blue="0.001095973399" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="lightGray.jpeg" id="QoK-2D-egc">
+                                        <rect key="frame" x="0.0" y="0.0" width="195" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <progressView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="GJ6-8d-rVW">
+                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZbM-Jh-Y9w">
+                                        <rect key="frame" x="33" y="29" width="125" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="ynD-0V-vCJ">
                                 <rect key="frame" x="142" y="170" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -928,6 +939,7 @@
                         <outlet property="backgroundButton" destination="Lol-yJ-qdX" id="bpV-2r-pZK"/>
                         <outlet property="backgroundImagesView" destination="xbt-ZB-gZQ" id="HkW-UN-BjF"/>
                         <outlet property="downloadPercentageLabel" destination="ZbM-Jh-Y9w" id="VXW-7j-Gi8"/>
+                        <outlet property="downloadRectView" destination="ywt-9Z-m4f" id="cbx-45-gzs"/>
                         <outlet property="foregroundImagesView" destination="f0p-7k-8hj" id="GOm-n0-axA"/>
                         <outlet property="loader" destination="ynD-0V-vCJ" id="aoX-UJ-VI5"/>
                         <outlet property="paidButtonLabel" destination="6ey-qN-mrI" id="uGx-tQ-fPR"/>
@@ -1103,10 +1115,10 @@
                                     <action selector="showFree:" destination="RRX-6d-vFv" eventType="touchUpInside" id="F6W-do-XX6"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MSh-Y3-3cW">
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MSh-Y3-3cW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1116,22 +1128,33 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="Qwj-a6-JtL">
+                                <rect key="frame" x="65" y="209" width="190" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" image="lightGray.jpeg" id="IXG-kV-2UB">
+                                        <rect key="frame" x="0.0" y="0.0" width="190" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <progressView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="fXy-xt-H1x">
+                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O9d-fm-jsY">
+                                        <rect key="frame" x="33" y="29" width="125" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.25587363138686131" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="FND-CI-GA7">
                                 <rect key="frame" x="142" y="170" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" id="fXy-xt-H1x">
-                                <rect key="frame" x="85" y="220" width="150" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O9d-fm-jsY">
-                                <rect key="frame" x="98" y="229" width="125" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1140,6 +1163,7 @@
                         <outlet property="backgroundButton" destination="bo1-DO-uBl" id="Ofc-YL-ksQ"/>
                         <outlet property="backgroundImagesView" destination="Gcc-fO-arI" id="sAM-fO-WiJ"/>
                         <outlet property="downloadPercentageLabel" destination="O9d-fm-jsY" id="z7E-UZ-hUq"/>
+                        <outlet property="downloadRectView" destination="Qwj-a6-JtL" id="VDC-0u-Upu"/>
                         <outlet property="foregroundImagesView" destination="xiL-vv-74W" id="5N6-I6-qgw"/>
                         <outlet property="freeButton" destination="Mi3-23-H2m" id="TM1-VQ-2aU"/>
                         <outlet property="freeStoryPackName" destination="AkV-RR-Hph" id="dj6-aR-dff"/>
@@ -1176,6 +1200,7 @@
         <image name="Divider.png" width="600" height="50"/>
         <image name="app_bg.png" width="640" height="960"/>
         <image name="black.png" width="22" height="20"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <classes>
         <class className="AddBackgroundViewController" superclassName="UIViewController">
@@ -1242,17 +1267,16 @@
         <class className="STFreeStoryPacksViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
             <relationships>
-                <relationship kind="action" name="InstallPack:" candidateClass="UIButton"/>
                 <relationship kind="action" name="buyButtonTapped:"/>
                 <relationship kind="action" name="showFree:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="BGHideDownload" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="downloadRectView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="installButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
             </relationships>
@@ -1274,6 +1298,7 @@
                 <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="downloadRectView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
