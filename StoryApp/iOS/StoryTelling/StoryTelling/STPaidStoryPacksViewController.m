@@ -436,7 +436,7 @@
     [super viewDidUnload];
 }
 -(void)updateProgress:(float)progress{
-    NSLog(@"progress : %f",progress);
+//    NSLog(@"progress : %f",progress);
     self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];
     [self.progressView setProgress:progress animated:YES];
     [self.progressView setProgressTintColor:[UIColor blueColor]];

@@ -66,8 +66,22 @@
         }
         else{
             NSLog(@"DB Successfully Initialized with code : %d", code);
+            [self getStoryName];
             [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
         }
+}
+- (void)getStoryName{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT Name from StoryPackInfo;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(database, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            installedStoryPackName.text = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
+            sqlite3_finalize(compiled_stmt);
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
 }
 
 -(void)loadBGImages
@@ -132,7 +146,7 @@
             [thumbView addSubview:checkmarkImageView];
             //Adding tap for bg images
             thumbView.tag = 1;
-            [selectedBGImages addObject:thumbView.image];
+//            [selectedBGImages addObject:thumbView.image];
             UITapGestureRecognizer *imageClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
             imageClick.numberOfTapsRequired = 1;
             [thumbView addGestureRecognizer:imageClick];
@@ -231,7 +245,7 @@
             [thumbView addSubview:checkmarkImageView];
             //Adding tap for bg images
             thumbView.tag = 1;
-            [selectedFGImages addObject:thumbView.image];
+//            [selectedFGImages addObject:thumbView.image];
             UITapGestureRecognizer *imageClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
             imageClick.numberOfTapsRequired = 1;
             [thumbView addGestureRecognizer:imageClick];
@@ -285,9 +299,13 @@
 }
 -(void)doneButtonPressed
 {
-//    AppDelegate *appobject = [[AppDelegate alloc]init];
+    selectedFGImages = [[NSMutableArray alloc]init];
+    selectedBGImages = [[NSMutableArray alloc]init];
     UIScrollView *foregroundImagesHolder = (UIScrollView *)[self.view viewWithTag:101];
     UIScrollView *backgroundImagesHolder = (UIScrollView *)[self.view viewWithTag:100];
+    NSLog(@"fgholder : %@",foregroundImagesHolder);
+    NSLog(@"bgholder : %@",backgroundImagesHolder);
+    
  for(UIView * demo in foregroundImagesHolder.subviews)
  {
      if([demo class]== [UIImageView class])
@@ -295,6 +313,7 @@
          if(demo.tag == 1)
          {
              UIImageView* fg = (UIImageView *)demo;
+             NSLog(@"fg.image : %@",fg.image);
              [selectedFGImages addObject:fg.image];
          }
      }
@@ -307,16 +326,57 @@
             if(demo.tag == 1)
             {
                 UIImageView* bg = (UIImageView *)demo;
+                NSLog(@"bg.image : %@",bg);
                 [selectedBGImages addObject:bg.image];
             }
         }
     }
+    [self convertToSTImage];
+    NSLog(@"selected fg : %@",selectedFGImages);
+    NSLog(@"selected bg : %@",selectedBGImages);
+    AppDelegate *imagesDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [imagesDelegate.foregroundImagesArray addObjectsFromArray:selectedFGImages];
+    [imagesDelegate.backgroundImagesArray addObjectsFromArray:selectedBGImages];
+    [self.navigationController popToViewController:[self getCreateStoryController] animated:YES];
     
-    NSLog(@"fg : %@",selectedFGImages);
-    NSLog(@"bg : %@",selectedBGImages);
-
-//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+-(void)convertToSTImage{
+    
+    int count = 0;
+    NSMutableArray *stFGImages = [[NSMutableArray alloc]init];
+    NSMutableArray *stBGImages = [[NSMutableArray alloc]init];
+    for(UIImage *Image  in selectedFGImages){
+        NSLog(@"FG IMAGE : %@",Image);
+        STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
+        [stimage setThumbimage:Image];
+        [stimage setFileType:@"PNG"];
+        [stimage setType:@"foreground"];
+        [stimage setListDisplayOrder:count++];
+        [stFGImages addObject:stimage];
+    }
+    selectedFGImages = stFGImages ;
+    for(UIImage *Image  in selectedBGImages){
+        NSLog(@"BG IMAGE : %@",Image);
+        STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
+        [stimage setThumbimage:Image];
+        [stimage setFileType:@"PNG"];
+        [stimage setType:@"background"];
+        [stimage setListDisplayOrder:count++];
+        [stBGImages addObject:stimage];
+    }
+    selectedBGImages = stBGImages;
+}
+
+- (UIViewController *) getCreateStoryController
+{
+    for (UIViewController *temp in self.navigationController.viewControllers) {
+        if ([temp isKindOfClass:[CreateStoryRootViewController class]]) {
+            return temp;
+        }
+    }
+    return nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

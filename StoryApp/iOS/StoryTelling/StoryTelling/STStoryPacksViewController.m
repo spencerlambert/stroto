@@ -17,6 +17,7 @@
 #import "STStoryPacksViewController.h"
 #import "STPaidStoryPacksViewController.h"
 #import "STFreeStoryPacksViewController.h"
+#import "NSData+Base64.h"
 
 @implementation STStoryPacksViewController
 
@@ -86,8 +87,117 @@
         isPaid = YES;
         body = paidBody;
     }
+    [self performSelectorInBackground:@selector(showInstalledPacks) withObject:nil];
     [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
     [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
+}
+# pragma mark - story pack scroll views
+-(void)showInstalledPacks
+{
+    NSString *docsDir;
+    NSArray *dirPaths;
+    StoryPackNames= [[NSMutableArray alloc]init];
+    dbNames = [[NSMutableArray alloc]init];
+    // Get the root directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // get the docs directory
+    docsDir = dirPaths[0];
+    NSString *storypacksDir = [docsDir stringByAppendingPathComponent:@"story_dir/story_packs/"];
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSArray *storyPacksList= [filemgr contentsOfDirectoryAtPath:storypacksDir error:nil];
+    int count = [storyPacksList count];
+//    NSLog (@"number of story packs :%i",count);
+    float scrollViewHeight = [installedStoryPacksView bounds].size.height;
+    float scrollViewWidth  = [installedStoryPacksView bounds].size.width;
+    float xPosition = THUMB_H_PADDING;
+    UIScrollView *installedStoryPacksHolder = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeight)];
+    installedStoryPacksHolder.tag = 1;
+    [installedStoryPacksHolder setCanCancelContentTouches:NO];
+    [installedStoryPacksHolder setClipsToBounds:NO];
+    for(UIView *view in installedStoryPacksView.subviews)
+        [view removeFromSuperview];
+    [installedStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
+    [installedStoryPacksHolder setHidden:NO];
+    [installedStoryPacksView addSubview:installedStoryPacksHolder];
+    for(int i=0; i<count; i++){
+        
+        sqlite3 *db;
+        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
+            NSLog(@"%@",storyPacksList[i]);
+            [dbNames addObject:storyPacksList[i]];
+            NSString *databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+            const char *dbpath = [databasePath UTF8String];
+            if (sqlite3_open(dbpath, & db) == SQLITE_OK){
+                NSString *sql = [NSString stringWithFormat:@"SELECT Name,ImageDataPNG from StoryPackInfo;"];
+                const char *sql_stmt = [sql UTF8String];
+                sqlite3_stmt *compiled_stmt;
+                if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+                    if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+                    NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(compiled_stmt, 1)];
+                        NSData *data = [NSData dataFromBase64String:dataAsString];
+                        UIImage *image = [UIImage imageWithData:data];
+                        STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
+                        //showing installed story pack's thubnail images
+                        UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
+                        CGRect frame = [thumbView frame];
+                        [thumbView setContentMode:UIViewContentModeScaleAspectFit];
+                        frame.origin.y = THUMB_V_PADDING;
+                        frame.origin.x = xPosition;//thumb_H_padding
+                        frame.size.width = THUMB_HEIGHT; //thumbImage.size.width;
+                        frame.size.height = THUMB_HEIGHT; // thumbImage.size.height;
+                        [thumbView setFrame:frame];
+                        [thumbView setUserInteractionEnabled:YES];
+                        [thumbView setHidden:NO];
+                        //setting tag.
+                        [thumbView setTag:i];
+                        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+                        click.numberOfTapsRequired = 1;
+                        [thumbView addGestureRecognizer:click];
+                        [thumbView setUserInteractionEnabled:YES];
+                        [installedStoryPacksHolder addSubview:thumbView];
+                        
+                        //story pack name
+                        UILabel *storyPackName = [[UILabel alloc] init];
+                        CGRect textFrame = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height + THUMB_V_PADDING, frame.size.width, NAME_LABEL_HEIGHT);
+                        [storyPackName setOpaque:NO];
+                        [storyPackName setBackgroundColor:nil];
+                        [storyPackName setTextColor:[UIColor whiteColor]];
+                        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
+                        [storyPackName setNumberOfLines:2];
+                        [self getStoryName:storyPackName andDB:db];
+                        [storyPackName setFrame:textFrame];
+                        [storyPackName setHidden:NO];
+                        [storyPackName setTag:i];
+                        UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+                        nameClick.numberOfTapsRequired = 1;
+                        [storyPackName addGestureRecognizer:nameClick];
+                        [storyPackName setUserInteractionEnabled:YES];
+                        [installedStoryPacksHolder addSubview:storyPackName];
+                        xPosition += (frame.size.width + THUMB_H_PADDING);
+                    }
+                }
+                sqlite3_finalize(compiled_stmt);
+                sqlite3_close(db);
+            }
+            
+        }
+    }
+    [installedStoryPacksView addSubview:installedStoryPacksHolder];
+}
+
+- (void)getStoryName:(UILabel*)storyPackName andDB:(sqlite3*)database
+{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT Name from StoryPackInfo;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(database, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            storyPackName.text = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
+            sqlite3_finalize(compiled_stmt);
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
 }
 
 -(void)reloadPaidView

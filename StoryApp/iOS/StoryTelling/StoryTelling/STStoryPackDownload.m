@@ -36,9 +36,9 @@ NSString *filename;
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-//    NSData *dbFile = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:downloadURL]];
-    NSLog(@"data length : %d", [data length]);
-    NSLog(@"dbSize : %d",dbSize);
+//    NSLog(@"data length : %d", [data length]);
+//    NSLog(@"fileData length : %@",fileData);
+//    NSLog(@"dbSize : %d",dbSize);
     float progress = (float)[fileData length]/(float)dbSize;
     [progressDelegate updateProgress:progress];
     [self.fileData appendData:data];

@@ -72,8 +72,8 @@
             freeStoryPackDetailsJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 //            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
 //            NSLog(@"html= %@",html);
-            NSLog(@"st_details = %@",[freeStoryPackDetailsJson valueForKey:@"st_details"]);
-            NSLog(@"Background Images:%@",[freeStoryPackDetailsJson valueForKey:@"st_bg_list"]);
+//            NSLog(@"st_details = %@",[freeStoryPackDetailsJson valueForKey:@"st_details"]);
+//            NSLog(@"Background Images:%@",[freeStoryPackDetailsJson valueForKey:@"st_bg_list"]);
 //            NSLog(@"Single Image = %@",[[freeStoryPackDetailsJson valueForKey:@"st_bg_list"] objectAtIndex:0 ]);
         }
         else if ([data length] == 0 && error == nil){
@@ -235,9 +235,9 @@
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     freeProduct = [response.products objectAtIndex:0];
-    NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
-    NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
-    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+//    NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
+//    NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
+//    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
@@ -261,7 +261,6 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"BEGIN - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex");
     NSLog(@"buttonIndex = %d",buttonIndex);
     if (buttonIndex == 0) {
     NSURL *url = [NSURL URLWithString:urlAsString];
@@ -290,7 +289,7 @@
 
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    NSLog(@"paymentQueue:(SKPaymentQueue *)queue updatedTransactions");
+//    NSLog(@"paymentQueue:(SKPaymentQueue *)queue updatedTransactions");
     for (SKPaymentTransaction *transaction in transactions)
     {
         switch (transaction.transactionState)
@@ -472,7 +471,7 @@
 }
 
 -(void)updateProgress:(float)progress{
-    NSLog(@"progress : %f",progress);
+//    NSLog(@"progress : %f",progress);
     self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];
     [self.progressView setProgress:progress animated:YES];
     [self.progressView setProgressTintColor:[UIColor blueColor]];

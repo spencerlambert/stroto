@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "STImage.h"
+#include <sqlite3.h>
 
 @interface STStoryPacksViewController : UIViewController
 {
-    
+    NSMutableArray *StoryPackNames;
+    NSMutableArray *dbNames;
 }
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @property (strong, nonatomic) IBOutlet UIView *installedStoryPacksView;
