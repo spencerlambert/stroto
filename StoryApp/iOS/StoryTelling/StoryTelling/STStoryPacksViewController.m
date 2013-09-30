@@ -18,6 +18,7 @@
 #import "STPaidStoryPacksViewController.h"
 #import "STFreeStoryPacksViewController.h"
 #import "NSData+Base64.h"
+#import "STInstalledStoryPacksViewController.h"
 
 @implementation STStoryPacksViewController
 
@@ -29,7 +30,7 @@
 @synthesize freeJson;
 
 @synthesize installedImages;//to be used later
-
+NSString *databasePath;
 //@synthesize testImageView;
 -(void)viewDidLoad{
 //disabling back navigation
@@ -39,6 +40,7 @@
     [self.loader setUserInteractionEnabled:NO];
     [self.loader setOpaque:YES];
     [self.loader startAnimating];
+    [self performSelectorInBackground:@selector(showInstalledPacks) withObject:nil];
 //json retrieval
     [self performSelectorInBackground:@selector(jsonPost) withObject:nil];
 }
@@ -87,7 +89,6 @@
         isPaid = YES;
         body = paidBody;
     }
-    [self performSelectorInBackground:@selector(showInstalledPacks) withObject:nil];
     [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
     [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
 }
@@ -105,8 +106,9 @@
     NSString *storypacksDir = [docsDir stringByAppendingPathComponent:@"story_dir/story_packs/"];
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *storyPacksList= [filemgr contentsOfDirectoryAtPath:storypacksDir error:nil];
+NSLog(@"StoryPacksList : %@",storyPacksList);
     int count = [storyPacksList count];
-//    NSLog (@"number of story packs :%i",count);
+NSLog (@"number of story packs :%i",count);
     float scrollViewHeight = [installedStoryPacksView bounds].size.height;
     float scrollViewWidth  = [installedStoryPacksView bounds].size.width;
     float xPosition = THUMB_H_PADDING;
@@ -120,20 +122,31 @@
     [installedStoryPacksHolder setHidden:NO];
     [installedStoryPacksView addSubview:installedStoryPacksHolder];
     for(int i=0; i<count; i++){
-        
+
         sqlite3 *db;
-        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
-            NSLog(@"%@",storyPacksList[i]);
+        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
+        {
+NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
             [dbNames addObject:storyPacksList[i]];
-            NSString *databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+            databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+NSLog(@"database path : %@",databasePath);
             const char *dbpath = [databasePath UTF8String];
+NSLog(@"database path UTF8String: %s",dbpath);
             if (sqlite3_open(dbpath, & db) == SQLITE_OK){
-                NSString *sql = [NSString stringWithFormat:@"SELECT Name,ImageDataPNG from StoryPackInfo;"];
+NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
+                NSString *sql = [NSString stringWithFormat:@"SELECT Name,ImageDataPNG_Base64 FROM StoryPackInfo;"];
                 const char *sql_stmt = [sql UTF8String];
                 sqlite3_stmt *compiled_stmt;
-                if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+                
+                int success =  sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, nil);
+                NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(db), sqlite3_errcode(db));
+                NSLog(@"success : %d",success);
+                if(success == SQLITE_OK){
+                    
+                    
+NSLog(@"SQL query Statement preparation on database success.");
                     if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
-                    NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(compiled_stmt, 1)];
+                        NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(compiled_stmt, 1)];
                         NSData *data = [NSData dataFromBase64String:dataAsString];
                         UIImage *image = [UIImage imageWithData:data];
                         STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
@@ -148,15 +161,16 @@
                         [thumbView setFrame:frame];
                         [thumbView setUserInteractionEnabled:YES];
                         [thumbView setHidden:NO];
-                        //setting tag.
+                        //setting tap.
                         [thumbView setTag:i];
-                        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+                        UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleInstallTap:)];
                         click.numberOfTapsRequired = 1;
                         [thumbView addGestureRecognizer:click];
                         [thumbView setUserInteractionEnabled:YES];
                         [installedStoryPacksHolder addSubview:thumbView];
                         
                         //story pack name
+                        //showing storypackname
                         UILabel *storyPackName = [[UILabel alloc] init];
                         CGRect textFrame = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height + THUMB_V_PADDING, frame.size.width, NAME_LABEL_HEIGHT);
                         [storyPackName setOpaque:NO];
@@ -164,18 +178,20 @@
                         [storyPackName setTextColor:[UIColor whiteColor]];
                         [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
                         [storyPackName setNumberOfLines:2];
-                        [self getStoryName:storyPackName andDB:db];
+                        storyPackName.text = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
                         [storyPackName setFrame:textFrame];
                         [storyPackName setHidden:NO];
                         [storyPackName setTag:i];
-                        UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+                        UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleInstallTap:)];
                         nameClick.numberOfTapsRequired = 1;
                         [storyPackName addGestureRecognizer:nameClick];
                         [storyPackName setUserInteractionEnabled:YES];
                         [installedStoryPacksHolder addSubview:storyPackName];
-                        xPosition += (frame.size.width + THUMB_H_PADDING);
+//    [self getStoryName:storyPackName andDB:db];
+                       xPosition += (frame.size.width + THUMB_H_PADDING);
                     }
                 }
+                
                 sqlite3_finalize(compiled_stmt);
                 sqlite3_close(db);
             }
@@ -359,6 +375,14 @@
     [self.loader stopAnimating];
     [self.loader setHidden:TRUE];
     
+}
+-(void)handleInstallTap:(UITapGestureRecognizer*)recognizer
+{
+    STInstalledStoryPacksViewController *installController =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    installController.filePath = databasePath;
+    [self.navigationController pushViewController:installController animated:YES];
 }
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
 {
