@@ -86,9 +86,15 @@
         [storyDB deleteSTstoryDB];
         NSString *moviePath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         moviePath = [moviePath stringByAppendingString:[NSString stringWithFormat:@"/mov_dir/%@.mov",[dbname stringByDeletingPathExtension]] ];
+        NSString *mp4Path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        mp4Path = [mp4Path stringByAppendingString:[NSString stringWithFormat:@"/mov_dir/%@.mp4",[dbname stringByDeletingPathExtension]] ];
+        NSString *cafPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        cafPath = [cafPath stringByAppendingString:[NSString stringWithFormat:@"/mov_dir/%@.caf",[dbname stringByDeletingPathExtension]] ];
         NSFileManager *file = [NSFileManager defaultManager];
         if([file fileExistsAtPath:moviePath]){
             [file removeItemAtPath:moviePath error:nil];
+            [file removeItemAtPath:mp4Path error:nil];
+            [file removeItemAtPath:cafPath error:nil];
         }
         [self.navigationController popToRootViewControllerAnimated:YES];
         // Add the action here

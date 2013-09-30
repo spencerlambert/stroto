@@ -438,6 +438,7 @@
         exporter.shouldOptimizeForNetworkUse = YES;
         [exporter exportAsynchronouslyWithCompletionHandler:^
          {
+             NSLog(@"AVVideoAssetExportSessionStatusCompleted");
              [file removeItemAtPath:secondAsset1 error:nil];
              [file moveItemAtPath:tempVideoFile toPath:secondAsset1 error:nil];
              [self CompileFilesToMakeMovie];
@@ -489,8 +490,7 @@
 //         NSString *sourcePath = outputFilePath;
 //         UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
          //             slideleftview.playVideo.enabled = YES;
-     }
-     ];
+    }];
     
     
     //    if ([[NSFileManager defaultManager] fileExistsAtPath:audio_inputFilePath])
