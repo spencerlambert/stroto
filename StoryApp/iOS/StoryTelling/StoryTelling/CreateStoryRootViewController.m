@@ -207,6 +207,7 @@
                                          scale:(thumbImage.scale * 1.4)
                                    orientation:(thumbImage.imageOrientation)];
         UIImageView *thumbView = [[UIImageView alloc] initWithImage:thumbImage ];
+        [thumbView setContentMode:UIViewContentModeScaleAspectFit];
         CGRect frame = [thumbView frame];
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;

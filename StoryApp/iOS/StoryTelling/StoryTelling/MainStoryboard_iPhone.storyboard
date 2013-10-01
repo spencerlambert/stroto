@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Story Telling Root View Controller - Stroto-->
@@ -13,7 +12,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="VlQ-Us-UdP">
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="VlQ-Us-UdP">
                                 <rect key="frame" x="-1" y="372" width="321" height="44"/>
                                 <items>
                                     <navigationItem id="Vrf-Ne-dNk">
@@ -21,10 +20,13 @@
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B7f-WU-K6l">
                                             <rect key="frame" x="52" y="5" width="217" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <state key="normal" title="Create New Story" backgroundImage="color_trans.png">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="Create New Story">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
                                                 <segue destination="fLV-iY-P4c" kind="push" id="DmK-L8-1JX"/>
@@ -33,7 +35,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4kn-YK-5in">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4kn-YK-5in">
                                 <rect key="frame" x="0.0" y="0.0" width="326" height="372"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,18 +43,19 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" textLabel="fpF-T4-esw" style="IBUITableViewCellStyleDefault" id="d9V-Wf-YwN">
                                         <rect key="frame" x="0.0" y="22" width="326" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d9V-Wf-YwN" id="VXA-VZ-Uov">
-                                            <rect key="frame" x="0.0" y="0.0" width="259" height="43"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpF-T4-esw">
-                                                    <rect key="frame" x="15" y="0.0" width="244" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="273" height="43"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
-                                        </tableViewCellContentView>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                         <connections>
                                             <segue destination="PeL-85-1Ea" kind="push" trigger="accessoryAction" id="Ncu-R5-8J2"/>
                                         </connections>
@@ -69,6 +72,8 @@
                     <navigationItem key="navigationItem" title="Stroto" id="kXQ-2q-oLY">
                         <barButtonItem key="backBarButtonItem" title="Back" id="kyv-ar-Qcu"/>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="storyTable" destination="4kn-YK-5in" id="LIZ-an-5Ed"/>
                     </connections>
@@ -85,16 +90,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="h4r-tt-Ooa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="h4r-tt-Ooa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NIW-TC-yqw">
-                                <rect key="frame" x="52" y="50" width="216" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Play" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="52" y="51" width="216" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="playButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="Gea-yd-e3u"/>
@@ -102,10 +110,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sYS-e4-Wy1">
                                 <rect key="frame" x="52" y="116" width="216" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Upload To Youtube" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Upload To Youtube">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="UploadToYoutubeButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="dIE-Yg-hV6"/>
@@ -113,10 +124,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3b-Qu-ssD">
                                 <rect key="frame" x="52" y="186" width="216" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Upload To Facebook" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Upload To Facebook">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="uploadToFacebookButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="Jjh-xg-2vl"/>
@@ -124,10 +138,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1FT-fB-7ON">
                                 <rect key="frame" x="52" y="253" width="216" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Edit / Record More" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Edit / Record More">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="editButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="hiN-iZ-HOW"/>
@@ -135,10 +152,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbt-i4-7j8">
                                 <rect key="frame" x="52" y="321" width="216" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Delete" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="deleteButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="ahz-h8-QVg"/>
@@ -164,8 +184,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="Whb-4m-lYX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="Whb-4m-lYX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Story Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aR0-y1-nYE">
@@ -176,7 +196,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="ZVj-Mb-whb">
-                                <rect key="frame" x="20" y="39" width="280" height="30"/>
+                                <rect key="frame" x="20" y="40" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -185,59 +205,65 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" id="YGX-7L-MUU">
-                                <rect key="frame" x="0.0" y="134" width="320" height="84"/>
+                                <rect key="frame" x="0.0" y="164" width="320" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M1r-Ny-DAt">
-                                <rect key="frame" x="20" y="105" width="180" height="21"/>
+                                <rect key="frame" x="20" y="121" width="180" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="CFL-YZ-i8j">
-                                <rect key="frame" x="0.0" y="295" width="320" height="84"/>
+                                <rect key="frame" x="0.0" y="316" width="320" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Foreground Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NXW-Km-qBd">
-                                <rect key="frame" x="20" y="259" width="161" height="43"/>
+                                <rect key="frame" x="20" y="266" width="161" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jVU-wB-zN9">
-                                <rect key="frame" x="246" y="98" width="54" height="36"/>
+                                <rect key="frame" x="246" y="124" width="54" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Add" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="0rW-9T-a0q" kind="push" id="myE-ei-6bO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RHe-Eo-Iox">
-                                <rect key="frame" x="246" y="263" width="54" height="35"/>
+                                <rect key="frame" x="246" y="279" width="54" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Add" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="0NS-7w-Chq" kind="push" id="29P-fk-Z7R"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="pF4-Mz-fIF">
-                                <rect key="frame" x="45" y="99" width="230" height="1"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="pF4-Mz-fIF">
+                                <rect key="frame" x="0.0" y="92" width="320" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="i8e-Ut-DLs">
-                                <rect key="frame" x="45" y="265" width="230" height="1"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="i8e-Ut-DLs">
+                                <rect key="frame" x="0.0" y="251" width="320" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -274,14 +300,14 @@
             <objects>
                 <viewController storyboardIdentifier="cropBackground" title="Crop Background" id="oPp-VY-QRt" customClass="STCropBackgroundViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trp-pT-nJH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="42V-hr-NgJ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="42V-hr-NgJ">
+                                <rect key="frame" x="0.0" y="44" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="1uN-RJ-06L">
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="1uN-RJ-06L">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -295,7 +321,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" id="jOe-hA-tP4">
-                                <rect key="frame" x="0.0" y="45" width="320" height="98"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -321,11 +347,11 @@
             <objects>
                 <viewController storyboardIdentifier="installedStoryPacks" id="E9O-0c-x4e" customClass="STInstalledStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sER-aM-rye">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="BlJ-mG-lRz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="BlJ-mG-lRz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4WR-WA-23m">
@@ -348,8 +374,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="3km-Ya-F4l">
-                                <rect key="frame" x="45" y="251" width="230" height="1"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="3km-Ya-F4l">
+                                <rect key="frame" x="0.0" y="242" width="320" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Foreground Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oai-m1-rAi">
@@ -388,16 +414,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="gYN-Zb-HEU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="gYN-Zb-HEU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClQ-2X-2Ru">
                                 <rect key="frame" x="58" y="137" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Gallery" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Gallery">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="fromGalleryButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="55Y-8g-KO7"/>
@@ -405,10 +434,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LX1-JE-x95">
                                 <rect key="frame" x="58" y="49" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Story Pack" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Story Pack">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Wot-PE-eMc" kind="push" id="9Ng-ir-cti"/>
@@ -416,18 +448,27 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Efc-bf-LPf">
                                 <rect key="frame" x="58" y="229" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Created Story" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Created Story">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mvv-Gv-m7E" kind="push" id="PkR-As-eGd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8jn-dF-e0z">
                                 <rect key="frame" x="58" y="317" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Camera" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Camera">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="fromCameraButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="XPI-1H-sJY"/>
@@ -447,14 +488,14 @@
             <objects>
                 <viewController storyboardIdentifier="cropForeground" id="Yzw-vs-wjh" customClass="STCropForegroundViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YF5-aO-hl5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="hhg-CE-nXw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="540"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="hhg-CE-nXw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="a37-x6-riU">
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="a37-x6-riU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -468,7 +509,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" id="LK8-gd-Mbo">
-                                <rect key="frame" x="0.0" y="48" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -484,11 +525,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="uIy-fg-gQO">
-                                <rect key="frame" x="0.0" y="136" width="320" height="312"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="Jlx-uX-AJH">
-                                        <rect key="frame" x="2" y="283" width="316" height="29"/>
+                                        <rect key="frame" x="2" y="286" width="316" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -525,15 +566,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" id="hNC-nV-a1t">
-                                <rect key="frame" x="0.0" y="136" width="320" height="312"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lJ0-Rc-zdr">
                                         <rect key="frame" x="5" y="272" width="70" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Pick BG">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="pickBG:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="Uje-L1-xRE"/>
@@ -542,9 +587,13 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JUW-Wi-tCl">
                                         <rect key="frame" x="85" y="272" width="70" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Pick FG">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="pickFG:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="WAx-oo-3oW"/>
@@ -553,9 +602,13 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YML-3y-Nwb">
                                         <rect key="frame" x="165" y="272" width="70" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Apply">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="applyGrabcut:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="CNg-aS-1ES"/>
@@ -564,9 +617,13 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R7Y-72-TW6">
                                         <rect key="frame" x="245" y="272" width="70" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Undo">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="undoGrabcut:" destination="Yzw-vs-wjh" eventType="touchUpInside" id="P7B-KV-wj0"/>
@@ -608,7 +665,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="b2r-9X-M0U">
-                                <rect key="frame" x="-9" y="450" width="337" height="30"/>
+                                <rect key="frame" x="-9" y="430" width="337" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <segments>
@@ -656,6 +713,113 @@
             </objects>
             <point key="canvasLocation" x="623" y="139"/>
         </scene>
+        <!--Select Story View Controller - Select Story-->
+        <scene sceneID="rq2-Zh-zub">
+            <objects>
+                <tableViewController id="mvv-Gv-m7E" customClass="STSelectStoryViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zva-2Q-CFQ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SimpleTableItem" textLabel="jXO-Fm-wQr" style="IBUITableViewCellStyleDefault" id="dJb-RV-pCB">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXO-Fm-wQr">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="Sax-n2-hzt" kind="push" id="vXJ-VP-OC5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mvv-Gv-m7E" id="5FX-VE-1Q9"/>
+                            <outlet property="delegate" destination="mvv-Gv-m7E" id="ORm-EB-MzY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Story" id="WCe-Rb-hdM"/>
+                    <connections>
+                        <outlet property="storyNameTable" destination="Zva-2Q-CFQ" id="OyA-Pk-s2x"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mF-hd-Vd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039" y="139"/>
+        </scene>
+        <!--Select Images From Story View Controller - Select Images To Use-->
+        <scene sceneID="YIg-iE-jBl">
+            <objects>
+                <viewController id="Sax-n2-hzt" customClass="STSelectImagesFromStoryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ilB-8K-oAN">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="xGz-OQ-6yO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wXU-O8-Rwv">
+                                <rect key="frame" x="0.0" y="10" width="320" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XNS-ft-knQ">
+                                <rect key="frame" x="21" y="102" width="166" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view opaque="NO" contentMode="scaleToFill" id="Lc2-I2-E0S">
+                                <rect key="frame" x="-1" y="140" width="321" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="aYb-sr-XOG">
+                                <rect key="frame" x="0.0" y="242" width="320" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Foreground Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qNt-0K-A7Z">
+                                <rect key="frame" x="21" y="264" width="165" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view opaque="NO" contentMode="scaleToFill" id="wzC-Vj-mrO">
+                                <rect key="frame" x="0.0" y="302" width="321" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Images To Use" id="BME-qt-Mbn"/>
+                    <connections>
+                        <outlet property="backgroundImagesView" destination="Lc2-I2-E0S" id="UNJ-L2-cRl"/>
+                        <outlet property="foregroundImagesView" destination="wzC-Vj-mrO" id="FtG-Lb-ATR"/>
+                        <outlet property="storyNameLabel" destination="wXU-O8-Rwv" id="DjM-b2-L1W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bz6-wY-8A6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428" y="139"/>
+        </scene>
         <!--Add Background View Controller - Add Background-->
         <scene sceneID="e3G-dQ-o0N">
             <objects>
@@ -664,16 +828,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="r0G-tk-te6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="r0G-tk-te6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gSw-PW-bSc">
                                 <rect key="frame" x="58" y="136" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Gallery" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Gallery">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="CCS-BV-4HL"/>
@@ -681,10 +848,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pc7-Gy-3w2">
                                 <rect key="frame" x="58" y="53" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Story Pack" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Story Pack">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Wot-PE-eMc" kind="push" id="fUv-Rg-gK0"/>
@@ -692,18 +862,27 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k6m-ZF-4ec">
                                 <rect key="frame" x="58" y="222" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Created Story" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Created Story">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mvv-Gv-m7E" kind="push" id="gZa-nL-O2U"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R2r-Bu-X5m">
                                 <rect key="frame" x="58" y="310" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Camera" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="From Camera">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="nsB-ng-mQ2"/>
@@ -725,11 +904,11 @@
             <objects>
                 <viewController storyboardIdentifier="workarea" id="mlP-pf-Mlw" customClass="WorkAreaController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SeQ-h6-OYw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
-                                <rect key="frame" x="0.0" y="10" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.61835372117513321" green="0.66666666666666663" blue="0.66445533472134155" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -750,11 +929,11 @@
             <objects>
                 <viewController storyboardIdentifier="paidStoryPacks" title="Story Packs" id="BTs-AR-N9X" customClass="STPaidStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcI-OD-CM5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="9XD-C7-xOC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkP-Ob-lZa">
@@ -770,7 +949,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buyButtonTapped:" destination="BTs-AR-N9X" eventType="touchUpInside" id="utX-OT-6UJ"/>
@@ -843,7 +1026,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <progressView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="GJ6-8d-rVW">
-                                        <rect key="frame" x="20" y="13" width="150" height="2"/>
+                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZbM-Jh-Y9w">
@@ -889,7 +1072,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="hr8-cU-pmP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="hr8-cU-pmP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -925,8 +1108,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="V1T-kd-C63">
-                                <rect key="frame" x="45" y="285" width="230" height="1"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="V1T-kd-C63">
+                                <rect key="frame" x="0.0" y="276" width="320" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="Rud-1v-8Py">
@@ -934,8 +1117,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="1Jq-QJ-1Lz">
-                                <rect key="frame" x="45" y="131" width="230" height="1"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Divider.png" id="1Jq-QJ-1Lz">
+                                <rect key="frame" x="0.0" y="122" width="320" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <activityIndicatorView contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="ELA-ik-XS4">
@@ -971,11 +1154,11 @@
             <objects>
                 <viewController storyboardIdentifier="freeStoryPacks" title="Story Packs" id="RRX-6d-vFv" customClass="STFreeStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RmS-dL-PUv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_bg.png" id="alX-ku-A83">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AkV-RR-Hph">
@@ -990,7 +1173,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" title="Free">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buyButtonTapped:" destination="RRX-6d-vFv" eventType="touchUpInside" id="cVg-9V-N83"/>
@@ -1063,7 +1250,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <progressView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="fXy-xt-H1x">
-                                        <rect key="frame" x="20" y="13" width="150" height="2"/>
+                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O9d-fm-jsY">
@@ -1106,8 +1293,9 @@
             <objects>
                 <navigationController id="PWj-gx-do9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="SQc-iq-kA8">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="SQc-iq-kA8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1125,17 +1313,170 @@
         <image name="Divider.png" width="600" height="50"/>
         <image name="app_bg.png" width="640" height="960"/>
         <image name="black.png" width="22" height="20"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_trans.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
+    <classes>
+        <class className="AddBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromCamraPackButtonClicked:"/>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="AddForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="fromCameraButtonClicked:" candidateClass="UIButton"/>
+                <relationship kind="action" name="fromGalleryButtonClicked:"/>
+            </relationships>
+        </class>
+        <class className="CreateStoryRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateStoryRootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="nextButtonClicked:"/>
+                <relationship kind="action" name="resigngTxtField"/>
+                <relationship kind="outlet" name="BackgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="ForegroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="storyNameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="STCropBackgroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropBackgroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="backgroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="STCropForegroundViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STCropForegroundViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="applyGrabcut:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="editForegroundSegment:"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="pickBG:"/>
+                <relationship kind="action" name="pickFG:"/>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="action" name="undoGrabcut:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="applyBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bgBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cropMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cropView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="cropforegroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="eraseMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fgBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foregroundimagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="grabcutView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="indicatorView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="sizeMainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="sizeView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="slider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="undoBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="STFreeStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STFreeStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buyButtonTapped:"/>
+                <relationship kind="action" name="showFree:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="BGHideDownload" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="downloadRectView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="freeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="freeStoryPackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
+            </relationships>
+        </class>
+        <class className="STInstalledStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STInstalledStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="installedStoryPackName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="STPaidStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STPaidStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buyButtonTapped:"/>
+                <relationship kind="action" name="showPrice:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="BGHideDownload" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadPercentageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="downloadRectView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="paidButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="paidStoryPackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
+            </relationships>
+        </class>
+        <class className="STSelectImagesFromStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STSelectImagesFromStoryViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="foregroundImagesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="storyNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="STSelectStoryViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STSelectStoryViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="storyNameTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="STStoryPacksViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STStoryPacksViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="previousView:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="freeStoryPacksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="installedStoryPacksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loader" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="paidStoryPacksView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SavedStoryDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavedStoryDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="UploadToYoutubeButtonClicked:"/>
+                <relationship kind="action" name="deleteButtonClicked:"/>
+                <relationship kind="action" name="editButtonClicked:"/>
+                <relationship kind="action" name="playButtonClicked:"/>
+                <relationship kind="action" name="uploadToFacebookButtonClicked:"/>
+                <relationship kind="outlet" name="navigationBarTitle" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="ScreenCaptureView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenCaptureView.h"/>
+        </class>
+        <class className="StoryTellingRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTellingRootViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="storyTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="WorkAreaController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WorkAreaController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="captureview" candidateClass="ScreenCaptureView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fUv-Rg-gK0"/>
+        <segue reference="PkR-As-eGd"/>
+        <segue reference="9Ng-ir-cti"/>
     </inferredMetricsTieBreakers>
 </document>

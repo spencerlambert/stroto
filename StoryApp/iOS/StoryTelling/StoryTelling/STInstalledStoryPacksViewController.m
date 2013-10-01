@@ -132,7 +132,7 @@
             [thumbView setUserInteractionEnabled:YES];
             [thumbView setHidden:NO];
         //selecting images for use.
-            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlay.png"]];
+            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Overlay.png"]];
             frame.origin.x = 0;
             frame.origin.y = 0;
             [checkmarkImageView setFrame:frame];
@@ -232,7 +232,7 @@
             [thumbView setHidden:NO];
             [foregroundImagesHolder addSubview:thumbView];
             //selecting images for use.
-            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlay.png"]];
+            UIImageView *checkmarkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Overlay.png"]];
             frame.origin.x = 0;
             frame.origin.y = 0;
             [checkmarkImageView setFrame:frame];
