@@ -1272,15 +1272,47 @@
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
-        <image name="Divider.png" width="600" height="50"/>
-        <image name="app_bg.png" width="640" height="960"/>
-=======
->>>>>>> e938b696ed17fe90f71bbfe9e6e0c31689aca30f
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_trans.png" width="10" height="10"/>
         <image name="color_trans.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
