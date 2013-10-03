@@ -10,8 +10,19 @@
 #import "STStoryDB.h"
 
 @interface STSelectImagesFromStoryViewController : UIViewController
+{
+    NSMutableArray * selectedFGImages;
+    NSMutableArray * selectedBGImages;
+    sqlite3 *database;
+}
 @property (weak, nonatomic) IBOutlet UILabel *storyNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundImagesView;
 @property (weak, nonatomic) IBOutlet UIView *foregroundImagesView;
 @property (weak, nonatomic) NSString *dbLocation;
+
+-(void)initializeDB;
+-(void)loadFGImages;
+-(void)loadBGImages;
+
+-(void)doneButtonPressed;
 @end

@@ -8,6 +8,7 @@
 
 #import "STSelectStoryViewController.h"
 #import "STStoryDB.h"
+#import "STSelectImagesFromStoryViewController.h"
 
 @interface STSelectStoryViewController ()
 
@@ -58,8 +59,10 @@
     {
         sqlite3 *db;
         if([[[filelist[i] lastPathComponent] pathExtension] isEqualToString:@"db"]){
+            //1.db, 2.db etc.
     NSLog(@"%@",filelist[i]);
             [dbNames addObject:filelist[i]];
+            //location of the dbfile in device
             NSString *databasePath = [storyDir stringByAppendingPathComponent:filelist[i]];
             const char *dbpath = [databasePath UTF8String];
             
@@ -167,6 +170,13 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    STSelectImagesFromStoryViewController *imagesFromStory = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
+    [imagesFromStory setDbLocation:dbNames[indexPath.row]];
+    [imagesFromStory.storyNameLabel setText:storyNames[indexPath.row]];
+    
+    [self.navigationController pushViewController:imagesFromStory animated:YES];
+    
+    
 }
 
 - (void)viewDidUnload {
