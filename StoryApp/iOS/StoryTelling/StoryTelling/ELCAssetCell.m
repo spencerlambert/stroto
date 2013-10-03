@@ -44,9 +44,14 @@
 - (void)setAssets:(NSArray *)assets
 {
     self.rowAssets = assets;
-	for (UIView *view in [self subviews]) {
-		[view removeFromSuperview];
-	}
+//	for (UIView *view in [self subviews]) {
+//		[view removeFromSuperview];
+	for (UIImageView *view in _imageViewArray) {
+        [view removeFromSuperview];
+          }
+        for (UIImageView *view in _overlayViewArray) {
+                [view removeFromSuperview];
+        }
     //set up a pointer here so we don't keep calling [UIImage imageNamed:] if creating overlays
     UIImage *overlayImage = nil;
     for (int i = 0; i < [_rowAssets count]; ++i) {

@@ -12,5 +12,7 @@
 @interface STYoutubeViewController : UIViewController
 
 @property (nonatomic, readonly) GTLServiceYouTube *youTubeService;
+- (IBAction)signIn:(id)sender;
+- (IBAction)upload:(id)sender;
 
 @end

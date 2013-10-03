@@ -114,8 +114,6 @@
     [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
     
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
