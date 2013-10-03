@@ -158,6 +158,8 @@
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
 		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
+		EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */; };
+		EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -355,6 +357,10 @@
 		EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaidStoryPacksViewController.m; sourceTree = "<group>"; };
 		EB7FE48817C743F000E28B4F /* STFreeStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFreeStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFreeStoryPacksViewController.m; sourceTree = "<group>"; };
+		EB9ACE6917FD092300FCF6EE /* STSelectImagesFromStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSelectImagesFromStoryViewController.h; sourceTree = "<group>"; };
+		EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSelectImagesFromStoryViewController.m; sourceTree = "<group>"; };
+		EB9ACE6B17FD092300FCF6EE /* STSelectStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSelectStoryViewController.h; sourceTree = "<group>"; };
+		EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSelectStoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -635,6 +641,10 @@
 				DB9E9E8C1764A81000788373 /* AddBackgroundViewController.m */,
 				DB9E9E8F1764A82100788373 /* AddForegroundViewController.h */,
 				DB9E9E901764A82100788373 /* AddForegroundViewController.m */,
+				EB9ACE6B17FD092300FCF6EE /* STSelectStoryViewController.h */,
+				EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */,
+				EB9ACE6917FD092300FCF6EE /* STSelectImagesFromStoryViewController.h */,
+				EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */,
 				EB7FE48117C716EB00E28B4F /* StoryPack */,
 				DB9E9E931764A83B00788373 /* WorkArea */,
 			);
@@ -925,6 +935,8 @@
 				DB28D7531742E4900071B5C2 /* WorkAreaController.m in Sources */,
 				DB28D7571742E86A0071B5C2 /* SlideUpView.m in Sources */,
 				DB28D75B1742E8840071B5C2 /* SlideDownView.m in Sources */,
+				EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */,
+				EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */,
 				DB28D75F1742E8950071B5C2 /* SlideLeftView.m in Sources */,
 				DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */,
