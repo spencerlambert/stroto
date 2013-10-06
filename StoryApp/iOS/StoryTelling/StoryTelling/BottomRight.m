@@ -11,12 +11,12 @@
 
 #define THUMB_HEIGHT 45
 #define THUMB_WIDTH 45
-#define THUMB_V_PADDING 10
-#define THUMB_H_PADDING 10
-#define STATUS_BAR_HEIGHT 20
+#define THUMB_V_PADDING 15
+#define THUMB_H_PADDING 15
+#define STATUS_BAR_HEIGHT 0
 
-#define BUTTON_PADDING_X 15
-#define BUTTON_PADDING_Y 30
+#define BUTTON_PADDING_X 20
+#define BUTTON_PADDING_Y 20
 #define BUTTON_HEIGHT 50
 #define BUTTON_WIDTH 55
 
@@ -31,7 +31,7 @@
     float paddingtop = THUMB_HEIGHT + THUMB_V_PADDING * 2;
     float paddingright = THUMB_WIDTH + THUMB_H_PADDING * 2;
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
-    frame = CGRectMake(CGRectGetMaxX(bounds)-paddingright, CGRectGetMaxY(bounds)-thumbHeight-20, paddingright,paddingtop);
+    frame = CGRectMake(CGRectGetMaxX(bounds)-paddingright, CGRectGetMaxY(bounds)-thumbHeight, paddingright,paddingtop);
     UIImage *btnimage = [UIImage imageNamed:@"RecordOff.png"];
     self = [super initWithFrame:frame];
     if (self) {

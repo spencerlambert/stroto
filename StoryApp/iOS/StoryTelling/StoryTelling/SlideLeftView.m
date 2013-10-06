@@ -8,10 +8,10 @@
 
 #import "SlideLeftView.h"
 
-#define THUMB_HEIGHT 60
+#define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
-#define STATUS_BAR_HEIGHT 20
+#define STATUS_BAR_HEIGHT 0
 
 #define BUTTON_PADDING_X 15
 #define BUTTON_PADDING_Y 30

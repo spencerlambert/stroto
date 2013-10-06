@@ -9,7 +9,7 @@
 #import "SlideUpView.h"
 #import "STImage.h"
 
-#define THUMB_HEIGHT 60
+#define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 

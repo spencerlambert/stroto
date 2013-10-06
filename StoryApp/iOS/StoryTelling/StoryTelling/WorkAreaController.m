@@ -13,10 +13,10 @@
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define THUMB_ADDITIONAL 22
-#define THUMB_HEIGHT 60
+#define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
-#define STATUS_BAR_HEIGHT 20
+#define STATUS_BAR_HEIGHT 0
 
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
