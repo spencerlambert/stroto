@@ -825,6 +825,11 @@
 				CLASSPREFIX = ST;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Stroto, LLC.";
+				TargetAttributes = {
+					DB28D7071742E1460071B5C2 = {
+						DevelopmentTeam = A33R73S2LJ;
+					};
+				};
 			};
 			buildConfigurationList = DB28D7021742E1460071B5C2 /* Build configuration list for PBXProject "StoryTelling" */;
 			compatibilityVersion = "Xcode 3.2";
