@@ -9,6 +9,9 @@
 #import "SlideUpView.h"
 #import "STImage.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define IPHONE_5_ADDITIONAL 78
+
 #define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -25,7 +28,11 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
-    frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width - thumbHeight, thumbHeight);
+    if (IS_IPHONE_5) {
+        frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width, thumbHeight);
+    } else {
+        frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width - thumbHeight, thumbHeight);
+    }
     self = [super initWithFrame:frame];
 /***
     if (self) {

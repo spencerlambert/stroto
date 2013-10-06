@@ -9,6 +9,9 @@
 #import "SlideDownView.h"
 #import "STImage.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define IPHONE_5_ADDITIONAL 78
+
 #define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -29,7 +32,11 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
-    frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width - thumbHeight, thumbHeight);
+    if (IS_IPHONE_5) {
+        frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT-IPHONE_5_ADDITIONAL, bounds.size.width, thumbHeight);
+    } else {
+        frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width - thumbHeight, thumbHeight);
+    }
     self = [super initWithFrame:frame];
 /***
     if (self) {
@@ -65,14 +72,18 @@
         
         float scrollViewHeight = THUMB_HEIGHT + THUMB_V_PADDING;
         float scrollViewWidth  = [self bounds].size.width;
+        
         CutoutImagesHolder = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewWidth, scrollViewHeight)];
+
+        
         [CutoutImagesHolder setCanCancelContentTouches:NO];
         [CutoutImagesHolder setClipsToBounds:NO];
         
         // now place all the thumb views as subviews of the scroll view
         // and in the course of doing so calculate the content width
         float xPosition = THUMB_H_PADDING;
-        
+        float yPosition = THUMB_V_PADDING;
+
         for (int i = 0; i<[[self photos]count];i++) {
             STImage *stimage = [[self photos]objectAtIndex:i];
             UIImage *thumbImage = stimage.thumbimage;
@@ -84,7 +95,7 @@
                 ThumbImageView *thumbView = [[ThumbImageView alloc] initWithImage:thumbImage ];
                 [thumbView setThumbdelegate:self];
                 CGRect frame = [thumbView frame];
-                frame.origin.y = THUMB_V_PADDING;
+                frame.origin.y = yPosition;
                 frame.origin.x = xPosition;
                 frame.size.height = THUMB_HEIGHT;
                 frame.size.width = THUMB_HEIGHT;
