@@ -11,6 +11,8 @@
 #import "SavedStoryDetailsViewController.h"
 
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define THUMB_ADDITIONAL 22
 #define THUMB_HEIGHT 60
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -52,6 +54,9 @@
     recordbtnClicked = NO;
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
+    if (IS_IPHONE_5) {
+        thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING + THUMB_ADDITIONAL * 2 ;
+    }
     [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
     imageselected = NO;
     pickedimages = [[NSMutableArray alloc]init];
