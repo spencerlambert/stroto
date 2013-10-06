@@ -18,6 +18,13 @@
 #define THUMB_H_PADDING 10
 #define STATUS_BAR_HEIGHT 20
 
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
 @interface WorkAreaController ()
 
 @end
@@ -57,7 +64,12 @@
     if (IS_IPHONE_5) {
         thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING + THUMB_ADDITIONAL * 2 ;
     }
-    [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight))];
+    } else {
+        [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight)-STATUS_BAR_HEIGHT)];
+        
+    }
     imageselected = NO;
     pickedimages = [[NSMutableArray alloc]init];
     pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -74,7 +86,12 @@
     [captureview addSubview:backgroundimageview];
     backgroundimageview.image = [UIImage imageNamed:@"RecordArea.png"];
     
-    CGRect frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeight-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeight);
+    CGRect frame;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeight, capturebounds.size.width, thumbHeight);
+    } else {
+        frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeight-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeight);
+    }
     UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
     [bottombar setImage:[UIImage imageNamed:@"BottomBar.png"]];
     [self.view addSubview:bottombar];
