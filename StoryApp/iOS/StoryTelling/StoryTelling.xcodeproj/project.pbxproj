@@ -33,6 +33,7 @@
 		4D696D7D17BAE05800F7D47C /* Divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D696D7C17BAE05800F7D47C /* Divider.png */; };
 		4D8127061801D6A1001737C2 /* ButtonDoneL.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8127041801D6A1001737C2 /* ButtonDoneL.png */; };
 		4D8127071801D6A1001737C2 /* ButtonDoneR.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8127051801D6A1001737C2 /* ButtonDoneR.png */; };
+		4D8127091801E7D6001737C2 /* TitlePage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8127081801E7D6001737C2 /* TitlePage.png */; };
 		4D908E6E17FA3A7D00B309FA /* color_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6A17FA3A7D00B309FA /* color_trans.png */; };
 		4D908E6F17FA3A7D00B309FA /* color_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6B17FA3A7D00B309FA /* color_black.png */; };
 		4D908E7017FA3A7D00B309FA /* color_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6C17FA3A7D00B309FA /* color_white.png */; };
@@ -223,6 +224,7 @@
 		4D696D7C17BAE05800F7D47C /* Divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Divider.png; path = ../../../Images/Divider.png; sourceTree = "<group>"; };
 		4D8127041801D6A1001737C2 /* ButtonDoneL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneL.png; sourceTree = "<group>"; };
 		4D8127051801D6A1001737C2 /* ButtonDoneR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneR.png; sourceTree = "<group>"; };
+		4D8127081801E7D6001737C2 /* TitlePage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitlePage.png; sourceTree = "<group>"; };
 		4D908E6A17FA3A7D00B309FA /* color_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_trans.png; sourceTree = "<group>"; };
 		4D908E6B17FA3A7D00B309FA /* color_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_black.png; sourceTree = "<group>"; };
 		4D908E6C17FA3A7D00B309FA /* color_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_white.png; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 		DB93D6FF1774E33600437F40 /* WorArea Images */ = {
 			isa = PBXGroup;
 			children = (
+				4D8127081801E7D6001737C2 /* TitlePage.png */,
 				4D8127041801D6A1001737C2 /* ButtonDoneL.png */,
 				4D8127051801D6A1001737C2 /* ButtonDoneR.png */,
 				DB93D7001774E36000437F40 /* Back.png */,
@@ -863,6 +866,7 @@
 				DBFA4AB5174D7B31001DFCDC /* VideoPlayButton.png in Resources */,
 				DBFA4AAE174D6758001DFCDC /* AddButton.png in Resources */,
 				DB28D7171742E1460071B5C2 /* InfoPlist.strings in Resources */,
+				4D8127091801E7D6001737C2 /* TitlePage.png in Resources */,
 				DB28D7291742E1460071B5C2 /* MainStoryboard_iPad.storyboard in Resources */,
 				DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */,
 				DBFA4ABE174D7EA3001DFCDC /* StartRecording.png in Resources */,
