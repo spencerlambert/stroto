@@ -487,7 +487,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="gYN-Zb-HEU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClQ-2X-2Ru">
                                 <rect key="frame" x="58" y="147" width="205" height="44"/>
@@ -1355,7 +1355,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fUv-Rg-gK0"/>
-        <segue reference="gZa-nL-O2U"/>
+        <segue reference="9Ng-ir-cti"/>
+        <segue reference="PkR-As-eGd"/>
     </inferredMetricsTieBreakers>
 </document>
