@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GTLYouTube.h"
 
-@interface STYoutubeViewController : UIViewController
+@interface STYoutubeViewController : UIViewController{
+    NSString *clientID ;
+    NSString *clientSecret;
+    IBOutlet UIProgressView *uploadProgressIndicator;
+}
 
-@property (nonatomic, readonly) GTLServiceYouTube *youTubeService;
 - (IBAction)signIn:(id)sender;
 - (IBAction)upload:(id)sender;
 
