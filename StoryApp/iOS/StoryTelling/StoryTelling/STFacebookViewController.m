@@ -28,12 +28,31 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    if (!FBSession.activeSession.isOpen)
+    {
+        [FBSession openActiveSessionWithReadPermissions:nil
+                                           allowLoginUI:YES
+                                      completionHandler:^(FBSession *session,
+                                                          FBSessionState status,
+                                                          NSError *error) {
+                                          // if login fails for any reason, we alert
+                                          if (error) {
+                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                              message:error.localizedDescription
+                                                                                             delegate:nil
+                                                                                    cancelButtonTitle:@"OK"
+                                                                                    otherButtonTitles:nil];
+                                              [alert show];
+                                          }
+}];
+    }
+                                      
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     
 }
 

@@ -12,7 +12,7 @@
 @interface STFacebookViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *storyTitle;
-@property (weak, nonatomic) IBOutlet UITextView *storySubTitle;
+@property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 
 

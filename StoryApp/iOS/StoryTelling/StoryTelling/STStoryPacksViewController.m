@@ -122,7 +122,6 @@ NSLog (@"number of story packs :%i",count);
     [installedStoryPacksHolder setHidden:NO];
     [installedStoryPacksView addSubview:installedStoryPacksHolder];
     for(int i=0; i<count; i++){
-
         sqlite3 *db;
         if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
         {
@@ -182,6 +181,7 @@ NSLog(@"SQL query Statement preparation on database success.");
                         [storyPackName setFrame:textFrame];
                         [storyPackName setHidden:NO];
                         [storyPackName setTag:i];
+                        
                         UITapGestureRecognizer *nameClick = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleInstallTap:)];
                         nameClick.numberOfTapsRequired = 1;
                         [storyPackName addGestureRecognizer:nameClick];
@@ -214,6 +214,22 @@ NSLog(@"SQL query Statement preparation on database success.");
         }
     }
     sqlite3_finalize(compiled_stmt);
+}
+-(void)handleInstallTap:(UITapGestureRecognizer*)recognizer
+{
+NSLog(@"recognizer : %d",recognizer.view.tag);
+    
+    STInstalledStoryPacksViewController *installController =
+    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+NSLog(@"Path : %@",databasePath);
+    databasePath = [databasePath stringByDeletingLastPathComponent];
+NSLog(@"Path after deleting last path component: %@",databasePath);
+    databasePath = [databasePath stringByAppendingString:@"/"];
+    databasePath = [databasePath stringByAppendingString:dbNames[recognizer.view.tag]];
+NSLog(@"Path after appending : %@",databasePath);
+    installController.filePath = databasePath;
+    [self.navigationController pushViewController:installController animated:YES];
 }
 
 -(void)reloadPaidView
@@ -376,14 +392,7 @@ NSLog(@"SQL query Statement preparation on database success.");
     [self.loader setHidden:TRUE];
     
 }
--(void)handleInstallTap:(UITapGestureRecognizer*)recognizer
-{
-    STInstalledStoryPacksViewController *installController =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
-    installController.filePath = databasePath;
-    [self.navigationController pushViewController:installController animated:YES];
-}
+
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
