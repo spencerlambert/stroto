@@ -19,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *installedStoryPackName;
 @property (strong, nonatomic) IBOutlet UIView *backgroundImagesView;
 @property (strong, nonatomic) IBOutlet UIView *foregroundImagesView;
-@property (nonatomic, weak) NSString *filePath;
+@property (strong, nonatomic) NSString *filePath;
 
 -(void)initializeDB;
 -(void)loadFGImages;

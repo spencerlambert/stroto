@@ -59,7 +59,7 @@ NSString *filename;
     if(dbSuccess)
     {
         NSLog(@"DB writing success!!");
-    [progressDelegate finishedDownloadingDB:installedFilePath];
+        [progressDelegate finishedDownloadingDB:installedFilePath];
     }
     else
     {
