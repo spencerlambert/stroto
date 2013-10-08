@@ -515,12 +515,12 @@ CGRect grabcutFrame;
     int count = 0;
     for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
         UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
-        STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
         if(Image.size.width >= Image.size.height && Image.size.width > 640){
             Image = [self imageWithImage:Image scaledToWidth:640];
         }else if (Image.size.height >Image.size.width && Image.size.height > 640){
             Image = [self imageWithImage:Image scaledToHeight:640];
         }
+        STImage *stimage = [[STImage alloc] initWithCGImage:[Image CGImage]];
         [stimage setThumbimage:Image];
         [stimage setFileType:[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension]];
         [stimage setType:@"foreground"];
