@@ -10,6 +10,7 @@
 #import "STStoryDB.h"
 #import "CreateStoryRootViewController.h"
 #include "STFacebookViewController.h"
+#import "STYoutubeViewController.h"
 
 @interface SavedStoryDetailsViewController ()
 
@@ -117,6 +118,13 @@
 //        NSLog(@"Clicked button index other than 0");
         
         // Add another action here
+    }
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier  isEqual: @"youtubeSegue"]) {
+        STYoutubeViewController *controller = segue.destinationViewController;
+        [controller setDbname:dbname];
     }
 }
 @end

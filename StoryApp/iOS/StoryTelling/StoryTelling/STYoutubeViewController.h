@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "GTLYouTube.h"
 
-@interface STYoutubeViewController : UIViewController{
+@interface STYoutubeViewController : UIViewController<UITextFieldDelegate>{
     NSString *clientID ;
     NSString *clientSecret;
     IBOutlet UIProgressView *uploadProgressIndicator;
 }
-
+@property (weak, nonatomic) IBOutlet UITextField *mainTitle;
+@property (weak, nonatomic) IBOutlet UITextField *subTitle;
+@property (strong, nonatomic) NSString *dbname;
 - (IBAction)signIn:(id)sender;
 - (IBAction)upload:(id)sender;
 
