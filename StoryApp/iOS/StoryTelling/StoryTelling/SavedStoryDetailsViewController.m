@@ -66,10 +66,9 @@
     NSFileManager *filemngr =[NSFileManager defaultManager];
     NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
     if([filemngr fileExistsAtPath:moviePath]){
-//        NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
-//        STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-//                                                                                  bundle:NULL] instantiateViewControllerWithIdentifier:@"toFacebook"];
-//        [self.navigationController pushViewController:facebookController animated:YES];
+        NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
+        STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"toFacebook"];
+        [self.navigationController pushViewController:facebookController animated:YES];
         
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
