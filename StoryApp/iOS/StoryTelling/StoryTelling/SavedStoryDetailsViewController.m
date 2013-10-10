@@ -64,11 +64,22 @@
 
 - (IBAction)uploadToFacebookButtonClicked:(id)sender {
     NSFileManager *filemngr =[NSFileManager defaultManager];
+//NSLog(@"dbname: %@",dbname);
     NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
-    if([filemngr fileExistsAtPath:moviePath]){
-        NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
-        STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"toFacebook"];
-        [self.navigationController pushViewController:facebookController animated:YES];
+//NSLog(@"movie path : %@",moviePath);
+    if([filemngr fileExistsAtPath:moviePath])
+    {
+        STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:Nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+//setting the title and subtitle.
+        facebookController.storyTitleString = navigationBarTitle.title;
+        facebookController.storySubTitleString = @"by: ";
+        NSLog(@"facebookController.storyTitleString : %@",facebookController.storyTitleString);
+        NSLog(@"facebookController.storySubTitleString : %@",facebookController.storySubTitleString);
+//passing mov file path
+        facebookController.filepath = moviePath;
+NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
+
+    [self.navigationController pushViewController:facebookController animated:YES];
         
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];

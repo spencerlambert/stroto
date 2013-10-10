@@ -100,6 +100,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="toG-vX-nL3" id="mSg-Xu-oDx"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gRV-49-CTc">
                                 <rect key="frame" x="20" y="118" width="125" height="21"/>
@@ -113,18 +116,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="toG-vX-nL3" id="9T4-48-cSK"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cMh-td-BVO">
                                 <rect key="frame" x="52" y="329" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Upload" backgroundImage="color_trans.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="uploadStory:" destination="toG-vX-nL3" eventType="touchUpInside" id="vu4-jN-xAe"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
+                                <rect key="frame" x="85" y="413" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -133,6 +141,7 @@
                         <outlet property="storySubTitle" destination="riV-YP-ad6" id="269-1j-AP0"/>
                         <outlet property="storyTitle" destination="h8P-6O-16I" id="HH3-Q7-C7A"/>
                         <outlet property="uploadButton" destination="cMh-td-BVO" id="cH5-5b-Vfz"/>
+                        <outlet property="uploadProgressBar" destination="yMy-UR-FIk" id="Ve0-G3-j8p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DM5-a7-yPj" userLabel="First Responder" sceneMemberID="firstResponder"/>

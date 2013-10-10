@@ -17,7 +17,10 @@
 @synthesize storyTitle;
 @synthesize storySubTitle;
 @synthesize uploadButton;
+@synthesize uploadProgressBar;
 @synthesize filepath;
+@synthesize storySubTitleString;
+@synthesize storyTitleString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,8 +57,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.storyTitle.text = storyTitleString;
+    self.storySubTitle.text = storySubTitleString;
+//    NSLog (@"self.storyTitle.text = %@",self.storyTitle.text);
+//    NSLog (@"self.storySubTitle.text = %@",self.storySubTitle.text);
+//    NSLog (@"self.filepath = %@",self.filepath);
     
     
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+{
+    [storyTitle resignFirstResponder];
+    [storySubTitle resignFirstResponder];
+    return  YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +80,54 @@
 }
 
 - (IBAction)uploadStory:(UIButton *)sender {
-    
-     [FBSession.activeSession closeAndClearTokenInformation];
+//       [FBSession.activeSession closeAndClearTokenInformation];
+    if (FBSession.activeSession.isOpen) {
+        NSURL *pathURL = [[NSURL alloc]initFileURLWithPath:filepath isDirectory:NO];
+        NSData *videoData = [NSData dataWithContentsOfFile:filepath];
+        NSDictionary *videoObject = @{
+                                      @"title":storyTitleString,
+                                      @"description": storySubTitleString,
+                                      [pathURL absoluteString]: videoData
+                                      };
+        FBRequest *uploadRequest = [FBRequest requestWithGraphPath:@"me/videos" parameters:videoObject HTTPMethod:@"POST"];
+        [uploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error)
+                NSLog(@"Done: %@", result);
+            else
+                NSLog(@"Error: %@", error.localizedDescription);
+        }];
+        
+    }
+    else{
+        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObjects:@"publish_stream", nil] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+            
+            NSURL *pathURL = [[NSURL alloc]initFileURLWithPath:filepath isDirectory:NO];
+            NSData *videoData = [NSData dataWithContentsOfFile:filepath];
+            NSDictionary *videoObject = @{
+                                          @"title":storyTitleString,
+                                          @"description": storySubTitleString,
+                                          [pathURL absoluteString]: videoData
+                                          };
+            FBRequest *uploadRequest = [FBRequest requestWithGraphPath:@"me/videos" parameters:videoObject HTTPMethod:@"POST"];
+            [uploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error)
+                    NSLog(@"Done: %@", result);
+                else
+                    NSLog(@"Error: %@", error.localizedDescription);
+            }];
+
+            
+            if (error) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+            
+        }];
+        
+    }
 }
 @end
