@@ -124,6 +124,7 @@
     if ([segue.identifier  isEqual: @"youtubeSegue"]) {
         STYoutubeViewController *controller = segue.destinationViewController;
         [controller setDbname:dbname];
+        [controller setMaintitle:navigationBarTitle.title];
     }
 }
 @end

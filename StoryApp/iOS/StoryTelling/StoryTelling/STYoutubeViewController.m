@@ -11,6 +11,7 @@
 #import <GTMHTTPUploadFetcher.h>
 #import <GTMHTTPFetcherLogging.h>
 #import <GTMOAuth2ViewControllerTouch.h>
+#import "SavedStoryDetailsViewController.h"
 
 
 @interface STYoutubeViewController ()
@@ -42,6 +43,8 @@ NSURL *uploadLocationURL;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [mainTitle setText:self.maintitle];
+    [subTitle setText:@"by:"];
     
 	
     // Load the OAuth 2 token from the keychain, if it was previously saved.
@@ -106,7 +109,7 @@ NSURL *uploadLocationURL;
     if (error == nil) {
         self.youTubeService.authorizer = auth;
         [viewController dismissViewControllerAnimated:YES completion:nil];
-    }
+        }
     else{
         NSLog(@"ERROR : %@",error);
     }
@@ -123,12 +126,13 @@ NSURL *uploadLocationURL;
     
     // Status.
     GTLYouTubeVideoStatus *status = [GTLYouTubeVideoStatus object];
-    status.privacyStatus = @"private";
+    status.privacyStatus = @"public";
     
     // Snippet.
     GTLYouTubeVideoSnippet *snippet = [GTLYouTubeVideoSnippet object];
     NSString *text = [mainTitle text];
     snippet.title = text;
+    
     
     NSString *desc = [subTitle text];
     if ([desc length] > 0) {
@@ -204,6 +208,8 @@ NSURL *uploadLocationURL;
                                     if (error == nil) {
                                         [self displayAlert:@"Uploaded"
                                                     format:alert];
+                                        [self.navigationController popViewControllerAnimated:YES];
+
                                     } else {
                                         [self displayAlert:@"Upload Failed"
                                                     format:@"%@", error];
@@ -234,7 +240,7 @@ NSURL *uploadLocationURL;
         };
     } else {
         // Could not read file data.
-        [self displayAlert:@"File Not Found" format:@"Path: %@", moviePath];
+        [self displayAlert:@"File Not Found" format:@"Video is not Recorded"];
     }
 }
 
