@@ -11,6 +11,10 @@
 #include <FacebookSDK/FBSession.h>
 #include <FacebookSDK/FBRequest.h>
 #include <FacebookSDK/FBRequestConnection.h>
+#include <Social/Social.h>
+#include <social/SLComposeViewController.h>
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
 
 @interface STFacebookViewController : UIViewController<UITextFieldDelegate>
 
@@ -18,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *uploadProgressBar;
-@property (weak, nonatomic) NSString *filepath;
+@property (strong, nonatomic) NSString *filepath;
 @property (weak, nonatomic) NSString *storyTitleString;
 @property (weak, nonatomic) NSString *storySubTitleString;
 - (IBAction)uploadStory:(UIButton *)sender;

@@ -152,8 +152,10 @@
 		DBFA4AC2174D7F1C001DFCDC /* StartRecordingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */; };
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
-		EB00E64517FE74AE002CE208 /* STFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB00E64417FE74AE002CE208 /* STFacebookViewController.m */; };
 		EB00E64717FE7E59002CE208 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB00E64617FE7E59002CE208 /* FacebookSDK.framework */; };
+		EB14BB4E180BD6AA009F38E6 /* STFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB00E64417FE74AE002CE208 /* STFacebookViewController.m */; };
+		EB14BB50180BD6B9009F38E6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB14BB4F180BD6B9009F38E6 /* Social.framework */; };
+		EB14BB52180BD6FB009F38E6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB14BB51180BD6FB009F38E6 /* Accounts.framework */; };
 		EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB29DE0817D45C76005B1F10 /* StoreKit.framework */; };
 		EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; };
 		EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -355,6 +357,8 @@
 		EB00E64317FE74AE002CE208 /* STFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFacebookViewController.h; sourceTree = "<group>"; };
 		EB00E64417FE74AE002CE208 /* STFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFacebookViewController.m; sourceTree = "<group>"; };
 		EB00E64617FE7E59002CE208 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		EB14BB4F180BD6B9009F38E6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EB14BB51180BD6FB009F38E6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		EB29DE0817D45C76005B1F10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EB382FBF17EFF36800A3FB1F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "StoryTelling/NSData+Base64.h"; sourceTree = "<group>"; };
 		EB382FC017EFF36800A3FB1F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "StoryTelling/NSData+Base64.m"; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB14BB52180BD6FB009F38E6 /* Accounts.framework in Frameworks */,
+				EB14BB50180BD6B9009F38E6 /* Social.framework in Frameworks */,
 				DB0F45A717FAB21B00CE8173 /* SystemConfiguration.framework in Frameworks */,
 				DB0F45A517FAB20F00CE8173 /* Security.framework in Frameworks */,
 				EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */,
@@ -525,6 +531,8 @@
 		DB28D70B1742E1460071B5C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB14BB51180BD6FB009F38E6 /* Accounts.framework */,
+				EB14BB4F180BD6B9009F38E6 /* Social.framework */,
 				EB00E64617FE7E59002CE208 /* FacebookSDK.framework */,
 				DB4E38AB179FA20A00413100 /* opencv2.framework */,
 				DB4E38A5179F81E000413100 /* libz.dylib */,
@@ -1001,7 +1009,7 @@
 				DBE496D517B372FC009B5C31 /* ACMagnifyingGlass.m in Sources */,
 				DBE496D617B372FC009B5C31 /* ACMagnifyingView.m in Sources */,
 				EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */,
-				EB00E64517FE74AE002CE208 /* STFacebookViewController.m in Sources */,
+				EB14BB4E180BD6AA009F38E6 /* STFacebookViewController.m in Sources */,
 				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
 				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
@@ -1189,6 +1197,7 @@
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
 				TARGETED_DEVICE_FAMILY = 1;
