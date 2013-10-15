@@ -10,7 +10,7 @@
 #import <Social/Social.h>
 
 #define ST_FACEBOOK_APP_ID @"530535203701796"
-@interface STFacebookViewController ()
+@interface STFacebookViewController ()<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
 
 @property (nonatomic, retain) ACAccountStore *accountStore;
 @property (nonatomic, retain) ACAccount *facebookAccount;
@@ -46,38 +46,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.uploadProgressBar.progress = 0.0f;
 	// Do any additional setup after loading the view.
     self.storyTitle.text = storyTitleString;
     self.storySubTitle.text = storySubTitleString;
-//    NSLog (@"self.storyTitle.text = %@",self.storyTitle.text);
-//    NSLog (@"self.storySubTitle.text = %@",self.storySubTitle.text);
-//    NSLog (@"self.filepath = %@",self.filepath);
-
-    //fb sdk
-//    if (!FBSession.activeSession.isOpen)
-//    {
-//        [FBSession openActiveSessionWithReadPermissions:[NSArray arrayWithObjects:@"basic_info",Nil] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-//            if(error)
-//            {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                                message:error.localizedDescription
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//                [alert show];
-// 
-//            }
-//        }];
-//        
-//    }
     
-    //social framework ios
+//social framework ios
     if(!_accountStore)
         _accountStore = [[ACAccountStore alloc] init];
     
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
     //read request
-    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
+
+        [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
                                            options:@{ACFacebookAppIdKey: ST_FACEBOOK_APP_ID, ACFacebookPermissionsKey: @[@"basic_info"]}
                                         completion:^(BOOL granted, NSError *error) {
                                             if(granted){
@@ -91,8 +73,12 @@
                                                 NSLog(@"Error: %@", error);
                                             }
                                         }];
-    
-    }
+
+}
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)upload
 {
     //social framework ios
@@ -117,17 +103,39 @@
                        filename:[pathURL absoluteString]];
     
     merequest.account = _facebookAccount;
-    
-    [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        NSString *meDataString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        if(error){
-            NSLog(@"Error %@", error.localizedDescription);
-        }else
-            NSLog(@"done uploadingvideo : %@", meDataString);
-        
-    }];
+    NSURLRequest *request = [merequest preparedURLRequest];
+    NSURLConnection *reConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+    [reConnect scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.uploadProgressBar setHidden:NO];
+    [reConnect start];
+}
+
+-(void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+//    NSLog(@"bytesWritten :%d",bytesWritten);
+//    NSLog(@"totalBytesWritten :%d",totalBytesWritten);
+//    NSLog(@"totalBytesExpectedToWrite :%d",totalBytesExpectedToWrite);
+//    [self.uploadProgressBar setHidden:NO];
+    float progress =(float) totalBytesWritten/totalBytesExpectedToWrite;
+    NSLog(@"progress :%f",progress);
+    self.uploadProgressBar.progress = progress;
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Video Upload Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [self.uploadProgressBar setHidden:NO];
+    NSLog(@"response: %@",response);
+    NSLog(@"response.expectedContentLength: %lld",response.expectedContentLength);
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"error: %@",error);
 
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 
 {
@@ -141,45 +149,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//upload button click
 - (IBAction)uploadStory:(UIButton *)sender {
-//    NSLog(@"FB isOpen in Upload : %@ ",FBSession.activeSession.isOpen?@"Yes":@"No");
-//    
-////       [FBSession.activeSession closeAndClearTokenInformation];
-//    if (FBSession.activeSession.isOpen) {
-//        BOOL fbCheck = [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObjects:@"publish_stream", nil] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-//            if (error) {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                                message:error.localizedDescription
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//                [alert show];
-//            }
-//            else
-//            {
-//                
-//                NSURL *pathURL = [[NSURL alloc]initFileURLWithPath:filepath isDirectory:NO];
-//                NSData *videoData = [NSData dataWithContentsOfFile:filepath];
-//                NSDictionary *videoObject = @{
-//                                              @"title":storyTitle.text,
-//                                              @"description": storySubTitle.text,
-//                                              [pathURL absoluteString]: videoData
-//                                              };
-//                FBRequest *uploadRequest = [FBRequest requestWithGraphPath:@"me/videos" parameters:videoObject HTTPMethod:@"POST"];
-//                [uploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//                    if (!error)
-//                        NSLog(@"Done: %@", result);
-//                    else
-//                        NSLog(@"Error: %@", error.localizedDescription);
-//                }];
-//
-//            }
-//            
-//        }];
-//        NSLog(@"FB Check : %@ ",fbCheck?@"Yes":@"No");
-//        
-//    }
+    [self.uploadProgressBar setHidden:NO];
     
     //video upload using social framework.
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
@@ -190,8 +162,9 @@
                                                 _facebookAccount = [accounts lastObject];
                                                 NSLog(@"Success, upload starting");
                                                 //upload video.
-                                                
+                                                [self.uploadProgressBar setHidden:NO];
                                                 [self upload];
+                                                
                                             }else{
                                                 // ouch
                                                 NSLog(@"Fail");

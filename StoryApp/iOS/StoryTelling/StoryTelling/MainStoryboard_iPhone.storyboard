@@ -130,7 +130,7 @@
                                     <action selector="uploadStory:" destination="toG-vX-nL3" eventType="touchUpInside" id="vu4-jN-xAe"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
                                 <rect key="frame" x="85" y="413" width="150" height="2"/>
                             </progressView>
                         </subviews>

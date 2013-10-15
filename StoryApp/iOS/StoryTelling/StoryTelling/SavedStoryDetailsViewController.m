@@ -78,8 +78,20 @@
 //passing mov file path
         facebookController.filepath = moviePath;
 NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
+        //read request
+        if([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook])
+        {
+            [self.navigationController pushViewController:facebookController animated:YES];
+        }
+        else{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Facebook Account" message:@"There are no Facebook accounts configured. You can add or create a Facebook account in Settings." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil ];
+            NSLog(@"Error : No account found, go to settings an set up an account");
+            [alert show];
+        }
+        //end read
 
-    [self.navigationController pushViewController:facebookController animated:YES];
+    
         
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];

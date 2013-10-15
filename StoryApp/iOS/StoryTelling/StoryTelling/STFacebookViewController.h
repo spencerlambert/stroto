@@ -16,7 +16,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 
-@interface STFacebookViewController : UIViewController<UITextFieldDelegate>
+@interface STFacebookViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *storyTitle;
 @property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
