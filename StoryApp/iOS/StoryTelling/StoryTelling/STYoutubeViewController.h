@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *subTitle;
 @property (strong, nonatomic) NSString *dbname;
 @property (strong, nonatomic) NSString *maintitle;
-- (IBAction)signIn:(id)sender;
+
 - (IBAction)upload:(id)sender;
+
 
 @end

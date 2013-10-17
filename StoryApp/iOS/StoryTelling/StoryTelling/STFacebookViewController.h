@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *filepath;
 @property (weak, nonatomic) NSString *storyTitleString;
 @property (weak, nonatomic) NSString *storySubTitleString;
+@property NSString *dbname;
 - (IBAction)uploadStory:(UIButton *)sender;
 
 @end

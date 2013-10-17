@@ -60,24 +60,25 @@
 }
 
 - (IBAction)UploadToYoutubeButtonClicked:(id)sender {
+   
 }
 
 - (IBAction)uploadToFacebookButtonClicked:(id)sender {
     NSFileManager *filemngr =[NSFileManager defaultManager];
-//NSLog(@"dbname: %@",dbname);
+    //NSLog(@"dbname: %@",dbname);
     NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
-//NSLog(@"movie path : %@",moviePath);
+    //NSLog(@"movie path : %@",moviePath);
     if([filemngr fileExistsAtPath:moviePath])
     {
         STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:Nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
-//setting the title and subtitle.
+        //setting the title and subtitle.
         facebookController.storyTitleString = navigationBarTitle.title;
         facebookController.storySubTitleString = @"by: ";
         NSLog(@"facebookController.storyTitleString : %@",facebookController.storyTitleString);
         NSLog(@"facebookController.storySubTitleString : %@",facebookController.storySubTitleString);
-//passing mov file path
+        //passing mov file path
         facebookController.filepath = moviePath;
-NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
+        NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
         //read request
         if([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook])
         {
@@ -90,14 +91,14 @@ NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
             [alert show];
         }
         //end read
-
-    
+        
+        
         
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
-
+    
 }
 
 - (IBAction)editButtonClicked:(id)sender {
@@ -107,7 +108,7 @@ NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
     [createStory setDbname:dbname];
     [createStory setIsEditStory:YES];
     [self.navigationController pushViewController:createStory animated:YES];
-
+    
     
 }
 
@@ -118,7 +119,7 @@ NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-//        NSLog(@"Clicked button index 0");
+        //        NSLog(@"Clicked button index 0");
         storyDB = [STStoryDB loadSTstoryDB:dbname];
         [storyDB deleteSTstoryDB];
         NSString *moviePath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -137,13 +138,14 @@ NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
         // Add the action here
     } else if(buttonIndex == 1)
     {
-//        NSLog(@"Clicked button index other than 0");
+        //        NSLog(@"Clicked button index other than 0");
         
         // Add another action here
     }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     if ([segue.identifier  isEqual: @"youtubeSegue"]) {
         STYoutubeViewController *controller = segue.destinationViewController;
         [controller setDbname:dbname];
