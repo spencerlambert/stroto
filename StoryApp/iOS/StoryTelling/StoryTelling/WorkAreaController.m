@@ -56,6 +56,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:YES];
     [self initWorkArea];
     [self setSelectedForegroundImage:nil];
     recordbtnClicked = NO;
@@ -350,7 +352,8 @@
     }else{
         [storyDB closeDB];
         [mydelegate finishedRecording];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController setNavigationBarHidden:NO];
     }
     
     
@@ -517,7 +520,8 @@
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
     [storyDB closeDB];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIView *) getLoaderView{

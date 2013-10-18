@@ -12,7 +12,7 @@
 #import "STStoryDB.h"
 #import "WorkAreaController.h"
 
-@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate>
+@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate,UINavigationBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *storyNameTextField;
 @property (strong, nonatomic) IBOutlet UIView *BackgroundImagesView;
@@ -29,7 +29,6 @@
 - (void) reloadBackgroundImagesView ;
 - (void) reloadForegroundImagesView ;
 -(IBAction)resigngTxtField;
-- (IBAction)backButtonClicked:(UIBarButtonItem *)sender;
 
 
 @end

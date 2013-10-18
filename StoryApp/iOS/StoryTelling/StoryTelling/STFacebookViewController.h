@@ -26,6 +26,8 @@
 @property (weak, nonatomic) NSString *storyTitleString;
 @property (weak, nonatomic) NSString *storySubTitleString;
 @property NSString *dbname;
+@property (weak, nonatomic) IBOutlet UIButton *greyBGButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 - (IBAction)uploadStory:(UIButton *)sender;
 
 @end

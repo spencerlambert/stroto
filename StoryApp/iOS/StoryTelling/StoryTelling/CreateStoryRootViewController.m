@@ -31,6 +31,7 @@
 @synthesize imagesDelegate;
 @synthesize isEditStory;
 @synthesize dbname;
+bool nextButtonClicked = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +46,7 @@
 {
     [super viewDidLoad];
     self.view.tag=20;
+    
     if (!isEditStory) {
         CGSize storySize = [AppDelegate deviceSize];
         newStory = [STStoryDB createNewSTstoryDB:storySize];
@@ -64,6 +66,17 @@
         imagesDelegate.foregroundImagesArray = [[NSMutableArray alloc]initWithArray:[newStory getForegroundImagesSorted]];
         [imagesDelegate setIsNewStory:@"false"];
     }
+}
+
+- (void) navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
+{
+    [self updateDB];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (BOOL) navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
+    return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -97,6 +110,17 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
+    if([segue.identifier isEqualToString:@"workarea"])
+    {
+        nextButtonClicked = YES;
+        [self updateDB];
+        WorkAreaController *workarea = segue.destinationViewController;
+        //    [workarea setBackgroundImages:backgroundImages];
+        //    [workarea setForegroundImages:foregroundImages];
+        [workarea setStoryname:[storyNameTextField text]];
+        [workarea setStoryDB:newStory];
+        [workarea setMydelegate:self];
+    }
 }
 
 - (void) reloadBackgroundImagesView{
@@ -155,7 +179,7 @@
     [self.storyNameTextField resignFirstResponder];
 }
 
-- (IBAction)backButtonClicked:(UIBarButtonItem *)sender {
+- (void)backButtonClicked {
     //    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
     //        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
     //    [alert show];
@@ -163,7 +187,7 @@
     //    }
     //    else{
     //        [newStory deleteSTstoryDB];
-    [self updateDB];
+//    [self updateDB];
     [self.navigationController popViewControllerAnimated:YES];
     //            }
 }
@@ -236,16 +260,17 @@
 }
 
 - (IBAction)nextButtonClicked:(id)sender{
-    [self updateDB];
-    WorkAreaController *workarea =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
-    //    [workarea setBackgroundImages:backgroundImages];
-    //    [workarea setForegroundImages:foregroundImages];
-    [workarea setStoryname:[storyNameTextField text]];
-    [workarea setStoryDB:newStory];
-    [workarea setMydelegate:self];
-    [self presentViewController:workarea animated:YES completion:nil];
+//    [self updateDB];
+//    WorkAreaController *workarea =
+//    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+//                               bundle:NULL] instantiateViewControllerWithIdentifier:@"workarea"];
+//    //    [workarea setBackgroundImages:backgroundImages];
+//    //    [workarea setForegroundImages:foregroundImages];
+//    [workarea setStoryname:[storyNameTextField text]];
+//    [workarea setStoryDB:newStory];
+//    [workarea setMydelegate:self];
+//    [self.navigationController pushViewController:workarea animated:YES];
+//    [self presentViewController:workarea animated:YES completion:nil];
     
 }
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -276,7 +301,7 @@
 
 -(void)finishedRecording{
     [newStory closeDB];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

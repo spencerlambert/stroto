@@ -30,6 +30,8 @@ NSURL *uploadLocationURL;
 }
 
 @synthesize mainTitle,subTitle;
+@synthesize greyBGButton;
+@synthesize spinningWheel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -116,7 +118,8 @@ NSURL *uploadLocationURL;
 }
 
 - (IBAction)upload:(id)sender {
-    
+    [self.greyBGButton setHidden:NO];
+    [self.spinningWheel startAnimating];
     UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
     UIImage *tempi = [self drawText:mainTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
     tempi = [self drawText:subTitle.text inImage:tempi atPoint:CGPointMake(0,350) withFontsize:50];
@@ -242,7 +245,9 @@ NSURL *uploadLocationURL;
                                     
                                     uploadLocationURL = nil;
                                 }];
-        
+        [self.greyBGButton setHidden:YES];
+        [self.spinningWheel stopAnimating];
+        [self.spinningWheel setHidden:YES];
         UIProgressView *progressIndicator = uploadProgressIndicator;
         _uploadFileTicket.uploadProgressBlock = ^(GTLServiceTicket *ticket,
                                                   unsigned long long numberOfBytesRead,
@@ -509,6 +514,7 @@ NSURL *uploadLocationURL;
          //                 NSString *sourcePath = outputFilePath;
          //              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
          //             slideleftview.playVideo.enabled = YES;
+         
          [self performSelectorOnMainThread:@selector(uploadVideoFile) withObject:self waitUntilDone:YES];
      }];
 }

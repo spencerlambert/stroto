@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [self.navigationController.navigationItem setHidesBackButton:YES];
+    [self.navigationController.navigationItem.backBarButtonItem setTitle:@"Back of st_root"];
 	// Do any additional setup after loading the view.
     self.view.tag=100;
     [self displaydbNames];

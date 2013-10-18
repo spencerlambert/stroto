@@ -27,7 +27,8 @@
 @synthesize filepath;
 @synthesize storySubTitleString;
 @synthesize storyTitleString;
-
+@synthesize spinningWheel;
+@synthesize greyBGButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -193,6 +194,9 @@
                                                 // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
                                                 
                                                 [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
+                                                [self.greyBGButton setHidden:NO];
+                                                [self.spinningWheel setHidden:NO];
+                                                [self.spinningWheel startAnimating];
                                                 [self mergeVideoRecording];
 
                                                 
@@ -396,7 +400,9 @@
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
     _assetExport.outputURL = outputFileUrl;
-    
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
+    [self.greyBGButton setHidden:YES];
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
          //                 NSString *sourcePath = outputFilePath;

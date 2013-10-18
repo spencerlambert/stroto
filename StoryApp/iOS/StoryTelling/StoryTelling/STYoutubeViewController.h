@@ -18,8 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *subTitle;
 @property (strong, nonatomic) NSString *dbname;
 @property (strong, nonatomic) NSString *maintitle;
-
+@property (weak, nonatomic) IBOutlet UIButton *greyBGButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 - (IBAction)upload:(id)sender;
-
-
 @end
