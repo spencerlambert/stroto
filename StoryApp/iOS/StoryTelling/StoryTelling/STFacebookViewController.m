@@ -193,10 +193,14 @@
                                                 
                                                 // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
                                                 
+<<<<<<< HEAD
                                                 [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
                                                 [self.greyBGButton setHidden:NO];
                                                 [self.spinningWheel setHidden:NO];
                                                 [self.spinningWheel startAnimating];
+=======
+                                                [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:5];
+>>>>>>> 1b02767f4780b6ac6cae08cdde6699e7d954ad59
                                                 [self mergeVideoRecording];
 
                                                 
@@ -395,7 +399,7 @@
     AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(3,1) error:nil];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(5,1) error:nil];
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";

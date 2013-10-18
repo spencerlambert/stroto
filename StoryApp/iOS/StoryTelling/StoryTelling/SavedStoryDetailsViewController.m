@@ -60,8 +60,7 @@
 }
 
 - (IBAction)UploadToYoutubeButtonClicked:(id)sender {
-   
-}
+  }
 
 - (IBAction)uploadToFacebookButtonClicked:(id)sender {
     NSFileManager *filemngr =[NSFileManager defaultManager];
@@ -151,5 +150,24 @@
         [controller setDbname:dbname];
         [controller setMaintitle:navigationBarTitle.title];
     }
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if([identifier isEqual:@"youtubeSegue"]){
+        NSFileManager *filemngr =[NSFileManager defaultManager];
+        NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
+        if([filemngr fileExistsAtPath:moviePath])
+        {
+            return YES;
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Video to Upload" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+            return NO;
+  
+        }
+    }
+    return YES;
 }
 @end

@@ -165,7 +165,7 @@
         <!--Youtube View Controller - Upload to Youtube-->
         <scene sceneID="ccd-Zh-4rb">
             <objects>
-                <viewController id="Qjk-F6-k1U" customClass="STYoutubeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="youtub" id="Qjk-F6-k1U" customClass="STYoutubeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2sr-rU-Wwf">
                         <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
