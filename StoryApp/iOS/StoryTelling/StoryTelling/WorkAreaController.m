@@ -68,8 +68,8 @@
     //if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
     //    [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(2*thumbHeight))];
     //} else {
-        [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(thumbHeight + thumbHeightBottom)-STATUS_BAR_HEIGHT)];
-        
+    [captureview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(thumbHeight + thumbHeightBottom)-STATUS_BAR_HEIGHT)];
+    
     //}
     imageselected = NO;
     pickedimages = [[NSMutableArray alloc]init];
@@ -86,6 +86,13 @@
     [backgroundimageview setUserInteractionEnabled:YES];
     [captureview addSubview:backgroundimageview];
     backgroundimageview.image = [UIImage imageNamed:@"RecordArea.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(closeBtn)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    button.frame = CGRectMake(294.0, 15.0, 15.0, 15.0);
+    [backgroundimageview addSubview:button];
     
     CGRect frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeightBottom-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeightBottom);
     UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
@@ -134,6 +141,9 @@
     
 }
 
+-(void)closeBtn{
+    backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -503,10 +513,10 @@
     
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-//         NSString *sourcePath = outputFilePath;
-//         UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
+         //         NSString *sourcePath = outputFilePath;
+         //         UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
          //             slideleftview.playVideo.enabled = YES;
-    }];
+     }];
     
     
     //    if ([[NSFileManager defaultManager] fileExistsAtPath:audio_inputFilePath])
