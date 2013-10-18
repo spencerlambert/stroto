@@ -27,6 +27,10 @@
                                     nil];
     
     NSError *error = nil;
+   
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+                        error:nil];
     
     audioRecorder = [[AVAudioRecorder alloc]
                      initWithURL:soundFileURL
@@ -47,8 +51,8 @@
     if (!audioRecorder.recording)
     {
         @try {
-            AVAudioSession *session = [AVAudioSession sharedInstance];
-            [session setCategory:AVAudioSessionCategoryRecord error:nil];
+//            AVAudioSession *session = [AVAudioSession sharedInstance];
+//            [session setCategory:AVAudioSessionCategoryRecord error:nil];
             [audioRecorder record];
             startedRecording = YES;
         }@catch (NSException *e) {
