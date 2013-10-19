@@ -193,14 +193,10 @@
                                                 
                                                 // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
                                                 
-<<<<<<< HEAD
                                                 [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
                                                 [self.greyBGButton setHidden:NO];
                                                 [self.spinningWheel setHidden:NO];
                                                 [self.spinningWheel startAnimating];
-=======
-                                                [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:5];
->>>>>>> 1b02767f4780b6ac6cae08cdde6699e7d954ad59
                                                 [self mergeVideoRecording];
 
                                                 
