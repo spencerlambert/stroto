@@ -37,7 +37,8 @@
 {
     [super viewDidLoad];
 //    [self.navigationController.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationItem.backBarButtonItem setTitle:@"Back of st_root"];
+// Line below messes up iOS 7
+//    [self.navigationController.navigationItem.backBarButtonItem setTitle:@"Back of st_root"];
 	// Do any additional setup after loading the view.
     self.view.tag=100;
     [self displaydbNames];
