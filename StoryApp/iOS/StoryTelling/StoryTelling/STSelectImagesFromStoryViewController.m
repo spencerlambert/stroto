@@ -59,8 +59,7 @@
     else{
         NSLog(@"DB Successfully Initialized with code : %d", code);
         [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
-        [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
-    }
+        }
 
 }
 -(void)loadBGImages
@@ -91,13 +90,7 @@
                             const void *ptr = sqlite3_column_blob(statement, 0);
                             int size = sqlite3_column_bytes(statement, 0);
                             NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
-                //from db
-//                NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(statement, 0)];
-                //base64_encode local test
-                //            NSError * error;
-                //            NSString *dataAsString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://192.168.1.205/sajin/test2/iphone/connection.php"] encoding:NSUTF8StringEncoding error:&error];
-//                NSData *data = [NSData dataFromBase64String:dataAsString];
-                UIImage *image = [UIImage imageWithData:data];
+                                UIImage *image = [UIImage imageWithData:data];
                 STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
                 //showing installed story pack's thubnail images
                 UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
@@ -158,7 +151,7 @@
             NSLog(@"Default...");
             break;
     }
-//    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
+    [self performSelectorInBackground:@selector(loadFGImages) withObject:nil];
 }
 
 -(void)loadFGImages
@@ -190,13 +183,7 @@
                             const void *ptr = sqlite3_column_blob(statement, 0);
                             int size = sqlite3_column_bytes(statement, 0);
                             NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
-                //from db
-//                NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(statement, 0)];
-                //base64_encode local test
-                //            NSError * error;
-                //            NSString *dataAsString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://192.168.1.205/sajin/test2/iphone/connection.php"] encoding:NSUTF8StringEncoding error:&error];
-//                NSData *data = [NSData dataFromBase64String:dataAsString];
-                UIImage *image = [UIImage imageWithData:data];
+                                UIImage *image = [UIImage imageWithData:data];
                 STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
                 //showing installed story pack's thubnail images
                 UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];

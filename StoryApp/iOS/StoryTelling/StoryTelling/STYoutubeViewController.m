@@ -117,6 +117,7 @@ NSURL *uploadLocationURL;
 
 - (IBAction)upload:(id)sender {
     [self.greyBGButton setHidden:NO];
+    [self.spinningWheel setHidden:NO];
     [self.spinningWheel startAnimating];
     UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
     UIImage *tempi = [self drawText:mainTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
@@ -133,8 +134,6 @@ NSURL *uploadLocationURL;
     
     [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:5];
     [self mergeVideoRecording];
-    
-    
 }
 
 
@@ -243,9 +242,7 @@ NSURL *uploadLocationURL;
                                     
                                     uploadLocationURL = nil;
                                 }];
-        [self.greyBGButton setHidden:YES];
-        [self.spinningWheel stopAnimating];
-        [self.spinningWheel setHidden:YES];
+        [self performSelectorInBackground:@selector(stopSpin) withObject:nil];
         UIProgressView *progressIndicator = uploadProgressIndicator;
         _uploadFileTicket.uploadProgressBlock = ^(GTLServiceTicket *ticket,
                                                   unsigned long long numberOfBytesRead,
@@ -286,6 +283,13 @@ NSURL *uploadLocationURL;
 //    return result;
 //}
 
+-(void)stopSpin
+{
+    [self.greyBGButton setHidden:YES];
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
+    [uploadProgressIndicator setHidden:NO];
+}
 - (void)displayAlert:(NSString *)title format:(NSString *)format, ... {
     NSString *result = format;
     if (format) {

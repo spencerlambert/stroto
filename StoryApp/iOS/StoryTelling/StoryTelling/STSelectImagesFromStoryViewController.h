@@ -23,6 +23,5 @@
 -(void)initializeDB;
 -(void)loadFGImages;
 -(void)loadBGImages;
-
 -(void)doneButtonPressed;
 @end

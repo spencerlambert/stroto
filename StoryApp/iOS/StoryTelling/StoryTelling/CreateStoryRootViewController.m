@@ -78,7 +78,13 @@ bool nextButtonClicked = NO;
 - (BOOL) navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
     return YES;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if([self isMovingFromParentViewController])
+    {
+        [self updateDB];
+    }
+}
 - (void)viewWillAppear:(BOOL)animated{
     
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
@@ -187,7 +193,7 @@ bool nextButtonClicked = NO;
     //    }
     //    else{
     //        [newStory deleteSTstoryDB];
-//    [self updateDB];
+    [self updateDB];
     [self.navigationController popViewControllerAnimated:YES];
     //            }
 }

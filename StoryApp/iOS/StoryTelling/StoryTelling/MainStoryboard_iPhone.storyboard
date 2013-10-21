@@ -41,11 +41,11 @@
                                         <rect key="frame" x="0.0" y="22" width="326" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d9V-Wf-YwN" id="4f5-15-9XS">
-                                            <rect key="frame" x="0.0" y="0.0" width="259" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpF-T4-esw">
-                                                    <rect key="frame" x="15" y="0.0" width="244" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="273" height="43"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,7 +141,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="y0o-Fe-JlL">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="y0o-Fe-JlL">
                                 <rect key="frame" x="142" y="221" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -217,7 +217,7 @@
                                     <action selector="upload:" destination="Qjk-F6-k1U" eventType="touchUpInside" id="Pic-G0-BaT"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="tCM-Lh-WKS">
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="tCM-Lh-WKS">
                                 <rect key="frame" x="85" y="377" width="150" height="9"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
@@ -229,7 +229,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="e0r-T7-ztf">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="e0r-T7-ztf">
                                 <rect key="frame" x="142" y="199" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -1395,28 +1395,8 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
         <image name="color_trans.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

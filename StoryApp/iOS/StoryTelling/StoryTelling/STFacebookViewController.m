@@ -38,13 +38,6 @@
     }
     return self;
 }
--(void)viewWillAppear:(BOOL)animated
-{
-//    NSLog(@"FB isOpen : %@ ",FBSession.activeSession.isOpen?@"Yes":@"No");
-    
-}
-
-
 
 - (void)viewDidLoad
 {
@@ -87,7 +80,6 @@
 {
     //social framework ios
     NSURL *videourl = [NSURL URLWithString:@"https://graph.facebook.com/me/videos"];
-    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/upload_dir"];
@@ -116,7 +108,6 @@
     NSURLRequest *request = [merequest preparedURLRequest];
     NSURLConnection *reConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [reConnect scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    [self.uploadProgressBar setHidden:NO];
     [reConnect start];
 }
 
@@ -125,7 +116,6 @@
 //    NSLog(@"bytesWritten :%d",bytesWritten);
 //    NSLog(@"totalBytesWritten :%d",totalBytesWritten);
 //    NSLog(@"totalBytesExpectedToWrite :%d",totalBytesExpectedToWrite);
-//    [self.uploadProgressBar setHidden:NO];
     float progress =(float) totalBytesWritten/totalBytesExpectedToWrite;
     NSLog(@"progress :%f",progress);
     self.uploadProgressBar.progress = progress;
@@ -142,7 +132,6 @@
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [self.uploadProgressBar setHidden:NO];
     NSLog(@"response: %@",response);
     NSLog(@"response.expectedContentLength: %lld",response.expectedContentLength);
 }
@@ -167,8 +156,6 @@
 }
 //upload button click
 - (IBAction)uploadStory:(UIButton *)sender {
-    [self.uploadProgressBar setHidden:NO];
-    
     //video upload using social framework.
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
                                            options:@{ACFacebookAppIdKey:ST_FACEBOOK_APP_ID, ACFacebookPermissionsKey: @[@"publish_stream"], ACFacebookAudienceKey: ACFacebookAudienceFriends}
@@ -177,9 +164,7 @@
                                                 NSArray *accounts = [_accountStore accountsWithAccountType:facebookTypeAccount];
                                                 _facebookAccount = [accounts lastObject];
                                                 NSLog(@"Success, upload starting");
-                                                //upload video.
-                                                [self.uploadProgressBar setHidden:NO];
-//                                                [self upload];
+                                                //append title to video.
                                                 UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
                                                 UIImage *tempi = [self drawText:storyTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
                                                 tempi = [self drawText:storySubTitle.text inImage:tempi atPoint:CGPointMake(0,350) withFontsize:50];
@@ -192,11 +177,8 @@
                                                 NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
                                                 
                                                 // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
-                                                
+                                                [self performSelectorInBackground:@selector(showSpin) withObject:Nil];
                                                 [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
-                                                [self.greyBGButton setHidden:NO];
-                                                [self.spinningWheel setHidden:NO];
-                                                [self.spinningWheel startAnimating];
                                                 [self mergeVideoRecording];
 
                                                 
@@ -209,7 +191,12 @@
 
     
 }
-
+-(void)showSpin
+{
+    [self.greyBGButton setHidden:NO];
+    [self.spinningWheel setHidden:NO];
+    [self.spinningWheel startAnimating];
+}
 -(UIImage*) drawText:(NSString*) text
              inImage:(UIImage*)  image
              atPoint:(CGPoint)   point
@@ -400,18 +387,22 @@
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
     _assetExport.outputURL = outputFileUrl;
-    [self.spinningWheel stopAnimating];
-    [self.spinningWheel setHidden:YES];
-    [self.greyBGButton setHidden:YES];
-    [_assetExport exportAsynchronouslyWithCompletionHandler:
+        [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
          //                 NSString *sourcePath = outputFilePath;
          //              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
          //             slideleftview.playVideo.enabled = YES;
+         [self performSelectorInBackground:@selector(stopSpin) withObject:Nil];
          [self performSelectorOnMainThread:@selector(upload) withObject:self waitUntilDone:YES];
      }];
 }
 
-
+-(void)stopSpin
+{
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
+    [self.greyBGButton setHidden:YES];
+    [self.uploadProgressBar setHidden:NO];
+}
 
 @end
