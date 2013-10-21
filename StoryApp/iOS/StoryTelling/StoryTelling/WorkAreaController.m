@@ -35,6 +35,8 @@
 @synthesize selectedForegroundImage;
 @synthesize storyDB;
 @synthesize mydelegate;
+UIButton *button ;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -88,12 +90,13 @@
     [backgroundimageview setUserInteractionEnabled:YES];
     [captureview addSubview:backgroundimageview];
     backgroundimageview.image = [UIImage imageNamed:@"RecordArea.png"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
                action:@selector(closeBtn)
      forControlEvents:UIControlEventTouchDown];
     [button setTitle:@"" forState:UIControlStateNormal];
-    button.frame = CGRectMake(294.0, 15.0, 15.0, 15.0);
+    button.frame = CGRectMake(294.0, 15.0, 20.0, 20.0);
+    [button setBackgroundImage:[UIImage imageNamed:@"color_trans.png" ]forState:UIControlStateNormal];
     [backgroundimageview addSubview:button];
     
     CGRect frame = CGRectMake(0, CGRectGetMaxY(capturebounds)-thumbHeightBottom-STATUS_BAR_HEIGHT, capturebounds.size.width, thumbHeightBottom);
@@ -145,6 +148,7 @@
 
 -(void)closeBtn{
     backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
+    [button setEnabled:NO];
 }
 - (void)didReceiveMemoryWarning
 {

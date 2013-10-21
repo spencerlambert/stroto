@@ -54,7 +54,6 @@
 		DB28D7171742E1460071B5C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB28D7151742E1460071B5C2 /* InfoPlist.strings */; };
 		DB28D7191742E1460071B5C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7181742E1460071B5C2 /* main.m */; };
 		DB28D71D1742E1460071B5C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D71C1742E1460071B5C2 /* AppDelegate.m */; };
-		DB28D7291742E1460071B5C2 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */; };
 		DB28D7341742E1460071B5C2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D7331742E1460071B5C2 /* SenTestingKit.framework */; };
 		DB28D7351742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
 		DB28D7361742E1460071B5C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70E1742E1460071B5C2 /* Foundation.framework */; };
@@ -108,6 +107,7 @@
 		DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7D17CF2ED20056299D /* ModifierButtonRotateRight.png */; };
 		DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */; };
 		DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */; };
+		DB9A00651815198900244040 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
 		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
@@ -257,7 +257,6 @@
 		DB28D71E1742E1460071B5C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DB28D7201742E1460071B5C2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DB28D7221742E1460071B5C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		DB28D7281742E1460071B5C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DB28D7321742E1460071B5C2 /* StoryTellingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryTellingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB28D7331742E1460071B5C2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DB28D73B1742E1460071B5C2 /* StoryTellingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryTellingTests-Info.plist"; sourceTree = "<group>"; };
@@ -313,6 +312,7 @@
 		DB989C7D17CF2ED20056299D /* ModifierButtonRotateRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonRotateRight.png; sourceTree = "<group>"; };
 		DB989C7E17CF2ED20056299D /* ModifierButtonZoomLarger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonZoomLarger.png; sourceTree = "<group>"; };
 		DB989C7F17CF2ED20056299D /* ModifierButtonZoomSmaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ModifierButtonZoomSmaller.png; sourceTree = "<group>"; };
+		DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9D34F517CD98CC00845670 /* STStageExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporter.h; sourceTree = "<group>"; };
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
@@ -554,6 +554,7 @@
 		DB28D7121742E1460071B5C2 /* StoryTelling */ = {
 			isa = PBXGroup;
 			children = (
+				DB9A006118150FAF00244040 /* iPad */,
 				4D2A0A631780B3D100C78EE0 /* StageItems */,
 				4D2A0A5C1780B22300C78EE0 /* Modifiers */,
 				4D2A0A55177F8C2B00C78EE0 /* StoryDB */,
@@ -563,8 +564,8 @@
 				DB28D71C1742E1460071B5C2 /* AppDelegate.m */,
 				DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */,
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
-				DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */,
 				DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */,
+				DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */,
 				DB4DF524178D6C7F00E90492 /* STCropBackgroundViewController.h */,
 				DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */,
 				DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */,
@@ -655,6 +656,13 @@
 				DB93D7051774E36000437F40 /* TopBar.png */,
 			);
 			name = "WorArea Images";
+			sourceTree = "<group>";
+		};
+		DB9A006118150FAF00244040 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 		DB9E9E861764A7C300788373 /* Create New Story */ = {
@@ -875,11 +883,11 @@
 				DBFA4AAE174D6758001DFCDC /* AddButton.png in Resources */,
 				DB28D7171742E1460071B5C2 /* InfoPlist.strings in Resources */,
 				4D8127091801E7D6001737C2 /* TitlePage.png in Resources */,
-				DB28D7291742E1460071B5C2 /* MainStoryboard_iPad.storyboard in Resources */,
 				DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */,
 				DBFA4ABE174D7EA3001DFCDC /* StartRecording.png in Resources */,
 				DBFA4AC1174D7F1C001DFCDC /* StartRecordingButton.png in Resources */,
 				DB9E9E9D1764BA9F00788373 /* Overlay.png in Resources */,
+				DB9A00651815198900244040 /* MainStoryboard_iPad.storyboard in Resources */,
 				DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */,
 				DB8ADED21770D97C0094BB3A /* 57.png in Resources */,
 				DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */,
@@ -1071,14 +1079,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		DB28D7271742E1460071B5C2 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB28D7281742E1460071B5C2 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		DB28D73C1742E1460071B5C2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1164,11 +1164,11 @@
 					"\"$(SRCROOT)/Source/HTTPFetcher\"",
 				);
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1195,12 +1195,12 @@
 					"\"$(SRCROOT)/Source/HTTPFetcher\"",
 				);
 				INFOPLIST_FILE = "StoryTelling/StoryTelling-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
