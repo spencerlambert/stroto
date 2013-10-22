@@ -81,7 +81,7 @@
             <objects>
                 <viewController storyboardIdentifier="toFacebook" id="toG-vX-nL3" customClass="STFacebookViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LCf-xW-G7P">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_red.png" id="mjt-YT-vNS">
@@ -89,14 +89,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nGt-LL-HEI">
-                                <rect key="frame" x="20" y="21" width="125" height="21"/>
+                                <rect key="frame" x="20" y="20" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="h8P-6O-16I">
-                                <rect key="frame" x="20" y="46" width="280" height="30"/>
+                                <rect key="frame" x="20" y="43" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -105,14 +105,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gRV-49-CTc">
-                                <rect key="frame" x="20" y="113" width="125" height="21"/>
+                                <rect key="frame" x="20" y="107" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="riV-YP-ad6">
-                                <rect key="frame" x="20" y="137" width="280" height="30"/>
+                                <rect key="frame" x="20" y="129" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -121,9 +121,9 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cMh-td-BVO">
-                                <rect key="frame" x="52" y="314" width="216" height="44"/>
+                                <rect key="frame" x="52" y="296" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Upload" backgroundImage="color_trans.png">
+                                <state key="normal" title="Upload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
-                                <rect key="frame" x="85" y="391" width="150" height="9"/>
+                                <rect key="frame" x="85" y="370" width="150" height="9"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tem-Lm-KwG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="549"/>
@@ -141,6 +141,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="NZc-eH-zYH">
+                                <rect key="frame" x="45" y="189" width="230" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="y0o-Fe-JlL">
                                 <rect key="frame" x="142" y="221" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -149,6 +153,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Upload To Facebook" id="neC-ik-tbD"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="greyBGButton" destination="Tem-Lm-KwG" id="SOk-mJ-u1s"/>
                         <outlet property="spinningWheel" destination="y0o-Fe-JlL" id="lxa-9P-Fuv"/>
@@ -174,15 +180,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="SYK-jB-Yjf">
+                                <rect key="frame" x="45" y="184" width="230" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ehw-AG-3Kp">
-                                <rect key="frame" x="20" y="135" width="125" height="21"/>
+                                <rect key="frame" x="20" y="103" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="5x9-wn-yww">
-                                <rect key="frame" x="20" y="69" width="280" height="30"/>
+                                <rect key="frame" x="20" y="41" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -191,14 +201,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GxV-BY-cjZ">
-                                <rect key="frame" x="20" y="20" width="125" height="21"/>
+                                <rect key="frame" x="20" y="19" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="xgN-nG-rB4">
-                                <rect key="frame" x="20" y="183" width="280" height="30"/>
+                                <rect key="frame" x="20" y="125" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -207,7 +217,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1k1-yv-Nsp">
-                                <rect key="frame" x="102" y="306" width="116" height="44"/>
+                                <rect key="frame" x="52" y="306" width="216" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title=" Upload">
@@ -485,11 +495,11 @@
             <objects>
                 <viewController storyboardIdentifier="installedStoryPacks" id="E9O-0c-x4e" customClass="STInstalledStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sER-aM-rye">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="BlJ-mG-lRz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4WR-WA-23m">
@@ -534,6 +544,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dMz-b0-0r8"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundImagesView" destination="cMZ-56-Rvl" id="Xy4-k1-VKc"/>
                         <outlet property="foregroundImagesView" destination="zrA-RH-Hho" id="iMU-KD-pUE"/>
@@ -862,11 +873,11 @@
             <objects>
                 <viewController storyboardIdentifier="imagesFromStory" id="Sax-n2-hzt" customClass="STSelectImagesFromStoryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ilB-8K-oAN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="xGz-OQ-6yO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wXU-O8-Rwv">
@@ -911,6 +922,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Select Images To Use" id="BME-qt-Mbn"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundImagesView" destination="Lc2-I2-E0S" id="UNJ-L2-cRl"/>
                         <outlet property="foregroundImagesView" destination="wzC-Vj-mrO" id="FtG-Lb-ATR"/>
@@ -1014,11 +1026,11 @@
             <objects>
                 <viewController storyboardIdentifier="paidStoryPacks" title="Story Packs" id="BTs-AR-N9X" customClass="STPaidStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcI-OD-CM5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="9XD-C7-xOC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkP-Ob-lZa">
@@ -1071,7 +1083,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lol-yJ-qdX">
-                                <rect key="frame" x="0.0" y="-1" width="320" height="481"/>
+                                <rect key="frame" x="0.0" y="-1" width="320" height="437"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1086,7 +1098,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDo-hG-k1V">
-                                <rect key="frame" x="-1" y="-1" width="322" height="481"/>
+                                <rect key="frame" x="-1" y="-1" width="322" height="437"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1129,6 +1141,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="BGHideDownload" destination="jDo-hG-k1V" id="ydq-Ti-wyG"/>
                         <outlet property="backgroundButton" destination="Lol-yJ-qdX" id="bpV-2r-pZK"/>
@@ -1236,11 +1249,11 @@
             <objects>
                 <viewController storyboardIdentifier="freeStoryPacks" title="Story Packs" id="RRX-6d-vFv" customClass="STFreeStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RmS-dL-PUv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="alX-ku-A83">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AkV-RR-Hph">
@@ -1292,7 +1305,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bo1-DO-uBl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="479"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="435"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1307,7 +1320,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MSh-Y3-3cW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1350,6 +1363,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="BGHideDownload" destination="MSh-Y3-3cW" id="66V-fk-QQr"/>
                         <outlet property="backgroundButton" destination="bo1-DO-uBl" id="Ofc-YL-ksQ"/>
@@ -1395,8 +1409,29 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
