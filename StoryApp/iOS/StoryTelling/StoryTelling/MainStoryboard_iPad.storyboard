@@ -81,22 +81,59 @@
             <objects>
                 <viewController storyboardIdentifier="toFacebook" id="toG-vX-nL3" customClass="STFacebookViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LCf-xW-G7P">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tem-Lm-KwG">
+                                <rect key="frame" x="-7" y="-12" width="775" height="1005"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7774832589285714" green="0.7774832589285714" blue="0.7774832589285714" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_red.png" id="mjt-YT-vNS">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <rect key="frame" x="384" y="-1" width="384" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="XET-A3-DSe">
+                                <rect key="frame" x="0.0" y="936" width="768" height="44"/>
+                                <items>
+                                    <navigationItem id="bp0-Di-Jza">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dd9-WL-xzc">
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Create New Story">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b3D-un-1Ej">
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="936"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="a7Z-8y-OrH">
+                                <rect key="frame" x="414" y="150" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="vOD-Fl-Ah6">
+                                <rect key="frame" x="416" y="306" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nGt-LL-HEI">
-                                <rect key="frame" x="66" y="47" width="125" height="21"/>
+                                <rect key="frame" x="434" y="41" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="h8P-6O-16I">
-                                <rect key="frame" x="244" y="104" width="280" height="30"/>
+                                <rect key="frame" x="434" y="78" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -105,14 +142,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gRV-49-CTc">
-                                <rect key="frame" x="66" y="253" width="125" height="21"/>
+                                <rect key="frame" x="434" y="188" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="riV-YP-ad6">
-                                <rect key="frame" x="244" y="310" width="280" height="30"/>
+                                <rect key="frame" x="434" y="229" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -121,9 +158,9 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cMh-td-BVO">
-                                <rect key="frame" x="276" y="498" width="216" height="44"/>
+                                <rect key="frame" x="466" y="371" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Upload" backgroundImage="color_trans.png">
+                                <state key="normal" title="Upload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -131,16 +168,8 @@
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
-                                <rect key="frame" x="309" y="600" width="150" height="9"/>
+                                <rect key="frame" x="499" y="465" width="150" height="9"/>
                             </progressView>
-                            <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tem-Lm-KwG">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1005"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.7774832589285714" green="0.7774832589285714" blue="0.7774832589285714" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="y0o-Fe-JlL">
                                 <rect key="frame" x="366" y="439" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -149,6 +178,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Upload To Facebook" id="neC-ik-tbD"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="greyBGButton" destination="Tem-Lm-KwG" id="SOk-mJ-u1s"/>
                         <outlet property="spinningWheel" destination="y0o-Fe-JlL" id="lxa-9P-Fuv"/>
@@ -171,18 +202,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_red.png" id="8bH-Mw-4w2">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <rect key="frame" x="384" y="0.0" width="384" height="980"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="Iya-p5-xzO">
+                                <rect key="frame" x="0.0" y="936" width="768" height="44"/>
+                                <items>
+                                    <navigationItem id="oM9-6X-EKV">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G2R-Ac-M5q">
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Create New Story">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="DrP-ek-rca">
+                                <rect key="frame" x="423" y="186" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="88x-Iv-sqS">
+                                <rect key="frame" x="423" y="402" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ehw-AG-3Kp">
-                                <rect key="frame" x="66" y="312" width="125" height="21"/>
+                                <rect key="frame" x="443" y="243" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="5x9-wn-yww">
-                                <rect key="frame" x="244" y="161" width="280" height="30"/>
+                                <rect key="frame" x="443" y="99" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -191,14 +246,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GxV-BY-cjZ">
-                                <rect key="frame" x="66" y="46" width="125" height="21"/>
+                                <rect key="frame" x="443" y="47" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="xgN-nG-rB4">
-                                <rect key="frame" x="244" y="428" width="280" height="30"/>
+                                <rect key="frame" x="443" y="300" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -207,7 +262,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1k1-yv-Nsp">
-                                <rect key="frame" x="321" y="609" width="116" height="44"/>
+                                <rect key="frame" x="475" y="457" width="216" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title=" Upload">
@@ -218,7 +273,7 @@
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="tCM-Lh-WKS">
-                                <rect key="frame" x="304" y="723" width="150" height="9"/>
+                                <rect key="frame" x="508" y="571" width="150" height="9"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.44999999999999984" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vqc-bD-EEE">
@@ -233,6 +288,11 @@
                                 <rect key="frame" x="366" y="509" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wfc-np-JSL">
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="936"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -258,11 +318,27 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="h4r-tt-Ooa">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <rect key="frame" x="386" y="0.0" width="384" height="980"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="347-Je-JZa">
+                                <rect key="frame" x="0.0" y="936" width="768" height="44"/>
+                                <items>
+                                    <navigationItem id="lTk-AN-6Gp">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gmZ-jq-FkN">
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Create New Story">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NIW-TC-yqw">
-                                <rect key="frame" x="276" y="135" width="216" height="44"/>
+                                <rect key="frame" x="472" y="135" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -272,7 +348,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sYS-e4-Wy1">
-                                <rect key="frame" x="276" y="288" width="216" height="44"/>
+                                <rect key="frame" x="472" y="288" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Upload To Youtube">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,7 +359,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3b-Qu-ssD">
-                                <rect key="frame" x="276" y="463" width="216" height="44"/>
+                                <rect key="frame" x="472" y="463" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Upload To Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,7 +369,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1FT-fB-7ON">
-                                <rect key="frame" x="276" y="642" width="216" height="44"/>
+                                <rect key="frame" x="472" y="642" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Edit / Record More">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -303,7 +379,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbt-i4-7j8">
-                                <rect key="frame" x="276" y="801" width="216" height="44"/>
+                                <rect key="frame" x="472" y="801" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -312,6 +388,11 @@
                                     <action selector="deleteButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="ahz-h8-QVg"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Lrg-5L-Mxl">
+                                <rect key="frame" x="1" y="0.0" width="384" height="936"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -338,15 +419,69 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hfH-kH-NbK">
+                                <rect key="frame" x="538" y="345" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add From Camera">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="X4U-VP-L83"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g5L-Ep-jFg">
+                                <rect key="frame" x="538" y="702" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add From Camera">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="Gnt-5S-LSS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wzz-YI-7Fo">
+                                <rect key="frame" x="288" y="345" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add From Gallery">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="hKj-Du-k2A"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xKh-ap-gbq">
+                                <rect key="frame" x="288" y="702" width="205" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add From Gallery">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="wxK-8m-VeG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KkU-IV-PhQ">
+                                <rect key="frame" x="416" y="224" width="280" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Copy Images From A Story">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ghv-mn-Uta">
+                                <rect key="frame" x="85" y="224" width="280" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add Story Pack Images">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Story Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aR0-y1-nYE">
-                                <rect key="frame" x="66" y="44" width="125" height="21"/>
+                                <rect key="frame" x="84" y="44" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="ZVj-Mb-whb">
-                                <rect key="frame" x="244" y="98" width="280" height="30"/>
+                                <rect key="frame" x="84" y="94" width="368" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -355,57 +490,39 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" id="YGX-7L-MUU">
-                                <rect key="frame" x="224" y="440" width="320" height="84"/>
+                                <rect key="frame" x="0.0" y="447" width="768" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M1r-Ny-DAt">
-                                <rect key="frame" x="84" y="293" width="180" height="21"/>
+                                <rect key="frame" x="84" y="356" width="180" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="CFL-YZ-i8j">
-                                <rect key="frame" x="224" y="852" width="320" height="84"/>
+                                <rect key="frame" x="0.0" y="762" width="768" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Foreground Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NXW-Km-qBd">
-                                <rect key="frame" x="76" y="667" width="161" height="43"/>
+                                <rect key="frame" x="84" y="702" width="161" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jVU-wB-zN9">
-                                <rect key="frame" x="660" y="280" width="54" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="0rW-9T-a0q" kind="push" id="myE-ei-6bO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RHe-Eo-Iox">
-                                <rect key="frame" x="660" y="667" width="54" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="0NS-7w-Chq" kind="push" id="29P-fk-Z7R"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="pF4-Mz-fIF">
-                                <rect key="frame" x="269" y="245" width="230" height="1"/>
+                                <rect key="frame" x="104" y="309" width="560" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="L9O-9k-IRl">
+                                <rect key="frame" x="104" y="184" width="560" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="i8e-Ut-DLs">
-                                <rect key="frame" x="269" y="621" width="230" height="1"/>
+                                <rect key="frame" x="104" y="673" width="560" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -485,11 +602,11 @@
             <objects>
                 <viewController storyboardIdentifier="installedStoryPacks" id="E9O-0c-x4e" customClass="STInstalledStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sER-aM-rye">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="BlJ-mG-lRz">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4WR-WA-23m">
@@ -534,6 +651,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dMz-b0-0r8"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundImagesView" destination="cMZ-56-Rvl" id="Xy4-k1-VKc"/>
                         <outlet property="foregroundImagesView" destination="zrA-RH-Hho" id="iMU-KD-pUE"/>
@@ -601,6 +719,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Foreground" id="Fsn-r5-ER1"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngC-Sj-Ipx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -862,11 +982,11 @@
             <objects>
                 <viewController storyboardIdentifier="imagesFromStory" id="Sax-n2-hzt" customClass="STSelectImagesFromStoryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ilB-8K-oAN">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="xGz-OQ-6yO">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wXU-O8-Rwv">
@@ -911,6 +1031,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Select Images To Use" id="BME-qt-Mbn"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundImagesView" destination="Lc2-I2-E0S" id="UNJ-L2-cRl"/>
                         <outlet property="foregroundImagesView" destination="wzC-Vj-mrO" id="FtG-Lb-ATR"/>
@@ -979,6 +1100,8 @@
                     <navigationItem key="navigationItem" title="Add Background" id="7rl-ui-Y7k">
                         <barButtonItem key="backBarButtonItem" title="Back" id="0by-yY-Glv"/>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaC-6D-uuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -993,7 +1116,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
-                                <rect key="frame" x="64" y="137" width="640" height="640"/>
+                                <rect key="frame" x="0.0" y="105" width="768" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.48010468482971191" green="0.0" blue="0.069121681153774261" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -1015,11 +1138,11 @@
             <objects>
                 <viewController storyboardIdentifier="paidStoryPacks" title="Story Packs" id="BTs-AR-N9X" customClass="STPaidStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcI-OD-CM5">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="9XD-C7-xOC">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkP-Ob-lZa">
@@ -1072,7 +1195,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lol-yJ-qdX">
-                                <rect key="frame" x="0.0" y="-1" width="768" height="1025"/>
+                                <rect key="frame" x="0.0" y="-1" width="768" height="981"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1087,7 +1210,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDo-hG-k1V">
-                                <rect key="frame" x="-1" y="-1" width="770" height="1025"/>
+                                <rect key="frame" x="-1" y="-1" width="770" height="981"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1130,6 +1253,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="BGHideDownload" destination="jDo-hG-k1V" id="ydq-Ti-wyG"/>
                         <outlet property="backgroundButton" destination="Lol-yJ-qdX" id="bpV-2r-pZK"/>
@@ -1220,6 +1344,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="freeStoryPacksView" destination="Rud-1v-8Py" id="1J7-ke-j9w"/>
                         <outlet property="installedStoryPacksView" destination="6lX-Qy-EHx" id="TPR-5n-ZtP"/>
@@ -1237,11 +1363,11 @@
             <objects>
                 <viewController storyboardIdentifier="freeStoryPacks" title="Story Packs" id="RRX-6d-vFv" customClass="STFreeStoryPacksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RmS-dL-PUv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="alX-ku-A83">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AkV-RR-Hph">
@@ -1293,7 +1419,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bo1-DO-uBl">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1023"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="979"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1308,7 +1434,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MSh-Y3-3cW">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1351,6 +1477,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="BGHideDownload" destination="MSh-Y3-3cW" id="66V-fk-QQr"/>
                         <outlet property="backgroundButton" destination="bo1-DO-uBl" id="Ofc-YL-ksQ"/>
@@ -1396,8 +1523,32 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_trans.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1406,7 +1557,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PkR-As-eGd"/>
-        <segue reference="9Ng-ir-cti"/>
+        <segue reference="gZa-nL-O2U"/>
+        <segue reference="fUv-Rg-gK0"/>
     </inferredMetricsTieBreakers>
 </document>
