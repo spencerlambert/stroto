@@ -131,7 +131,6 @@ NSURL *uploadLocationURL;
     NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
     
     // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
-    
     [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:5];
     [self mergeVideoRecording];
 }
@@ -383,10 +382,10 @@ NSURL *uploadLocationURL;
     
     //convert uiimage to CGImage.
     
-    
     //Write samples:
     for (int i=0; i<duration ; i++) {
         buffer = [self pixelBufferFromCGImage:[image CGImage]];
+        while(! adaptor.assetWriterInput.readyForMoreMediaData );
         [adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMakeWithSeconds(i,1)];
     }
     
