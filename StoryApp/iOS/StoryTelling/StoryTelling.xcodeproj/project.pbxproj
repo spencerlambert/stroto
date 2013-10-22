@@ -38,6 +38,7 @@
 		4D908E6F17FA3A7D00B309FA /* color_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6B17FA3A7D00B309FA /* color_black.png */; };
 		4D908E7017FA3A7D00B309FA /* color_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6C17FA3A7D00B309FA /* color_white.png */; };
 		4D908E7117FA3A7D00B309FA /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6D17FA3A7D00B309FA /* color_red.png */; };
+		4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBE3DE01816440700ED3A12 /* Images.xcassets */; };
 		4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */; };
 		DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459917FAA5CC00CE8173 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB0F459C17FAA5CC00CE8173 /* GTLNetworking_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459A17FAA5CC00CE8173 /* GTLNetworking_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -250,6 +251,7 @@
 		4D97F65218163A4A0077ABB0 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		4D97F65318163A680077ABB0 /* ipad_portrate_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate_retina.png; sourceTree = "<group>"; };
 		4D97F65418163A820077ABB0 /* ipad_portrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate.png; sourceTree = "<group>"; };
+		4DBE3DE01816440700ED3A12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackDownload.h; sourceTree = "<group>"; };
 		4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackDownload.m; sourceTree = "<group>"; };
 		DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = "<group>"; };
@@ -496,6 +498,13 @@
 			name = StageItems;
 			sourceTree = "<group>";
 		};
+		4D97F655181641470077ABB0 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		DB0F459817FAA03600CE8173 /* GTL */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +621,7 @@
 				EB00E64417FE74AE002CE208 /* STFacebookViewController.m */,
 				DB0F459F17FAA95B00CE8173 /* STYoutubeViewController.h */,
 				DB0F45A017FAA95B00CE8173 /* STYoutubeViewController.m */,
+				4DBE3DE01816440700ED3A12 /* Images.xcassets */,
 				DB28D7131742E1460071B5C2 /* Supporting Files */,
 			);
 			path = StoryTelling;
@@ -620,6 +630,7 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D97F655181641470077ABB0 /* icons */,
 				DB0F459817FAA03600CE8173 /* GTL */,
 				DB989C7817CF2ED20056299D /* ModifierButtonFlip.png */,
 				DB989C7917CF2ED20056299D /* ModifierButtonFollowTangent.png */,
@@ -954,6 +965,7 @@
 				DB989C8317CF2ED20056299D /* ModifierButtonPerspectiveSky.png in Resources */,
 				DB989C8417CF2ED20056299D /* ModifierButtonRotateLeft.png in Resources */,
 				DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */,
+				4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */,
 				DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */,
 				DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */,
 				DB9E979D17E002C1009BD697 /* navbutton.png in Resources */,
@@ -1183,6 +1195,8 @@
 		DB28D7451742E1460071B5C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1214,6 +1228,8 @@
 		DB28D7461742E1460071B5C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				FRAMEWORK_SEARCH_PATHS = (
