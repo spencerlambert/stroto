@@ -58,7 +58,6 @@ UIButton *button ;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.navigationController setNavigationBarHidden:YES];
     [self initWorkArea];
     [self setSelectedForegroundImage:nil];
@@ -534,6 +533,7 @@ UIButton *button ;
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
     [storyDB closeDB];
+    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
 //    [self dismissViewControllerAnimated:YES completion:nil];
 }

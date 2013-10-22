@@ -138,10 +138,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     SavedStoryDetailsViewController *savedStory =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+    SavedStoryDetailsViewController *savedStory = [[SavedStoryDetailsViewController alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"])
+    {
+    savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
-    
+    }
+    else
+    {
+       savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+                                   bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
+    }
     [savedStory setDbname:dbNames[indexPath.row]];
     [self.navigationController pushViewController:savedStory animated:YES];
 

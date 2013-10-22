@@ -69,7 +69,15 @@
     //NSLog(@"movie path : %@",moviePath);
     if([filemngr fileExistsAtPath:moviePath])
     {
-        STFacebookViewController *facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:Nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+        STFacebookViewController *facebookController = [[STFacebookViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPhone"]){
+            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+        }
+        else{
+            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+        }
         //setting the title and subtitle.
         facebookController.storyTitleString = navigationBarTitle.title;
         facebookController.storySubTitleString = @"by: ";
@@ -101,9 +109,19 @@
 }
 
 - (IBAction)editButtonClicked:(id)sender {
-    CreateStoryRootViewController *createStory =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+    CreateStoryRootViewController *createStory = [[CreateStoryRootViewController alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"])
+    {
+    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"CreateStoryRootViewController"];
+    }
+    else
+    {
+    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+                                                bundle:NULL] instantiateViewControllerWithIdentifier:@"CreateStoryRootViewController"];
+    }
     [createStory setDbname:dbname];
     [createStory setIsEditStory:YES];
     [self.navigationController pushViewController:createStory animated:YES];

@@ -79,8 +79,16 @@
         
         foregroundImages = [[NSMutableArray alloc]initWithArray:info];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        STCropForegroundViewController *cropForeground = [storyboard instantiateViewControllerWithIdentifier:@"cropForeground"];
+        
+        STCropForegroundViewController *cropForeground = [[STCropForegroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPhone"]){
+        cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+        }
+        else{
+        cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+        }
         [cropForeground setForegroundimages :foregroundImages];
         [self.navigationController pushViewController:cropForeground animated:YES];
 
@@ -153,8 +161,15 @@
         
         [picker dismissViewControllerAnimated:YES completion:nil];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        STCropForegroundViewController *cropForeground = [storyboard instantiateViewControllerWithIdentifier:@"cropForeground"];
+        STCropForegroundViewController *cropForeground = [[STCropForegroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPhone"]){
+            cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+        }
+        else{
+            cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+        }
         [cropForeground setForegroundimages:foregroundImages];
         cropForeground.isFromCamera = YES;
         [self.navigationController pushViewController:cropForeground animated:YES];

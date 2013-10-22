@@ -219,9 +219,17 @@ NSLog(@"SQL query Statement preparation on database success.");
 {
 NSLog(@"recognizer : %d",recognizer.view.tag);
     
-    STInstalledStoryPacksViewController *installController =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    STInstalledStoryPacksViewController *installController = [[STInstalledStoryPacksViewController alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"]){
+        installController =
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                                   bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    }
+    else{
+        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    }
 NSLog(@"Path : %@",databasePath);
     databasePath = [databasePath stringByDeletingLastPathComponent];
 NSLog(@"Path after deleting last path component: %@",databasePath);
@@ -395,9 +403,16 @@ NSLog(@"Path after appending : %@",databasePath);
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    
-//  
+    UIStoryboard *storyboard = [[UIStoryboard alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"]){
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    }
+    else{
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+    }
+//
 //    NSLog(@"recognizer.view.superview.tag = %d",recognizer.view.superview.tag);
 //    if(recognizer.view)
     if(recognizer.view.superview.tag == 1)

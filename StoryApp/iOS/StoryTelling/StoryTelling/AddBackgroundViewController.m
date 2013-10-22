@@ -74,9 +74,15 @@
     if(info == NULL || [info count]<=0){
     }else{
         backgroundImages = [[NSMutableArray alloc]initWithArray:info];
+        STCropBackgroundViewController *cropBackground = [[STCropBackgroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPhone"]){
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }else{
             
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-            STCropBackgroundViewController *cropBackground = [storyboard instantiateViewControllerWithIdentifier:@"cropBackground"];
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }
             [cropBackground setBackgroundimages:backgroundImages];
             [self.navigationController pushViewController:cropBackground animated:YES];
     }
@@ -151,9 +157,14 @@
     backgroundImages = [[NSMutableArray alloc]initWithArray:returnArray];
         
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        STCropBackgroundViewController *cropBackground = [storyboard instantiateViewControllerWithIdentifier:@"cropBackground"];
+        STCropBackgroundViewController *cropBackground = [[STCropBackgroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPhone"]){
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil]instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }else{
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil]instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }
         [cropBackground setBackgroundimages:backgroundImages];
         cropBackground.isFromCamera = YES;
         [self.navigationController pushViewController:cropBackground animated:YES];

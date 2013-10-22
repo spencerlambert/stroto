@@ -170,10 +170,19 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    STSelectImagesFromStoryViewController *imagesFromStory = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
+    STSelectImagesFromStoryViewController *imagesFromStory = [[STSelectImagesFromStoryViewController alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"]){
+        imagesFromStory =
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                                   bundle:NULL] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
+    }
+    else{
+        imagesFromStory = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
+    }
     [imagesFromStory setDbLocation:dbNames[indexPath.row]];
-    [imagesFromStory.storyNameLabel setText:storyNames[indexPath.row]];
-    
+    [imagesFromStory setStoryNameLabelText:storyNames[indexPath.row]];
     [self.navigationController pushViewController:imagesFromStory animated:YES];
     
     

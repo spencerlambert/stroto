@@ -352,10 +352,17 @@
     [self.progressView setHidden:YES];
     [self.downloadPercentageLabel setHidden:YES];
     [self.BGHideDownload setHidden:YES];
-    
-    STInstalledStoryPacksViewController *installController =
-    [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
-                               bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    STInstalledStoryPacksViewController *installController = [[STInstalledStoryPacksViewController alloc] init];
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"%@",deviceType);
+    if([deviceType hasPrefix:@"iPhone"]){
+        installController =
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+                                   bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    }
+    else{
+        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+    }
     installController.filePath = DBFilePath;
     [self.navigationController pushViewController:installController animated:YES];
 }

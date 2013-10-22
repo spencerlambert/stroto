@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIView *backgroundImagesView;
 @property (weak, nonatomic) IBOutlet UIView *foregroundImagesView;
 @property (weak, nonatomic) NSString *dbLocation;
-
+@property (weak, nonatomic) NSString *storyNameLabelText;
 -(void)initializeDB;
 -(void)loadFGImages;
 -(void)loadBGImages;

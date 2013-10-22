@@ -23,6 +23,7 @@
 @synthesize backgroundImagesView;
 @synthesize foregroundImagesView;
 @synthesize dbLocation;
+@synthesize storyNameLabelText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,9 +59,9 @@
     }
     else{
         NSLog(@"DB Successfully Initialized with code : %d", code);
+        [self.storyNameLabel setText:self.storyNameLabelText];
         [self performSelectorInBackground:@selector(loadBGImages) withObject:nil];
         }
-
 }
 -(void)loadBGImages
 {
