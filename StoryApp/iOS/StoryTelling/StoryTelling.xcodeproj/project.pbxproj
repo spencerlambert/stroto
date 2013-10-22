@@ -244,6 +244,12 @@
 		4D97F64C1816359F0077ABB0 /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
 		4D97F64D181635AF0077ABB0 /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
 		4D97F64E181635CE0077ABB0 /* 40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 40.png; sourceTree = "<group>"; };
+		4D97F64F181639ED0077ABB0 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
+		4D97F65018163A150077ABB0 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		4D97F65118163A300077ABB0 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		4D97F65218163A4A0077ABB0 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		4D97F65318163A680077ABB0 /* ipad_portrate_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate_retina.png; sourceTree = "<group>"; };
+		4D97F65418163A820077ABB0 /* ipad_portrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate.png; sourceTree = "<group>"; };
 		4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackDownload.h; sourceTree = "<group>"; };
 		4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackDownload.m; sourceTree = "<group>"; };
 		DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = "<group>"; };
@@ -513,6 +519,12 @@
 		DB28D6FD1742E1460071B5C2 = {
 			isa = PBXGroup;
 			children = (
+				4D97F65418163A820077ABB0 /* ipad_portrate.png */,
+				4D97F65318163A680077ABB0 /* ipad_portrate_retina.png */,
+				4D97F65218163A4A0077ABB0 /* Default-Landscape@2x~ipad.png */,
+				4D97F65118163A300077ABB0 /* Default-Landscape~ipad.png */,
+				4D97F65018163A150077ABB0 /* Default-Portrait@2x~ipad.png */,
+				4D97F64F181639ED0077ABB0 /* Default~ipad.png */,
 				4D97F64E181635CE0077ABB0 /* 40.png */,
 				4D97F64D181635AF0077ABB0 /* 100.png */,
 				4D97F64C1816359F0077ABB0 /* 50.png */,
