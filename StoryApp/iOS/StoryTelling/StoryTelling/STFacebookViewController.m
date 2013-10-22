@@ -264,6 +264,7 @@
     //Write samples:
     for (int i=0; i<duration ; i++) {
         buffer = [self pixelBufferFromCGImage:[image CGImage]];
+        while(! adaptor.assetWriterInput.readyForMoreMediaData );
         [adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMakeWithSeconds(i,1)];
     }
     
