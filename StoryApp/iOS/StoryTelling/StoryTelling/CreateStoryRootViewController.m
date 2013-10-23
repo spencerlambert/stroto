@@ -9,8 +9,10 @@
 #import "CreateStoryRootViewController.h"
 #import "WorkAreaController.h"
 #import "STImage.h"
+#import "STCropBackgroundViewController.h"
+#import "STCropForegroundViewController.h"
 
-
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 #define THUMB_HEIGHT 70
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -31,6 +33,7 @@
 @synthesize imagesDelegate;
 @synthesize isEditStory;
 @synthesize dbname;
+@synthesize isAddingBGImage;
 bool nextButtonClicked = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -185,6 +188,62 @@ bool nextButtonClicked = NO;
     [self.storyNameTextField resignFirstResponder];
 }
 
+- (IBAction)BGGalleryBtn:(id)sender {
+    isAddingBGImage = YES;
+    ELCAlbumPickerController *albumController = [[ELCAlbumPickerController alloc] initWithNibName: nil bundle: nil];
+	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initWithRootViewController:albumController];
+    [albumController setParent:elcPicker];
+	[elcPicker setDelegate:self];
+    [self presentViewController:elcPicker animated:YES completion:nil];
+
+}
+
+- (IBAction)BGCameraBtn:(id)sender {
+    isAddingBGImage = YES;
+    @try
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.delegate = self;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    @catch (NSException *exception)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+
+}
+
+- (IBAction)FGGalleryBtn:(id)sender {
+    isAddingBGImage = NO;
+    ELCAlbumPickerController *albumController = [[ELCAlbumPickerController alloc] initWithNibName: nil bundle: nil];
+	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initWithRootViewController:albumController];
+    [albumController setParent:elcPicker];
+	[elcPicker setDelegate:self];
+    [self presentViewController:elcPicker animated:YES completion:nil];
+}
+
+
+- (IBAction)FGCameraBtn:(id)sender {
+    isAddingBGImage = NO;
+    @try
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.delegate = self;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    @catch (NSException *exception)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+
+    
+}
+
 - (void)backButtonClicked {
     //    if(([backgroundImages count]>0)||([foregroundImages count]>0)||([storyNameTextField.text length]>0)){
     //        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"You have an un-saved project.What would you like to do?" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Clear" , nil];
@@ -309,5 +368,156 @@ bool nextButtonClicked = NO;
     [newStory closeDB];
 //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+#pragma mark ELCImagePickerControllerDelegate Methods
+
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if(isAddingBGImage){
+    if(info == NULL || [info count]<=0){
+    }else{
+     NSMutableArray *BGImages = [[NSMutableArray alloc]initWithArray:info];
+        STCropBackgroundViewController *cropBackground = [[STCropBackgroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPad"]){
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }else{
+            
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }
+        [cropBackground setBackgroundimages:BGImages];
+        [self.navigationController pushViewController:cropBackground animated:YES];
+    }
+    }else{
+        if(info == NULL || [info count]<=0){
+        }
+        else{
+            
+        NSMutableArray *FGImages = [[NSMutableArray alloc]initWithArray:info];
+            
+            
+            STCropForegroundViewController *cropForeground = [[STCropForegroundViewController alloc] init];
+            NSString *deviceType = [UIDevice currentDevice].model;
+            NSLog(@"%@",deviceType);
+            if([deviceType hasPrefix:@"iPad"]){
+                cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+            }
+            else{
+                cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+            }
+            [cropForeground setForegroundimages :FGImages];
+            [self.navigationController pushViewController:cropForeground animated:YES];
+            
+        }
+    }
+}
+
+- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma -mark delegate method of UIImage picker
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
+{
+    NSLog(@"Media Info: %@", info);
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    UIImage *sourceImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+    
+    //[workingDictionary setObject:photoTaken forKey:@"UIImagePickerControllerThumbnailImage"];
+    //UIImage *sourceImage = [[UIImage alloc]initWithCGImage:photoTaken.CGImage];
+    
+    CGFloat targetWidth = sourceImage.size.width;
+    CGFloat targetHeight = sourceImage.size.height;
+    
+    CGImageRef imageRef = [sourceImage CGImage];
+	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+    
+    CGContextRef bitmap;
+    
+    if (sourceImage.imageOrientation == UIImageOrientationLeft || sourceImage.imageOrientation == UIImageOrientationRight) {
+        targetWidth = sourceImage.size.height;
+        targetHeight = sourceImage.size.width;
+    }
+    
+	if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
+		bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+	} else {
+		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+	}
+    
+	if (sourceImage.imageOrientation == UIImageOrientationLeft) {
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(90));
+		CGContextTranslateCTM (bitmap, 0, -targetHeight);
+        
+	} else if (sourceImage.imageOrientation == UIImageOrientationRight) {
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(-90));
+		CGContextTranslateCTM (bitmap, -targetWidth, 0);
+        
+	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
+		// NOTHING
+	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
+		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
+		CGContextRotateCTM (bitmap, DEGREES_TO_RADIANS(-180.));
+	}
+    
+	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
+	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+	UIImage* newImage = [UIImage imageWithCGImage:ref];
+	CGContextRelease(bitmap);
+	CGImageRelease(ref);
+    [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerOriginalImage"];
+    [workingDictionary setObject:newImage forKey:@"UIImagePickerControllerThumbnailImage"];
+    [workingDictionary setObject:@"thumb.png" forKey:@"UIImagePickerControllerReferenceURL"];
+    //self.testimg.image = [workingDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //self.testimg.transform = CGAffineTransformMakeRotation(M_PI_2);
+    [returnArray addObject:workingDictionary];
+    if(returnArray != NULL){
+        if(isAddingBGImage){
+		
+        NSMutableArray *BGImages = [[NSMutableArray alloc]initWithArray:returnArray];
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        STCropBackgroundViewController *cropBackground = [[STCropBackgroundViewController alloc] init];
+        NSString *deviceType = [UIDevice currentDevice].model;
+        NSLog(@"%@",deviceType);
+        if([deviceType hasPrefix:@"iPad"]){
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil]instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }else{
+            cropBackground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil]instantiateViewControllerWithIdentifier:@"cropBackground"];
+        }
+        [cropBackground setBackgroundimages:BGImages];
+        cropBackground.isFromCamera = YES;
+        [self.navigationController pushViewController:cropBackground animated:YES];
+        }else{
+            
+            NSMutableArray *FGImages = [[NSMutableArray alloc]initWithArray:returnArray];
+            
+            [picker dismissViewControllerAnimated:YES completion:nil];
+            
+            STCropForegroundViewController *cropForeground = [[STCropForegroundViewController alloc] init];
+            NSString *deviceType = [UIDevice currentDevice].model;
+            NSLog(@"%@",deviceType);
+            if([deviceType hasPrefix:@"iPad"]){
+                cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+            }
+            else{
+                cropForeground = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"cropForeground"];
+            }
+            [cropForeground setForegroundimages:FGImages];
+            cropForeground.isFromCamera = YES;
+            [self.navigationController pushViewController:cropForeground animated:YES];
+            
+
+        }
+    }
+    
+}
+
 
 @end

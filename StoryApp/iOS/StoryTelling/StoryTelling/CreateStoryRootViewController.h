@@ -11,8 +11,11 @@
 #import "AppDelegate.h"
 #import "STStoryDB.h"
 #import "WorkAreaController.h"
+#import "ELCImagePickerController.h"
+#import "ELCAlbumPickerController.h"
 
-@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate,UINavigationBarDelegate>
+
+@interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate,UINavigationBarDelegate,ELCImagePickerControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *storyNameTextField;
 @property (strong, nonatomic) IBOutlet UIView *BackgroundImagesView;
@@ -21,6 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *foregroundImages;
 @property (strong, nonatomic) AppDelegate *imagesDelegate;
 @property BOOL isEditStory;
+@property BOOL isAddingBGImage;
 @property (strong, nonatomic) NSString *dbname;
 
 
@@ -29,6 +33,10 @@
 - (void) reloadBackgroundImagesView ;
 - (void) reloadForegroundImagesView ;
 -(IBAction)resigngTxtField;
+- (IBAction)BGGalleryBtn:(id)sender;
+- (IBAction)BGCameraBtn:(id)sender;
+- (IBAction)FGGalleryBtn:(id)sender;
+- (IBAction)FGCameraBtn:(id)sender;
 
 
 @end
