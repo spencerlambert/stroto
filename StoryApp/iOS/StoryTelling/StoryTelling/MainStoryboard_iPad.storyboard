@@ -247,20 +247,30 @@
                                 <rect key="frame" x="384" y="0.0" width="384" height="980"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Linked with: [USERNAME]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9nA-xZ-7JV">
-                                <rect key="frame" x="483" y="803" width="201" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Linked with:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9nA-xZ-7JV">
+                                <rect key="frame" x="475" y="750" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="[USERNAME]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aRj-a0-nwC">
+                                <rect key="frame" x="434" y="779" width="298" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C0i-23-0mD">
-                                <rect key="frame" x="470" y="846" width="227" height="44"/>
+                                <rect key="frame" x="470" y="826" width="227" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Unlink YouTube Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="logout:" destination="Qjk-F6-k1U" eventType="touchUpInside" id="vcy-pD-TVx"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="Iya-p5-xzO">
                                 <rect key="frame" x="0.0" y="960" width="768" height="44"/>
@@ -334,7 +344,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.44999999999999984" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vqc-bD-EEE">
-                                <rect key="frame" x="0.0" y="-43" width="768" height="980"/>
+                                <rect key="frame" x="-1" y="-43" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.66525829081632648" green="0.66525829081632648" blue="0.66525829081632648" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -360,6 +370,7 @@
                         <outlet property="spinningWheel" destination="e0r-T7-ztf" id="pfX-Fo-bxg"/>
                         <outlet property="subTitle" destination="xgN-nG-rB4" id="uOh-JJ-tNh"/>
                         <outlet property="uploadProgressIndicator" destination="tCM-Lh-WKS" id="WUb-Af-LTo"/>
+                        <outlet property="userName" destination="aRj-a0-nwC" id="qRB-zL-RC9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOO-RX-VvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -514,7 +525,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="X4U-VP-L83"/>
+                                    <action selector="BGCameraBtn:" destination="fLV-iY-P4c" eventType="touchUpInside" id="zjx-28-Ou9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g5L-Ep-jFg">
@@ -524,7 +535,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="Gnt-5S-LSS"/>
+                                    <action selector="FGCameraBtn:" destination="fLV-iY-P4c" eventType="touchUpInside" id="XIP-JX-ebe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wzz-YI-7Fo">
@@ -534,7 +545,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="hKj-Du-k2A"/>
+                                    <action selector="BGGalleryBtn:" destination="fLV-iY-P4c" eventType="touchUpInside" id="FsZ-Xv-R6i"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xKh-ap-gbq">
@@ -544,7 +555,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="wxK-8m-VeG"/>
+                                    <action selector="FGGalleryBtn:" destination="fLV-iY-P4c" eventType="touchUpInside" id="Fn6-8C-Y0F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KkU-IV-PhQ">
@@ -553,6 +564,9 @@
                                 <state key="normal" title="Copy Images From A Story">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="mvv-Gv-m7E" kind="push" id="YIJ-cQ-CCL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ghv-mn-Uta">
                                 <rect key="frame" x="85" y="224" width="280" height="44"/>
@@ -560,6 +574,9 @@
                                 <state key="normal" title="Add Story Pack Images">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Wot-PE-eMc" kind="push" id="dWk-c9-B22"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Story Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aR0-y1-nYE">
                                 <rect key="frame" x="84" y="44" width="125" height="21"/>
@@ -749,70 +766,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccS-xE-XBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="yLw-mU-nRp"/>
             </objects>
-            <point key="canvasLocation" x="5621" y="653"/>
-        </scene>
-        <!--Add Foreground View Controller - Add Foreground-->
-        <scene sceneID="A5U-YG-fhn">
-            <objects>
-                <viewController id="0NS-7w-Chq" customClass="AddForegroundViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Bp-Fy-Gb5">
-                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="gYN-Zb-HEU">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ClQ-2X-2Ru">
-                                <rect key="frame" x="282" y="323" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Gallery">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fromGalleryButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="55Y-8g-KO7"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LX1-JE-x95">
-                                <rect key="frame" x="282" y="120" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Story Pack">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Wot-PE-eMc" kind="push" id="9Ng-ir-cti"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Efc-bf-LPf">
-                                <rect key="frame" x="282" y="529" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Created Story">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mvv-Gv-m7E" kind="push" id="PkR-As-eGd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8jn-dF-e0z">
-                                <rect key="frame" x="282" y="774" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Camera">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fromCameraButtonClicked:" destination="0NS-7w-Chq" eventType="touchUpInside" id="XPI-1H-sJY"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Foreground" id="Fsn-r5-ER1"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ngC-Sj-Ipx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="669" y="634"/>
+            <point key="canvasLocation" x="3577" y="691"/>
         </scene>
         <!--Crop Foreground View Controller-->
         <scene sceneID="NrE-jU-cwt">
@@ -1063,7 +1017,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mF-hd-Vd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="-620"/>
+            <point key="canvasLocation" x="643" y="-630"/>
         </scene>
         <!--Select Images From Story View Controller - Select Images To Use-->
         <scene sceneID="YIg-iE-jBl">
@@ -1128,72 +1082,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz6-wY-8A6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3726" y="639"/>
-        </scene>
-        <!--Add Background View Controller - Add Background-->
-        <scene sceneID="e3G-dQ-o0N">
-            <objects>
-                <viewController id="0rW-9T-a0q" customClass="AddBackgroundViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1fe-OW-oJ0">
-                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="r0G-tk-te6">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gSw-PW-bSc">
-                                <rect key="frame" x="282" y="354" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Gallery">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fromGalleryButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="CCS-BV-4HL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pc7-Gy-3w2">
-                                <rect key="frame" x="282" y="146" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Story Pack">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Wot-PE-eMc" kind="push" id="fUv-Rg-gK0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k6m-ZF-4ec">
-                                <rect key="frame" x="282" y="571" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Created Story">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mvv-Gv-m7E" kind="push" id="gZa-nL-O2U"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R2r-Bu-X5m">
-                                <rect key="frame" x="282" y="791" width="205" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="From Camera">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fromCamraPackButtonClicked:" destination="0rW-9T-a0q" eventType="touchUpInside" id="nsB-ng-mQ2"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Background" id="7rl-ui-Y7k">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="0by-yY-Glv"/>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zaC-6D-uuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="661" y="-620"/>
+            <point key="canvasLocation" x="1610" y="-630"/>
         </scene>
         <!--Work Area Controller-->
         <scene sceneID="Emh-JT-6Aa">
@@ -1204,7 +1093,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
-                                <rect key="frame" x="0.0" y="110.99999999999999" width="768" height="802"/>
+                                <rect key="frame" x="0.0" y="128" width="768" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.48010468482971191" green="0.0" blue="0.069121681153774261" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -1359,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uxb-Bx-epY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853" y="639"/>
+            <point key="canvasLocation" x="1589" y="691"/>
         </scene>
         <!--Story Packs View Controller - Story Packs-->
         <scene sceneID="q07-8X-VyA">
@@ -1446,7 +1335,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8K-Bz-mcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="5EX-4B-DLu"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="607"/>
+            <point key="canvasLocation" x="637" y="691"/>
         </scene>
         <!--Free Story Packs View Controller - Story Packs-->
         <scene sceneID="eBK-mY-Nvl">
@@ -1583,7 +1472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQf-kN-SCI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4670" y="647"/>
+            <point key="canvasLocation" x="2606" y="691"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ytm-kz-bM7">
@@ -1607,7 +1496,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTU-iR-1Kb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2229" y="-582"/>
+            <point key="canvasLocation" x="-2397" y="-606"/>
         </scene>
     </scenes>
     <resources>
@@ -1621,8 +1510,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="PkR-As-eGd"/>
-        <segue reference="9Ng-ir-cti"/>
-    </inferredMetricsTieBreakers>
 </document>

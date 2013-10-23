@@ -221,8 +221,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Linked with: [USERNAME]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2DT-9k-Nez">
-                                <rect key="frame" x="60" y="337" width="201" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Linked with: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2DT-9k-Nez">
+                                <rect key="frame" x="52" y="319" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="[USERNAME]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nmf-B4-0eF">
+                                <rect key="frame" x="20" y="344" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -238,7 +245,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1k1-yv-Nsp">
-                                <rect key="frame" x="52" y="231" width="216" height="44"/>
+                                <rect key="frame" x="52" y="241" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title=" Upload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -248,21 +255,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bt2-iI-36D">
-                                <rect key="frame" x="20" y="366" width="280" height="44"/>
+                                <rect key="frame" x="20" y="373" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Unlink YouTube Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="upload:" destination="Qjk-F6-k1U" eventType="touchUpInside" id="e43-px-2LJ"/>
+                                    <action selector="logout:" destination="Qjk-F6-k1U" eventType="touchUpInside" id="f7B-p2-5U5"/>
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="tCM-Lh-WKS">
                                 <rect key="frame" x="85" y="302" width="150" height="9"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.44999999999999984" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vqc-bD-EEE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
+                                <rect key="frame" x="0.0" y="1" width="320" height="525"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.66525829081632648" green="0.66525829081632648" blue="0.66525829081632648" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -283,6 +290,7 @@
                         <outlet property="spinningWheel" destination="e0r-T7-ztf" id="pfX-Fo-bxg"/>
                         <outlet property="subTitle" destination="xgN-nG-rB4" id="uOh-JJ-tNh"/>
                         <outlet property="uploadProgressIndicator" destination="tCM-Lh-WKS" id="WUb-Af-LTo"/>
+                        <outlet property="userName" destination="Nmf-B4-0eF" id="MiE-LD-Etc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOO-RX-VvF" userLabel="First Responder" sceneMemberID="firstResponder"/>

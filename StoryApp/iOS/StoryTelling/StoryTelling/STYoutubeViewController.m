@@ -67,7 +67,11 @@ NSURL *uploadLocationURL;
         GTMOAuth2ViewControllerTouch *signin = [GTMOAuth2ViewControllerTouch controllerWithScope:kGTLAuthScopeYouTube clientID:clientID clientSecret:clientSecret keychainItemName:kKeychainItemName delegate:self finishedSelector:@selector(viewController:finishedWithAuth:error:)];
         
         [self presentViewController:signin animated:YES completion:nil];
-    }
+    }else{
+        [[self userName] setText:[self signedInUsername]];
+       }
+    
+   
     
 }
 
@@ -76,15 +80,6 @@ NSURL *uploadLocationURL;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (IBAction)signIn:(id)sender {
-//
-//    // Sign out.
-//        GTLServiceYouTube *service = self.youTubeService;
-//
-//        [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
-//        service.authorizer = nil;
-//}
 
 - (NSString *)signedInUsername {
     // Get the email address of the signed-in user.
@@ -113,6 +108,18 @@ NSURL *uploadLocationURL;
     else{
         NSLog(@"ERROR : %@",error);
     }
+}
+
+- (IBAction)logout:(id)sender {
+    
+    // Sign out.
+    GTLServiceYouTube *service = self.youTubeService;
+    
+    [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
+    service.authorizer = nil;
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (IBAction)upload:(id)sender {
