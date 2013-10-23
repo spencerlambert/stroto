@@ -1031,11 +1031,11 @@
             <objects>
                 <viewController storyboardIdentifier="workarea" id="mlP-pf-Mlw" customClass="WorkAreaController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SeQ-h6-OYw">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
-                                <rect key="frame" x="0.0" y="61" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="84" width="320" height="320"/>
                                 <color key="backgroundColor" red="0.48010468482971191" green="0.0" blue="0.069121681153774261" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -1043,6 +1043,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Cwg-3K-yDX"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="captureview" destination="LK1-uv-CST" id="CMF-qv-TKJ"/>
                     </connections>
@@ -1439,29 +1441,7 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
