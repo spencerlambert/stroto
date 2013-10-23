@@ -173,13 +173,13 @@
     STSelectImagesFromStoryViewController *imagesFromStory = [[STSelectImagesFromStoryViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"]){
+    if([deviceType hasPrefix:@"iPad"]){
         imagesFromStory =
-        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                    bundle:NULL] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
     }
     else{
-        imagesFromStory = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
+        imagesFromStory = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"imagesFromStory"];
     }
     [imagesFromStory setDbLocation:dbNames[indexPath.row]];
     [imagesFromStory setStoryNameLabelText:storyNames[indexPath.row]];

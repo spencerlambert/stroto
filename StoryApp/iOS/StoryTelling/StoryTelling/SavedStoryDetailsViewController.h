@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "STListStoryiPad.h"
 
-@interface SavedStoryDetailsViewController : UIViewController{
+@interface SavedStoryDetailsViewController : UIViewController<STListStoryiPadDelegate>{
     MPMoviePlayerViewController *mp;
 }
 
@@ -20,4 +21,8 @@
 - (IBAction)uploadToFacebookButtonClicked:(id)sender;
 - (IBAction)editButtonClicked:(id)sender;
 - (IBAction)deleteButtonClicked:(id)sender;
+-(void)setBarTitle;
+@property (weak, nonatomic) NSIndexPath *index;
+@property (strong, nonatomic) IBOutlet STListStoryiPad *listiPad;
+@property (weak, nonatomic) STListStoryiPad *storyListiPad;
 @end

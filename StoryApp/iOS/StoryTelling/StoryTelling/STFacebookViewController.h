@@ -15,8 +15,9 @@
 #include <social/SLComposeViewController.h>
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import "STListStoryiPad.h"
 
-@interface STFacebookViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
+@interface STFacebookViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,STListStoryiPadDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *storyTitle;
 @property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
@@ -29,5 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *greyBGButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 - (IBAction)uploadStory:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet STListStoryiPad *listViewiPad;
+@property (weak, nonatomic) STListStoryiPad *storyListiPad;
 
 @end

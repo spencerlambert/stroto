@@ -167,6 +167,7 @@
 		EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48917C743F000E28B4F /* STFreeStoryPacksViewController.m */; };
 		EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */; };
 		EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */; };
+		EBA21FB7181783F8006BB6B7 /* STListStoryiPad.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA21FB6181783F8006BB6B7 /* STListStoryiPad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -396,6 +397,8 @@
 		EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSelectImagesFromStoryViewController.m; sourceTree = "<group>"; };
 		EB9ACE6B17FD092300FCF6EE /* STSelectStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSelectStoryViewController.h; sourceTree = "<group>"; };
 		EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSelectStoryViewController.m; sourceTree = "<group>"; };
+		EBA21FB5181783F8006BB6B7 /* STListStoryiPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STListStoryiPad.h; sourceTree = "<group>"; };
+		EBA21FB6181783F8006BB6B7 /* STListStoryiPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STListStoryiPad.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -611,6 +614,8 @@
 				DB28D71C1742E1460071B5C2 /* AppDelegate.m */,
 				DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */,
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
+				EBA21FB5181783F8006BB6B7 /* STListStoryiPad.h */,
+				EBA21FB6181783F8006BB6B7 /* STListStoryiPad.m */,
 				DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */,
 				DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */,
 				DB4DF524178D6C7F00E90492 /* STCropBackgroundViewController.h */,
@@ -1047,6 +1052,7 @@
 				4D2A0A5F1780B28100C78EE0 /* STModifier.m in Sources */,
 				4D2A0A621780B37A00C78EE0 /* STModifierImageInstance.m in Sources */,
 				4D2A0A661780B44200C78EE0 /* STImageInstance.m in Sources */,
+				EBA21FB7181783F8006BB6B7 /* STListStoryiPad.m in Sources */,
 				4D2A0A691780B47D00C78EE0 /* STImageInstanceBackground.m in Sources */,
 				4D2A0A6C1780B4BB00C78EE0 /* STImageInstanceForeground.m in Sources */,
 				4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */,

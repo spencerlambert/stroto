@@ -355,13 +355,13 @@
     STInstalledStoryPacksViewController *installController = [[STInstalledStoryPacksViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"]){
+    if([deviceType hasPrefix:@"iPad"]){
         installController =
-        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                    bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
     }
     else{
-        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
     }
     installController.filePath = DBFilePath;
     [self.navigationController pushViewController:installController animated:YES];

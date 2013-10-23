@@ -9,6 +9,7 @@
 #import "STFacebookViewController.h"
 #import <Social/Social.h>
 #import <AVFoundation/AVFoundation.h>
+#import "SavedStoryDetailsViewController.h"
 
 #define ST_FACEBOOK_APP_ID @"530535203701796"
 @interface STFacebookViewController ()<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
@@ -29,6 +30,8 @@
 @synthesize storyTitleString;
 @synthesize spinningWheel;
 @synthesize greyBGButton;
+@synthesize listViewiPad;
+@synthesize storyListiPad;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +50,13 @@
 	// Do any additional setup after loading the view.
     self.storyTitle.text = storyTitleString;
     self.storySubTitle.text = storySubTitleString;
-    
+    [self.listViewiPad setListDelegate:self];
+    [self.listViewiPad setIndex:storyListiPad.index];
+    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
+    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+    storyListiPad = nil;
+    [self.listViewiPad reloadInputViews];
+
 //social framework ios
     if(!_accountStore)
         _accountStore = [[ACAccountStore alloc] init];
@@ -406,4 +415,10 @@
     [self.uploadProgressBar setHidden:NO];
 }
 
+-(void)didSelectTableCellWithName:(NSString *)dbName
+{
+//    ((SavedStoryDetailsViewController*)[self.navigationController parentViewController]).dbname = dbName;
+//    [((SavedStoryDetailsViewController*)[self.navigationController parentViewController]) setBarTitle];
+//    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

@@ -222,13 +222,13 @@ NSLog(@"recognizer : %d",recognizer.view.tag);
     STInstalledStoryPacksViewController *installController = [[STInstalledStoryPacksViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"]){
+    if([deviceType hasPrefix:@"iPad"]){
         installController =
-        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+        [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                    bundle:NULL] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
     }
     else{
-        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
+        installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
     }
 NSLog(@"Path : %@",databasePath);
     databasePath = [databasePath stringByDeletingLastPathComponent];
@@ -406,11 +406,11 @@ NSLog(@"Path after appending : %@",databasePath);
     UIStoryboard *storyboard = [[UIStoryboard alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"]){
-        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    if([deviceType hasPrefix:@"iPad"]){
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
     }
     else{
-        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     }
 //
 //    NSLog(@"recognizer.view.superview.tag = %d",recognizer.view.superview.tag);

@@ -141,19 +141,23 @@
     SavedStoryDetailsViewController *savedStory = [[SavedStoryDetailsViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"])
+    if([deviceType hasPrefix:@"iPad"])
     {
-    savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+    savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
     }
     else
     {
-       savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+       savedStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                    bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
     }
     [savedStory setDbname:dbNames[indexPath.row]];
+    [savedStory setIndex:indexPath];
+    STListStoryiPad *temp = [[STListStoryiPad alloc] init];
+    [savedStory setStoryListiPad:temp];
+    [[savedStory storyListiPad] setDBNamesiPad:dbNames];
+    [[savedStory storyListiPad] setStoryNamesiPad:displayNames];
     [self.navigationController pushViewController:savedStory animated:YES];
-
 }
 
 - (void)viewDidUnload {

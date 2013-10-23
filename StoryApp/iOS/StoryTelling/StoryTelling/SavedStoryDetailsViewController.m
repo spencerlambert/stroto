@@ -22,6 +22,8 @@
 
 @synthesize dbname;
 @synthesize navigationBarTitle;
+@synthesize index;
+@synthesize storyListiPad;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,8 +40,17 @@
     storyDB = [STStoryDB loadSTstoryDB:dbname];
     [navigationBarTitle setTitle:[storyDB getStoryName]];
     [storyDB closeDB];
+    [self.listiPad setListDelegate:self];
+    [self.listiPad setIndex:index];
+    [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
+    [self.listiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+    storyListiPad = nil;
+    [self.listiPad reloadInputViews];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.listiPad reloadInputViews];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -72,11 +83,11 @@
         STFacebookViewController *facebookController = [[STFacebookViewController alloc] init];
         NSString *deviceType = [UIDevice currentDevice].model;
         NSLog(@"%@",deviceType);
-        if([deviceType hasPrefix:@"iPhone"]){
-            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+        if([deviceType hasPrefix:@"iPad"]){
+            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
         }
         else{
-            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
         }
         //setting the title and subtitle.
         facebookController.storyTitleString = navigationBarTitle.title;
@@ -89,6 +100,10 @@
         //read request
         if([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook])
         {
+            STListStoryiPad *temp = [[STListStoryiPad alloc] init];
+            [facebookController setStoryListiPad:temp];
+            [[facebookController storyListiPad] setDBNamesiPad:self.listiPad.DBNamesiPad];
+            [[facebookController storyListiPad] setStoryNamesiPad:self.listiPad.storyNamesiPad];
             [self.navigationController pushViewController:facebookController animated:YES];
         }
         else{
@@ -112,14 +127,14 @@
     CreateStoryRootViewController *createStory = [[CreateStoryRootViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
     NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPhone"])
+    if([deviceType hasPrefix:@"iPad"])
     {
-    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
+    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                bundle:NULL] instantiateViewControllerWithIdentifier:@"CreateStoryRootViewController"];
     }
     else
     {
-    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+    createStory =[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
                                                 bundle:NULL] instantiateViewControllerWithIdentifier:@"CreateStoryRootViewController"];
     }
     [createStory setDbname:dbname];
@@ -188,4 +203,19 @@
     }
     return YES;
 }
+
+- (void) didSelectTableCellWithName:(NSString*)dbName{
+    [self setDbname:dbName];
+    storyDB = [STStoryDB loadSTstoryDB:dbname];
+    [navigationBarTitle setTitle:[storyDB getStoryName]];
+    [storyDB closeDB];
+}
+
+-(void)setBarTitle
+{
+    storyDB = [STStoryDB loadSTstoryDB:dbname];
+    [navigationBarTitle setTitle:[storyDB getStoryName]];
+    [storyDB closeDB];
+}
+
 @end
