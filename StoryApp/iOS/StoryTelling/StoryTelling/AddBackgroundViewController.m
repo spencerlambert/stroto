@@ -57,7 +57,7 @@
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         picker.delegate = self;
         
-        [self presentModalViewController:picker animated:YES];
+        [self presentViewController:picker animated:YES completion:nil];
     }
     @catch (NSException *exception)
     {
