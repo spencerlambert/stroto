@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 #import "CreateStoryRootViewController.h"
 
-#define THUMB_HEIGHT 78
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
+#define THUMB_HEIGHT (IS_IPAD ? 128 : 78)
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 

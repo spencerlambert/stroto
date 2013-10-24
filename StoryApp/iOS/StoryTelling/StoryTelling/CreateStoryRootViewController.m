@@ -13,9 +13,10 @@
 #import "STCropForegroundViewController.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
-int THUMB_HEIGHT = 70;
-int THUMB_V_PADDING = 10;
-int THUMB_H_PADDING = 10;
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
+#define THUMB_HEIGHT (IS_IPAD ? 120 : 70)
+#define THUMB_V_PADDING  10
+#define THUMB_H_PADDING  10
 
 @interface CreateStoryRootViewController ()
 
@@ -49,11 +50,6 @@ bool nextButtonClicked = NO;
 {
     
     [super viewDidLoad];
-    NSString *deviceType = [UIDevice currentDevice].model;
-    NSLog(@"%@",deviceType);
-    if([deviceType hasPrefix:@"iPad"]){
-        THUMB_HEIGHT=120;
-    }
     
         self.view.tag=20;
     

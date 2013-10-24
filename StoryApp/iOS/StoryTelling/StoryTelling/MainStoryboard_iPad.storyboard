@@ -777,7 +777,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_red.png" id="hhg-CE-nXw">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <rect key="frame" x="0.0" y="0.0" width="774" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="a37-x6-riU">
@@ -794,27 +794,27 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" id="LK8-gd-Mbo">
-                                <rect key="frame" x="0.0" y="46" width="768" height="75"/>
+                                <rect key="frame" x="0.0" y="44" width="768" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="cUK-vn-obA">
-                                <rect key="frame" x="0.0" y="120" width="768" height="856"/>
+                                <rect key="frame" x="0.0" y="170" width="768" height="768"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" maximumZoomScale="100" id="kXn-uc-wil">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="856"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="uIy-fg-gQO">
-                                <rect key="frame" x="0.0" y="132" width="768" height="856"/>
+                                <rect key="frame" x="0.0" y="170" width="768" height="768"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="Jlx-uX-AJH">
-                                        <rect key="frame" x="226" y="832" width="316" height="23"/>
+                                        <rect key="frame" x="226" y="744" width="316" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -823,39 +823,39 @@
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Image Start Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rBf-Kj-Wlf">
-                                        <rect key="frame" x="360" y="811" width="148" height="21"/>
+                                        <rect key="frame" x="360" y="723" width="148" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFh-ph-4Rg">
-                                        <rect key="frame" x="17" y="818" width="17" height="18"/>
+                                        <rect key="frame" x="17" y="730" width="17" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cTv-Qg-jXV">
-                                        <rect key="frame" x="744" y="814" width="19" height="21"/>
+                                        <rect key="frame" x="744" y="726" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView contentMode="scaleAspectFit" id="Ptm-nJ-gNO">
-                                        <rect key="frame" x="245" y="-2" width="269" height="813"/>
+                                        <rect key="frame" x="245" y="0.0" width="269" height="725"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" id="hNC-nV-a1t">
-                                <rect key="frame" x="0.0" y="132" width="768" height="856"/>
+                                <rect key="frame" x="0.0" y="170" width="768" height="820"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lJ0-Rc-zdr">
-                                        <rect key="frame" x="225" y="810" width="78" height="35"/>
+                                        <rect key="frame" x="225" y="780" width="78" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Pick BG">
@@ -866,7 +866,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="JUW-Wi-tCl">
-                                        <rect key="frame" x="305" y="810" width="78" height="35"/>
+                                        <rect key="frame" x="305" y="780" width="78" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Pick FG">
@@ -877,7 +877,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="YML-3y-Nwb">
-                                        <rect key="frame" x="385" y="810" width="78" height="35"/>
+                                        <rect key="frame" x="385" y="780" width="78" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Apply"/>
@@ -886,7 +886,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="R7Y-72-TW6">
-                                        <rect key="frame" x="465" y="810" width="78" height="35"/>
+                                        <rect key="frame" x="465" y="780" width="78" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Undo">
@@ -897,7 +897,7 @@
                                         </connections>
                                     </button>
                                     <imageView contentMode="scaleAspectFit" id="d9c-P4-wEM">
-                                        <rect key="frame" x="0.0" y="-2" width="768" height="813"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -906,20 +906,20 @@
                                         </connections>
                                     </imageView>
                                     <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="YNZ-xr-9yy">
-                                        <rect key="frame" x="0.0" y="-120" width="320" height="460"/>
+                                        <rect key="frame" x="0.0" y="1" width="768" height="1024"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="black.png" id="Dad-J7-iDw">
-                                                <rect key="frame" x="40" y="166" width="240" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </imageView>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="white" id="leZ-Z5-hqd">
-                                                <rect key="frame" x="150" y="204" width="20" height="20"/>
+                                                <rect key="frame" x="379" y="436" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </activityIndicatorView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Erase In Progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jRt-Sl-QaI">
-                                                <rect key="frame" x="92" y="232" width="143" height="20"/>
+                                                <rect key="frame" x="318" y="471" width="143" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>

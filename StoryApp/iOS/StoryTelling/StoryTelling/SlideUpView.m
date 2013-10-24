@@ -12,7 +12,8 @@
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IPHONE_5_ADDITIONAL 78
 
-#define THUMB_HEIGHT 70
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
+#define THUMB_HEIGHT (IS_IPAD ? 120 : 70)
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
 

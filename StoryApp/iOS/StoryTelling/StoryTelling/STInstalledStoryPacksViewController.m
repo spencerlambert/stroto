@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 //
 #import "NSData+Base64.h"
-#define THUMB_HEIGHT 80
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
+#define THUMB_HEIGHT (IS_IPAD ? 130 : 80)
 #define THUMB_V_PADDING 6
 #define THUMB_H_PADDING 8
 
