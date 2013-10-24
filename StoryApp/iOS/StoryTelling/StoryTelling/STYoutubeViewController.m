@@ -30,6 +30,8 @@ NSURL *uploadLocationURL;
 @synthesize mainTitle,subTitle;
 @synthesize greyBGButton;
 @synthesize spinningWheel;
+@synthesize storyList;
+@synthesize listViewOutlet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,8 +47,12 @@ NSURL *uploadLocationURL;
     [super viewDidLoad];
     [mainTitle setText:self.maintitle];
     [subTitle setText:@"by:"];
-    
-	
+    [self.listViewOutlet setListDelegate:self];
+    [self.listViewOutlet setIndex:storyList.index];
+    [self.listViewOutlet setDBNamesiPad:self.storyList.DBNamesiPad];
+    [self.listViewOutlet setStoryNamesiPad:self.storyList.storyNamesiPad];
+    storyList = nil;
+    [self.listViewOutlet reloadInputViews];
     // Load the OAuth 2 token from the keychain, if it was previously saved.
     //    clientID = @"283801024967.apps.googleusercontent.com";
     //    clientSecret = @"K18TEG58lqLlR1AhpBEluY2B";
@@ -61,7 +67,6 @@ NSURL *uploadLocationURL;
     
 }
 - (void)viewWillAppear:(BOOL)animated{
-    
     if (![self isSignedIn]) {
         // Sign in.
         GTMOAuth2ViewControllerTouch *signin = [GTMOAuth2ViewControllerTouch controllerWithScope:kGTLAuthScopeYouTube clientID:clientID clientSecret:clientSecret keychainItemName:kKeychainItemName delegate:self finishedSelector:@selector(viewController:finishedWithAuth:error:)];
@@ -69,6 +74,7 @@ NSURL *uploadLocationURL;
         [self presentViewController:signin animated:YES completion:nil];
     }else{
         [[self userName] setText:[self signedInUsername]];
+        [[[(UITableView*)self.listViewOutlet subviews] objectAtIndex:0] reloadData];
        }
     
    
@@ -527,7 +533,17 @@ NSURL *uploadLocationURL;
      }];
 }
 
-
+-(void)didSelectTableCellWithName:(NSString *)dbName
+{
+    for (UIViewController *view in self.navigationController.viewControllers) {
+        if([view isKindOfClass:[SavedStoryDetailsViewController class]]){
+            [((SavedStoryDetailsViewController*)view) setDbname:dbName];
+            [((SavedStoryDetailsViewController*)view) setBarTitle];
+            [[((SavedStoryDetailsViewController*)view) listiPad] setIndex:listViewOutlet.index];
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 @end

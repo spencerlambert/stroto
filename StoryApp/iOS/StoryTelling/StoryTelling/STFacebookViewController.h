@@ -16,8 +16,9 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import "STListStoryiPad.h"
+#import "CreateStoryRootViewController.h"
 
-@interface STFacebookViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,STListStoryiPadDelegate>
+@interface STFacebookViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,STListStoryiPadDelegate,CreateStoryRootViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *storyTitle;
 @property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
@@ -32,5 +33,7 @@
 - (IBAction)uploadStory:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet STListStoryiPad *listViewiPad;
 @property (weak, nonatomic) STListStoryiPad *storyListiPad;
+@property BOOL iQuit1;
+
 
 @end

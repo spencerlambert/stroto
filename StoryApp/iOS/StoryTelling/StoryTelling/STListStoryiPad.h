@@ -19,5 +19,5 @@
 @property (weak, nonatomic) id<STListStoryiPadDelegate> listDelegate;
 @property (weak, nonatomic)  NSMutableArray *DBNamesiPad;
 @property (weak, nonatomic)  NSMutableArray *storyNamesiPad;
-@property (weak, nonatomic)  NSIndexPath *index;
+@property (strong, nonatomic)  NSIndexPath *index;
 @end

@@ -24,6 +24,7 @@
 @synthesize navigationBarTitle;
 @synthesize index;
 @synthesize storyListiPad;
+@synthesize listiPad;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +42,7 @@
     [navigationBarTitle setTitle:[storyDB getStoryName]];
     [storyDB closeDB];
     [self.listiPad setListDelegate:self];
-    [self.listiPad setIndex:index];
+    [self.listiPad setIndex:storyListiPad.index];
     [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
     [self.listiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
     storyListiPad = nil;
@@ -49,7 +50,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.listiPad reloadInputViews];
+    [(UITableView*)[[self.listiPad subviews]objectAtIndex:0] reloadData];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -104,6 +105,7 @@
             [facebookController setStoryListiPad:temp];
             [[facebookController storyListiPad] setDBNamesiPad:self.listiPad.DBNamesiPad];
             [[facebookController storyListiPad] setStoryNamesiPad:self.listiPad.storyNamesiPad];
+            [[facebookController storyListiPad] setIndex:self.listiPad.index];
             [self.navigationController pushViewController:facebookController animated:YES];
         }
         else{
@@ -182,6 +184,11 @@
         STYoutubeViewController *controller = segue.destinationViewController;
         [controller setDbname:dbname];
         [controller setMaintitle:navigationBarTitle.title];
+        STListStoryiPad *temp = [[STListStoryiPad alloc] init];
+        [controller setStoryList:temp];
+        [[controller storyList] setDBNamesiPad:self.listiPad.DBNamesiPad];
+        [[controller storyList] setStoryNamesiPad:self.listiPad.storyNamesiPad];
+        [[controller storyList] setIndex:self.listiPad.index];
     }
 }
 

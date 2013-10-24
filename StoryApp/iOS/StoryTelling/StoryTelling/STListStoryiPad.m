@@ -55,10 +55,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    
-//    [savedStory setDbname:dbNames[indexPath.row]];
-//    [savedStory setDBNamesiPad:dbNames];
-//    [savedStory setStoryNamesiPad:displayNames];
+    index = indexPath;
     [self.listDelegate didSelectTableCellWithName:DBNamesiPad[indexPath.row]];
 }
 

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GTLYouTube.h"
-
-@interface STYoutubeViewController : UIViewController<UITextFieldDelegate>{
+#import "STListStoryiPad.h"
+@interface STYoutubeViewController : UIViewController<UITextFieldDelegate,STListStoryiPadDelegate>{
     NSString *clientID ;
     NSString *clientSecret;
     IBOutlet UIProgressView *uploadProgressIndicator;
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 - (IBAction)logout:(id)sender;
-
+@property (weak, nonatomic) IBOutlet STListStoryiPad *listViewOutlet;
+@property (weak, nonatomic) STListStoryiPad *storyList;
 - (IBAction)upload:(id)sender;
 @end

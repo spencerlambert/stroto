@@ -14,6 +14,14 @@
 #import "ELCImagePickerController.h"
 #import "ELCAlbumPickerController.h"
 
+@protocol CreateStoryRootViewControllerDelegate <NSObject>
+
+@optional
+
+-(void)iQuit;
+
+@end
+
 
 @interface CreateStoryRootViewController : UIViewController<UITextFieldDelegate,WorkAreaDelegate,UINavigationBarDelegate,ELCImagePickerControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -26,6 +34,7 @@
 @property BOOL isEditStory;
 @property BOOL isAddingBGImage;
 @property (strong, nonatomic) NSString *dbname;
+@property (weak, nonatomic) id<CreateStoryRootViewControllerDelegate> myDelegate;
 
 
 - (IBAction)nextButtonClicked:(id)sender;

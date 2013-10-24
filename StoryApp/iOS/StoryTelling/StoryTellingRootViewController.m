@@ -152,9 +152,10 @@
                                    bundle:NULL] instantiateViewControllerWithIdentifier:@"savedStory"];
     }
     [savedStory setDbname:dbNames[indexPath.row]];
-    [savedStory setIndex:indexPath];
+//    [savedStory setIndex:indexPath];
     STListStoryiPad *temp = [[STListStoryiPad alloc] init];
     [savedStory setStoryListiPad:temp];
+    [[savedStory storyListiPad] setIndex:indexPath];
     [[savedStory storyListiPad] setDBNamesiPad:dbNames];
     [[savedStory storyListiPad] setStoryNamesiPad:displayNames];
     [self.navigationController pushViewController:savedStory animated:YES];

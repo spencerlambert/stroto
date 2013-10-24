@@ -74,23 +74,31 @@ bool nextButtonClicked = NO;
     }
 }
 
-- (void) navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
-{
-    [self updateDB];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-- (BOOL) navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
-    return YES;
-}
+//- (void) navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
+//{
+//    [self updateDB];
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
+//
+//
+//- (BOOL) navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
+//    return YES;
+//}
 -(void)viewWillDisappear:(BOOL)animated
 {
     if([self isMovingFromParentViewController])
     {
         [self updateDB];
+        if([self.myDelegate respondsToSelector:@selector(iQuit)]){
+            [self.myDelegate iQuit];
+        }
     }
 }
+
+-(void)test{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
