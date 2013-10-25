@@ -22,7 +22,6 @@
 
 @synthesize dbname;
 @synthesize navigationBarTitle;
-@synthesize index;
 @synthesize storyListiPad;
 @synthesize listiPad;
 
@@ -43,8 +42,8 @@
     [storyDB closeDB];
     [self.listiPad setListDelegate:self];
     [self.listiPad setIndex:storyListiPad.index];
-    [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
-    [self.listiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+//    [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
+//    [self.listiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
     storyListiPad = nil;
     [self.listiPad reloadInputViews];
 }
@@ -103,8 +102,8 @@
         {
             STListStoryiPad *temp = [[STListStoryiPad alloc] init];
             [facebookController setStoryListiPad:temp];
-            [[facebookController storyListiPad] setDBNamesiPad:self.listiPad.DBNamesiPad];
-            [[facebookController storyListiPad] setStoryNamesiPad:self.listiPad.storyNamesiPad];
+//            [[facebookController storyListiPad] setDBNamesiPad:self.listiPad.DBNamesiPad];
+//            [[facebookController storyListiPad] setStoryNamesiPad:self.listiPad.storyNamesiPad];
             [[facebookController storyListiPad] setIndex:self.listiPad.index];
             [self.navigationController pushViewController:facebookController animated:YES];
         }
@@ -186,8 +185,8 @@
         [controller setMaintitle:navigationBarTitle.title];
         STListStoryiPad *temp = [[STListStoryiPad alloc] init];
         [controller setStoryList:temp];
-        [[controller storyList] setDBNamesiPad:self.listiPad.DBNamesiPad];
-        [[controller storyList] setStoryNamesiPad:self.listiPad.storyNamesiPad];
+//        [[controller storyList] setDBNamesiPad:self.listiPad.DBNamesiPad];
+//        [[controller storyList] setStoryNamesiPad:self.listiPad.storyNamesiPad];
         [[controller storyList] setIndex:self.listiPad.index];
     }
 }

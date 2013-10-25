@@ -53,8 +53,8 @@
     self.storySubTitle.text = storySubTitleString;
     [self.listViewiPad setListDelegate:self];
     [self.listViewiPad setIndex:storyListiPad.index];
-    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
-    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+//    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
+//    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
     storyListiPad = nil;
     [self.listViewiPad reloadInputViews];
 

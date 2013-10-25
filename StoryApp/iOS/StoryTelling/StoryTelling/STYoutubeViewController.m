@@ -49,8 +49,8 @@ NSURL *uploadLocationURL;
     [subTitle setText:@"by:"];
     [self.listViewOutlet setListDelegate:self];
     [self.listViewOutlet setIndex:storyList.index];
-    [self.listViewOutlet setDBNamesiPad:self.storyList.DBNamesiPad];
-    [self.listViewOutlet setStoryNamesiPad:self.storyList.storyNamesiPad];
+//    [self.listViewOutlet setDBNamesiPad:self.storyList.DBNamesiPad];
+//    [self.listViewOutlet setStoryNamesiPad:self.storyList.storyNamesiPad];
     storyList = nil;
     [self.listViewOutlet reloadInputViews];
     // Load the OAuth 2 token from the keychain, if it was previously saved.

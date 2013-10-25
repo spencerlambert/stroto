@@ -12,8 +12,8 @@
 #define appleReceipt [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"%@\"}",storyPackID,appleReceiptData]
 
 #define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
-#define THUMB_HEIGHT (IS_IPAD ? 130 : 80)
-#define THUMB_V_PADDING 6
+#define THUMB_HEIGHT (IS_IPAD ? 250 : 80)
+#define THUMB_V_PADDING (IS_IPAD ? 25 : 6)
 #define THUMB_H_PADDING 8
 
 #import "STFreeStoryPacksViewController.h"

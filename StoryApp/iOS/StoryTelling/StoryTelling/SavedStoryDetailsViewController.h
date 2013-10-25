@@ -22,7 +22,6 @@
 - (IBAction)editButtonClicked:(id)sender;
 - (IBAction)deleteButtonClicked:(id)sender;
 -(void)setBarTitle;
-@property (weak, nonatomic) NSIndexPath *index;
 @property (strong, nonatomic) IBOutlet STListStoryiPad *listiPad;
 @property (weak, nonatomic) STListStoryiPad *storyListiPad;
 @end

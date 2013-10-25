@@ -17,7 +17,8 @@
 @interface STListStoryiPad : UIView<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) id<STListStoryiPadDelegate> listDelegate;
-@property (weak, nonatomic)  NSMutableArray *DBNamesiPad;
-@property (weak, nonatomic)  NSMutableArray *storyNamesiPad;
+@property (strong, nonatomic)  NSMutableArray *DBNamesiPad;
+@property (strong, nonatomic)  NSMutableArray *storyNamesiPad;
 @property (strong, nonatomic)  NSIndexPath *index;
+-(int)loadTableSource;
 @end

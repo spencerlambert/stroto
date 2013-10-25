@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 #define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
-#define THUMB_HEIGHT (IS_IPAD ? 107 : 57)
+#define THUMB_HEIGHT (IS_IPAD ? 150 : 57)
 #define THUMB_V_PADDING 3
 #define THUMB_H_PADDING 8
 #define NAME_LABEL_HEIGHT 25
