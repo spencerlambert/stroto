@@ -60,7 +60,7 @@ if (is_dir(THUMBNAIL_PATH."/".$vals['StoryPackID']) === false) mkdir(THUMBNAIL_P
 $thumbnail_dir = THUMBNAIL_PATH.$vals['StoryPackID']."/";
 $thumbnail_url = THUMBNAIL_URL.$vals['StoryPackID']."/";
 
-exec(CONVERT_PATH." -define png:size=200x200 ".getcwd()."/thumbnail.png -thumbnail '150x150>' ".$thumbnail_dir."main.png");
+exec(CONVERT_PATH." -define png:size=400x400 ".getcwd()."/thumbnail.png -thumbnail '250x250>' ".$thumbnail_dir."main.png");
 
 $sql = "UPDATE StoryPack SET ThumbnailURL='".$thumbnail_url."main.png' WHERE StoryPackID='".$vals['StoryPackID']."'";
 echo($sql."\n\n");
@@ -88,7 +88,7 @@ while (false !== ($img = $bg_dir->read())) {
     $res = mysql_query($sql, $db_storypack);
     $img_id = mysql_insert_id($db_storypack);
 
-    exec(CONVERT_PATH." -define png:size=200x200 ".$image_path." -thumbnail '150x150>' ".$thumbnail_dir.$img_id.".png");
+    exec(CONVERT_PATH." -define png:size=400x400 ".$image_path." -thumbnail '250x250>' ".$thumbnail_dir.$img_id.".png");
     
     $sql = "UPDATE Images SET ThumbnailURL='".$thumbnail_url.$img_id.".png' WHERE ImageID='".$img_id."'";
     echo($sql."\n\n");
@@ -114,7 +114,7 @@ while (false !== ($img = $bg_dir->read())) {
     $res = mysql_query($sql, $db_storypack);
     $img_id = mysql_insert_id($db_storypack);
 
-    exec(CONVERT_PATH." -define png:size=200x200 ".$image_path." -thumbnail '150x150>' ".$thumbnail_dir.$img_id.".png");
+    exec(CONVERT_PATH." -define png:size=400x400 ".$image_path." -thumbnail '250x250>' ".$thumbnail_dir.$img_id.".png");
     
     $sql = "UPDATE Images SET ThumbnailURL='".$thumbnail_url.$img_id.".png' WHERE ImageID='".$img_id."'";
     echo($sql."\n\n");
