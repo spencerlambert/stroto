@@ -166,6 +166,7 @@ NSURL *uploadLocationURL;
     
     NSString *desc = [subTitle text];
     if ([desc length] > 0) {
+        desc = [desc stringByAppendingString:@" \n Created using : Stroto (http://www.stroto.com)"];
         snippet.descriptionProperty = desc;
     }
     //    NSString *tagsStr = [_uploadTagsField stringValue];

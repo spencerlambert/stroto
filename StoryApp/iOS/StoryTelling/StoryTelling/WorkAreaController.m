@@ -95,7 +95,7 @@ UIButton *button ;
                action:@selector(closeBtn)
      forControlEvents:UIControlEventTouchDown];
     [button setTitle:@"" forState:UIControlStateNormal];
-    button.frame = CGRectMake(294.0, 15.0, 20.0, 20.0);
+    button.frame = IS_IPAD?CGRectMake(703, 28.0, 40.0, 40.0):CGRectMake(294.0, 15.0, 20.0, 20.0);
     [button setBackgroundImage:[UIImage imageNamed:@"color_trans.png" ]forState:UIControlStateNormal];
     [backgroundimageview addSubview:button];
     

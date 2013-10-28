@@ -6,7 +6,11 @@
 //  Copyright (c) 2013 Stroto, LLC. All rights reserved.
 //
 
+
 #import "STImage.h"
+
+
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
 
 @implementation STImage
 
@@ -20,7 +24,7 @@
         [self setDefaultX:0];
         [self setDefaultY:0];
         [self setImageData: UIImagePNGRepresentation(self)];
-        [self setSizeScale:100];
+        [self setSizeScale:IS_IPAD?200:100];
         [self setIsEdited:NO];
         [self setMasks:[[NSMutableArray alloc]init]];
         [self setMaskImgs:[[NSMutableArray alloc]init]];
