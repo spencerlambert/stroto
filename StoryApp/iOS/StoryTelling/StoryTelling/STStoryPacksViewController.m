@@ -10,7 +10,8 @@
 #define THUMB_V_PADDING 3
 #define THUMB_H_PADDING 8
 #define NAME_LABEL_HEIGHT 25
-#define PRICE_LABEL_HEIGHT 10
+#define PRICE_LABEL_HEIGHT (IS_IPAD ? 15 : 10)
+#define fontSize (IS_IPAD ? 15 : 10)
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define paidBody [NSString stringWithFormat:@"{\"st_request\":\"get_paid_list\"}"]
 #define freeBody [NSString stringWithFormat:@"{\"st_request\":\"get_free_list\"}"]
@@ -119,9 +120,7 @@ NSLog (@"number of story packs :%i",count);
     [installedStoryPacksHolder setClipsToBounds:NO];
     for(UIView *view in installedStoryPacksView.subviews)
         [view removeFromSuperview];
-    [installedStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [installedStoryPacksHolder setHidden:NO];
-    [installedStoryPacksView addSubview:installedStoryPacksHolder];
     for(int i=0; i<count; i++){
         sqlite3 *db;
         if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
@@ -176,7 +175,7 @@ NSLog(@"SQL query Statement preparation on database success.");
                         [storyPackName setOpaque:NO];
                         [storyPackName setBackgroundColor:nil];
                         [storyPackName setTextColor:[UIColor whiteColor]];
-                        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
+                        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:fontSize]];
                         [storyPackName setNumberOfLines:2];
                         storyPackName.text = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
                         [storyPackName setFrame:textFrame];
@@ -199,6 +198,7 @@ NSLog(@"SQL query Statement preparation on database success.");
             
         }
     }
+    [installedStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [installedStoryPacksView addSubview:installedStoryPacksHolder];
 }
 
@@ -256,9 +256,7 @@ NSLog(@"Path after appending : %@",databasePath);
     [paidStoryPacksHolder setClipsToBounds:NO];
     for(UIView *view in paidStoryPacksView.subviews)
     [view removeFromSuperview];
-    [paidStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [paidStoryPacksHolder setHidden:NO];
-    [paidStoryPacksView addSubview:paidStoryPacksHolder];
     while(!paidJson){       //checking for data
 //        NSLog(@"NUll in paidJSON");
      continue;}
@@ -290,12 +288,11 @@ NSLog(@"Path after appending : %@",databasePath);
         [storyPackName setOpaque:NO];
         [storyPackName setBackgroundColor:nil];
         [storyPackName setTextColor:[UIColor whiteColor]];
-        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
+        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:fontSize]];
         [storyPackName setNumberOfLines:2];
         storyPackName.text = [[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Name"];
 //        storyPackName.text = @"Goldilocks and The three Bears";//test largest name!
         [storyPackName setFrame:textFrame];
-        
         [storyPackName setHidden:NO];
 //implementing tap on name label
         [storyPackName setTag:[[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] intValue]];
@@ -310,7 +307,7 @@ NSLog(@"Path after appending : %@",databasePath);
         [storyPackPrice setOpaque:NO];
         [storyPackPrice setBackgroundColor:nil];
         [storyPackPrice setTextColor:[UIColor whiteColor]];
-        [storyPackPrice setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
+        [storyPackPrice setFont:[UIFont fontWithName:@"Helvetica" size:fontSize]];
         [storyPackPrice setNumberOfLines:1];
         storyPackPrice.text = [NSString stringWithFormat:@"$%@",[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Price"]];
         [storyPackPrice setFrame:priceTextFrame];
@@ -327,6 +324,7 @@ NSLog(@"Path after appending : %@",databasePath);
     }
 //    [paidStoryPacksHolder setAlpha:0.5]; //for knowing the bounds
 //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
+    [paidStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [paidStoryPacksView addSubview:paidStoryPacksHolder];
 }
 -(void)reloadFreeView
@@ -372,7 +370,7 @@ NSLog(@"Path after appending : %@",databasePath);
         CGRect textFrame = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height + THUMB_V_PADDING, frame.size.width, NAME_LABEL_HEIGHT);
         [storyPackName setBackgroundColor:nil];
         [storyPackName setTextColor:[UIColor whiteColor]];
-        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:10.0]];
+        [storyPackName setFont:[UIFont fontWithName:@"Helvetica" size:fontSize]];
         [storyPackName setOpaque:NO];
         [storyPackName setNumberOfLines:2];
         storyPackName.text = [[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Name"];
@@ -389,9 +387,6 @@ NSLog(@"Path after appending : %@",databasePath);
         xPosition += (frame.size.width + THUMB_H_PADDING);
     }
     [freeStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
-//    for(UIView *view in freeStoryPacksView.subviews){
-//        [view removeFromSuperview];
-//    }
     [freeStoryPacksHolder setHidden:NO];
 //    [freeStoryPacksHolder setAlpha:0.5];//for knowing the bounds
 //    [freeStoryPacksHolder setBackgroundColor:[UIColor blueColor]];//for knowing the bounds

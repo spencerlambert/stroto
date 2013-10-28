@@ -110,9 +110,7 @@
     [backgroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in backgroundImagesView.subviews)
         [view removeFromSuperview];
-    [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [backgroundImagesHolder setHidden:NO];
-    [backgroundImagesView addSubview:backgroundImagesHolder];
     while(!freeStoryPackDetailsJson){       //checking for data
         //        NSLog(@"NUll in paidJSON");
         continue;}
@@ -167,9 +165,7 @@
     [foregroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in foregroundImagesView.subviews)
         [view removeFromSuperview];
-    [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [foregroundImagesHolder setHidden:NO];
-    [foregroundImagesView addSubview:foregroundImagesHolder];
     while(!freeStoryPackDetailsJson){       //checking for data
         //        NSLog(@"NUll in paidJSON");
         continue;}

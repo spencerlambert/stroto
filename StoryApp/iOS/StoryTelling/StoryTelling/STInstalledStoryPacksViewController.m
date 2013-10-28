@@ -99,9 +99,7 @@
     [backgroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in backgroundImagesView.subviews)
         [view removeFromSuperview];
-    [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [backgroundImagesHolder setHidden:NO];
-    [backgroundImagesView addSubview:backgroundImagesHolder];
     switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
         case SQLITE_OK:
@@ -117,7 +115,6 @@
             NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(statement, 0)];
         //base64_encode local test
 //            NSError * error;
-//            NSString *dataAsString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://192.168.1.205/sajin/test2/iphone/connection.php"] encoding:NSUTF8StringEncoding error:&error];
             NSData *data = [NSData dataFromBase64String:dataAsString];
             UIImage *image = [UIImage imageWithData:data];
             STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
@@ -198,9 +195,7 @@
     [foregroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in foregroundImagesView.subviews)
         [view removeFromSuperview];
-    [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [foregroundImagesHolder setHidden:NO];
-    [foregroundImagesView addSubview:foregroundImagesHolder];
     switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
         case SQLITE_OK:

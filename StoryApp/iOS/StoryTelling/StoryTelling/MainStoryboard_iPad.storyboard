@@ -19,7 +19,7 @@
                                     <navigationItem id="Vrf-Ne-dNk">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B7f-WU-K6l">
-                                            <rect key="frame" x="294" y="5" width="181" height="35"/>
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Create New Story">
@@ -41,11 +41,11 @@
                                         <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d9V-Wf-YwN" id="4f5-15-9XS">
-                                            <rect key="frame" x="0.0" y="0.0" width="701" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="735" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpF-T4-esw">
-                                                    <rect key="frame" x="15" y="0.0" width="686" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="715" height="43"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -181,7 +181,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vzg-Id-Uuf">
-                                                            <rect key="frame" x="15" y="0.0" width="354" height="43"/>
+                                                            <rect key="frame" x="10" y="0.0" width="364" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -205,7 +205,7 @@
                                     <navigationItem id="bp0-Di-Jza">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dd9-WL-xzc">
-                                            <rect key="frame" x="294" y="5" width="181" height="35"/>
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Create New Story">
@@ -364,7 +364,7 @@
                                     <navigationItem id="oM9-6X-EKV">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G2R-Ac-M5q">
-                                            <rect key="frame" x="294" y="5" width="181" height="35"/>
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Create New Story">
@@ -473,11 +473,11 @@
                                                 <rect key="frame" x="0.0" y="22" width="384" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1O-yV-PSu" id="KJ1-pp-KQz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hEB-mZ-j6h">
-                                                            <rect key="frame" x="15" y="0.0" width="302" height="43"/>
+                                                            <rect key="frame" x="10" y="0.0" width="331" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -501,14 +501,14 @@
                                     <navigationItem id="lTk-AN-6Gp">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gmZ-jq-FkN">
-                                            <rect key="frame" x="294" y="5" width="181" height="35"/>
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Create New Story">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="fLV-iY-P4c" kind="push" id="8Ss-7e-HPY"/>
+                                                <segue destination="fLV-iY-P4c" kind="push" identifier="createNew" id="8Ss-7e-HPY"/>
                                             </connections>
                                         </button>
                                     </navigationItem>
@@ -1041,11 +1041,11 @@
                                 <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJb-RV-pCB" id="twa-qB-RZU">
-                                    <rect key="frame" x="0.0" y="0.0" width="735" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="748" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXO-Fm-wQr">
-                                            <rect key="frame" x="15" y="0.0" width="718" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="728" height="43"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -13,7 +13,7 @@
 #import <GTMOAuth2ViewControllerTouch.h>
 #import "SavedStoryDetailsViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "CreateStoryRootViewController.h"
 
 NSString *const kKeychainItemName = @"Stroto: YouTube";
 NSURL *uploadLocationURL;
@@ -545,6 +545,14 @@ NSURL *uploadLocationURL;
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.destinationViewController isKindOfClass:[CreateStoryRootViewController class]])
+    {
+//        ((CreateStoryRootViewController*)segue.destinationViewController).myDelegate = self;
+        AppDelegate *newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [newstoryFlag setIsNewStory:@"true"];
+    }
+}
 
 @end

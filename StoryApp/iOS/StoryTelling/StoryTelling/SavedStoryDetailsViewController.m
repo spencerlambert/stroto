@@ -189,6 +189,12 @@
 //        [[controller storyList] setStoryNamesiPad:self.listiPad.storyNamesiPad];
         [[controller storyList] setIndex:self.listiPad.index];
     }
+    if([segue.identifier  isEqual: @"createNew"])
+    {
+//        ((CreateStoryRootViewController*)segue.destinationViewController).myDelegate = self;
+        AppDelegate *newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [newstoryFlag setIsNewStory:@"true"];
+    }
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{

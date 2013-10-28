@@ -78,9 +78,7 @@
     [backgroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in backgroundImagesView.subviews)
         [view removeFromSuperview];
-    [backgroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [backgroundImagesHolder setHidden:NO];
-    [backgroundImagesView addSubview:backgroundImagesHolder];
     switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
         case SQLITE_OK:
@@ -171,9 +169,7 @@
     [foregroundImagesHolder setClipsToBounds:NO];
     for(UIView *view in foregroundImagesView.subviews)
         [view removeFromSuperview];
-    [foregroundImagesHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [foregroundImagesHolder setHidden:NO];
-    [foregroundImagesView addSubview:foregroundImagesHolder];
     switch (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil))
     {
         case SQLITE_OK:

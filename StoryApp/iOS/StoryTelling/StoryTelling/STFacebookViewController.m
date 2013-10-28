@@ -87,6 +87,8 @@
     if([segue.destinationViewController isKindOfClass:[CreateStoryRootViewController class]])
     {
         ((CreateStoryRootViewController*)segue.destinationViewController).myDelegate = self;
+        AppDelegate *newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [newstoryFlag setIsNewStory:@"true"];
     }
 }
 -(void)iQuit{
@@ -433,21 +435,6 @@
 
 -(void)didSelectTableCellWithName:(NSString *)dbName
 {
-//    if([[self.navigationController presentingViewController] isKindOfClass:[SavedStoryDetailsViewController class]])
-//    {
-//        NSLog(@"presenting!!");
-//    }
-//    if([[self.navigationController parentViewController] isKindOfClass:[SavedStoryDetailsViewController class]])
-//    {
-//        NSLog(@"parent!!");
-//  
-//    }
-//    if([[self.navigationController presentedViewController] isKindOfClass:[SavedStoryDetailsViewController class]])
-//    {
-//        NSLog(@"presented!!");
-//        
-//    }
-    
     for (UIViewController *view in self.navigationController.viewControllers) {
         if([view isKindOfClass:[SavedStoryDetailsViewController class]]){
             [((SavedStoryDetailsViewController*)view) setDbname:dbName];
@@ -455,20 +442,6 @@
             [[((SavedStoryDetailsViewController*)view) listiPad] setIndex:listViewiPad.index];
         }
     }
-    
-    
-//       [((SavedStoryDetailsViewController*)[self.navigationController presentingViewController]) setDbname:dbName];
-////    ((SavedStoryDetailsViewController*)[self.navigationController presentingViewController]).dbname = dbName;
-//    [((SavedStoryDetailsViewController*)[self.navigationController presentingViewController]) setBarTitle];
-//    [[((SavedStoryDetailsViewController*)[self.navigationController presentingViewController]) listiPad] setIndex:listViewiPad.index];
     [self.navigationController popViewControllerAnimated:YES];
-    
-//    SavedStoryDetailsViewController *test = [[SavedStoryDetailsViewController alloc] init];
-//    STListStoryiPad *temp = [[STListStoryiPad alloc] init];
-//    [test setStoryListiPad:temp];
-//    [[test storyListiPad] setIndex:self.listViewiPad.index];
-//    [[test storyListiPad] setDBNamesiPad:self.listViewiPad.DBNamesiPad];
-//    [[test storyListiPad] setStoryNamesiPad:self.listViewiPad.storyNamesiPad];
-//    [self presentViewController:test animated:YES completion:nil];
 }
 @end
