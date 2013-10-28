@@ -374,7 +374,7 @@
             </objects>
             <point key="canvasLocation" x="-431" y="-779"/>
         </scene>
-        <!--Create Story Root View Controller - Create Story-->
+        <!--Create Story Root View Controller-->
         <scene sceneID="82n-LS-PJu">
             <objects>
                 <viewController storyboardIdentifier="CreateStoryRootViewController" id="fLV-iY-P4c" customClass="CreateStoryRootViewController" sceneMemberID="viewController">
@@ -469,7 +469,7 @@
                             <action selector="resigngTxtField" destination="fLV-iY-P4c" eventType="touchUpInside" id="niz-3u-dFD"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Story" id="9dF-Fa-QfY">
+                    <navigationItem key="navigationItem" id="9dF-Fa-QfY">
                         <barButtonItem key="backBarButtonItem" title="Back" id="5Tq-o6-NC5"/>
                         <barButtonItem key="rightBarButtonItem" title="Record Story" style="done" id="0Rl-2i-1ak">
                             <connections>
@@ -1456,7 +1456,29 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
