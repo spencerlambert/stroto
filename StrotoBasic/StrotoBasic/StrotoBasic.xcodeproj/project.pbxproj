@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBF83A84181F7749002B6D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A83181F7749002B6D34 /* Foundation.framework */; };
+		EBF83A86181F774A002B6D34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A85181F774A002B6D34 /* CoreGraphics.framework */; };
+		EBF83A88181F774A002B6D34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A87181F774A002B6D34 /* UIKit.framework */; };
+		EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A8C181F774A002B6D34 /* InfoPlist.strings */; };
+		EBF83A90181F774A002B6D34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A8F181F774A002B6D34 /* main.m */; };
+		EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A93181F774A002B6D34 /* AppDelegate.m */; };
+		EBF83A97181F774A002B6D34 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */; };
+		EBF83A9A181F774A002B6D34 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */; };
+		EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A9C181F774A002B6D34 /* ViewController.m */; };
+		EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A9E181F774B002B6D34 /* Images.xcassets */; };
+		EBF83AA6181F774C002B6D34 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83AA5181F774C002B6D34 /* XCTest.framework */; };
+		EBF83AA7181F774C002B6D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A83181F7749002B6D34 /* Foundation.framework */; };
+		EBF83AA8181F774C002B6D34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A87181F774A002B6D34 /* UIKit.framework */; };
+		EBF83AB0181F774C002B6D34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBF83AAE181F774C002B6D34 /* InfoPlist.strings */; };
+		EBF83AB2181F774C002B6D34 /* StrotoBasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */; };
+		EBF83ABC181F789B002B6D34 /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF83ABB181F789B002B6D34 /* color_red.png */; };
+		EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */ = {isa = PBXBuildFile; fileRef = EBF83AC1181F9094002B6D34 /* StoryPacks */; };
+		EBF83AC4181F9C8B002B6D34 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83AC3181F9C8B002B6D34 /* libsqlite3.dylib */; };
+		EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBF83AA9181F774C002B6D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBF83A78181F7748002B6D34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBF83A7F181F7748002B6D34;
+			remoteInfo = StrotoBasic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EBF83A80181F7748002B6D34 /* StrotoBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrotoBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF83A83181F7749002B6D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EBF83A85181F774A002B6D34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EBF83A87181F774A002B6D34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EBF83A8B181F774A002B6D34 /* StrotoBasic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrotoBasic-Info.plist"; sourceTree = "<group>"; };
+		EBF83A8D181F774A002B6D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EBF83A8F181F774A002B6D34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StrotoBasic-Prefix.pch"; sourceTree = "<group>"; };
+		EBF83A92181F774A002B6D34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EBF83A93181F774A002B6D34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EBF83A96181F774A002B6D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		EBF83A99181F774A002B6D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		EBF83A9B181F774A002B6D34 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EBF83A9C181F774A002B6D34 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EBF83A9E181F774B002B6D34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StrotoBasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF83AA5181F774C002B6D34 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EBF83AAD181F774C002B6D34 /* StrotoBasicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrotoBasicTests-Info.plist"; sourceTree = "<group>"; };
+		EBF83AAF181F774C002B6D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrotoBasicTests.m; sourceTree = "<group>"; };
+		EBF83ABB181F789B002B6D34 /* color_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = color_red.png; path = ../../../StoryApp/Images/color_red.png; sourceTree = "<group>"; };
+		EBF83AC1181F9094002B6D34 /* StoryPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = StoryPacks; sourceTree = "<group>"; };
+		EBF83AC3181F9C8B002B6D34 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EBF83AC5181FA302002B6D34 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBF83A7D181F7748002B6D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83AC4181F9C8B002B6D34 /* libsqlite3.dylib in Frameworks */,
+				EBF83A86181F774A002B6D34 /* CoreGraphics.framework in Frameworks */,
+				EBF83A88181F774A002B6D34 /* UIKit.framework in Frameworks */,
+				EBF83A84181F7749002B6D34 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBF83AA1181F774C002B6D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83AA6181F774C002B6D34 /* XCTest.framework in Frameworks */,
+				EBF83AA8181F774C002B6D34 /* UIKit.framework in Frameworks */,
+				EBF83AA7181F774C002B6D34 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBF83A77181F7748002B6D34 = {
+			isa = PBXGroup;
+			children = (
+				EBF83AC1181F9094002B6D34 /* StoryPacks */,
+				EBF83A89181F774A002B6D34 /* StrotoBasic */,
+				EBF83AAB181F774C002B6D34 /* StrotoBasicTests */,
+				EBF83A82181F7748002B6D34 /* Frameworks */,
+				EBF83A81181F7748002B6D34 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EBF83A81181F7748002B6D34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83A80181F7748002B6D34 /* StrotoBasic.app */,
+				EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EBF83A82181F7748002B6D34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83AC3181F9C8B002B6D34 /* libsqlite3.dylib */,
+				EBF83A83181F7749002B6D34 /* Foundation.framework */,
+				EBF83A85181F774A002B6D34 /* CoreGraphics.framework */,
+				EBF83A87181F774A002B6D34 /* UIKit.framework */,
+				EBF83AA5181F774C002B6D34 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EBF83A89181F774A002B6D34 /* StrotoBasic */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83A92181F774A002B6D34 /* AppDelegate.h */,
+				EBF83A93181F774A002B6D34 /* AppDelegate.m */,
+				EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */,
+				EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */,
+				EBF83A9B181F774A002B6D34 /* ViewController.h */,
+				EBF83A9C181F774A002B6D34 /* ViewController.m */,
+				EBF83AC5181FA302002B6D34 /* NSData+Base64.h */,
+				EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */,
+				EBF83A9E181F774B002B6D34 /* Images.xcassets */,
+				EBF83A8A181F774A002B6D34 /* Supporting Files */,
+			);
+			path = StrotoBasic;
+			sourceTree = "<group>";
+		};
+		EBF83A8A181F774A002B6D34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83A8B181F774A002B6D34 /* StrotoBasic-Info.plist */,
+				EBF83ABB181F789B002B6D34 /* color_red.png */,
+				EBF83A8C181F774A002B6D34 /* InfoPlist.strings */,
+				EBF83A8F181F774A002B6D34 /* main.m */,
+				EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBF83AAB181F774C002B6D34 /* StrotoBasicTests */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */,
+				EBF83AAC181F774C002B6D34 /* Supporting Files */,
+			);
+			path = StrotoBasicTests;
+			sourceTree = "<group>";
+		};
+		EBF83AAC181F774C002B6D34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBF83AAD181F774C002B6D34 /* StrotoBasicTests-Info.plist */,
+				EBF83AAE181F774C002B6D34 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBF83A7F181F7748002B6D34 /* StrotoBasic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasic" */;
+			buildPhases = (
+				EBF83A7C181F7748002B6D34 /* Sources */,
+				EBF83A7D181F7748002B6D34 /* Frameworks */,
+				EBF83A7E181F7748002B6D34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StrotoBasic;
+			productName = StrotoBasic;
+			productReference = EBF83A80181F7748002B6D34 /* StrotoBasic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EBF83AA3181F774C002B6D34 /* StrotoBasicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasicTests" */;
+			buildPhases = (
+				EBF83AA0181F774C002B6D34 /* Sources */,
+				EBF83AA1181F774C002B6D34 /* Frameworks */,
+				EBF83AA2181F774C002B6D34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBF83AAA181F774C002B6D34 /* PBXTargetDependency */,
+			);
+			name = StrotoBasicTests;
+			productName = StrotoBasicTests;
+			productReference = EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBF83A78181F7748002B6D34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = stroto;
+				TargetAttributes = {
+					EBF83AA3181F774C002B6D34 = {
+						TestTargetID = EBF83A7F181F7748002B6D34;
+					};
+				};
+			};
+			buildConfigurationList = EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "StrotoBasic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBF83A77181F7748002B6D34;
+			productRefGroup = EBF83A81181F7748002B6D34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBF83A7F181F7748002B6D34 /* StrotoBasic */,
+				EBF83AA3181F774C002B6D34 /* StrotoBasicTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBF83A7E181F7748002B6D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,
+				EBF83A9A181F774A002B6D34 /* Main_iPad.storyboard in Resources */,
+				EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */,
+				EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */,
+				EBF83A97181F774A002B6D34 /* Main_iPhone.storyboard in Resources */,
+				EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBF83AA2181F774C002B6D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83AB0181F774C002B6D34 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBF83A7C181F7748002B6D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */,
+				EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */,
+				EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */,
+				EBF83A90181F774A002B6D34 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBF83AA0181F774C002B6D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBF83AB2181F774C002B6D34 /* StrotoBasicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBF83AAA181F774C002B6D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBF83A7F181F7748002B6D34 /* StrotoBasic */;
+			targetProxy = EBF83AA9181F774C002B6D34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EBF83A8C181F774A002B6D34 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBF83A8D181F774A002B6D34 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBF83A96181F774A002B6D34 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBF83A99181F774A002B6D34 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		EBF83AAE181F774C002B6D34 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBF83AAF181F774C002B6D34 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EBF83AB3181F774C002B6D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBF83AB4181F774C002B6D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EBF83AB6181F774C002B6D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EBF83AB7181F774C002B6D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EBF83AB9181F774C002B6D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StrotoBasic.app/StrotoBasic";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "StrotoBasicTests/StrotoBasicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EBF83ABA181F774C002B6D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StrotoBasic.app/StrotoBasic";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				INFOPLIST_FILE = "StrotoBasicTests/StrotoBasicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "StrotoBasic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBF83AB3181F774C002B6D34 /* Debug */,
+				EBF83AB4181F774C002B6D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBF83AB6181F774C002B6D34 /* Debug */,
+				EBF83AB7181F774C002B6D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBF83AB9181F774C002B6D34 /* Debug */,
+				EBF83ABA181F774C002B6D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EBF83A78181F7748002B6D34 /* Project object */;
+}
