@@ -520,6 +520,9 @@ UIButton *button ;
     
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
+         NSLog(@"Finished compile to make movie");
+         [self performSelectorOnMainThread:@selector(finisher) withObject:self waitUntilDone:YES];
+         
          //         NSString *sourcePath = outputFilePath;
          //         UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
          //             slideleftview.playVideo.enabled = YES;
@@ -531,12 +534,28 @@ UIButton *button ;
     //    if ([[NSFileManager defaultManager] fileExistsAtPath:video_inputFilePath])
     //        [[NSFileManager defaultManager] removeItemAtPath:video_inputFilePath error:nil];
     
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)finisher{
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
     [storyDB closeDB];
     [self.navigationController setNavigationBarHidden:NO];
+    if(IS_IPAD){
+    for (UIViewController *cntrlr in [self.navigationController viewControllers]){
+        if ([cntrlr isKindOfClass:[SavedStoryDetailsViewController class]]) {
+            [self.navigationController popToViewController:cntrlr animated:YES];
+            return;
+        }
+    }
     [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    }else
+    {
+         [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
 }
 
 - (UIView *) getLoaderView{

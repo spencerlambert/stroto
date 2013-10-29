@@ -63,7 +63,15 @@
         NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
         mp = [[MPMoviePlayerViewController alloc] initWithContentURL:outputURL];
         mp.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-        [self presentMoviePlayerViewControllerAnimated:mp];
+        AVURLAsset* asset = [[AVURLAsset alloc]initWithURL:outputURL options:nil];
+
+        if(CMTimeCompare(asset.duration,kCMTimeZero) > 0){
+             [self presentMoviePlayerViewControllerAnimated:mp];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Processing movie, Please wait." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+        }
+       
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];

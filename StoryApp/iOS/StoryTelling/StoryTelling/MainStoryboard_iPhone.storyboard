@@ -74,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahs-2a-jvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-875" y="-374"/>
+            <point key="canvasLocation" x="-3223" y="-198"/>
         </scene>
         <!--Facebook View Controller - Upload To Facebook-->
         <scene sceneID="DXL-50-7FX">
@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DM5-a7-yPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="-1407"/>
+            <point key="canvasLocation" x="-3166" y="-1231"/>
         </scene>
         <!--Youtube View Controller - Upload to Youtube-->
         <scene sceneID="ccd-Zh-4rb">
@@ -295,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOO-RX-VvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362" y="-1407"/>
+            <point key="canvasLocation" x="-2710" y="-1231"/>
         </scene>
         <!--Saved Story Details View Controller - Story_Title-->
         <scene sceneID="7Tc-zm-a0x">
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ojz-4g-oI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-431" y="-779"/>
+            <point key="canvasLocation" x="-2779" y="-603"/>
         </scene>
         <!--Create Story Root View Controller-->
         <scene sceneID="82n-LS-PJu">
@@ -485,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bS-hn-SeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-385" y="-46"/>
+            <point key="canvasLocation" x="-2733" y="130"/>
         </scene>
         <!--Crop Background View Controller - Crop Background-->
         <scene sceneID="Wav-30-F6R">
@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPb-Ot-wHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="-1372"/>
+            <point key="canvasLocation" x="-1733" y="-1196"/>
         </scene>
         <!--Installed Story Packs View Controller-->
         <scene sceneID="n8D-ls-Bvj">
@@ -599,7 +599,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccS-xE-XBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="yLw-mU-nRp"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="-1371"/>
+            <point key="canvasLocation" x="-1233" y="-1195"/>
         </scene>
         <!--Add Foreground View Controller - Add Foreground-->
         <scene sceneID="A5U-YG-fhn">
@@ -660,7 +660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngC-Sj-Ipx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="139"/>
+            <point key="canvasLocation" x="-2195" y="315"/>
         </scene>
         <!--Crop Foreground View Controller-->
         <scene sceneID="NrE-jU-cwt">
@@ -871,7 +871,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="623" y="139"/>
+            <point key="canvasLocation" x="-1725" y="315"/>
         </scene>
         <!--Select Story View Controller - Select Story-->
         <scene sceneID="rq2-Zh-zub">
@@ -911,7 +911,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mF-hd-Vd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="139"/>
+            <point key="canvasLocation" x="-1309" y="315"/>
         </scene>
         <!--Select Images From Story View Controller - Select Images To Use-->
         <scene sceneID="YIg-iE-jBl">
@@ -976,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz6-wY-8A6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428" y="139"/>
+            <point key="canvasLocation" x="-920" y="315"/>
         </scene>
         <!--Add Background View Controller - Add Background-->
         <scene sceneID="e3G-dQ-o0N">
@@ -1039,7 +1039,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaC-6D-uuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173" y="-1372"/>
+            <point key="canvasLocation" x="-2175" y="-1196"/>
         </scene>
         <!--Work Area Controller-->
         <scene sceneID="Emh-JT-6Aa">
@@ -1066,7 +1066,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Zx-ZF-tCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173" y="-647"/>
+            <point key="canvasLocation" x="-2175" y="-471"/>
         </scene>
         <!--Paid Story Packs View Controller - Story Packs-->
         <scene sceneID="XRU-NQ-N1i">
@@ -1204,7 +1204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uxb-Bx-epY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="-641"/>
+            <point key="canvasLocation" x="-1767" y="-465"/>
         </scene>
         <!--Story Packs View Controller - Story Packs-->
         <scene sceneID="q07-8X-VyA">
@@ -1289,7 +1289,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8K-Bz-mcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="5EX-4B-DLu"/>
             </objects>
-            <point key="canvasLocation" x="943" y="-641"/>
+            <point key="canvasLocation" x="-1405" y="-465"/>
         </scene>
         <!--Free Story Packs View Controller - Story Packs-->
         <scene sceneID="eBK-mY-Nvl">
@@ -1426,7 +1426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQf-kN-SCI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="-641"/>
+            <point key="canvasLocation" x="-1006" y="-465"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ytm-kz-bM7">
@@ -1441,7 +1441,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="0fE-Ap-kVH">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -1450,35 +1450,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTU-iR-1Kb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1357" y="-374"/>
+            <point key="canvasLocation" x="-3705" y="-198"/>
         </scene>
     </scenes>
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

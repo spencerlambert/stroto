@@ -92,10 +92,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     cell.textLabel.text = [storyNamesiPad objectAtIndex:indexPath.row];
-    if([indexPath isEqual:index])
+    if(index != nil && [indexPath isEqual:index])
         [tableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
     return cell;
 }
+
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
