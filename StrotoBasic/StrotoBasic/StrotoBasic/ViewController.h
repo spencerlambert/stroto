@@ -10,7 +10,4 @@
 
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *storyPacksView;
-@property (strong, nonatomic) NSMutableArray *storyPackNames;
-@property (strong, nonatomic) NSMutableArray *dbNames;
-
 @end
