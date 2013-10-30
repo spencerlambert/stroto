@@ -366,8 +366,9 @@ UIButton *button ;
     }else{
         [storyDB closeDB];
         [mydelegate finishedRecording];
-        [self.navigationController popToRootViewControllerAnimated:YES];
         [self.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+       
     }
     
     
