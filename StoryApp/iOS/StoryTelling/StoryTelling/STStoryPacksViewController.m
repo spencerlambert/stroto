@@ -9,6 +9,7 @@
 #define THUMB_HEIGHT (IS_IPAD ? 150 : 57)
 #define THUMB_V_PADDING 3
 #define THUMB_H_PADDING 8
+#define RADIUS (IS_IPAD ? 20 :10 )
 #define NAME_LABEL_HEIGHT 25
 #define PRICE_LABEL_HEIGHT (IS_IPAD ? 15 : 10)
 #define fontSize (IS_IPAD ? 15 : 10)
@@ -21,6 +22,7 @@
 #import "STFreeStoryPacksViewController.h"
 #import "NSData+Base64.h"
 #import "STInstalledStoryPacksViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation STStoryPacksViewController
 
@@ -152,6 +154,8 @@ NSLog(@"SQL query Statement preparation on database success.");
                         //showing installed story pack's thubnail images
                         UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
                         CGRect frame = [thumbView frame];
+                        thumbView.layer.cornerRadius = RADIUS;
+                        thumbView.clipsToBounds = YES;
                         [thumbView setContentMode:UIViewContentModeScaleAspectFit];
                         frame.origin.y = THUMB_V_PADDING;
                         frame.origin.x = xPosition;//thumb_H_padding
@@ -268,6 +272,8 @@ NSLog(@"Path after appending : %@",databasePath);
 //showing paid story pack's thubnail images
         UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
         CGRect frame = [thumbView frame];
+        thumbView.layer.cornerRadius = RADIUS;
+        thumbView.clipsToBounds = YES;
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;//thumb_H_padding
         frame.size.width = THUMB_HEIGHT; //thumbImage.size.width;
@@ -351,6 +357,8 @@ NSLog(@"Path after appending : %@",databasePath);
 //showing free story packs thumbnails
         UIImageView *thumbView = [[UIImageView alloc] initWithImage:stimage];
         CGRect frame = [thumbView frame];
+        thumbView.layer.cornerRadius = RADIUS;
+        thumbView.clipsToBounds = YES;
         frame.origin.y = THUMB_V_PADDING;
         frame.origin.x = xPosition;//thumb_H_padding
         frame.size.width = THUMB_HEIGHT; //thumbImage.size.width;
