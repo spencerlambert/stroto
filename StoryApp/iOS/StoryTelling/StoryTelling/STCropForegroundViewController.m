@@ -516,6 +516,10 @@ CGRect grabcutFrame;
     int count = 0;
     for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
         UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+        if (![[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension] isEqualToString:@"PNG"] &&
+            ![[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension] isEqualToString:@"png"]) {
+            Image = [self getImageAsPng:Image];
+        }
         if(Image.size.width >= Image.size.height && Image.size.width > 640){
             Image = [self imageWithImage:Image scaledToWidth:640];
         }else if (Image.size.height >Image.size.width && Image.size.height > 640){
@@ -532,6 +536,10 @@ CGRect grabcutFrame;
     //[self setForegroundimages:stimages];
     for(NSMutableDictionary *imageDictionary in [self foregroundimages]){
         UIImage *Image = [imageDictionary objectForKey:@"UIImagePickerControllerOriginalImage"];
+        if (![[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension] isEqualToString:@"png"] &&
+            ![[[imageDictionary objectForKey:@"UIImagePickerControllerReferenceURL"] pathExtension] isEqualToString:@"PNG"]) {
+            Image = [self getImageAsPng:Image];
+        }
         if(Image.size.width >= Image.size.height && Image.size.width > 640){
             Image = [self imageWithImage:Image scaledToWidth:640];
         }else if (Image.size.height >Image.size.width && Image.size.height > 640){
@@ -548,6 +556,25 @@ CGRect grabcutFrame;
     [self setForegroundimages:stimages];
     [self setForegroundEraseImages:eraseImages];
 }
+
+- (UIImage *) getImageAsPng:(UIImage *)image{
+   
+    CGImageRef imageNoAlpha = image.CGImage;
+    
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
+    
+    CGFloat width = CGImageGetWidth(imageNoAlpha);
+    CGFloat height = CGImageGetWidth(imageNoAlpha);
+    
+    CGContextRef ctxWithAlpha = CGBitmapContextCreate(nil, width, height, 8, 4*width, cs, kCGImageAlphaPremultipliedFirst);
+    
+    CGContextDrawImage(ctxWithAlpha, CGRectMake(0, 0, width, height), imageNoAlpha);
+    
+    CGImageRef imageWithAlpha = CGBitmapContextCreateImage(ctxWithAlpha);
+    
+    return [UIImage imageWithCGImage:imageWithAlpha];
+}
+
 
 - (UIImage *) imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width {//method to scale image accordcing to width
     
