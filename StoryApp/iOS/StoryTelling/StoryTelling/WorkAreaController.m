@@ -171,7 +171,19 @@ UIButton *button ;
         [imageview setContentMode:UIViewContentModeScaleAspectFit];
         [captureview addSubview:imageview];
         
+        float widthRatio = imageview.bounds.size.width / imageview.image.size.width;
+        float heightRatio = imageview.bounds.size.height / imageview.image.size.height;
+        float scale = MIN(widthRatio, heightRatio);
+        float imageWidth = scale * imageview.image.size.width;
+        float imageHeight = scale * imageview.image.size.height;
+        
+        imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
+//        imageview.center = imageview.superview.center;
+        
         //        [captureview actortoStage:selectedForegroundImage];
+        
+        [imageview.layer setBorderColor:[[UIColor blackColor] CGColor]];
+        [imageview.layer setBorderWidth: 2.0];
         
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
