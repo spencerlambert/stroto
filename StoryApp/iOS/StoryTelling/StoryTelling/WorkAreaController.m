@@ -178,13 +178,7 @@ UIButton *button ;
         float imageHeight = scale * imageview.image.size.height;
         
         imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
-//        imageview.center = imageview.superview.center;
-        
         //        [captureview actortoStage:selectedForegroundImage];
-        
-        [imageview.layer setBorderColor:[[UIColor blackColor] CGColor]];
-        [imageview.layer setBorderWidth: 2.0];
-        
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         pan.delegate = self;
