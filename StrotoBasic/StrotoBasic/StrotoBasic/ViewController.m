@@ -13,9 +13,6 @@
 #define RADIUS (IS_IPAD ? 25 :15 )
 
 #import "ViewController.h"
-#import <sqlite3.h>
-#import "NSData+Base64.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -26,7 +23,7 @@
 
 float scrollViewHeight,scrollViewWidth,xPosition,yPosition;
 UIScrollView *storyPacksHolder;
-
+NSArray *storyPacksList;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,7 +40,7 @@ UIScrollView *storyPacksHolder;
 
 -(void)showStoryPacks
 {
-    NSArray *storyPacksList= [[NSBundle mainBundle] pathsForResourcesOfType:@"db" inDirectory:@"StoryPacks"];
+    storyPacksList= [[NSBundle mainBundle] pathsForResourcesOfType:@"db" inDirectory:@"StoryPacks"];
 //NSLog(@"StoryPacksList : %@",storyPacksList);
     int count = [storyPacksList count];
 NSLog (@"number of story packs :%i",count);
@@ -152,6 +149,12 @@ NSLog (@"number of story packs :%i",count);
 }
 -(void)handleTap:(UITapGestureRecognizer*)recognizer
 {
-    
+    playViewController *playGround = [[playViewController alloc] init];
+ if(IS_IPAD)
+     playGround = [[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+    else
+        playGround = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+    playGround.dbName =storyPacksList[recognizer.view.tag];
+//    [self presentViewController:playGround animated:YES completion:nil];
 }
 @end

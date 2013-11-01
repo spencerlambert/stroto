@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB06A99B1823745C000F88C6 /* playViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99A1823745C000F88C6 /* playViewController.m */; };
+		EB06A9A4182377DD000F88C6 /* SlideDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99D182377DD000F88C6 /* SlideDownView.m */; };
+		EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99F182377DD000F88C6 /* SlideUpView.m */; };
+		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
+		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
 		EBF83A84181F7749002B6D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A83181F7749002B6D34 /* Foundation.framework */; };
 		EBF83A86181F774A002B6D34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A85181F774A002B6D34 /* CoreGraphics.framework */; };
 		EBF83A88181F774A002B6D34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A87181F774A002B6D34 /* UIKit.framework */; };
@@ -39,6 +44,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB06A9991823745B000F88C6 /* playViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playViewController.h; sourceTree = "<group>"; };
+		EB06A99A1823745C000F88C6 /* playViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playViewController.m; sourceTree = "<group>"; };
+		EB06A99C182377DD000F88C6 /* SlideDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideDownView.h; sourceTree = "<group>"; };
+		EB06A99D182377DD000F88C6 /* SlideDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideDownView.m; sourceTree = "<group>"; };
+		EB06A99E182377DD000F88C6 /* SlideUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideUpView.h; sourceTree = "<group>"; };
+		EB06A99F182377DD000F88C6 /* SlideUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideUpView.m; sourceTree = "<group>"; };
+		EB06A9A0182377DD000F88C6 /* ThumbImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbImageView.h; sourceTree = "<group>"; };
+		EB06A9A1182377DD000F88C6 /* ThumbImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbImageView.m; sourceTree = "<group>"; };
+		EB06A9A818238DE6000F88C6 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
+		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		EBF83A80181F7748002B6D34 /* StrotoBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrotoBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBF83A83181F7749002B6D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBF83A85181F774A002B6D34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,8 +147,18 @@
 				EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */,
 				EBF83A9B181F774A002B6D34 /* ViewController.h */,
 				EBF83A9C181F774A002B6D34 /* ViewController.m */,
+				EB06A9991823745B000F88C6 /* playViewController.h */,
+				EB06A99A1823745C000F88C6 /* playViewController.m */,
+				EB06A99C182377DD000F88C6 /* SlideDownView.h */,
+				EB06A99D182377DD000F88C6 /* SlideDownView.m */,
+				EB06A99E182377DD000F88C6 /* SlideUpView.h */,
+				EB06A99F182377DD000F88C6 /* SlideUpView.m */,
+				EB06A9A0182377DD000F88C6 /* ThumbImageView.h */,
+				EB06A9A1182377DD000F88C6 /* ThumbImageView.m */,
 				EBF83AC5181FA302002B6D34 /* NSData+Base64.h */,
 				EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */,
+				EB06A9A818238DE6000F88C6 /* UIView+Hierarchy.h */,
+				EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */,
 				EBF83A9E181F774B002B6D34 /* Images.xcassets */,
 				EBF83A8A181F774A002B6D34 /* Supporting Files */,
 			);
@@ -270,9 +295,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB06A9A4182377DD000F88C6 /* SlideDownView.m in Sources */,
+				EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */,
+				EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */,
 				EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */,
+				EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */,
 				EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */,
 				EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */,
+				EB06A99B1823745C000F88C6 /* playViewController.m in Sources */,
 				EBF83A90181F774A002B6D34 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
