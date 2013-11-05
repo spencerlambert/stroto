@@ -7,6 +7,14 @@
 //
 
 #import "playViewController.h"
+#import "UIView+Hierarchy.h"
+
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
+#define THUMB_HEIGHT (IS_IPAD ? 200 : 100)  //128 : 70
+#define IPHONE_5_ADDITIONAL 44
+#define THUMB_V_PADDING 10
+#define THUMB_H_PADDING 10
 
 @interface playViewController ()
 
@@ -15,7 +23,10 @@
 @implementation playViewController
 
 @synthesize dbName;
+@synthesize selectedForegroundImage;
+@synthesize playView;
 
+UIButton *button ;
 NSString *bgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Background';";
 NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM Images WHERE ImageType='Foreground';";
 
@@ -39,18 +50,52 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     else{
         NSLog(@"DB Successfully Initialized with code : %d", code);
     }
-    NSArray *arrayAndQuery = [NSArray arrayWithObjects:bgImagesArray,bgQuery, nil];
+    NSMutableArray *arrayAndQuery = [[NSMutableArray alloc] init];
+    bgImagesArray = [[NSMutableArray alloc] init];
+    arrayAndQuery = [NSMutableArray arrayWithObjects:bgImagesArray, bgQuery,nil];
+    NSLog(@"arrayAndQuery : %@ ",arrayAndQuery);
     [self performSelectorOnMainThread:@selector(getImagesFromDB:) withObject:arrayAndQuery waitUntilDone:YES];
-    arrayAndQuery = [NSArray arrayWithObjects:fgImagesArray,fgQuery, nil];
+    fgImagesArray = [[NSMutableArray alloc] init];
+    arrayAndQuery = [NSMutableArray arrayWithObjects:fgImagesArray,fgQuery, nil];
     [self performSelectorOnMainThread:@selector(getImagesFromDB:) withObject:arrayAndQuery waitUntilDone:YES];
-    if(bgImagesArray)
-    {
-        NSLog(@"bg Images : %@", bgImagesArray);
-    }
-    if(fgImagesArray)
-    {
-        NSLog(@"fg Images : %@", fgImagesArray);
-    }
+    [self setSelectedForegroundImage:nil];
+    CGRect playbounds = [[UIScreen mainScreen] bounds];
+    float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
+    float thumbHeightBottom = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
+    imageSelected = NO;
+    pickedImages = [[NSMutableArray alloc]init];
+    pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    pan.delegate = self;
+    pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+    pinch.delegate = self;
+    rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+    rotate.delegate = self;
+    CGRect frame = CGRectMake(0, CGRectGetMaxY(playbounds)-thumbHeightBottom, playbounds.size.width, thumbHeightBottom);
+    UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
+    [bottombar setImage:[UIImage imageNamed:@"BottomBar.png"]];
+    [self.view addSubview:bottombar];
+    
+    frame = CGRectMake(CGRectGetMinX(playbounds), CGRectGetMinY(playbounds), playbounds.size.width, thumbHeight);
+    UIImageView *topbar = [[UIImageView alloc]initWithFrame:frame];
+    [topbar setImage:[UIImage imageNamed:@"TopBar.png"]];
+    [self.view addSubview:topbar];
+    
+    bgImages = [[SlideUpView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+    bgImages.mydelegate = self;
+    [bgImages setPhotos:bgImagesArray];
+    [bgImages createThumbScrollViewIfNecessary];
+    [self.view addSubview:bgImages];
+    
+    fgImages = [[SlideDownView alloc]initWithFrame:CGRectMake(0,0,0,0)];
+    fgImages.mydelegate = self;
+    [fgImages setPhotos:fgImagesArray];
+    [fgImages createThumbScrollViewIfNecessary];
+    [self.view addSubview:fgImages];
+
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doSingleTap:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
 }
 
 -(void)getImagesFromDB:(NSArray*)imagesArraywithQuery
@@ -95,5 +140,104 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) doSingleTap:(UIGestureRecognizer *) gestureRecognizer {
+    //[slideupview toggleThumbView];
+    //[slidedownview toggleThumbView];
+    
+    if([self selectedForegroundImage]!=nil){
+        
+        CGPoint point=[gestureRecognizer locationInView:self.view];
+        NSLog(@"%f %f",point.x,point.y);
+        
+        //        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-((IS_IPAD?200:100)/2),point.y-(60+20)-((IS_IPAD?200:100)/2), (IS_IPAD?200:100), (IS_IPAD?200:100))];
+        imageview.image=selectedForegroundImage;
+        [imageview setContentMode:UIViewContentModeScaleAspectFit];
+        [playView addSubview:imageview];
+        
+        float widthRatio = imageview.bounds.size.width / imageview.image.size.width;
+        float heightRatio = imageview.bounds.size.height / imageview.image.size.height;
+        float scale = MIN(widthRatio, heightRatio);
+        float imageWidth = scale * imageview.image.size.width;
+        float imageHeight = scale * imageview.image.size.height;
+        
+        imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
+        //        [captureview actortoStage:selectedForegroundImage];
+        [imageview bringToFront];
+        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+        pan.delegate = self;
+        pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+        pinch.delegate = self;
+        rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
+        rotate.delegate = self;
+        tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+        tap.delegate=self;
+        [imageview setUserInteractionEnabled:YES];
+        [imageview addGestureRecognizer:pan];
+        [imageview addGestureRecognizer:pinch];
+        [imageview addGestureRecognizer:rotate];
+        [imageview addGestureRecognizer:tap];
+        
+        [self setSelectedForegroundImage:nil];
+    }
+    
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if(bgImages.superview != nil){
+        if([touch.view isDescendantOfView:bgImages]){
+            return NO;
+        }
+    }
+    if(fgImages.superview != nil){
+        if([touch.view isDescendantOfView:fgImages]){
+            return NO;
+        }
+    }
+    return YES;
+}
+
+#pragma mark SlideUpViewDelegate methods
+
+- (void) setWorkspaceBackground:(UIImage *)selectedImage{
+    bgImageView.image = selectedImage;
+    // [captureview actortoStage:selectedImage];
+}
+
+//adding foreground image to work area
+-(void) setForegroundImage:(UIImage *)selectedImage{
+    [self setSelectedForegroundImage:selectedImage];
+    NSLog(@"%@", [selectedImage description]);
+    NSLog(@"foreground image set");
+}
+
+#pragma mark UIGestureRecognizerDelegate methods
+
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+    [recognizer.view bringToFront];
+    CGPoint translation = [recognizer translationInView:self.view];
+    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
+                                         recognizer.view.center.y + translation.y);
+    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+}
+
+- (IBAction)handleRotate:(UIRotationGestureRecognizer *)recognizer {
+    [recognizer.view bringToFront];
+    recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
+    recognizer.rotation = 0;
+}
+
+- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+    [recognizer.view bringToFront];
+    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+    recognizer.scale = 1;
+}
+
+-(IBAction)handleTap:(UITapGestureRecognizer*)recognizer{
+    [recognizer.view bringToFront];
+}
+
 
 @end

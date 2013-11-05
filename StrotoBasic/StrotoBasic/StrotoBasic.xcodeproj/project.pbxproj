@@ -12,6 +12,7 @@
 		EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99F182377DD000F88C6 /* SlideUpView.m */; };
 		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
 		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
+		EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB15DFFD18286E8500B6B662 /* TopRightView.m */; };
 		EBF83A84181F7749002B6D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A83181F7749002B6D34 /* Foundation.framework */; };
 		EBF83A86181F774A002B6D34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A85181F774A002B6D34 /* CoreGraphics.framework */; };
 		EBF83A88181F774A002B6D34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A87181F774A002B6D34 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		EB06A9A1182377DD000F88C6 /* ThumbImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbImageView.m; sourceTree = "<group>"; };
 		EB06A9A818238DE6000F88C6 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
+		EB15DFFC18286E8500B6B662 /* TopRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRightView.h; sourceTree = "<group>"; };
+		EB15DFFD18286E8500B6B662 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
 		EBF83A80181F7748002B6D34 /* StrotoBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrotoBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBF83A83181F7749002B6D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBF83A85181F774A002B6D34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 				EB06A99F182377DD000F88C6 /* SlideUpView.m */,
 				EB06A9A0182377DD000F88C6 /* ThumbImageView.h */,
 				EB06A9A1182377DD000F88C6 /* ThumbImageView.m */,
+				EB15DFFC18286E8500B6B662 /* TopRightView.h */,
+				EB15DFFD18286E8500B6B662 /* TopRightView.m */,
 				EBF83AC5181FA302002B6D34 /* NSData+Base64.h */,
 				EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */,
 				EB06A9A818238DE6000F88C6 /* UIView+Hierarchy.h */,
@@ -304,6 +309,7 @@
 				EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */,
 				EB06A99B1823745C000F88C6 /* playViewController.m in Sources */,
 				EBF83A90181F774A002B6D34 /* main.m in Sources */,
+				EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "SlideUpView.h"
 #import "SlideDownView.h"
 #import "ViewController.h"
+#import "TopRightView.h"
 
 @interface playViewController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate>
 {
@@ -28,7 +29,6 @@
     UIRotationGestureRecognizer *rotate;
 }
 @property (weak, nonatomic) NSString *dbName;
-//@property (weak, nonatomic) NSMutableArray *bgImagesArray;
-//@property (weak, nonatomic) NSMutableArray *fgImagesArray;
-
+@property (weak, nonatomic) UIImage *selectedForegroundImage;
+@property (weak, nonatomic) IBOutlet UIView *playView;
 @end

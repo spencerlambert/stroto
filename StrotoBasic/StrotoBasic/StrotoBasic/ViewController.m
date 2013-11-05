@@ -155,6 +155,6 @@ NSLog (@"number of story packs :%i",count);
     else
         playGround = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
     playGround.dbName =storyPacksList[recognizer.view.tag];
-//    [self presentViewController:playGround animated:YES completion:nil];
+    [self presentViewController:playGround animated:YES completion:nil];
 }
 @end
