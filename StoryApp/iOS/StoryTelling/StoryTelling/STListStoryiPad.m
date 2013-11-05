@@ -76,8 +76,21 @@
             
         }
     }
+    [self sort];
     return [DBNamesiPad count];
 }
+
+-(void) sort{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:DBNamesiPad forKeys:storyNamesiPad];
+    [storyNamesiPad sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSMutableArray *tempDb = [[NSMutableArray alloc]init];
+    for(int i=0; i< [storyNamesiPad count]; i++){
+        NSString *dbname = [dictionary valueForKey:storyNamesiPad[i]];
+        [tempDb addObject:dbname];
+    }
+    DBNamesiPad = [[NSMutableArray alloc] initWithArray:tempDb];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return ([self loadTableSource]);

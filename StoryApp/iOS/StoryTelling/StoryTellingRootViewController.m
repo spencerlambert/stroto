@@ -72,7 +72,6 @@
     displayNames = [[NSMutableArray alloc]init];
     dbNames = [[NSMutableArray alloc]init];
     
-    
     // Get the documents directory
     dirPaths = NSSearchPathForDirectoriesInDomains(
                                                    NSDocumentDirectory, NSUserDomainMask, YES);
@@ -105,6 +104,7 @@
                     if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
                         NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 0)];
                         [displayNames addObject:temp];
+                       
                     }
                 }
                 sqlite3_finalize(compiled_stmt);
@@ -113,7 +113,17 @@
             
         }
     }
-    
+    [self sort];
+}
+-(void) sort{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:dbNames forKeys:displayNames];
+    [displayNames sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSMutableArray *tempDb = [[NSMutableArray alloc]init];
+    for(int i=0; i< [displayNames count]; i++){
+        NSString *dbname = [dictionary valueForKey:displayNames[i]];
+        [tempDb addObject:dbname];
+    }
+    dbNames = [[NSMutableArray alloc] initWithArray:tempDb];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
