@@ -13,6 +13,10 @@
 		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
 		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
 		EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB15DFFD18286E8500B6B662 /* TopRightView.m */; };
+		EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44A1829BF7C00F2F711 /* BottomBar.png */; };
+		EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */; };
+		EBD1D4501829BF9400F2F711 /* ButtonDoneR.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */; };
+		EBD1D4511829BF9400F2F711 /* TopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44E1829BF9400F2F711 /* TopBar.png */; };
 		EBF83A84181F7749002B6D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A83181F7749002B6D34 /* Foundation.framework */; };
 		EBF83A86181F774A002B6D34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A85181F774A002B6D34 /* CoreGraphics.framework */; };
 		EBF83A88181F774A002B6D34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83A87181F774A002B6D34 /* UIKit.framework */; };
@@ -57,6 +61,10 @@
 		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		EB15DFFC18286E8500B6B662 /* TopRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRightView.h; sourceTree = "<group>"; };
 		EB15DFFD18286E8500B6B662 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
+		EBD1D44A1829BF7C00F2F711 /* BottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBar.png; sourceTree = "<group>"; };
+		EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneL.png; sourceTree = "<group>"; };
+		EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneR.png; sourceTree = "<group>"; };
+		EBD1D44E1829BF9400F2F711 /* TopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopBar.png; sourceTree = "<group>"; };
 		EBF83A80181F7748002B6D34 /* StrotoBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrotoBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBF83A83181F7749002B6D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBF83A85181F774A002B6D34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -175,6 +183,10 @@
 			children = (
 				EBF83A8B181F774A002B6D34 /* StrotoBasic-Info.plist */,
 				EBF83ABB181F789B002B6D34 /* color_red.png */,
+				EBD1D44A1829BF7C00F2F711 /* BottomBar.png */,
+				EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */,
+				EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */,
+				EBD1D44E1829BF9400F2F711 /* TopBar.png */,
 				EBF83A8C181F774A002B6D34 /* InfoPlist.strings */,
 				EBF83A8F181F774A002B6D34 /* main.m */,
 				EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */,
@@ -276,12 +288,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBD1D4501829BF9400F2F711 /* ButtonDoneR.png in Resources */,
+				EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */,
 				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,
+				EBD1D4511829BF9400F2F711 /* TopBar.png in Resources */,
 				EBF83A9A181F774A002B6D34 /* Main_iPad.storyboard in Resources */,
 				EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */,
 				EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */,
 				EBF83A97181F774A002B6D34 /* Main_iPhone.storyboard in Resources */,
 				EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */,
+				EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

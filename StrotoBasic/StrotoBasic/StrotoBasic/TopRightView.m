@@ -25,7 +25,7 @@
 @implementation TopRightView
 
 @synthesize done;
-
+@synthesize mydelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {

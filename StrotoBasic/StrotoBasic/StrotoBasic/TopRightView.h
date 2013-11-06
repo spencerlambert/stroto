@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol TopRightViewDelegate <NSObject>
 
+@optional
+
+-(void)goBack;
+
+@end
 
 @interface TopRightView : UIView
 
 @property (nonatomic, assign) UIButton *done;
+@property (nonatomic, assign) id<TopRightViewDelegate> mydelegate;
 
 @end
