@@ -195,6 +195,10 @@ UIButton *button ;
         [imageview addGestureRecognizer:tap];
         
         [self setSelectedForegroundImage:nil];
+        [slidedownview clearBorder];
+        for (UIView *subviews in [captureview subviews]) {
+            [subviews setUserInteractionEnabled:YES];
+        }
     }
     
 }
@@ -281,9 +285,19 @@ UIButton *button ;
 
 //adding foreground image to work area
 -(void) setForegroundImage:(STImage *)selectedImage{
-    [self setSelectedForegroundImage:selectedImage];
-    NSLog(@"%@", [selectedImage description]);
-    NSLog(@"foreground image set");
+    if(selectedImage != nil){
+        for (UIView *subviews in [captureview subviews]) {
+            [subviews setUserInteractionEnabled:NO];
+        }
+        [self setSelectedForegroundImage:selectedImage];
+        NSLog(@"%@", [selectedImage description]);
+        NSLog(@"foreground image set");
+    }
+    else{
+        for (UIView *subviews in [captureview subviews]) {
+            [subviews setUserInteractionEnabled:YES];
+        }
+    }
 }
 
 //- (void)checkFrameIntersection:(UIImage *)tiv withFrame:(CGRect) testframe{
