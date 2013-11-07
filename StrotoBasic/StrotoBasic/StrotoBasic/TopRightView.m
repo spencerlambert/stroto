@@ -7,6 +7,7 @@
 //
 
 #import "TopRightView.h"
+#import "ViewController.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
@@ -50,12 +51,16 @@
         done = [UIButton buttonWithType:UIButtonTypeCustom];
         [done setFrame:CGRectMake(0,-7, frame.size.width, frame.size.height)];
         [done setBackgroundImage:btnimage forState:UIControlStateNormal];
+        [done addTarget:self action:@selector(donebtn_clicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:done];
 
     }
     return self;
 }
 
+-(void)donebtn_clicked{
+    [mydelegate goBack];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
