@@ -13,6 +13,7 @@
 		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
 		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
 		EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB15DFFD18286E8500B6B662 /* TopRightView.m */; };
+		EBA75D33182B06A800B47E23 /* RecordArea.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA75D32182B06A800B47E23 /* RecordArea.png */; };
 		EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44A1829BF7C00F2F711 /* BottomBar.png */; };
 		EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */; };
 		EBD1D4501829BF9400F2F711 /* ButtonDoneR.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */; };
@@ -61,6 +62,7 @@
 		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		EB15DFFC18286E8500B6B662 /* TopRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRightView.h; sourceTree = "<group>"; };
 		EB15DFFD18286E8500B6B662 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
+		EBA75D32182B06A800B47E23 /* RecordArea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordArea.png; sourceTree = "<group>"; };
 		EBD1D44A1829BF7C00F2F711 /* BottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBar.png; sourceTree = "<group>"; };
 		EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneL.png; sourceTree = "<group>"; };
 		EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneR.png; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */,
 				EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */,
 				EBD1D44E1829BF9400F2F711 /* TopBar.png */,
+				EBA75D32182B06A800B47E23 /* RecordArea.png */,
 				EBF83A8C181F774A002B6D34 /* InfoPlist.strings */,
 				EBF83A8F181F774A002B6D34 /* main.m */,
 				EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */,
@@ -288,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA75D33182B06A800B47E23 /* RecordArea.png in Resources */,
 				EBD1D4501829BF9400F2F711 /* ButtonDoneR.png in Resources */,
 				EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */,
 				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,

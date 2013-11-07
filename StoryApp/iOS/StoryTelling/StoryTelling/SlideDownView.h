@@ -25,6 +25,7 @@
 - (void)toggleThumbView;
 - (void) getPhotosFromLibrary;
 + (ALAssetsLibrary *)defaultAssetsLibrary;
+- (void)clearBorder;
 
 @end
 

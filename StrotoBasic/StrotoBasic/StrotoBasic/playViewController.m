@@ -11,7 +11,7 @@
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
-#define THUMB_HEIGHT (IS_IPAD ? 200 : 100)  //128 : 70
+#define THUMB_HEIGHT (IS_IPAD ? 128 : 70)  //128 : 70
 #define IPHONE_5_ADDITIONAL 44
 #define THUMB_V_PADDING 10
 #define THUMB_H_PADDING 10
@@ -78,17 +78,17 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     bgImageView.contentMode = UIViewContentModeScaleToFill;
     [bgImageView setUserInteractionEnabled:YES];
     [playView addSubview:bgImageView];
-    bgImageView.image = [UIImage imageNamed:@"color_red.png"];
+    bgImageView.image = [UIImage imageNamed:@"recordArea.png"];
     
-//    CGRect frame = CGRectMake(0, CGRectGetMaxY(playbounds)-thumbHeightBottom, playbounds.size.width, thumbHeightBottom);
-//    UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
-//    [bottombar setImage:[UIImage imageNamed:@"BottomBar.png"]];
-//    [self.view addSubview:bottombar];
-//    
-//    frame = CGRectMake(CGRectGetMinX(playbounds), CGRectGetMinY(playbounds), playbounds.size.width, thumbHeight);
-//    UIImageView *topbar = [[UIImageView alloc]initWithFrame:frame];
-//    [topbar setImage:[UIImage imageNamed:@"TopBar.png"]];
-//    [self.view addSubview:topbar];
+    CGRect frame = CGRectMake(0, CGRectGetMaxY(playbounds)-thumbHeightBottom, playbounds.size.width, thumbHeightBottom);
+    UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
+    [bottombar setImage:[UIImage imageNamed:@"BottomBar.png"]];
+    [self.view addSubview:bottombar];
+    
+    frame = CGRectMake(CGRectGetMinX(playbounds), CGRectGetMinY(playbounds), playbounds.size.width, thumbHeight);
+    UIImageView *topbar = [[UIImageView alloc]initWithFrame:frame];
+    [topbar setImage:[UIImage imageNamed:@"TopBar.png"]];
+    [self.view addSubview:topbar];
     
     bgImages = [[SlideUpView alloc]initWithFrame:CGRectMake(0,0,0,0)];
     bgImages.mydelegate = self;
