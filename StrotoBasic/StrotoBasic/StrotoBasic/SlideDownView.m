@@ -194,10 +194,22 @@
 
 -(void)thumbImageViewWasTapped:(ThumbImageView *)tiv {
     if ([self.mydelegate respondsToSelector:@selector(setForegroundImage:)]){
+        if(tiv.layer.borderWidth != 0){
+                        [self clearBorder];
+                        [self.mydelegate setForegroundImage:nil];
+                    }else{
+                            [self clearBorder];
+                            tiv.layer.borderWidth = 1;
+                            tiv.layer.borderColor = [UIColor redColor].CGColor;
         [self.mydelegate setForegroundImage:[tiv originalImage]];
     }
+    }
 }
-
+-(void)clearBorder{
+        for (UIView *subviews in CutoutImagesHolder.subviews) {
+                subviews.layer.borderWidth = 0;
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
