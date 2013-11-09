@@ -168,6 +168,9 @@
 		EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6A17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m */; };
 		EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */; };
 		EBA21FB7181783F8006BB6B7 /* STListStoryiPad.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA21FB6181783F8006BB6B7 /* STListStoryiPad.m */; };
+		EBDDB3A7182D93B200B73149 /* STExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDDB3A6182D93B200B73149 /* STExportViewController.m */; };
+		EBDDB3AA182DA71A00B73149 /* uicheckbox_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDDB3A8182DA71A00B73149 /* uicheckbox_unchecked.png */; };
+		EBDDB3AB182DA71A00B73149 /* uicheckbox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDDB3A9182DA71A00B73149 /* uicheckbox_checked.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +402,10 @@
 		EB9ACE6C17FD092300FCF6EE /* STSelectStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSelectStoryViewController.m; sourceTree = "<group>"; };
 		EBA21FB5181783F8006BB6B7 /* STListStoryiPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STListStoryiPad.h; sourceTree = "<group>"; };
 		EBA21FB6181783F8006BB6B7 /* STListStoryiPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STListStoryiPad.m; sourceTree = "<group>"; };
+		EBDDB3A5182D93B200B73149 /* STExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STExportViewController.h; sourceTree = "<group>"; };
+		EBDDB3A6182D93B200B73149 /* STExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STExportViewController.m; sourceTree = "<group>"; };
+		EBDDB3A8182DA71A00B73149 /* uicheckbox_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uicheckbox_unchecked.png; sourceTree = "<group>"; };
+		EBDDB3A9182DA71A00B73149 /* uicheckbox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uicheckbox_checked.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +631,8 @@
 				DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */,
 				EB00E64317FE74AE002CE208 /* STFacebookViewController.h */,
 				EB00E64417FE74AE002CE208 /* STFacebookViewController.m */,
+				EBDDB3A5182D93B200B73149 /* STExportViewController.h */,
+				EBDDB3A6182D93B200B73149 /* STExportViewController.m */,
 				DB0F459F17FAA95B00CE8173 /* STYoutubeViewController.h */,
 				DB0F45A017FAA95B00CE8173 /* STYoutubeViewController.m */,
 				4DBE3DE01816440700ED3A12 /* Images.xcassets */,
@@ -794,6 +803,8 @@
 				DBFA4AB2174D7B07001DFCDC /* VideoPlayButton.png */,
 				DBFA4ABD174D7EA3001DFCDC /* StartRecording.png */,
 				DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */,
+				EBDDB3A8182DA71A00B73149 /* uicheckbox_unchecked.png */,
+				EBDDB3A9182DA71A00B73149 /* uicheckbox_checked.png */,
 				DB93D6FF1774E33600437F40 /* WorArea Images */,
 			);
 			name = Images;
@@ -941,6 +952,7 @@
 				DBFA4ABE174D7EA3001DFCDC /* StartRecording.png in Resources */,
 				DBFA4AC1174D7F1C001DFCDC /* StartRecordingButton.png in Resources */,
 				DB9E9E9D1764BA9F00788373 /* Overlay.png in Resources */,
+				EBDDB3AB182DA71A00B73149 /* uicheckbox_checked.png in Resources */,
 				DB9A00651815198900244040 /* MainStoryboard_iPad.storyboard in Resources */,
 				DB9E9E9F1764BA9F00788373 /* Overlay@2x.png in Resources */,
 				DB8ADED21770D97C0094BB3A /* 57.png in Resources */,
@@ -973,6 +985,7 @@
 				4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */,
 				DB989C8617CF2ED20056299D /* ModifierButtonZoomLarger.png in Resources */,
 				DB989C8717CF2ED20056299D /* ModifierButtonZoomSmaller.png in Resources */,
+				EBDDB3AA182DA71A00B73149 /* uicheckbox_unchecked.png in Resources */,
 				DB9E979D17E002C1009BD697 /* navbutton.png in Resources */,
 				4D908E6E17FA3A7D00B309FA /* color_trans.png in Resources */,
 				EB743B7317F41119002D3B34 /* lightGray.jpeg in Resources */,
@@ -1046,6 +1059,7 @@
 				DB9E9EB31764BE4100788373 /* ELCAssetTablePicker.m in Sources */,
 				DB9E9EB51764BE4100788373 /* ELCImagePickerController.m in Sources */,
 				DB93D70E1774EBEE00437F40 /* TopRightView.m in Sources */,
+				EBDDB3A7182D93B200B73149 /* STExportViewController.m in Sources */,
 				DB93D7121774EC0000437F40 /* BottomRight.m in Sources */,
 				4D2A0A58177F8D0F00C78EE0 /* STStoryDB.m in Sources */,
 				4D2A0A5B177FB11300C78EE0 /* STImageInstancePosition.m in Sources */,

@@ -447,7 +447,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="uploadToFacebookButtonClicked:" destination="PeL-85-1Ea" eventType="touchUpInside" id="AkK-0F-nVJ"/>
+                                    <segue destination="zui-Zv-QGH" kind="push" id="Q9O-NR-uz2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1FT-fB-7ON">
@@ -812,6 +812,159 @@
                 <tapGestureRecognizer id="yLw-mU-nRp"/>
             </objects>
             <point key="canvasLocation" x="3577" y="691"/>
+        </scene>
+        <!--Export View Controller - Export-->
+        <scene sceneID="TG0-v1-JJm">
+            <objects>
+                <viewController storyboardIdentifier="export" id="zui-Zv-QGH" customClass="STExportViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aHJ-2z-anq">
+                        <rect key="frame" x="0.0" y="44" width="768" height="980"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" alpha="0.44999998807907104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kc6-bO-Bg8">
+                                <rect key="frame" x="-7" y="-12" width="775" height="1005"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77748325890000003" green="0.77748325890000003" blue="0.77748325890000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_red.png" id="kM1-OI-p8z">
+                                <rect key="frame" x="384" y="-1" width="384" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Main Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9gE-je-fqv">
+                                <rect key="frame" x="434" y="41" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="qOZ-zd-LFd">
+                                <rect key="frame" x="434" y="78" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="Ih0-Md-mGj">
+                                <rect key="frame" x="414" y="150" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfN-8U-RYc">
+                                <rect key="frame" x="434" y="188" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="UPu-Y0-sDq">
+                                <rect key="frame" x="434" y="229" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="yw9-Y4-Q5k">
+                                <rect key="frame" x="416" y="306" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h9q-b7-ubl">
+                                <rect key="frame" x="466" y="565" width="216" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Save to Gallery">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveToGallery:" destination="zui-Zv-QGH" eventType="touchUpInside" id="C4T-3y-ERr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wI0-vd-tVf">
+                                <rect key="frame" x="434" y="342" width="21" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="uicheckbox_checked.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleCheckBox:" destination="zui-Zv-QGH" eventType="touchUpInside" id="6am-43-qAv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Title Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mga-S6-zsM">
+                                <rect key="frame" x="463" y="342" width="127" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="Hb6-St-MA6">
+                                <rect key="frame" x="416" y="397" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="KTE-JR-341" customClass="STListStoryiPad">
+                                <rect key="frame" x="-20" y="-20" width="404" height="956"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="y3e-qJ-A8u">
+                                        <rect key="frame" x="20" y="20" width="384" height="936"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="32C-Q4-iWp" style="IBUITableViewCellStyleDefault" id="qkw-xd-mxD">
+                                                <rect key="frame" x="0.0" y="22" width="384" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qkw-xd-mxD" id="d0u-eQ-cbz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="384" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32C-Q4-iWp">
+                                                            <rect key="frame" x="10" y="0.0" width="364" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="KTE-JR-341" id="YWE-4M-Bxe"/>
+                                            <outlet property="delegate" destination="KTE-JR-341" id="JrC-Gi-wq1"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" id="Nr6-eR-z2f">
+                                <rect key="frame" x="0.0" y="936" width="768" height="44"/>
+                                <items>
+                                    <navigationItem id="X9h-nj-loI">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uku-Mu-s2j">
+                                            <rect key="frame" x="293" y="5" width="181" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Create New Story">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="fLV-iY-P4c" kind="push" id="uLR-za-FRT"/>
+                                            </connections>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Export" id="PPz-Ml-x2I"/>
+                    <connections>
+                        <outlet property="checkBox" destination="wI0-vd-tVf" id="Y5J-3A-xce"/>
+                        <outlet property="storySubTitle" destination="UPu-Y0-sDq" id="iUr-t4-JEL"/>
+                        <outlet property="storyTitle" destination="qOZ-zd-LFd" id="agI-qZ-ci1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yww-mw-qwt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1708" y="-3195"/>
         </scene>
         <!--Crop Foreground View Controller-->
         <scene sceneID="NrE-jU-cwt">
@@ -1570,8 +1723,36 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
+        <image name="uicheckbox_checked.png" width="28" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
@@ -1579,6 +1760,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8Ss-7e-HPY"/>
+        <segue reference="uLR-za-FRT"/>
     </inferredMetricsTieBreakers>
 </document>
