@@ -8,20 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "STStageRecorder.h"
-#import "STStagePlayer.h"
-#import "STStageExporter.h"
-#import "STAudioRecording.h"
 #import "STImage.h"
 #import "STStoryDB.h"
 
 
 @interface STStage : UIView{
     
-    STStageRecorder *stageRecorder;
-    STStagePlayer *stagePlayer;
-    STStageExporter *stageExporter;
-    STAudioRecording *audioRecorder;
     BOOL isRecording ;
     NSArray *imageInstances;
     NSMutableArray *timeline;

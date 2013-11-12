@@ -146,6 +146,12 @@ UIButton *button ;
     
 }
 
+- (void)initRecorders{
+    stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
+    stagePlayer = [[STStagePlayer alloc]initWithDB:storyDB];
+    audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
+}
+
 -(void)closeBtn{
     backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
     [button setEnabled:NO];
@@ -199,6 +205,7 @@ UIButton *button ;
         for (UIView *subviews in [captureview subviews]) {
             [subviews setUserInteractionEnabled:YES];
         }
+        [storyDB addImageInstance:selectedForegroundImage.imageId];
     }
     
 }
@@ -280,6 +287,7 @@ UIButton *button ;
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
     backgroundimageview.image = selectedImage;
+    [storyDB addImageInstance:selectedImage.imageId];
     // [captureview actortoStage:selectedImage];
 }
 

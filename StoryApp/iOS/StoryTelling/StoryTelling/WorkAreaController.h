@@ -17,6 +17,10 @@
 #import "TopRightView.h"
 #import "STStage.h"
 #import "STStoryDB.h"
+#import "STStageRecorder.h"
+#import "STStagePlayer.h"
+#import "STStageExporter.h"
+#import "STAudioRecording.h"
 
 @protocol WorkAreaDelegate <NSObject>
 
@@ -40,6 +44,11 @@
     UITapGestureRecognizer *tap;
     UIView *loaderView;
     BOOL recordbtnClicked;
+    
+    STStageRecorder *stageRecorder;
+    STStagePlayer *stagePlayer;
+    STStageExporter *stageExporter;
+    STAudioRecording *audioRecorder;
 }
 //@property (weak, nonatomic) IBOutlet STStage *captureview;
 @property (weak, nonatomic) IBOutlet ScreenCaptureView *captureview;

@@ -32,9 +32,6 @@
 
 -(void)initStage{
     isRecording = NO;
-    stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
-    stagePlayer = [[STStagePlayer alloc]initWithDB:storyDB];
-    audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
     [self reLoadImageInstances];
 }
 

@@ -10,7 +10,9 @@
 
 @interface STStageRecorder : NSObject{
     STStoryDB *storyDB;
+    NSArray *imageInstances;
 }
 -(id)initWithDB:(STStoryDB *)db;
+-(void)reloadImageInstances;
 
 @end

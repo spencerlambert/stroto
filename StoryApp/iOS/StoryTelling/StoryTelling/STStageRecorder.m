@@ -14,7 +14,12 @@
     self = [super init];
     if(self){
         storyDB = db;
+        imageInstances = [storyDB getImageInstanceTable];
     }
     return  self;
+}
+
+-(void) reloadImageInstances{
+    imageInstances = [storyDB getImageInstanceTable];
 }
 @end
