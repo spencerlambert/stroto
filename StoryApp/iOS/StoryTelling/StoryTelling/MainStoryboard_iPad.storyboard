@@ -847,7 +847,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="Ih0-Md-mGj">
-                                <rect key="frame" x="414" y="150" width="320" height="1"/>
+                                <rect key="frame" x="416" y="150" width="320" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sub Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfN-8U-RYc">
@@ -877,18 +877,8 @@
                                     <action selector="saveToGallery:" destination="zui-Zv-QGH" eventType="touchUpInside" id="C4T-3y-ERr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wI0-vd-tVf">
-                                <rect key="frame" x="434" y="342" width="21" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="uicheckbox_checked.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="toggleCheckBox:" destination="zui-Zv-QGH" eventType="touchUpInside" id="6am-43-qAv"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Title Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mga-S6-zsM">
-                                <rect key="frame" x="463" y="342" width="127" height="21"/>
+                                <rect key="frame" x="519" y="342" width="127" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -952,12 +942,19 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="iEt-OU-5px">
+                                <rect key="frame" x="434" y="336" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleAddTitle:" destination="zui-Zv-QGH" eventType="valueChanged" id="iiv-1L-b0V"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Export" id="PPz-Ml-x2I"/>
                     <connections>
-                        <outlet property="checkBox" destination="wI0-vd-tVf" id="Y5J-3A-xce"/>
+                        <outlet property="addTitleCheck" destination="iEt-OU-5px" id="a5g-hk-auQ"/>
                         <outlet property="storySubTitle" destination="UPu-Y0-sDq" id="iUr-t4-JEL"/>
                         <outlet property="storyTitle" destination="qOZ-zd-LFd" id="agI-qZ-ci1"/>
                     </connections>
@@ -1723,36 +1720,8 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_red.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
-        <image name="color_white.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
-        <image name="lightGray.jpeg" width="284" height="177"/>
-        <image name="uicheckbox_checked.png" width="28" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

@@ -115,7 +115,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="zsi-BS-CWf">
-                                <rect key="frame" x="45" y="280" width="230" height="1"/>
+                                <rect key="frame" x="45" y="296" width="230" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tHx-78-KME">
@@ -128,27 +128,26 @@
                                     <action selector="saveToGallery:" destination="lqy-J3-TVS" eventType="touchUpInside" id="reL-J3-PHM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fut-Wf-woY">
-                                <rect key="frame" x="20" y="224" width="23" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="uicheckbox_checked.png"/>
-                                <connections>
-                                    <action selector="toggleCheckBox:" destination="lqy-J3-TVS" eventType="touchUpInside" id="cfu-AH-o6D"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Title Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ek2-Yj-4Nt">
-                                <rect key="frame" x="51" y="226" width="127" height="21"/>
+                                <rect key="frame" x="105" y="233" width="127" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="KNb-jZ-YnN">
+                                <rect key="frame" x="20" y="230" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleAddTitle:" destination="lqy-J3-TVS" eventType="valueChanged" id="NSw-fc-KkK"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Export" id="rMu-ku-b70"/>
                     <connections>
-                        <outlet property="checkBox" destination="Fut-Wf-woY" id="zRa-eF-hkw"/>
+                        <outlet property="addTitleCheck" destination="KNb-jZ-YnN" id="LoB-Sk-j1G"/>
                         <outlet property="storySubTitle" destination="eny-dg-JrB" id="r80-CR-r5E"/>
                         <outlet property="storyTitle" destination="xat-Zi-7gl" id="Io8-VM-a2X"/>
                     </connections>
@@ -1549,7 +1548,6 @@
         <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
-        <image name="uicheckbox_checked.png" width="28" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
