@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *storySubTitle;
 @property (weak, nonatomic) IBOutlet UISwitch *addTitleCheck;
 @property (strong, nonatomic) SKProduct *paidProduct;
+@property (weak, nonatomic) NSString *dbname;
+
 - (IBAction)toggleAddTitle:(UISwitch *)sender;
 - (IBAction)saveToGallery:(UIButton *)sender;
 
