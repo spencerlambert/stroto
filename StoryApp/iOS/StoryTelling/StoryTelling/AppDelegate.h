@@ -14,7 +14,9 @@
 @property (nonatomic,retain) NSMutableArray *backgroundImagesArray;
 @property (nonatomic,retain) NSMutableArray *foregroundImagesArray;
 @property (nonatomic,retain) NSString *isNewStory;
+@property BOOL internetAvailable;
 
 +(CGSize)deviceSize;
+-(void)internetAvailableNotifier;
 
 @end

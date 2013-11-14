@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 @implementation AppDelegate
 @synthesize backgroundImagesArray;
@@ -16,6 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self internetAvailableNotifier];
     backgroundImagesArray = [[NSMutableArray alloc]init];
     foregroundImagesArray = [[NSMutableArray alloc]init];
     isNewStory=@"true";
@@ -76,6 +78,33 @@
         return sizeOfTab;
 
     }
+}
+
+-(void)internetAvailableNotifier{
+    Reachability *internetReachable;
+    
+    internetReachable = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachable.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.internetAvailable = YES;
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachable.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.internetAvailable = NO;
+        });
+    };
+    
+    [internetReachable startNotifier];
+    
 }
 
 @end
