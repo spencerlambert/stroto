@@ -38,6 +38,7 @@
 		4D908E6F17FA3A7D00B309FA /* color_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6B17FA3A7D00B309FA /* color_black.png */; };
 		4D908E7017FA3A7D00B309FA /* color_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6C17FA3A7D00B309FA /* color_white.png */; };
 		4D908E7117FA3A7D00B309FA /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6D17FA3A7D00B309FA /* color_red.png */; };
+		4D9CF8E11835313400E30495 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */; };
 		4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBE3DE01816440700ED3A12 /* Images.xcassets */; };
 		4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */; };
 		DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459917FAA5CC00CE8173 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -46,7 +47,6 @@
 		DB0F45A117FAA95B00CE8173 /* STYoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F45A017FAA95B00CE8173 /* STYoutubeViewController.m */; };
 		DB0F45A317FAAAB800CE8173 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0F45A217FAAAB800CE8173 /* GTMOAuth2ViewTouch.xib */; };
 		DB0F45A517FAB20F00CE8173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A417FAB20E00CE8173 /* Security.framework */; };
-		DB0F45A717FAB21B00CE8173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -406,9 +406,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D9CF8E11835313400E30495 /* SystemConfiguration.framework in Frameworks */,
 				EB14BB52180BD6FB009F38E6 /* Accounts.framework in Frameworks */,
 				EB14BB50180BD6B9009F38E6 /* Social.framework in Frameworks */,
-				DB0F45A717FAB21B00CE8173 /* SystemConfiguration.framework in Frameworks */,
 				DB0F45A517FAB20F00CE8173 /* Security.framework in Frameworks */,
 				EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */,
 				DB4E38AC179FA20A00413100 /* opencv2.framework in Frameworks */,
