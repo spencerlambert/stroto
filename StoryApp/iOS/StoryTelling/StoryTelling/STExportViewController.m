@@ -8,12 +8,11 @@
 
 #import "STExportViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
 
-@interface STExportViewController ()<SKProductsRequestDelegate, SKRequestDelegate, SKPaymentTransactionObserver, UITextFieldDelegate>
+@interface STExportViewController ()
 
 @end
 
@@ -24,6 +23,8 @@
 @synthesize storyTitle;
 @synthesize storySubTitle;
 @synthesize dbname;
+@synthesize storyTitleString;
+@synthesize storySubTitleString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +39,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.storyTitle.text = self.storyTitleString;
+    self.storySubTitle.text = self.storySubTitleString;
+    NSLog(@"storyTitle = %@",self.storyTitle.text);
+    NSLog(@"storySubTitle = %@",self.storySubTitle.text);
+
     addTitleCheck.selected = YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

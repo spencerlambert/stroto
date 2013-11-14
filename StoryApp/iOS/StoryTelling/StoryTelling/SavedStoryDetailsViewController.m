@@ -11,6 +11,7 @@
 #import "CreateStoryRootViewController.h"
 #include "STFacebookViewController.h"
 #import "STYoutubeViewController.h"
+#import "STExportViewController.h"
 
 @interface SavedStoryDetailsViewController ()
 
@@ -202,6 +203,15 @@
 //        ((CreateStoryRootViewController*)segue.destinationViewController).myDelegate = self;
         AppDelegate *newstoryFlag = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         [newstoryFlag setIsNewStory:@"true"];
+    }
+    if([segue.identifier isEqual:@"export"])
+    {
+        STExportViewController *exportController = segue.destinationViewController;
+        [exportController setDbname:dbname];
+        [exportController setStoryTitleString:navigationBarTitle.title];
+        [exportController setStorySubTitleString:@"by: "];
+        NSLog(@"export.storyTitleString : %@",exportController.storyTitleString);
+        NSLog(@"export.storySubTitleString : %@",exportController.storySubTitleString);
     }
 }
 
