@@ -19,6 +19,7 @@
 #import "STFreeStoryPacksViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "STInstalledStoryPacksViewController.h"
+#import "AppDelegate.h"
 
 @interface STFreeStoryPacksViewController () 
 @end
@@ -58,12 +59,25 @@
     //Activity Indicator
     [self.loader setHidden:FALSE];
     [self.loader startAnimating];
-    [self performSelectorInBackground:@selector(freeJsonDetails) withObject:nil];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication]delegate]) internetAvailableNotifier];
+    BOOL internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+   
+    if (internetAvailable)
+        [self performSelectorInBackground:@selector(freeJsonDetails) withObject:nil];
+    else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [self dismissLoader];
+    }
+    
+    [self performSelector:@selector(dismissLoader) withObject:nil afterDelay:60];
+    
 }
 -(void)freeJsonDetails
 {
     NSURL *url = [NSURL URLWithString:urlAsString];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
     [urlRequest setHTTPMethod:@"POST"];
     //        [urlRequest setTimeoutInterval:30.0f];
     [urlRequest setHTTPBody:[freeDetailsBody dataUsingEncoding:NSUTF8StringEncoding]];
@@ -81,7 +95,10 @@
             NSLog(@"Nothing was downloaded.");
         }
         else if (error != nil){
-            NSLog(@"Error happened = %@", error); }
+            NSLog(@"Error happened = %@", error);
+            [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
+            return ;
+        }
     }];
     while(!freeStoryPackDetailsJson){       //checking for data
         //        NSLog(@"NUll in freeStoryPackDetailsJson");
@@ -92,6 +109,18 @@
     [self.freeButton setHidden:NO];
 
 }
+
+-(void)showAlert:(NSString*)message{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [self dismissLoader];
+}
+
+-(void)dismissLoader{
+    [self.loader stopAnimating];
+    [self.loader setHidden:TRUE];
+}
+
 -(void)reloadBackgroundImages
 {
     if([[freeStoryPackDetailsJson valueForKey:@"st_bg_list"]count])

@@ -23,8 +23,13 @@
 #import "NSData+Base64.h"
 #import "STInstalledStoryPacksViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AppDelegate.h"
 
-@implementation STStoryPacksViewController
+@implementation STStoryPacksViewController{
+    BOOL internetAvailable;
+    BOOL loadingFreeOver;
+    BOOL loadingPaidOver;
+}
 
 @synthesize installedStoryPacksView;
 @synthesize paidStoryPacksView;
@@ -37,6 +42,8 @@
 NSString *databasePath;
 //@synthesize testImageView;
 -(void)viewDidLoad{
+    loadingFreeOver = NO;
+    loadingPaidOver = NO;
 //disabling back navigation
     self.navigationItem.hidesBackButton = YES;
 //Activity Indicator
@@ -46,7 +53,40 @@ NSString *databasePath;
     [self.loader startAnimating];
     [self performSelectorInBackground:@selector(showInstalledPacks) withObject:nil];
 //json retrieval
-    [self performSelectorInBackground:@selector(jsonPost) withObject:nil];
+    [((AppDelegate *)[[UIApplication sharedApplication]delegate]) internetAvailableNotifier];
+    internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+//    NSLog(@"internet availability : %hhd", ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable);
+    if (internetAvailable)
+        [self performSelectorInBackground:@selector(jsonPost) withObject:nil];
+    else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        [self.loader stopAnimating];
+        [self.loader setHidden:TRUE];
+        
+    }
+    [self performSelector:@selector(dismissLoader) withObject:nil afterDelay:60];
+    
+}
+
+-(void)dismissLoader{
+    [self.loader stopAnimating];
+    [self.loader setHidden:TRUE];
+    [((AppDelegate *)[[UIApplication sharedApplication]delegate]) internetAvailableNotifier];
+    internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+    //    NSLog(@"internet availability : %hhd", ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable);
+    if (!internetAvailable){
+       
+           UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        [self.loader stopAnimating];
+        [self.loader setHidden:TRUE];
+        
+    }
+
+    
 }
 
 -(void)jsonPost
@@ -59,7 +99,7 @@ NSString *databasePath;
     {
 //        returning only some packs when put outside of while
         NSURL *url = [NSURL URLWithString:urlAsString];
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5 ];
         [urlRequest setHTTPMethod:@"POST"];
 //        [urlRequest setTimeoutInterval:30.0f];
         [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
@@ -85,9 +125,27 @@ NSString *databasePath;
             }
             else if ([data length] == 0 && error == nil){
                 NSLog(@"Nothing was downloaded.");
+                if(isPaid)
+                {
+                    loadingPaidOver = YES;
+                }
+                else
+                {
+                    loadingFreeOver = YES;
+                }
             }
             else if (error != nil){
-                NSLog(@"Error happened = %@", error); }
+                [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
+                NSLog(@"Error happened = %@", error);
+                if(isPaid)
+                {
+                    loadingPaidOver = YES;
+                }
+                else
+                {
+                    loadingFreeOver = YES;
+                }
+            }
       }];
         i++;
         isPaid = YES;
@@ -95,6 +153,12 @@ NSString *databasePath;
     }
     [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
     [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
+}
+
+-(void)showAlert:(NSString*)message{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+
 }
 # pragma mark - story pack scroll views
 -(void)showInstalledPacks
@@ -266,7 +330,20 @@ NSLog(@"Path after appending : %@",databasePath);
      continue;}
     for (int i = 0; i<[[paidJson valueForKey:@"st_list"] count];i++)
     {
-        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"ThumbnailURL"]]];
+        NSData* data;
+        
+        internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+        if (!internetAvailable) {
+            xPosition += (THUMB_HEIGHT + THUMB_H_PADDING);
+            continue;
+        }
+        
+        data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"ThumbnailURL"]]];
+        if (data==nil || data.length ==0) {
+            xPosition += (THUMB_HEIGHT + THUMB_H_PADDING);
+            continue;
+        }
+        
         UIImage *image = [UIImage imageWithData:data];
         STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
 //showing paid story pack's thubnail images
@@ -332,6 +409,13 @@ NSLog(@"Path after appending : %@",databasePath);
 //    [paidStoryPacksHolder setBackgroundColor:[UIColor blueColor]];  //for knowing the bounds
     [paidStoryPacksHolder setContentSize:CGSizeMake(xPosition, scrollViewHeight)];
     [paidStoryPacksView addSubview:paidStoryPacksHolder];
+    
+    loadingPaidOver = YES;
+    
+    if (loadingFreeOver) {
+        [self.loader stopAnimating];
+        [self.loader setHidden:TRUE];
+    }
 }
 -(void)reloadFreeView
 {
@@ -351,7 +435,19 @@ NSLog(@"Path after appending : %@",databasePath);
         continue;} ///waiting for getting data from server
     for (int i = 0; i<[[freeJson valueForKey:@"st_list"] count];i++)
     {
-        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"ThumbnailURL"]]]; //getting image data
+        NSData * data;
+        internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+        if (!internetAvailable) {
+            xPosition += (THUMB_HEIGHT + THUMB_H_PADDING);
+            continue;
+        }
+        data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[freeJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"ThumbnailURL"]]]; //getting image data
+        
+        if (data==nil || data.length ==0) {
+            xPosition += (THUMB_HEIGHT + THUMB_H_PADDING);
+            continue;
+        }
+        
         UIImage *image = [UIImage imageWithData:data];
         STImage *stimage = [[STImage alloc] initWithCGImage:[image CGImage]];
 //showing free story packs thumbnails
@@ -400,8 +496,13 @@ NSLog(@"Path after appending : %@",databasePath);
 //    [freeStoryPacksHolder setBackgroundColor:[UIColor blueColor]];//for knowing the bounds
     [freeStoryPacksView addSubview:freeStoryPacksHolder];
 //stoping activity indicator
-    [self.loader stopAnimating];
-    [self.loader setHidden:TRUE];
+    
+    loadingFreeOver = YES;
+    
+    if (loadingPaidOver) {
+        [self.loader stopAnimating];
+        [self.loader setHidden:TRUE];
+    }
     
 }
 
