@@ -39,6 +39,7 @@
 		4D908E7017FA3A7D00B309FA /* color_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6C17FA3A7D00B309FA /* color_white.png */; };
 		4D908E7117FA3A7D00B309FA /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6D17FA3A7D00B309FA /* color_red.png */; };
 		4D9CF8E11835313400E30495 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */; };
+		4D9CF8E4183531E900E30495 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CF8E3183531E900E30495 /* Reachability.m */; };
 		4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBE3DE01816440700ED3A12 /* Images.xcassets */; };
 		4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */; };
 		DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459917FAA5CC00CE8173 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -252,6 +253,8 @@
 		4D97F65218163A4A0077ABB0 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		4D97F65318163A680077ABB0 /* ipad_portrate_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate_retina.png; sourceTree = "<group>"; };
 		4D97F65418163A820077ABB0 /* ipad_portrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrate.png; sourceTree = "<group>"; };
+		4D9CF8E2183531E900E30495 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4D9CF8E3183531E900E30495 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4DBE3DE01816440700ED3A12 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackDownload.h; sourceTree = "<group>"; };
 		4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackDownload.m; sourceTree = "<group>"; };
@@ -604,6 +607,8 @@
 		DB28D7121742E1460071B5C2 /* StoryTelling */ = {
 			isa = PBXGroup;
 			children = (
+				4D9CF8E2183531E900E30495 /* Reachability.h */,
+				4D9CF8E3183531E900E30495 /* Reachability.m */,
 				DB9A006118150FAF00244040 /* iPad */,
 				4D2A0A631780B3D100C78EE0 /* StageItems */,
 				4D2A0A5C1780B22300C78EE0 /* Modifiers */,
@@ -906,7 +911,7 @@
 				ORGANIZATIONNAME = "Stroto, LLC.";
 				TargetAttributes = {
 					DB28D7071742E1460071B5C2 = {
-						DevelopmentTeam = A33R73S2LJ;
+						DevelopmentTeam = 9RFBNK2ME4;
 					};
 				};
 			};
@@ -1077,6 +1082,7 @@
 				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
 				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
+				4D9CF8E4183531E900E30495 /* Reachability.m in Sources */,
 				EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */,
 				DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */,
 				DB0F459C17FAA5CC00CE8173 /* GTLNetworking_Sources.m in Sources */,
@@ -1203,8 +1209,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stroto, LLC (9RFBNK2ME4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stroto, LLC (9RFBNK2ME4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1226,6 +1232,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
+				PROVISIONING_PROFILE = "EF6CC4E5-532F-4252-9C78-E49C1C1136EB";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1236,8 +1243,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stroto, LLC (9RFBNK2ME4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stroto, LLC (9RFBNK2ME4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1260,6 +1267,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Stroto;
+				PROVISIONING_PROFILE = "EF6CC4E5-532F-4252-9C78-E49C1C1136EB";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
