@@ -588,6 +588,47 @@
     return YES;
 }
 
+- (void)updateImageInstanceTimeline:(STImageInstancePosition*)timelineInstance{
+    char *errMsg;
+    NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstanceTimeline ('imageInstanceId','timecode','x','y','scale','rotation','flip','layer') values(%d,%f,%d,%d,%f,%f,%d,%d);", timelineInstance.imageInstanceId,timelineInstance.timecode,timelineInstance.x,timelineInstance.y,timelineInstance.scale,timelineInstance.rotation,timelineInstance.flip,timelineInstance.layer ];
+    const char *sql_stmt = [sql UTF8String];
+    if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+    {
+        NSLog(@"Failed to insert ImageInstance : %s",errMsg);
+    }
+}
+
+- (NSArray *)getImageInstanceTimeline{
+    NSMutableArray *imageInstancesTimeline = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from ImageInstanceTimeline;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            STImageInstancePosition *timelineInstance = [[STImageInstancePosition alloc]init];
+            int instanceID = sqlite3_column_int(compiled_stmt, 0);
+            float timecode = sqlite3_column_int(compiled_stmt, 1);
+            int x = sqlite3_column_int(compiled_stmt, 2);
+            int y = sqlite3_column_int(compiled_stmt, 3);
+            float scale = sqlite3_column_int(compiled_stmt, 4);
+            float rotation = sqlite3_column_int(compiled_stmt, 5);
+            int flip = sqlite3_column_int(compiled_stmt, 6);
+            int layer = sqlite3_column_int(compiled_stmt, 7);
+            timelineInstance.imageInstanceId = instanceID;
+            timelineInstance.timecode = timecode;
+            timelineInstance.x = x;
+            timelineInstance.y = y;
+            timelineInstance.scale = scale;
+            timelineInstance.rotation = rotation;
+            timelineInstance.flip = flip;
+            timelineInstance.layer = layer;
+            [imageInstancesTimeline addObject:timelineInstance];
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return imageInstancesTimeline;
+}
+
 - (NSString *)getDBName{
     return [[databasePath lastPathComponent]stringByDeletingPathExtension];
 }
@@ -607,6 +648,7 @@
     sqlite3_finalize(compiled_stmt);
     return @"";
 }
+
 - (void)closeDB
 {
     sqlite3_close(db);

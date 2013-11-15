@@ -29,9 +29,9 @@ STImageInstancePosition *newImageInstancePosition = [[STImageInstancePosition al
 newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
 
 if(isZoomIn)
-    newImageInstancePosition->scale += newImageInstancePosition->scale * zoomRate/100 ;
+    newImageInstancePosition.scale += newImageInstancePosition.scale * zoomRate/100 ;
 else
-    newImageInstancePosition->scale -= newImageInstancePosition->scale * zoomRate/100 ;
+    newImageInstancePosition.scale -= newImageInstancePosition.scale * zoomRate/100 ;
 
 return (newImageInstancePosition);
 

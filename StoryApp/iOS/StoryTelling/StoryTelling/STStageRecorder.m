@@ -22,4 +22,9 @@
 -(void) reloadImageInstances{
     imageInstances = [storyDB getImageInstanceTable];
 }
+
+-(void)writeImageInstance:(STImage*)instance atTimeCode:(int)timeCode{
+    
+}
+
 @end

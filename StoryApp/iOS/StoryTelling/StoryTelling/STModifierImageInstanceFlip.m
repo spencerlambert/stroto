@@ -15,10 +15,10 @@
     STImageInstancePosition *newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
     if(newImageInstancePosition)
     {
-    if(newImageInstancePosition->flip)
-        newImageInstancePosition->flip = 0;
+    if(newImageInstancePosition.flip)
+        newImageInstancePosition.flip = 0;
     else
-        newImageInstancePosition->flip = 1;
+        newImageInstancePosition.flip = 1;
     }
     return newImageInstancePosition;
 }

@@ -27,19 +27,16 @@
 #import <Foundation/Foundation.h>
 
 @interface STImageInstancePosition : NSObject
-
-{
- @public
     
-int imageInstanceId;
-int x;
-int y;
-float rotation;
-float scale;
-float timecode;
-int layer;
-int flip;
-int perspective; //1=ground, 0=sky, -1=no perspective
-}
+@property int imageInstanceId;
+@property int x;
+@property int y;
+@property float rotation;
+@property float scale;
+@property float timecode;
+@property int layer;
+@property int flip;
+@property int perspective; //1=ground, 0=sky, -1=no perspective
+
 -(id)init;
 @end

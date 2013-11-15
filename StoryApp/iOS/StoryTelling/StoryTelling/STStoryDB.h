@@ -175,8 +175,8 @@ NSString *databasePath;
 // I'm still thinking about these.  Not sure how I want to break the timeline into to objects.
 // I'm thinking having a STTimeline class that can store the timeline for all types of actors, images, sounds, audio, etc.
 // Then have things like STImageInstanceTimeline that hold the specific items.
-- (id*)updateImageInstanceTimeline:(id*)timeline;
-- (id*)getImageInstanceTimeline:(id*)timeline;
+- (void)updateImageInstanceTimeline:(STImageInstancePosition*)timelineInstance;
+- (NSArray *)getImageInstanceTimeline;
 
 -(BOOL)updateVersion:(float)version;
 -(BOOL)deleteSTstoryDB;//Delete the current db

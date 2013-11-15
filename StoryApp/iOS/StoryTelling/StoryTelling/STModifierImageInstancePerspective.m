@@ -25,20 +25,20 @@
     newImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline lastObject];
     STImageInstancePosition *previousImageInstancePosition = [[STImageInstancePosition alloc]init];
     previousImageInstancePosition = (STImageInstancePosition*)[(NSArray*)timeline objectAtIndex:[(NSArray*)timeline count]-2];
-    newImageInstancePosition->perspective = isGroundPerspective; //setting up perspective (1 or 0)
-    int yChange =  newImageInstancePosition->y - previousImageInstancePosition->y; //gives delta y
+    newImageInstancePosition.perspective = isGroundPerspective; //setting up perspective (1 or 0)
+    int yChange =  newImageInstancePosition.y - previousImageInstancePosition.y; //gives delta y
     if(isGroundPerspective == 1) //ground
     {
         //moving image down along y axis(performing zoom in) , yChange = +ve
         //moving image up along y axis(zoom out) , yChange = -ve
-        newImageInstancePosition->scale += (float)yChange * 0.001f;
+        newImageInstancePosition.scale += (float)yChange * 0.001f;
     }
     
     else if(isGroundPerspective == 0) //sky
     {
         //moving image down along y axis(performing zoom out) , yChange = +ve
         //moving image up along y axis(zoom in) , yChange = -ve
-        newImageInstancePosition->scale -= (float)yChange * 0.001f;
+        newImageInstancePosition.scale -= (float)yChange * 0.001f;
     }
     return newImageInstancePosition;
 }

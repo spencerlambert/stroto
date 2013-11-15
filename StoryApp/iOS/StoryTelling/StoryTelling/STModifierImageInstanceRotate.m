@@ -28,9 +28,9 @@
     
     newImageInstancePosition = (STImageInstancePosition*)[(NSArray*) timeline lastObject];
     if(isRotationClockwise)
-        newImageInstancePosition->rotation += rotationAngle;
+        newImageInstancePosition.rotation += rotationAngle;
     else
-        newImageInstancePosition->rotation -= rotationAngle;
+        newImageInstancePosition.rotation -= rotationAngle;
     
     return (newImageInstancePosition);
 }

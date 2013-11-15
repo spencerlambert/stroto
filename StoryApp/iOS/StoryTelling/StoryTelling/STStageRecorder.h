@@ -7,6 +7,7 @@
 //
 
 #import "STStoryDB.h"
+#import "STImage.h"
 
 @interface STStageRecorder : NSObject{
     STStoryDB *storyDB;
@@ -14,5 +15,6 @@
 }
 -(id)initWithDB:(STStoryDB *)db;
 -(void)reloadImageInstances;
+-(void)writeImageInstance:(STImage*)instance atTimeCode:(int)timeCode;
 
 @end

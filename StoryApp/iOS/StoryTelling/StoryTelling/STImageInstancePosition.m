@@ -17,15 +17,15 @@
     {
        // imageInstanceId = x = y = rotation = scale = timecode = layer = flip =  0;
        
-        /*unsigned_int*/     imageInstanceId = 0;    //non-negative
-        /*int*/              x = 100;                //default x position
-        /*int*/              y = 100;                //default y position
-        /*float*/            scale = 1.0f;           //default no scaling
-        /*float*/            rotation = 0.0f;        //default no rotation
-        /*float*/            timecode = 0.0f;        //default
-        /*int*/              layer = 0;              //default
-        /*int*/              flip = 0;               //default
-        /*int*/              perspective = -1;       //default no perspective
+        /*unsigned_int*/     self.imageInstanceId = 0;    //non-negative
+        /*int*/              self.x = 100;                //default x position
+        /*int*/              self.y = 100;                //default y position
+        /*float*/            self.scale = 1.0f;           //default no scaling
+        /*float*/            self.rotation = 0.0f;        //default no rotation
+        /*float*/            self.timecode = 0.0f;        //default
+        /*int*/              self.layer = 0;              //default
+        /*int*/              self.flip = 0;               //default
+        /*int*/              self.perspective = -1;       //default no perspective
     }
     return  self;
 }
