@@ -161,6 +161,7 @@
 		EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; };
 		EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */; };
+		EB6EEDD2183591B30050F3CD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6EEDD1183591B30050F3CD /* Reachability.m */; };
 		EB743B7317F41119002D3B34 /* lightGray.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EB743B7217F41119002D3B34 /* lightGray.jpeg */; };
 		EB7FE48417C7176500E28B4F /* STStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */; };
 		EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7FE48617C7439B00E28B4F /* STPaidStoryPacksViewController.m */; };
@@ -389,6 +390,8 @@
 		EB382FC017EFF36800A3FB1F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "StoryTelling/NSData+Base64.m"; sourceTree = "<group>"; };
 		EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STInstalledStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STInstalledStoryPacksViewController.m; sourceTree = "<group>"; };
+		EB6EEDD0183591B30050F3CD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		EB6EEDD1183591B30050F3CD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EB743B7217F41119002D3B34 /* lightGray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightGray.jpeg; sourceTree = "<group>"; };
 		EB7FE48217C7176500E28B4F /* STStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPacksViewController.h; sourceTree = "<group>"; };
 		EB7FE48317C7176500E28B4F /* STStoryPacksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPacksViewController.m; sourceTree = "<group>"; };
@@ -619,6 +622,8 @@
 				DB9E9E861764A7C300788373 /* Create New Story */,
 				DB28D71B1742E1460071B5C2 /* AppDelegate.h */,
 				DB28D71C1742E1460071B5C2 /* AppDelegate.m */,
+				EB6EEDD0183591B30050F3CD /* Reachability.h */,
+				EB6EEDD1183591B30050F3CD /* Reachability.m */,
 				DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */,
 				DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */,
 				EBA21FB5181783F8006BB6B7 /* STListStoryiPad.h */,
@@ -1071,6 +1076,7 @@
 				4D2A0A6C1780B4BB00C78EE0 /* STImageInstanceForeground.m in Sources */,
 				4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */,
 				4D2A0A721780B56900C78EE0 /* STSound.m in Sources */,
+				EB6EEDD2183591B30050F3CD /* Reachability.m in Sources */,
 				4D2A0A751780B5A000C78EE0 /* STModiferImageInstanceZoom.m in Sources */,
 				4D2A0A781780B5C900C78EE0 /* STModifierImageInstanceRotate.m in Sources */,
 				4D2A0A7B1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m in Sources */,

@@ -73,7 +73,7 @@
 }
 -(void)unlockFeature
 {
-    NSSet * productIdentifiers = [NSSet setWithObject:@"export_unlock"];
+    NSSet * productIdentifiers = [NSSet setWithObject:@"test_export"];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
@@ -290,6 +290,7 @@
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
+    NSLog(@"productsresponse= %@",response);
     paidProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
@@ -347,7 +348,7 @@
 - (void)recordTransaction:(SKPaymentTransaction *)transaction
 {
     NSLog(@"recordTransaction");
-    if ([transaction.payment.productIdentifier isEqualToString:@"export_unlock"])
+    if ([transaction.payment.productIdentifier isEqualToString:@"test_export"])
     {
         //        [self.loader startAnimating];
         NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
