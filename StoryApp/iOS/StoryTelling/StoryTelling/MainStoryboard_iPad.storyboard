@@ -447,7 +447,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zui-Zv-QGH" kind="push" id="Q9O-NR-uz2"/>
+                                    <segue destination="zui-Zv-QGH" kind="push" identifier="export" id="Q9O-NR-uz2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1FT-fB-7ON">
@@ -845,6 +845,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zui-Zv-QGH" id="ISo-YD-O1Q"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="Ih0-Md-mGj">
                                 <rect key="frame" x="416" y="150" width="320" height="1"/>
@@ -862,6 +865,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zui-Zv-QGH" id="fsU-gX-aKp"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="color_white.png" id="yw9-Y4-Q5k">
                                 <rect key="frame" x="416" y="306" width="320" height="1"/>
@@ -955,6 +961,7 @@
                     <navigationItem key="navigationItem" title="Export" id="PPz-Ml-x2I"/>
                     <connections>
                         <outlet property="addTitleCheck" destination="iEt-OU-5px" id="a5g-hk-auQ"/>
+                        <outlet property="listViewiPad" destination="KTE-JR-341" id="uFW-OO-rag"/>
                         <outlet property="storySubTitle" destination="UPu-Y0-sDq" id="iUr-t4-JEL"/>
                         <outlet property="storyTitle" destination="qOZ-zd-LFd" id="agI-qZ-ci1"/>
                     </connections>

@@ -8,6 +8,8 @@
 
 #import "STExportViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SavedStoryDetailsViewController.h"
+
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
@@ -22,9 +24,11 @@
 @synthesize paidProduct;
 @synthesize storyTitle;
 @synthesize storySubTitle;
+@synthesize listViewiPad;
 @synthesize dbname;
 @synthesize storyTitleString;
 @synthesize storySubTitleString;
+@synthesize storyListiPad;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,9 +45,12 @@
 	// Do any additional setup after loading the view.
     self.storyTitle.text = self.storyTitleString;
     self.storySubTitle.text = self.storySubTitleString;
+    [self.listViewiPad setListDelegate:self];
+    [self.listViewiPad setIndex:storyListiPad.index];
+    storyListiPad = nil;
+    [self.listViewiPad reloadInputViews];
     NSLog(@"storyTitle = %@",self.storyTitle.text);
     NSLog(@"storySubTitle = %@",self.storySubTitle.text);
-
     addTitleCheck.selected = YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -63,21 +70,14 @@
 }
 
 - (IBAction)saveToGallery:(UIButton *)sender {
-    if([addTitleCheck isOn])
-    {
-        [self addTitleToVideo];
-    }
-    else{
-         [self unlockFeature];
-    }
-}
--(void)unlockFeature
-{
+    
     NSSet * productIdentifiers = [NSSet setWithObject:@"test_export"];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
+    
 }
+
 -(void)addTitleToVideo
 {
     //append title to video.
@@ -279,10 +279,9 @@
     _assetExport.outputURL = outputFileUrl;
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-         //                 NSString *sourcePath = outputFilePath;
-         //              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
-         //             slideleftview.playVideo.enabled = YES;
-         [self performSelectorOnMainThread:@selector(unlockFeature) withObject:self waitUntilDone:YES];
+                          NSString *sourcePath = outputFilePath;
+                        NSLog(@"sourcepath : %@",sourcePath);
+                       UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
      }];
 }
 
@@ -359,9 +358,43 @@
 -(void)saveVideo
 {
   //save Video to gallery
-    
+    if([addTitleCheck isOn])
+    {
+        [self addTitleToVideo];
+    }
+    else
+    {
+        NSFileManager *filemngr =[NSFileManager defaultManager];
+        NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
+        if([filemngr fileExistsAtPath:moviePath]){
+            NSLog(@"path : %@",moviePath);
+            UISaveVideoAtPathToSavedPhotosAlbum(moviePath,self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
 }
 
+- (void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
+{
+    if (error)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo/Video Saved" message:@"Saved To Photo Album"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful
 {
     NSLog(@"finishTransaction");
@@ -373,7 +406,7 @@
         NSLog(@"success Transaction !!");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feature Unlock"
                                                         message:@"Successful"
-                                                       delegate:self
+                                                       delegate:Nil
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         // send out a notification that we’ve finished the transaction
@@ -384,7 +417,7 @@
         NSLog(@"failed Transaction !!");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feature Unlock"
                                                         message:@"Failed, Try Again Later."
-                                                       delegate:self
+                                                       delegate:Nil
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         //         send out a notification for the failed transaction
@@ -405,6 +438,18 @@
         // this is fine, the user just cancelled, so don’t notify
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     }
+}
+
+-(void)didSelectTableCellWithName:(NSString *)dbName
+{
+    for (UIViewController *view in self.navigationController.viewControllers) {
+        if([view isKindOfClass:[SavedStoryDetailsViewController class]]){
+            [((SavedStoryDetailsViewController*)view) setDbname:dbName];
+            [((SavedStoryDetailsViewController*)view) setBarTitle];
+            [[((SavedStoryDetailsViewController*)view) listiPad] setIndex:listViewiPad.index];
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

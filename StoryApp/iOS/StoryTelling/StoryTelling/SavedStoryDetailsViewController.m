@@ -210,6 +210,9 @@
         [exportController setDbname:dbname];
         [exportController setStoryTitleString:navigationBarTitle.title];
         [exportController setStorySubTitleString:@"by: "];
+        STListStoryiPad *temp = [[STListStoryiPad alloc] init];
+        [exportController setStoryListiPad:temp];
+        [[exportController storyListiPad] setIndex:self.listiPad.index];
         NSLog(@"export.storyTitleString : %@",exportController.storyTitleString);
         NSLog(@"export.storySubTitleString : %@",exportController.storySubTitleString);
     }
