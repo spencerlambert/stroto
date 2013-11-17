@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -76,7 +76,7 @@
             </objects>
             <point key="canvasLocation" x="-3223" y="-198"/>
         </scene>
-        <!--Export View Controller - Export-->
+        <!--Export View Controller - Save To Gallery-->
         <scene sceneID="jhG-Ou-alG">
             <objects>
                 <viewController storyboardIdentifier="export" id="lqy-J3-TVS" customClass="STExportViewController" sceneMemberID="viewController">
@@ -127,11 +127,21 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tHx-78-KME">
                                 <rect key="frame" x="52" y="357" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Save to Gallery">
+                                <state key="normal" title="Unlock Feature - $4.99">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="saveToGallery:" destination="lqy-J3-TVS" eventType="touchUpInside" id="reL-J3-PHM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OMB-Cw-e9H">
+                                <rect key="frame" x="52" y="428" width="216" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveToGallery:" destination="lqy-J3-TVS" eventType="touchUpInside" id="Mq7-1v-caN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Title Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ek2-Yj-4Nt">
@@ -142,7 +152,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="KNb-jZ-YnN">
-                                <rect key="frame" x="20" y="230" width="79" height="27"/>
+                                <rect key="frame" x="34" y="228" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="toggleAddTitle:" destination="lqy-J3-TVS" eventType="valueChanged" id="NSw-fc-KkK"/>
@@ -151,7 +161,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Export" id="rMu-ku-b70"/>
+                    <navigationItem key="navigationItem" title="Save To Gallery" id="rMu-ku-b70"/>
                     <connections>
                         <outlet property="addTitleCheck" destination="KNb-jZ-YnN" id="LoB-Sk-j1G"/>
                         <outlet property="storySubTitle" destination="eny-dg-JrB" id="r80-CR-r5E"/>
@@ -217,7 +227,7 @@
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="yMy-UR-FIk">
-                                <rect key="frame" x="85" y="379" width="150" height="9"/>
+                                <rect key="frame" x="85" y="382" width="150" height="2"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tem-Lm-KwG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="549"/>
@@ -268,7 +278,7 @@
             </objects>
             <point key="canvasLocation" x="-3166" y="-1231"/>
         </scene>
-        <!--Youtube View Controller - Upload to Youtube-->
+        <!--Youtube View Controller - Upload To Youtube-->
         <scene sceneID="ccd-Zh-4rb">
             <objects>
                 <viewController storyboardIdentifier="youtub" id="Qjk-F6-k1U" customClass="STYoutubeViewController" sceneMemberID="viewController">
@@ -352,7 +362,7 @@
                                 </connections>
                             </button>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="tCM-Lh-WKS">
-                                <rect key="frame" x="85" y="362" width="150" height="9"/>
+                                <rect key="frame" x="85" y="365" width="150" height="2"/>
                             </progressView>
                             <button hidden="YES" opaque="NO" alpha="0.44999999999999984" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vqc-bD-EEE">
                                 <rect key="frame" x="0.0" y="1" width="320" height="525"/>
@@ -369,7 +379,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Upload to Youtube" id="DKI-v6-Jia"/>
+                    <navigationItem key="navigationItem" title="Upload To Youtube" id="DKI-v6-Jia"/>
                     <connections>
                         <outlet property="greyBGButton" destination="Vqc-bD-EEE" id="nJj-Hh-u3L"/>
                         <outlet property="mainTitle" destination="5x9-wn-yww" id="0Ua-nu-ZVv"/>
@@ -429,7 +439,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7HR-pX-rnC">
                                 <rect key="frame" x="52" y="284" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Export (Unlock $4.99)">
+                                <state key="normal" title="Save To Gallery">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -804,7 +814,7 @@
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="Jlx-uX-AJH">
-                                        <rect key="frame" x="2" y="376" width="316" height="23"/>
+                                        <rect key="frame" x="2" y="370" width="316" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1262,7 +1272,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <progressView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="GJ6-8d-rVW">
-                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
+                                        <rect key="frame" x="20" y="13" width="150" height="2"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZbM-Jh-Y9w">
@@ -1484,7 +1494,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <progressView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="fXy-xt-H1x">
-                                        <rect key="frame" x="20" y="13" width="150" height="9"/>
+                                        <rect key="frame" x="20" y="13" width="150" height="2"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O9d-fm-jsY">
@@ -1552,7 +1562,31 @@
     <resources>
         <image name="black.png" width="22" height="20"/>
         <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
+        <image name="color_red.png" width="10" height="10"/>
         <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="color_white.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
         <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
