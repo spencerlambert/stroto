@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SavedStoryDetailsViewController.h"
 
-#define fileString [[NSString alloc] initWithString:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"unlocked.txt"]]
+#define fileString [[NSString alloc] initWithString:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"export_unlocked.txt"]]
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
