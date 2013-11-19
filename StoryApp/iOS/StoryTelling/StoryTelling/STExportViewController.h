@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet STListStoryiPad *listViewiPad;
 @property (weak, nonatomic) IBOutlet UIButton *unlockButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UILabel *savingLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *savingSpin;
 @property (weak, nonatomic) IBOutlet UIButton *bgButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 @property (weak, nonatomic) STListStoryiPad *storyListiPad;

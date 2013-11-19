@@ -968,13 +968,24 @@
                             <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Nx-S3-xAJ">
                                 <rect key="frame" x="384" y="0.0" width="384" height="936"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80379065688775508" green="0.80379065688775508" blue="0.80379065688775508" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.76945153061224492" green="0.76945153061224492" blue="0.76945153061224492" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="IH6-Pm-mUC">
-                                <rect key="frame" x="556" y="449" width="37" height="37"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="IH6-Pm-mUC">
+                                <rect key="frame" x="558" y="449" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saving..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C8X-EM-Gcq">
+                                <rect key="frame" x="542" y="727" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="u4A-9t-Kny">
+                                <rect key="frame" x="558" y="691" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
@@ -986,6 +997,8 @@
                         <outlet property="bgButton" destination="5Nx-S3-xAJ" id="9t5-UU-dJF"/>
                         <outlet property="listViewiPad" destination="KTE-JR-341" id="uFW-OO-rag"/>
                         <outlet property="saveButton" destination="WGM-2V-oxV" id="W5s-di-TmG"/>
+                        <outlet property="savingLabel" destination="C8X-EM-Gcq" id="pBP-Ur-vRQ"/>
+                        <outlet property="savingSpin" destination="u4A-9t-Kny" id="fn8-bS-Ufs"/>
                         <outlet property="spinningWheel" destination="IH6-Pm-mUC" id="IgG-kH-DT1"/>
                         <outlet property="storySubTitle" destination="UPu-Y0-sDq" id="iUr-t4-JEL"/>
                         <outlet property="storyTitle" destination="qOZ-zd-LFd" id="agI-qZ-ci1"/>

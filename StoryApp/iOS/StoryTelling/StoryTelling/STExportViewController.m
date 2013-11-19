@@ -34,6 +34,8 @@
 @synthesize saveButton;
 @synthesize bgButton;
 @synthesize spinningWheel;
+@synthesize savingSpin;
+@synthesize savingLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +60,7 @@
     NSLog(@"storySubTitle = %@",self.storySubTitle.text);
     addTitleCheck.selected = YES;
     [self.spinningWheel setHidden:YES];
+    [self.savingSpin setHidden:YES];
     if ([[NSFileManager defaultManager] fileExistsAtPath:fileString]) {
         [self.unlockButton setHidden:YES];
         [self.saveButton setHidden:NO];
@@ -377,8 +380,9 @@
 {
   //save Video to gallery
     [self.bgButton setHidden:NO];
-    [self.spinningWheel setHidden:NO];
-    [self.spinningWheel startAnimating];
+    [self.savingLabel setHidden:NO];
+    [self.savingSpin setHidden:NO];
+    [self.savingSpin startAnimating];
 
     if([addTitleCheck isOn])
     {
@@ -402,8 +406,10 @@
 
 - (void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
-    [self.spinningWheel stopAnimating];
-    [self.spinningWheel setHidden:YES];
+    [self.bgButton setHidden:YES];
+    [self.savingLabel setHidden:YES];
+    [self.savingSpin stopAnimating];
+    [self.savingSpin setHidden:YES];
     if (error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
