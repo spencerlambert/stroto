@@ -883,14 +883,14 @@
                                     <action selector="saveToGallery:" destination="zui-Zv-QGH" eventType="touchUpInside" id="C4T-3y-ERr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WGM-2V-oxV">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WGM-2V-oxV">
                                 <rect key="frame" x="466" y="642" width="216" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveToGallery:" destination="zui-Zv-QGH" eventType="touchUpInside" id="U8V-UB-CSq"/>
+                                    <action selector="save:" destination="zui-Zv-QGH" eventType="touchUpInside" id="0B4-Jf-xEh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Title Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mga-S6-zsM">
@@ -965,15 +965,31 @@
                                     <action selector="toggleAddTitle:" destination="zui-Zv-QGH" eventType="valueChanged" id="iiv-1L-b0V"/>
                                 </connections>
                             </switch>
+                            <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Nx-S3-xAJ">
+                                <rect key="frame" x="384" y="0.0" width="384" height="936"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80379065688775508" green="0.80379065688775508" blue="0.80379065688775508" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="IH6-Pm-mUC">
+                                <rect key="frame" x="556" y="449" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Save To Gallery" id="PPz-Ml-x2I"/>
                     <connections>
                         <outlet property="addTitleCheck" destination="iEt-OU-5px" id="a5g-hk-auQ"/>
+                        <outlet property="bgButton" destination="5Nx-S3-xAJ" id="9t5-UU-dJF"/>
                         <outlet property="listViewiPad" destination="KTE-JR-341" id="uFW-OO-rag"/>
+                        <outlet property="saveButton" destination="WGM-2V-oxV" id="W5s-di-TmG"/>
+                        <outlet property="spinningWheel" destination="IH6-Pm-mUC" id="IgG-kH-DT1"/>
                         <outlet property="storySubTitle" destination="UPu-Y0-sDq" id="iUr-t4-JEL"/>
                         <outlet property="storyTitle" destination="qOZ-zd-LFd" id="agI-qZ-ci1"/>
+                        <outlet property="unlockButton" destination="h9q-b7-ubl" id="Cee-QH-KmO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yww-mw-qwt" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SavedStoryDetailsViewController.h"
 
+#define fileString [[NSString alloc] initWithString:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"unlocked.txt"]]
 #define kInAppPurchaseProductsFetchedNotification @"kInAppPurchaseProductsFetchedNotification"
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
@@ -29,6 +30,10 @@
 @synthesize storyTitleString;
 @synthesize storySubTitleString;
 @synthesize storyListiPad;
+@synthesize unlockButton;
+@synthesize saveButton;
+@synthesize bgButton;
+@synthesize spinningWheel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +57,11 @@
     NSLog(@"storyTitle = %@",self.storyTitle.text);
     NSLog(@"storySubTitle = %@",self.storySubTitle.text);
     addTitleCheck.selected = YES;
+    [self.spinningWheel setHidden:YES];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileString]) {
+        [self.unlockButton setHidden:YES];
+        [self.saveButton setHidden:NO];
+    }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 
@@ -70,12 +80,18 @@
 }
 
 - (IBAction)saveToGallery:(UIButton *)sender {
-    
+    [self.bgButton setHidden:NO];
+    [self.spinningWheel startAnimating];
+    [self.spinningWheel setHidden:NO];
     NSSet * productIdentifiers = [NSSet setWithObject:@"test_export"];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
     
+}
+
+- (IBAction)save:(UIButton *)sender {
+    [self saveVideo];
 }
 
 -(void)addTitleToVideo
@@ -308,6 +324,8 @@
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
     NSLog(@"Failed to load the list of Products : %@",error);
     if(error)
     {
@@ -351,13 +369,17 @@
     {
         //        [self.loader startAnimating];
         NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
-        [self saveVideo];
+//        [self saveVideo];
     }
 }
 
 -(void)saveVideo
 {
   //save Video to gallery
+    [self.bgButton setHidden:NO];
+    [self.spinningWheel setHidden:NO];
+    [self.spinningWheel startAnimating];
+
     if([addTitleCheck isOn])
     {
         [self addTitleToVideo];
@@ -380,6 +402,8 @@
 
 - (void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
     if (error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -401,9 +425,20 @@
     // remove the transaction from the payment queue.
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
+    [self.bgButton setHidden:YES];
+    [self.spinningWheel stopAnimating];
+    [self.spinningWheel setHidden:YES];
     if (wasSuccessful)
     {
         NSLog(@"success Transaction !!");
+        [[NSFileManager defaultManager] createFileAtPath:fileString contents:Nil attributes:nil];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:fileString]) {
+            NSLog(@"File created successfully");
+            [self.unlockButton setHidden:YES];
+            [self.saveButton setHidden:NO];
+        }
+        else
+            NSLog(@"File cannot be created.");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feature Unlock"
                                                         message:@"Successful"
                                                        delegate:Nil
