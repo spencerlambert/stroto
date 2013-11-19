@@ -219,7 +219,7 @@
 
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"videoOutput.mp4"];
+    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"videoOutput.mp4"];//title movie
     NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
     NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
     
@@ -302,6 +302,7 @@
                         NSLog(@"sourcepath : %@",sourcePath);
                        UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
      }];
+    
 }
 
 #pragma mark - SKProductsRequestDelegate
@@ -316,9 +317,9 @@
     NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
     }
-
 -(void)requestDidFinish:(SKRequest *)request
 {
+    NSLog(@"requestDidFinish");
     SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
@@ -410,6 +411,9 @@
     [self.savingLabel setHidden:YES];
     [self.savingSpin stopAnimating];
     [self.savingSpin setHidden:YES];
+    NSFileManager *file = [NSFileManager defaultManager];
+    [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"videoOutput.mp4"] error:nil];
+    [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] error:nil];
     if (error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -477,6 +481,9 @@
     else
     {
         // this is fine, the user just cancelled, so don’t notify
+        [self.bgButton setHidden:YES];
+        [self.spinningWheel stopAnimating];
+        [self.spinningWheel setHidden:YES];
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     }
 }

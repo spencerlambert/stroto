@@ -965,10 +965,10 @@
                                     <action selector="toggleAddTitle:" destination="zui-Zv-QGH" eventType="valueChanged" id="iiv-1L-b0V"/>
                                 </connections>
                             </switch>
-                            <button hidden="YES" opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Nx-S3-xAJ">
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Nx-S3-xAJ">
                                 <rect key="frame" x="384" y="0.0" width="384" height="936"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.76945153061224492" green="0.76945153061224492" blue="0.76945153061224492" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
