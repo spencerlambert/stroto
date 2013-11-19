@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "STImage.h"
 #import "STStoryDB.h"
+#import "STStageRecorder.h"
+#import "STAudioRecording.h"
 
 
 @interface STStage : UIView{
@@ -17,7 +19,13 @@
     BOOL isRecording ;
     NSArray *imageInstances;
     NSMutableArray *timeline;
+    NSDate *startedAt;
+    float pauseInterval;
+    NSDate *pausedTime;
     
+    STStageRecorder *stageRecorder;
+    STAudioRecording *audioRecorder;
+
 
 }
 
@@ -27,6 +35,8 @@
 //for recording video
 - (void) startRecording;
 - (void) stopRecording;
+- (void) pauseRecording;
+- (void) resumeRecording;
 - (void) actortoStage:(STImage *)actor;
 - (void) initStage;
 

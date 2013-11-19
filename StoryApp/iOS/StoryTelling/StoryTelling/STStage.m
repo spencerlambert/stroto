@@ -7,6 +7,7 @@
 //
 
 #import "STStage.h"
+#import "STImageInstance.h"
 
 @interface STStage (Actor_Entry_Handlers)
 
@@ -21,13 +22,34 @@
 
 @synthesize storyDB;
 
+- (void) initialize{
+    self.frameRate = 22.0f;
+    isRecording = false;
+    startedAt = nil;
+    pauseInterval = 0;
+}
+
+-(void) initRecorders{
+    stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
+    audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self initialize];
     }
     return self;
+}
+
+- (id) init {
+	self = [super init];
+	if (self) {
+		[self initialize];
+	}
+	return self;
 }
 
 -(void)initStage{
@@ -49,10 +71,55 @@
 }
 
 - (void) startRecording{
+    [self initRecorders];
     isRecording = YES;
-}
+    startedAt =[NSDate date];
+  }
 - (void) stopRecording{
     isRecording = NO;
+}
+-(void) pauseRecording{
+    if(isRecording){
+        pausedTime = [NSDate date];
+        isRecording = false;
+    }
+}
+
+-(void) resumeRecording{
+    if(!isRecording){
+        pauseInterval += [[NSDate date]timeIntervalSinceDate:pausedTime] * 1000.0;
+        isRecording = true;
+    }
+}
+
+-(void) drawRect:(CGRect)rect{
+    NSDate *start = [NSDate date];
+    if(isRecording){
+    [self reLoadImageInstances];
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    
+    float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
+
+    for (STImageInstance *instance in imageInstances) {
+        if(instance.instanceType == false){
+            
+        }
+        else if (instance.instanceType == true){
+            
+        }
+        
+        
+    }
+    
+    for (STImageInstancePosition *position in array){
+        [stageRecorder writeImageInstance:position];
+    }
+    }
+    float processingSeconds = [[NSDate date] timeIntervalSinceDate:start];
+	float delayRemaining = (1.0 / self.frameRate) - processingSeconds;
+	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:delayRemaining > 0.0 ? delayRemaining : 0.01];
+
+    
 }
 
 @end

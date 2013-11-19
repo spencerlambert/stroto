@@ -14,17 +14,17 @@
     self = [super init];
     if(self){
         storyDB = db;
-        imageInstances = [storyDB getImageInstanceTable];
+        timeLine = [storyDB getImageInstanceTimeline];
     }
     return  self;
 }
 
 -(void) reloadImageInstances{
-    imageInstances = [storyDB getImageInstanceTable];
+        timeLine = [storyDB getImageInstanceTimeline];
 }
 
--(void)writeImageInstance:(STImage*)instance atTimeCode:(int)timeCode{
-    
+-(void)writeImageInstance:(STImageInstancePosition*)instance {
+    [storyDB updateImageInstanceTimeline:instance];
+    [self reloadImageInstances];
 }
-
 @end
