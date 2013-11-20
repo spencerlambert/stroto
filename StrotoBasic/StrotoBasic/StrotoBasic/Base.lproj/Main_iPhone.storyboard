@@ -39,15 +39,11 @@
         <scene sceneID="C6h-4n-HMW">
             <objects>
                 <viewController storyboardIdentifier="playGround" id="hwr-W6-Dam" customClass="playViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DEq-6M-upD">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="DEq-6M-upD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_red.png" id="Fys-aK-bG9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" id="HCV-Rb-Dic">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="HCV-Rb-Dic">
                                 <rect key="frame" x="0.0" y="80" width="320" height="320"/>
                                 <color key="backgroundColor" red="0.5486886160714286" green="0.014762086757209627" blue="0.049513367044502703" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

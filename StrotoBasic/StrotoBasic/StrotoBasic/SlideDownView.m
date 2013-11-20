@@ -36,7 +36,7 @@
     if (IS_IPHONE_5) {
         frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT-IPHONE_5_ADDITIONAL, bounds.size.width, thumbHeight);
     } else {
-        frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width - thumbHeight, thumbHeight);
+        frame = CGRectMake(0, CGRectGetMaxY(bounds)-thumbHeight-STATUS_BAR_HEIGHT, bounds.size.width, thumbHeight);
     }
     self = [super initWithFrame:frame];
 /***

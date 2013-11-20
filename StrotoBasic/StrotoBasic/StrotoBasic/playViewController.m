@@ -63,6 +63,9 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     CGRect playbounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
     float thumbHeightBottom = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
+    if(IS_IPHONE_5) {
+        thumbHeightBottom = THUMB_HEIGHT + THUMB_V_PADDING + IPHONE_5_ADDITIONAL * 2 ;
+        }
     imageSelected = NO;
     pickedImages = [[NSMutableArray alloc]init];
     
@@ -110,6 +113,19 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     TopRightView *doneView = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     [doneView setMydelegate:self];
     [self.view addSubview:doneView];
+    
+    button= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(closeBtn)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    button.frame = IS_IPAD?CGRectMake(703, 28.0, 40.0, 40.0):CGRectMake(294.0, 15.0, 20.0, 20.0);
+    [button setBackgroundImage:[UIImage imageNamed:@"color_trans.png" ]forState:UIControlStateNormal];
+    [bgImageView addSubview:button];
+}
+-(void)closeBtn{
+    bgImageView.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
+    [button setEnabled:NO];
 }
 -(void)goBack{
     ViewController *stories = [[ViewController alloc] init];
