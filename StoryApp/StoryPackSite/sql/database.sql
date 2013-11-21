@@ -43,3 +43,9 @@ CREATE TABLE `Purchase` (
     KEY (`StoryPackID`),
     KEY (`PurchaseDate`)
 );
+
+CREATE TABLE `Log` (
+    `LogDateTime`       datetime,
+    `IPAddress`         varchar(30),
+    `JSON`              varchar(100)
+);
