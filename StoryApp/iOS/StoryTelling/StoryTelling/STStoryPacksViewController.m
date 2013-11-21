@@ -109,9 +109,15 @@ NSString *databasePath;
 - (void) jsonRequest:(NSString*)body isPaid:(BOOL)isPaid{
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15 ];
+    
+    NSData *requestData = [NSData dataWithBytes:[body UTF8String] length:[body length]];
     [urlRequest setHTTPMethod:@"POST"];
-    //        [urlRequest setTimeoutInterval:30.0f];
-    [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setHTTPBody:requestData];
+    
+    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
