@@ -83,7 +83,7 @@
 -(void)internetAvailableNotifier{
     Reachability *internetReachable;
     
-    internetReachable = [Reachability reachabilityWithHostname:@"www.google.com"];
+    internetReachable = [Reachability reachabilityWithHostname:@"storypacks.stroto.com"];
     
     // Internet is reachable
     internetReachable.reachableBlock = ^(Reachability*reach)

@@ -77,7 +77,7 @@
 -(void) paidJsonDetails
 {
     NSURL *url = [NSURL URLWithString:urlAsString];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15];
     [urlRequest setHTTPMethod:@"POST"];
     //        [urlRequest setTimeoutInterval:30.0f];
     [urlRequest setHTTPBody:[paidDetailsBody dataUsingEncoding:NSUTF8StringEncoding]];

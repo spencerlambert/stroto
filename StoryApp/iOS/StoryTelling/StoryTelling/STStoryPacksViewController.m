@@ -98,61 +98,109 @@ NSString *databasePath;
     while(i<=1)
     {
 //        returning only some packs when put outside of while
-        NSURL *url = [NSURL URLWithString:urlAsString];
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5 ];
-        [urlRequest setHTTPMethod:@"POST"];
-//        [urlRequest setTimeoutInterval:30.0f];
-        [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
-            if ([data length] >0 && error == nil){
-                if(isPaid)
-                {
-                    paidJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//                   NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
-//                    NSLog(@"inside YES, isPaid= %c",isPaid);
-//                    NSLog(@"html= %@",html);
-//                    NSLog(@"paid_st_list = %@",[paidJson valueForKey:@"st_list"]);
-//                    NSLog(@"paidList_count = %d",[[[self paidJson]valueForKey:@"st_list"] count]);
-                }
-                else
-                {
-                    freeJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//                    NSLog(@"inside NO, isPaid= %c",isPaid);
-//                    NSLog(@"free_st_list = %@",[freeJson valueForKey:@"st_list"]);
-//                    NSLog(@"free_list_count = %d",[[[self freeJson]valueForKey:@"st_list"] count]);
-                }
-            }
-            else if ([data length] == 0 && error == nil){
-                NSLog(@"Nothing was downloaded.");
-                if(isPaid)
-                {
-                    loadingPaidOver = YES;
-                }
-                else
-                {
-                    loadingFreeOver = YES;
-                }
-            }
-            else if (error != nil){
-                [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
-                NSLog(@"Error happened = %@", error);
-                if(isPaid)
-                {
-                    loadingPaidOver = YES;
-                }
-                else
-                {
-                    loadingFreeOver = YES;
-                }
-            }
-      }];
-        i++;
+        [self jsonRequest:body isPaid:isPaid];
+               i++;
         isPaid = YES;
         body = paidBody;
     }
-    [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
-    [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
+    
+}
+
+- (void) jsonRequest:(NSString*)body isPaid:(BOOL)isPaid{
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15 ];
+    [urlRequest setHTTPMethod:@"POST"];
+    //        [urlRequest setTimeoutInterval:30.0f];
+    [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
+        if ([data length] >0 && error == nil){
+            if(isPaid)
+            {
+                paidJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
+
+                //                   NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
+                //                    NSLog(@"inside YES, isPaid= %c",isPaid);
+                //                    NSLog(@"html= %@",html);
+                //                    NSLog(@"paid_st_list = %@",[paidJson valueForKey:@"st_list"]);
+                //                    NSLog(@"paidList_count = %d",[[[self paidJson]valueForKey:@"st_list"] count]);
+            }
+            else
+            {
+                freeJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                 [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
+                //                    NSLog(@"inside NO, isPaid= %c",isPaid);
+                //                    NSLog(@"free_st_list = %@",[freeJson valueForKey:@"st_list"]);
+                //                    NSLog(@"free_list_count = %d",[[[self freeJson]valueForKey:@"st_list"] count]);
+            }
+        }
+        else if ([data length] == 0 && error == nil){
+            NSLog(@"Nothing was downloaded.");
+            if(isPaid)
+            {
+                loadingPaidOver = YES;
+            }
+            else
+            {
+                loadingFreeOver = YES;
+            }
+        }
+        else if (error != nil){
+            [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
+            NSLog(@"Error happened = %@", error);
+            if(isPaid)
+            {
+                loadingPaidOver = YES;
+                [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:1] waitUntilDone:YES];
+            }
+            else
+            {
+                loadingFreeOver = YES;
+                [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:0] waitUntilDone:YES];
+            }
+        }
+    }];
+   
+}
+
+- (void) showError:(NSNumber *)isPaid{
+    UILabel *txtView = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 60)];
+    [txtView setText:@"Can't reach Story Pack Server, please try again."];
+    UIButton *button;
+    button= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    if ([isPaid intValue] == 1)
+        [button addTarget:self
+                   action:@selector(retryPaid)
+         forControlEvents:UIControlEventTouchDown];
+    else
+        [button addTarget:self
+                   action:@selector(retryFree)
+         forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Retry Server" forState:UIControlStateNormal];
+    button.frame = IS_IPAD?CGRectMake(703, 28.0, 40.0, 40.0):CGRectMake(170, 0, 200.0, 60.0);
+    if ([isPaid intValue] == 1){
+        [paidStoryPacksView addSubview:txtView];
+        [paidStoryPacksView addSubview:button];
+    }
+    else{
+        [freeStoryPacksView addSubview:txtView];
+        [freeStoryPacksView addSubview:button];
+    }
+    [self.loader setHidden:YES];
+}
+
+- (void) retryPaid{
+    BOOL isPaid = YES;
+    NSString *body = paidBody;
+    [self jsonRequest:body isPaid:isPaid];
+}
+
+- (void) retryFree{
+    BOOL isPaid = NO;
+    NSString *body = freeBody;
+    [self jsonRequest:body isPaid:isPaid];
 }
 
 -(void)showAlert:(NSString*)message{
