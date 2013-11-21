@@ -13,6 +13,10 @@ if (trim($apple_receipt) == "") {
     include('include/error_reply.php');                    
 }
 
+if (trim($apple_receipt) == "APPLE DOWN") {
+    $error_txt = "Apple Server Down";
+    include('include/error_reply.php');                    
+}
 
 //Save Purchase
 
