@@ -217,6 +217,11 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
         [imageview addGestureRecognizer:tap];
         
         [self setSelectedForegroundImage:nil];
+        [fgImages clearBorder];
+        for(UIView *subviews in [playView subviews])
+        {
+            [subviews setUserInteractionEnabled:YES];
+        }
     }
     
 }
@@ -244,9 +249,20 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
 
 //adding foreground image to work area
 -(void) setForegroundImage:(UIImage *)selectedImage{
+    if(selectedImage != nil)
+    {
+        for (UIView *subviews in [playView subviews]) {
+            [subviews setUserInteractionEnabled:NO];
+        }
     [self setSelectedForegroundImage:selectedImage];
     NSLog(@"%@", [selectedImage description]);
     NSLog(@"foreground image set");
+    }
+    else{
+        for (UIView *subviews in [playView subviews]) {
+            [subviews setUserInteractionEnabled:YES];
+        }
+    }
 }
 
 #pragma mark UIGestureRecognizerDelegate methods
