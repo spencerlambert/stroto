@@ -158,6 +158,7 @@
 		EB14BB50180BD6B9009F38E6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB14BB4F180BD6B9009F38E6 /* Social.framework */; };
 		EB14BB52180BD6FB009F38E6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB14BB51180BD6FB009F38E6 /* Accounts.framework */; };
 		EB29DE0917D45C76005B1F10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB29DE0817D45C76005B1F10 /* StoreKit.framework */; };
+		EB2E5602183EDB7000CD7533 /* StoryPacks in Resources */ = {isa = PBXBuildFile; fileRef = EB2E5601183EDB7000CD7533 /* StoryPacks */; };
 		EB382FC217EFF36800A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; };
 		EB382FC317EFF3A700A3FB1F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EB382FC017EFF36800A3FB1F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB63BB3D17E1A4B90044B23A /* STInstalledStoryPacksViewController.m */; };
@@ -386,6 +387,7 @@
 		EB14BB4F180BD6B9009F38E6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EB14BB51180BD6FB009F38E6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		EB29DE0817D45C76005B1F10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EB2E5601183EDB7000CD7533 /* StoryPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = StoryPacks; sourceTree = "<group>"; };
 		EB382FBF17EFF36800A3FB1F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "StoryTelling/NSData+Base64.h"; sourceTree = "<group>"; };
 		EB382FC017EFF36800A3FB1F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "StoryTelling/NSData+Base64.m"; sourceTree = "<group>"; };
 		EB63BB3C17E1A4B90044B23A /* STInstalledStoryPacksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STInstalledStoryPacksViewController.h; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 		DB28D7131742E1460071B5C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB2E5601183EDB7000CD7533 /* StoryPacks */,
 				4D97F655181641470077ABB0 /* icons */,
 				DB0F459817FAA03600CE8173 /* GTL */,
 				DB989C7817CF2ED20056299D /* ModifierButtonFlip.png */,
@@ -984,6 +987,7 @@
 				4D8127071801D6A1001737C2 /* ButtonDoneR.png in Resources */,
 				DB989C8117CF2ED20056299D /* ModifierButtonFollowTangent.png in Resources */,
 				DB989C8217CF2ED20056299D /* ModifierButtonPerspectiveGround.png in Resources */,
+				EB2E5602183EDB7000CD7533 /* StoryPacks in Resources */,
 				DB989C8317CF2ED20056299D /* ModifierButtonPerspectiveSky.png in Resources */,
 				DB989C8417CF2ED20056299D /* ModifierButtonRotateLeft.png in Resources */,
 				DB989C8517CF2ED20056299D /* ModifierButtonRotateRight.png in Resources */,

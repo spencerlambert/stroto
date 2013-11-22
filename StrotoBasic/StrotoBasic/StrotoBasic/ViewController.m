@@ -41,7 +41,7 @@ NSArray *storyPacksList;
 -(void)showStoryPacks
 {
     storyPacksList= [[NSBundle mainBundle] pathsForResourcesOfType:@"db" inDirectory:@"StoryPacks"];
-//NSLog(@"StoryPacksList : %@",storyPacksList);
+NSLog(@"StoryPacksList : %@",storyPacksList);
     int count = [storyPacksList count];
 NSLog (@"number of story packs :%i",count);
     float holderWidth=0;
@@ -107,7 +107,7 @@ NSLog (@"number of story packs :%i",count);
                         click.numberOfTapsRequired = 1;
                         [thumbView addGestureRecognizer:click];
                         [thumbView setUserInteractionEnabled:YES];
-                        NSLog(@"thumbView autoresizing mask = %d",thumbView.autoresizingMask);
+//                        NSLog(@"thumbView autoresizing mask = %d",thumbView.autoresizingMask);
                         [storyPacksHolder addSubview:thumbView];
                         xPosition += (THUMB_HEIGHT + THUMB_H_PADDING);
                         
@@ -117,7 +117,7 @@ NSLog (@"number of story packs :%i",count);
                 sqlite3_finalize(compiled_stmt);
                 sqlite3_close(db);
             }
-            NSLog(@"Story i = %d ,\n xPos = %f , ypos = %f",i,xPosition,yPosition);
+//            NSLog(@"Story i = %d ,\n xPos = %f , ypos = %f",i,xPosition,yPosition);
         }
             i++;
             if(i == count)
@@ -142,9 +142,9 @@ NSLog (@"number of story packs :%i",count);
         }
 //        NSLog(@"Width : %f",storyPacksView.bounds.size.width);
     holderWidth=storyPacksView.bounds.size.width*page;
-    }while(page<(count/6));
+    }while(page<=(count/6));
     [storyPacksHolder setContentSize:CGSizeMake(holderWidth, scrollViewHeight)];
-    NSLog(@"storyPacksHolder default autoresizesSubviews = %hhd",storyPacksHolder.autoresizesSubviews);
+//    NSLog(@"storyPacksHolder default autoresizesSubviews = %hhd",storyPacksHolder.autoresizesSubviews);
     [storyPacksView addSubview:storyPacksHolder];
 }
 -(void)handleTap:(UITapGestureRecognizer*)recognizer
