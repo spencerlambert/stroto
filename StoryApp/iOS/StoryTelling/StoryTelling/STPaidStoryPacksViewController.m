@@ -92,7 +92,12 @@
                 paidStoryPackDetailsJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                  NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
                                     NSLog(@"html= %@",html);
-                   }
+            [self performSelectorInBackground:@selector(updateText)  withObject:nil];
+            [self performSelectorInBackground:@selector(reloadBackgroundImages) withObject:nil];
+            [self performSelectorInBackground:@selector(reloadForegroundImages) withObject:nil];
+            //[self reloadForegroundImages];
+
+        }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
         }
@@ -102,14 +107,14 @@
             return ;
         }
     }];
-    while(!paidStoryPackDetailsJson){       //checking for data
-        //        NSLog(@"NUll in paidStoryPackDetailsJson");
-        continue;}
     
+}
+
+-(void) updateText
+{
     paidStoryPackName.text = [NSString stringWithFormat:@"%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
-    [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];
-    [self performSelectorInBackground:@selector(reloadBackgroundImages) withObject:nil];
-    [self reloadForegroundImages];
+    [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];    
+    
 }
 
 -(void)showAlert:(NSString*)message{

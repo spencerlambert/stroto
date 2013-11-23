@@ -92,21 +92,11 @@ NSString *databasePath;
 -(void)jsonPost
 
 {
-    BOOL isPaid = NO;
-    NSString *body = freeBody;
-    int i = 0;
-    while(i<=1)
-    {
-//        returning only some packs when put outside of while
-        [self jsonRequest:body isPaid:isPaid];
-               i++;
-        isPaid = YES;
-        body = paidBody;
-    }
-    
+    [self jsonRequestPaid:paidBody];
+    [self jsonRequestFree:freeBody];
 }
 
-- (void) jsonRequest:(NSString*)body isPaid:(BOOL)isPaid{
+- (void) jsonRequestPaid:(NSString*)body {
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15 ];
     
@@ -121,54 +111,56 @@ NSString *databasePath;
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
-            if(isPaid)
-            {
-                paidJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
-
-                //                   NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
-                //                    NSLog(@"inside YES, isPaid= %c",isPaid);
-                //                    NSLog(@"html= %@",html);
-                //                    NSLog(@"paid_st_list = %@",[paidJson valueForKey:@"st_list"]);
-                //                    NSLog(@"paidList_count = %d",[[[self paidJson]valueForKey:@"st_list"] count]);
-            }
-            else
-            {
-                freeJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                 [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
-                //                    NSLog(@"inside NO, isPaid= %c",isPaid);
-                //                    NSLog(@"free_st_list = %@",[freeJson valueForKey:@"st_list"]);
-                //                    NSLog(@"free_list_count = %d",[[[self freeJson]valueForKey:@"st_list"] count]);
-            }
+            paidJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            [self performSelectorInBackground:@selector(reloadPaidView) withObject:nil];
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
-            if(isPaid)
-            {
-                loadingPaidOver = YES;
-            }
-            else
-            {
-                loadingFreeOver = YES;
-            }
+            loadingPaidOver = YES;
         }
         else if (error != nil){
             [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
             NSLog(@"Error happened = %@", error);
-            if(isPaid)
-            {
-                loadingPaidOver = YES;
-                [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:1] waitUntilDone:YES];
-            }
-            else
-            {
-                loadingFreeOver = YES;
-                [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:0] waitUntilDone:YES];
-            }
+            loadingPaidOver = YES;
+            [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:1] waitUntilDone:YES];
         }
     }];
-   
+    
 }
+
+- (void) jsonRequestFree:(NSString*)body {
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15 ];
+    
+    NSData *requestData = [NSData dataWithBytes:[body UTF8String] length:[body length]];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setHTTPBody:requestData];
+    
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
+        if ([data length] >0 && error == nil){
+            freeJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            [self performSelectorInBackground:@selector(reloadFreeView) withObject:nil];
+        }
+        else if ([data length] == 0 && error == nil){
+            NSLog(@"Nothing was downloaded.");
+            loadingFreeOver = YES;
+        }
+        else if (error != nil){
+            [self performSelectorOnMainThread:@selector(showAlert:) withObject:[error.userInfo objectForKey:NSLocalizedDescriptionKey] waitUntilDone:NO];
+            NSLog(@"Error happened = %@", error);
+            loadingFreeOver = YES;
+            [self performSelectorOnMainThread:@selector(showError:) withObject:[NSNumber numberWithInt:0] waitUntilDone:YES];
+        }
+    }];
+    
+}
+
+
 
 - (void) showError:(NSNumber *)isPaid{
     UILabel *txtView = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, 60)];
@@ -198,16 +190,13 @@ NSString *databasePath;
 }
 
 - (void) retryPaid{
-    BOOL isPaid = YES;
-    NSString *body = paidBody;
-    [self jsonRequest:body isPaid:isPaid];
+    [self jsonRequestPaid:paidBody];
 }
 
 - (void) retryFree{
-    BOOL isPaid = NO;
-    NSString *body = freeBody;
-    [self jsonRequest:body isPaid:isPaid];
+    [self jsonRequestFree:freeBody];
 }
+
 
 -(void)showAlert:(NSString*)message{
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -90,6 +90,13 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response,NSData *data, NSError *error) {
         if ([data length] >0 && error == nil){
             freeStoryPackDetailsJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+            [self performSelectorInBackground:@selector(updateText)  withObject:nil];
+            [self performSelectorInBackground:@selector(reloadBackgroundImages)  withObject:nil];
+            [self performSelectorInBackground:@selector(reloadForegroundImages)  withObject:nil];
+
+            //[self reloadForegroundImages];
+            
 //            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
 //            NSLog(@"html= %@",html);
 //            NSLog(@"st_details = %@",[freeStoryPackDetailsJson valueForKey:@"st_details"]);
@@ -105,15 +112,16 @@
             return ;
         }
     }];
-    while(!freeStoryPackDetailsJson){       //checking for data
-        //        NSLog(@"NUll in freeStoryPackDetailsJson");
-        continue;}
+
+}
+
+-(void)updateText
+{
     freeStoryPackName.text = [NSString stringWithFormat:@"%@",[[freeStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
-    [self performSelectorInBackground:@selector(reloadBackgroundImages)  withObject:nil];
-    [self reloadForegroundImages];
     [self.freeButton setHidden:NO];
 
 }
+
 
 -(void)showAlert:(NSString*)message{
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
