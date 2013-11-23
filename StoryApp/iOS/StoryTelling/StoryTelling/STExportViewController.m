@@ -86,7 +86,7 @@
     [self.bgButton setHidden:NO];
     [self.spinningWheel startAnimating];
     [self.spinningWheel setHidden:NO];
-    NSSet * productIdentifiers = [NSSet setWithObject:@"test_export"];
+    NSSet * productIdentifiers = [NSSet setWithObject:@"export_unlock"];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
