@@ -228,8 +228,17 @@ NSString *databasePath;
     NSString *storypacksDir = [docsDir stringByAppendingPathComponent:@"story_dir/story_packs/"];
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *storyPacksList= [filemgr contentsOfDirectoryAtPath:storypacksDir error:nil];
+    NSArray *defaultPacks = [[NSBundle mainBundle] pathsForResourcesOfType:@"db" inDirectory:@"StoryPacks"];
+    NSMutableArray *allPacks = [[NSMutableArray alloc] init];
 NSLog(@"StoryPacksList : %@",storyPacksList);
     int count = [storyPacksList count];
+    for(int i=0; i<count; i++){
+        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
+          databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+        [allPacks addObject:databasePath];
+    }
+    [allPacks addObjectsFromArray:defaultPacks];
+    count = [allPacks count];
 NSLog (@"number of story packs :%i",count);
     float scrollViewHeight = [installedStoryPacksView bounds].size.height;
     float scrollViewWidth  = [installedStoryPacksView bounds].size.width;
@@ -246,10 +255,10 @@ NSLog (@"number of story packs :%i",count);
         if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
         {
 NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
-            [dbNames addObject:storyPacksList[i]];
-            databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+            [dbNames addObject:allPacks[i]];
+            databasePath = allPacks[i];
 NSLog(@"database path : %@",databasePath);
-            const char *dbpath = [databasePath UTF8String];
+            const char *dbpath = [allPacks[i] UTF8String];
 NSLog(@"database path UTF8String: %s",dbpath);
             if (sqlite3_open(dbpath, & db) == SQLITE_OK){
 NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
