@@ -15,6 +15,9 @@
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
 
+#define video_size 640
+#define title_screen_sec 3
+
 @interface STExportViewController ()
 
 @end
@@ -110,7 +113,7 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
     NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
     // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
-    [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
+    [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, video_size, video_size).size duration:title_screen_sec];
     [self mergeVideoRecording];
 }
 -(UIImage*) drawText:(NSString*) text
@@ -123,7 +126,7 @@
     [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
     CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
     [[UIColor whiteColor] set];
-    [text drawInRect:CGRectIntegral(rect) withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+    [text drawInRect:CGRectIntegral(rect) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -171,30 +174,45 @@
     
     //convert uiimage to CGImage.
     
+    NSLog(@"start record page");
     
     //Write samples:
-    for (int i=0; i<duration ; i++) {
+    for (int i=0; i<duration*2 ; i++) {
         buffer = [self pixelBufferFromCGImage:[image CGImage]];
         while(! adaptor.assetWriterInput.readyForMoreMediaData );
         [adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMakeWithSeconds(i,1)];
     }
     
+    while(!adaptor.assetWriterInput.readyForMoreMediaData);
+
+    [videoWriter endSessionAtSourceTime:CMTimeMakeWithSeconds(duration*2, 1)];
+    
     //Finish the session:
     [writerInput markAsFinished];
-    [videoWriter finishWriting];
+    
+    
+    [videoWriter finishWritingWithCompletionHandler:^(){
+        NSLog (@"finished writing");
+        //[self mergeVideoRecording];
+    }];
+    //[videoWriter finishWriting];
+    
+    NSLog(@"end record page");
 }
 
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image
 {
+    //NSLog(@"start pixel buffer");
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
                              nil];
     CVPixelBufferRef pxbuffer = NULL;
     
-    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, 320,
-                                          320, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, video_size,
+                                          video_size, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
                                           &pxbuffer);
+  
     NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
     
     CVPixelBufferLockBaseAddress(pxbuffer, 0);
@@ -202,22 +220,25 @@
     NSParameterAssert(pxdata != NULL);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pxdata, 320,
-                                                 320, 8, 4*320, rgbColorSpace,
+    CGContextRef context = CGBitmapContextCreate(pxdata, video_size,
+                                                 video_size, 8, 4*video_size, rgbColorSpace,
                                                  kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
-    CGContextDrawImage(context, CGRectMake(0, 0, 320,
-                                           320), image);
+    CGContextDrawImage(context, CGRectMake(0, 0, video_size,
+                                           video_size), image);
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
     
+    //NSLog(@"end pixel buffer");
+    
     return pxbuffer;
 }
 
 -(void)mergeVideoRecording{
+    NSLog(@"Merge Start");
     NSFileManager *file = [NSFileManager defaultManager];
     NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"videoOutput.mp4"];//title movie
     NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
@@ -225,26 +246,27 @@
     
     if([file fileExistsAtPath:firstAsset1]){
         
-        
         NSURL *url1 = [NSURL fileURLWithPath:firstAsset1];
         AVAsset *firstAsset = [AVURLAsset URLAssetWithURL:url1 options:nil];
         NSURL *url2 = [NSURL fileURLWithPath:secondAsset1];
         AVAsset *secondAsset = [AVURLAsset URLAssetWithURL:url2 options:nil];
+  
         
         //Create AVMutableComposition Object.This object will hold our multiple AVMutableCompositionTrack.
         AVMutableComposition* mixComposition = [[AVMutableComposition alloc] init];
         
         AVMutableCompositionTrack *firstTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
                                                                             preferredTrackID:kCMPersistentTrackID_Invalid];
+        
         [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
                             ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
         [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration)
-                            ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:firstAsset.duration error:nil];
-        
+                            ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
         
         NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
         
         AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
+        
         exporter.outputURL=url;
         exporter.outputFileType = AVFileTypeQuickTimeMovie;
         exporter.shouldOptimizeForNetworkUse = YES;
@@ -261,6 +283,7 @@
         [file copyItemAtPath:firstAsset1 toPath:secondAsset1 error:nil];
         [self CompileFilesToMakeMovie];
     }
+    NSLog(@"MergeEnd");
     
 }
 
@@ -291,7 +314,7 @@
     AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(5,1) error:nil];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
