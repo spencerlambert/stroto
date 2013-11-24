@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2011, Tony Million.
- All rights reserved.
+ All rights reserved.res
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
