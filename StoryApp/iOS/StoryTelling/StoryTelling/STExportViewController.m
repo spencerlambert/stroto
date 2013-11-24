@@ -15,8 +15,7 @@
 #define kInAppPurchaseTransactionSucceededNotification @"kInAppPurchaseTransactionSucceededNotification"
 #define kInAppPurchaseTransactionFailedNotification @"kInAppPurchaseTransactionFailedNotification"
 
-#define video_size 640
-#define title_screen_sec 3
+#define title_screen_sec 5
 
 @interface STExportViewController ()
 
@@ -113,6 +112,7 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
     NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
     // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
+    CGFloat video_size = [[UIScreen mainScreen] bounds].size.width;
     [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, video_size, video_size).size duration:title_screen_sec];
     [self mergeVideoRecording];
 }
@@ -173,11 +173,9 @@
     CVPixelBufferRef buffer = NULL;
     
     //convert uiimage to CGImage.
-    
-    NSLog(@"start record page");
-    
+        
     //Write samples:
-    for (int i=0; i<duration*2 ; i++) {
+    for (int i=0; i<duration ; i++) {
         buffer = [self pixelBufferFromCGImage:[image CGImage]];
         while(! adaptor.assetWriterInput.readyForMoreMediaData );
         [adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMakeWithSeconds(i,1)];
@@ -185,16 +183,22 @@
     
     while(!adaptor.assetWriterInput.readyForMoreMediaData);
 
-    [videoWriter endSessionAtSourceTime:CMTimeMakeWithSeconds(duration*2, 1)];
+    [videoWriter endSessionAtSourceTime:CMTimeMakeWithSeconds(duration, 1)];
     
     //Finish the session:
     [writerInput markAsFinished];
     
-    
     [videoWriter finishWritingWithCompletionHandler:^(){
         NSLog (@"finished writing");
-        //[self mergeVideoRecording];
     }];
+    
+    
+    
+    while([videoWriter status] != AVAssetWriterStatusFailed && [videoWriter status] != AVAssetWriterStatusCompleted) {
+        NSLog(@"Status: %d", [videoWriter status]);
+        sleep(1);
+    }
+    
     //[videoWriter finishWriting];
     
     NSLog(@"end record page");
@@ -202,7 +206,7 @@
 
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image
 {
-    //NSLog(@"start pixel buffer");
+    CGFloat video_size = [[UIScreen mainScreen] bounds].size.width;
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
@@ -212,7 +216,6 @@
     CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, video_size,
                                           video_size, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
                                           &pxbuffer);
-  
     NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
     
     CVPixelBufferLockBaseAddress(pxbuffer, 0);
@@ -231,8 +234,6 @@
     CGContextRelease(context);
     
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
-    
-    //NSLog(@"end pixel buffer");
     
     return pxbuffer;
 }

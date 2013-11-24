@@ -12,6 +12,8 @@
 #import "SavedStoryDetailsViewController.h"
 
 #define ST_FACEBOOK_APP_ID @"530535203701796"
+#define title_screen_sec 5
+
 @interface STFacebookViewController ()<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
 
 @property (nonatomic, retain) ACAccountStore *accountStore;
@@ -33,6 +35,8 @@
 @synthesize listViewiPad;
 @synthesize storyListiPad;
 
+bool writingFinished;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -53,20 +57,20 @@
     self.storySubTitle.text = storySubTitleString;
     [self.listViewiPad setListDelegate:self];
     [self.listViewiPad setIndex:storyListiPad.index];
-//    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
-//    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+    //    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
+    //    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
     storyListiPad = nil;
     [self.listViewiPad reloadInputViews];
-
-//social framework ios
+    
+    //social framework ios
     if(!_accountStore)
         _accountStore = [[ACAccountStore alloc] init];
     
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     
     //read request
-
-        [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
+    
+    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
                                            options:@{ACFacebookAppIdKey: ST_FACEBOOK_APP_ID, ACFacebookPermissionsKey: @[@"basic_info"]}
                                         completion:^(BOOL granted, NSError *error) {
                                             if(granted){
@@ -80,7 +84,7 @@
                                                 NSLog(@"Error: %@", error);
                                             }
                                         }];
-
+    
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -116,10 +120,11 @@
     
     NSData *videoData = [NSData dataWithContentsOfFile:path];
     
-
+    NSString *desc = storySubTitle.text;
+    desc = [desc stringByAppendingString:@" \n Created using : Stroto (http://www.stroto.com)"];
     
     NSDictionary *params = @{@"title": storyTitle.text,
-                             @"description":storySubTitle.text};
+                             @"description":desc};
     
     SLRequest *merequest = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                               requestMethod:SLRequestMethodPOST
@@ -140,9 +145,9 @@
 
 -(void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-//    NSLog(@"bytesWritten :%d",bytesWritten);
-//    NSLog(@"totalBytesWritten :%d",totalBytesWritten);
-//    NSLog(@"totalBytesExpectedToWrite :%d",totalBytesExpectedToWrite);
+    //    NSLog(@"bytesWritten :%d",bytesWritten);
+    //    NSLog(@"totalBytesWritten :%d",totalBytesWritten);
+    //    NSLog(@"totalBytesExpectedToWrite :%d",totalBytesExpectedToWrite);
     float progress =(float) totalBytesWritten/totalBytesExpectedToWrite;
     NSLog(@"progress :%f",progress);
     self.uploadProgressBar.progress = progress;
@@ -153,7 +158,7 @@
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/upload_dir"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
-
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Video Upload Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
@@ -165,7 +170,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"error: %@",error);
-
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -184,7 +189,8 @@
 //upload button click
 - (IBAction)uploadStory:(UIButton *)sender {
     //video upload using social framework.
-    ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
+    ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
                                            options:@{ACFacebookAppIdKey:ST_FACEBOOK_APP_ID, ACFacebookPermissionsKey: @[@"publish_stream"], ACFacebookAudienceKey: ACFacebookAudienceFriends}
                                         completion:^(BOOL granted, NSError *error) {
                                             if(granted){
@@ -205,9 +211,10 @@
                                                 
                                                 // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
                                                 [self performSelectorInBackground:@selector(showSpin) withObject:Nil];
-                                                [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, 320, 320).size duration:3];
+                                                CGFloat video_size = [[UIScreen mainScreen] bounds].size.width;
+                                                [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, video_size, video_size).size duration:title_screen_sec];
                                                 [self mergeVideoRecording];
-
+                                                
                                                 
                                             }else{
                                                 // ouch
@@ -215,7 +222,7 @@
                                                 NSLog(@"Error: %@", error);
                                             }
                                         }];
-
+    
     
 }
 -(void)showSpin
@@ -236,7 +243,7 @@
     [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
     CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
     [[UIColor whiteColor] set];
-    [text drawInRect:CGRectIntegral(rect) withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+    [text drawInRect:CGRectIntegral(rect) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -287,7 +294,6 @@
     
     //convert uiimage to CGImage.
     
-    
     //Write samples:
     for (int i=0; i<duration ; i++) {
         buffer = [self pixelBufferFromCGImage:[image CGImage]];
@@ -295,24 +301,42 @@
         [adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMakeWithSeconds(i,1)];
     }
     
+    while(!adaptor.assetWriterInput.readyForMoreMediaData);
+    
+    [videoWriter endSessionAtSourceTime:CMTimeMakeWithSeconds(duration, 1)];
+    
     //Finish the session:
     [writerInput markAsFinished];
-    [videoWriter finishWriting];
+    
+    writingFinished = false;
+    [videoWriter finishWritingWithCompletionHandler:^(){
+        
+        NSLog (@"finished writing");
+        writingFinished = true;
+        //[self mergeVideoRecording];
+    }];
+    
+    while([videoWriter status] != AVAssetWriterStatusFailed && [videoWriter status] != AVAssetWriterStatusCompleted) {
+        NSLog(@"Status: %d", [videoWriter status]);
+        sleep(1);
+    }
+    
+    
+    
 }
-
-
 
 
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image
 {
+    CGFloat video_size = [[UIScreen mainScreen] bounds].size.width;
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey,
                              nil];
     CVPixelBufferRef pxbuffer = NULL;
     
-    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, 320,
-                                          320, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, video_size,
+                                          video_size, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
                                           &pxbuffer);
     NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
     
@@ -321,13 +345,13 @@
     NSParameterAssert(pxdata != NULL);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pxdata, 320,
-                                                 320, 8, 4*320, rgbColorSpace,
+    CGContextRef context = CGBitmapContextCreate(pxdata, video_size,
+                                                 video_size, 8, 4*video_size, rgbColorSpace,
                                                  kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
-    CGContextDrawImage(context, CGRectMake(0, 0, 320,
-                                           320), image);
+    CGContextDrawImage(context, CGRectMake(0, 0, video_size,
+                                           video_size), image);
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
@@ -358,12 +382,12 @@
         [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
                             ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
         [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration)
-                            ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:firstAsset.duration error:nil];
+                            ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
         
         
         NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
         
-        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
+        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPreset640x480];
         exporter.outputURL=url;
         exporter.outputFileType = AVFileTypeQuickTimeMovie;
         exporter.shouldOptimizeForNetworkUse = YES;
@@ -410,12 +434,12 @@
     AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(5,1) error:nil];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
     _assetExport.outputURL = outputFileUrl;
-        [_assetExport exportAsynchronouslyWithCompletionHandler:
+    [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
          //                 NSString *sourcePath = outputFilePath;
          //              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
