@@ -53,8 +53,8 @@ CGRect grabcutFrame;
 {
     isEditing = NO;
     isEdited = NO;
-    edit_fg = YES;
-    [self highlightButton:fgBtn with:YES];
+    edit_fg = NO;
+    [self highlightButton:bgBtn with:YES];
     grabCutController = [[CvGrabCutController alloc] init];
     image_changed = NO;
     grabcutView.userInteractionEnabled = YES;
@@ -720,6 +720,11 @@ CGRect grabcutFrame;
     
     [undoBtn setEnabled:YES];
     [undoBtn setAlpha:1.0];
+    
+    edit_fg = NO;
+    [self highlightButton:bgBtn with:YES];
+    [self highlightButton:fgBtn with:NO];
+
     
 }
 
