@@ -217,18 +217,9 @@ NSString *databasePath;
     NSString *storypacksDir = [docsDir stringByAppendingPathComponent:@"story_dir/story_packs/"];
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *storyPacksList= [filemgr contentsOfDirectoryAtPath:storypacksDir error:nil];
-    NSArray *defaultPacks = [[NSBundle mainBundle] pathsForResourcesOfType:@"db" inDirectory:@"StoryPacks"];
-    NSMutableArray *allPacks = [[NSMutableArray alloc] init];
-NSLog(@"StoryPacksList : %@",storyPacksList);
+    NSLog(@"StoryPacksList : %@",storyPacksList);
     int count = [storyPacksList count];
-    for(int i=0; i<count; i++){
-        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
-          databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
-        [allPacks addObject:databasePath];
-    }
-    [allPacks addObjectsFromArray:defaultPacks];
-    count = [allPacks count];
-NSLog (@"number of story packs :%i",count);
+    NSLog (@"number of story packs :%i",count);
     float scrollViewHeight = [installedStoryPacksView bounds].size.height;
     float scrollViewWidth  = [installedStoryPacksView bounds].size.width;
     float xPosition = THUMB_H_PADDING;
@@ -243,14 +234,14 @@ NSLog (@"number of story packs :%i",count);
         sqlite3 *db;
         if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
         {
-NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
-            [dbNames addObject:allPacks[i]];
-            databasePath = allPacks[i];
-NSLog(@"database path : %@",databasePath);
-            const char *dbpath = [allPacks[i] UTF8String];
-NSLog(@"database path UTF8String: %s",dbpath);
+            NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
+            [dbNames addObject:storyPacksList[i]];
+            databasePath = [storypacksDir stringByAppendingPathComponent:storyPacksList[i]];
+            NSLog(@"database path : %@",databasePath);
+            const char *dbpath = [databasePath UTF8String];
+            NSLog(@"database path UTF8String: %s",dbpath);
             if (sqlite3_open(dbpath, & db) == SQLITE_OK){
-NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
+                NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
                 NSString *sql = [NSString stringWithFormat:@"SELECT Name,ImageDataPNG_Base64 FROM StoryPackInfo;"];
                 const char *sql_stmt = [sql UTF8String];
                 sqlite3_stmt *compiled_stmt;
@@ -261,7 +252,7 @@ NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
                 if(success == SQLITE_OK){
                     
                     
-NSLog(@"SQL query Statement preparation on database success.");
+                    NSLog(@"SQL query Statement preparation on database success.");
                     if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
                         NSString *dataAsString = [NSString stringWithUTF8String:(char*) sqlite3_column_text(compiled_stmt, 1)];
                         NSData *data = [NSData dataFromBase64String:dataAsString];
@@ -307,8 +298,8 @@ NSLog(@"SQL query Statement preparation on database success.");
                         [storyPackName addGestureRecognizer:nameClick];
                         [storyPackName setUserInteractionEnabled:YES];
                         [installedStoryPacksHolder addSubview:storyPackName];
-//    [self getStoryName:storyPackName andDB:db];
-                       xPosition += (frame.size.width + THUMB_H_PADDING);
+                        //    [self getStoryName:storyPackName andDB:db];
+                        xPosition += (frame.size.width + THUMB_H_PADDING);
                     }
                 }
                 
