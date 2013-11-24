@@ -75,9 +75,9 @@ CGRect grabcutFrame;
     [undoBtn setEnabled:NO];
     [undoBtn setAlpha:0.5];
     
-    testImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+    //testImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
    // [self.view addSubview:testImage];
-    testImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 0, 150, 150)];
+    //testImage1 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 0, 150, 150)];
    //[self.view addSubview:testImage1];
     
     
@@ -241,7 +241,7 @@ CGRect grabcutFrame;
     
     //init crop imageview
     self.cropforegroundImage = [[UIImageView alloc] initWithImage:[[self foregroundimages]objectAtIndex:0]];
-    [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFill];
+    [self.cropforegroundImage setContentMode:UIViewContentModeScaleAspectFit];
     [self.cropView addSubview:self.cropforegroundImage];
     
     //init erase imageview
@@ -564,7 +564,7 @@ CGRect grabcutFrame;
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
     
     CGFloat width = CGImageGetWidth(imageNoAlpha);
-    CGFloat height = CGImageGetWidth(imageNoAlpha);
+    CGFloat height = CGImageGetHeight(imageNoAlpha);
     
     CGContextRef ctxWithAlpha = CGBitmapContextCreate(nil, width, height, 8, 4*width, cs, kCGImageAlphaPremultipliedFirst);
     
@@ -577,7 +577,7 @@ CGRect grabcutFrame;
 
 
 - (UIImage *) imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width {//method to scale image accordcing to width
-    
+   
     float oldWidth = sourceImage.size.width;
     float scaleFactor = i_width / oldWidth;
     
@@ -591,7 +591,7 @@ CGRect grabcutFrame;
     return newImage;
 }
 - (UIImage *) imageWithImage: (UIImage*) sourceImage scaledToHeight: (float) i_height {//method to scale image accordcing to width
-    
+  
     float oldHeight = sourceImage.size.height;
     float scaleFactor = i_height / oldHeight;
     
