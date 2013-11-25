@@ -28,7 +28,8 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
-    if (IS_IPHONE_5) {
+    if (IS_IPHONE_5
+        ) {
         frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width, thumbHeight);
     } else {
         frame = CGRectMake(CGRectGetMinX(bounds), CGRectGetMinY(bounds), bounds.size.width - thumbHeight, thumbHeight);

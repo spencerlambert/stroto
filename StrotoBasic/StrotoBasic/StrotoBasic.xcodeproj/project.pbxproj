@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D2EE0D31842FE6F0050B0C6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */; };
+		4D2EE0D41842FE770050B0C6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */; };
 		EB06A99B1823745C000F88C6 /* playViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99A1823745C000F88C6 /* playViewController.m */; };
 		EB06A9A4182377DD000F88C6 /* SlideDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99D182377DD000F88C6 /* SlideDownView.m */; };
 		EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99F182377DD000F88C6 /* SlideUpView.m */; };
@@ -25,8 +27,6 @@
 		EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A8C181F774A002B6D34 /* InfoPlist.strings */; };
 		EBF83A90181F774A002B6D34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A8F181F774A002B6D34 /* main.m */; };
 		EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A93181F774A002B6D34 /* AppDelegate.m */; };
-		EBF83A97181F774A002B6D34 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */; };
-		EBF83A9A181F774A002B6D34 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */; };
 		EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83A9C181F774A002B6D34 /* ViewController.m */; };
 		EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A9E181F774B002B6D34 /* Images.xcassets */; };
 		EBF83AA6181F774C002B6D34 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83AA5181F774C002B6D34 /* XCTest.framework */; };
@@ -51,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D2EE0D61842FFDA0050B0C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EB06A9991823745B000F88C6 /* playViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playViewController.h; sourceTree = "<group>"; };
 		EB06A99A1823745C000F88C6 /* playViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playViewController.m; sourceTree = "<group>"; };
 		EB06A99C182377DD000F88C6 /* SlideDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideDownView.h; sourceTree = "<group>"; };
@@ -265,6 +266,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = stroto;
 				TargetAttributes = {
+					EBF83A7F181F7748002B6D34 = {
+						DevelopmentTeam = 9RFBNK2ME4;
+					};
 					EBF83AA3181F774C002B6D34 = {
 						TestTargetID = EBF83A7F181F7748002B6D34;
 					};
@@ -300,10 +304,10 @@
 				EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */,
 				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,
 				EBD1D4511829BF9400F2F711 /* TopBar.png in Resources */,
-				EBF83A9A181F774A002B6D34 /* Main_iPad.storyboard in Resources */,
 				EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */,
 				EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */,
-				EBF83A97181F774A002B6D34 /* Main_iPhone.storyboard in Resources */,
+				4D2EE0D41842FE770050B0C6 /* Main_iPhone.storyboard in Resources */,
+				4D2EE0D31842FE6F0050B0C6 /* Main_iPad.storyboard in Resources */,
 				EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */,
 				EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */,
 			);
@@ -376,6 +380,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EBF83A99181F774A002B6D34 /* Base */,
+				4D2EE0D61842FFDA0050B0C6 /* en */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
@@ -488,6 +494,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
