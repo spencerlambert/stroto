@@ -182,7 +182,7 @@ NSString *databasePath;
 -(BOOL)deleteSTstoryDB;//Delete the current db
 
 - (NSArray*)getImageInstanceTable;
-- (BOOL)addImageInstance:(int)imageId;
+- (int)addImageInstance:(int)imageId;
 
 - (NSString *)getDBName;
 - (NSString *)getStoryName;
