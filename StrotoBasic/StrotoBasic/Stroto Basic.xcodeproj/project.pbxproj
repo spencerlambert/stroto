@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D2EE0D31842FE6F0050B0C6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */; };
 		4D2EE0D41842FE770050B0C6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */; };
+		4DF63DFC1843067100861A43 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF63DF81843067100861A43 /* Main_iPad.storyboard */; };
+		4DF63DFD1843067100861A43 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DF63DFA1843067100861A43 /* InfoPlist.strings */; };
+		4DF63DFF18431F4600861A43 /* Stroto Basic-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DF63DFE18431F4600861A43 /* Stroto Basic-Info.plist */; };
 		EB06A99B1823745C000F88C6 /* playViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99A1823745C000F88C6 /* playViewController.m */; };
 		EB06A9A4182377DD000F88C6 /* SlideDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99D182377DD000F88C6 /* SlideDownView.m */; };
 		EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A99F182377DD000F88C6 /* SlideUpView.m */; };
@@ -51,7 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4D2EE0D61842FFDA0050B0C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		4DF63DF91843067100861A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		4DF63DFB1843067100861A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4DF63DFE18431F4600861A43 /* Stroto Basic-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Stroto Basic-Info.plist"; sourceTree = "<group>"; };
 		EB06A9991823745B000F88C6 /* playViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playViewController.h; sourceTree = "<group>"; };
 		EB06A99A1823745C000F88C6 /* playViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playViewController.m; sourceTree = "<group>"; };
 		EB06A99C182377DD000F88C6 /* SlideDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideDownView.h; sourceTree = "<group>"; };
@@ -70,24 +74,23 @@
 		EBD1D44C1829BF9400F2F711 /* ButtonDoneL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneL.png; sourceTree = "<group>"; };
 		EBD1D44D1829BF9400F2F711 /* ButtonDoneR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonDoneR.png; sourceTree = "<group>"; };
 		EBD1D44E1829BF9400F2F711 /* TopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopBar.png; sourceTree = "<group>"; };
-		EBF83A80181F7748002B6D34 /* StrotoBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrotoBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF83A80181F7748002B6D34 /* Stroto Basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stroto Basic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBF83A83181F7749002B6D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBF83A85181F774A002B6D34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EBF83A87181F774A002B6D34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EBF83A8B181F774A002B6D34 /* StrotoBasic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrotoBasic-Info.plist"; sourceTree = "<group>"; };
 		EBF83A8D181F774A002B6D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EBF83A8F181F774A002B6D34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StrotoBasic-Prefix.pch"; sourceTree = "<group>"; };
+		EBF83A91181F774A002B6D34 /* Stroto Basic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stroto Basic-Prefix.pch"; sourceTree = "<group>"; };
 		EBF83A92181F774A002B6D34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EBF83A93181F774A002B6D34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EBF83A96181F774A002B6D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		EBF83A99181F774A002B6D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		EBF83A9B181F774A002B6D34 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EBF83A9C181F774A002B6D34 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EBF83A9E181F774B002B6D34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StrotoBasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF83AA4181F774C002B6D34 /* Stroto BasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stroto BasicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBF83AA5181F774C002B6D34 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		EBF83AAD181F774C002B6D34 /* StrotoBasicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrotoBasicTests-Info.plist"; sourceTree = "<group>"; };
+		EBF83AAD181F774C002B6D34 /* Stroto BasicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stroto BasicTests-Info.plist"; sourceTree = "<group>"; };
 		EBF83AAF181F774C002B6D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrotoBasicTests.m; sourceTree = "<group>"; };
 		EBF83ABB181F789B002B6D34 /* color_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = color_red.png; path = ../../../StoryApp/Images/color_red.png; sourceTree = "<group>"; };
@@ -126,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				EBF83AC1181F9094002B6D34 /* StoryPacks */,
-				EBF83A89181F774A002B6D34 /* StrotoBasic */,
+				EBF83A89181F774A002B6D34 /* Stroto Basic */,
 				EBF83AAB181F774C002B6D34 /* StrotoBasicTests */,
 				EBF83A82181F7748002B6D34 /* Frameworks */,
 				EBF83A81181F7748002B6D34 /* Products */,
@@ -136,8 +139,8 @@
 		EBF83A81181F7748002B6D34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EBF83A80181F7748002B6D34 /* StrotoBasic.app */,
-				EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */,
+				EBF83A80181F7748002B6D34 /* Stroto Basic.app */,
+				EBF83AA4181F774C002B6D34 /* Stroto BasicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,13 +157,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EBF83A89181F774A002B6D34 /* StrotoBasic */ = {
+		EBF83A89181F774A002B6D34 /* Stroto Basic */ = {
 			isa = PBXGroup;
 			children = (
+				4DF63DFE18431F4600861A43 /* Stroto Basic-Info.plist */,
+				4DF63DFA1843067100861A43 /* InfoPlist.strings */,
 				EBF83A92181F774A002B6D34 /* AppDelegate.h */,
 				EBF83A93181F774A002B6D34 /* AppDelegate.m */,
 				EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */,
-				EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */,
+				4DF63DF81843067100861A43 /* Main_iPad.storyboard */,
 				EBF83A9B181F774A002B6D34 /* ViewController.h */,
 				EBF83A9C181F774A002B6D34 /* ViewController.m */,
 				EB06A9991823745B000F88C6 /* playViewController.h */,
@@ -181,6 +186,7 @@
 				EBF83A9E181F774B002B6D34 /* Images.xcassets */,
 				EBF83A8A181F774A002B6D34 /* Supporting Files */,
 			);
+			name = "Stroto Basic";
 			path = StrotoBasic;
 			sourceTree = "<group>";
 		};
@@ -196,7 +202,7 @@
 				EBA75D32182B06A800B47E23 /* RecordArea.png */,
 				EBF83A8C181F774A002B6D34 /* InfoPlist.strings */,
 				EBF83A8F181F774A002B6D34 /* main.m */,
-				EBF83A91181F774A002B6D34 /* StrotoBasic-Prefix.pch */,
+				EBF83A91181F774A002B6D34 /* Stroto Basic-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,7 +219,7 @@
 		EBF83AAC181F774C002B6D34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EBF83AAD181F774C002B6D34 /* StrotoBasicTests-Info.plist */,
+				EBF83AAD181F774C002B6D34 /* Stroto BasicTests-Info.plist */,
 				EBF83AAE181F774C002B6D34 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -222,9 +228,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EBF83A7F181F7748002B6D34 /* StrotoBasic */ = {
+		EBF83A7F181F7748002B6D34 /* Stroto Basic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasic" */;
+			buildConfigurationList = EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "Stroto Basic" */;
 			buildPhases = (
 				EBF83A7C181F7748002B6D34 /* Sources */,
 				EBF83A7D181F7748002B6D34 /* Frameworks */,
@@ -234,14 +240,14 @@
 			);
 			dependencies = (
 			);
-			name = StrotoBasic;
+			name = "Stroto Basic";
 			productName = StrotoBasic;
-			productReference = EBF83A80181F7748002B6D34 /* StrotoBasic.app */;
+			productReference = EBF83A80181F7748002B6D34 /* Stroto Basic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EBF83AA3181F774C002B6D34 /* StrotoBasicTests */ = {
+		EBF83AA3181F774C002B6D34 /* Stroto BasicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasicTests" */;
+			buildConfigurationList = EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "Stroto BasicTests" */;
 			buildPhases = (
 				EBF83AA0181F774C002B6D34 /* Sources */,
 				EBF83AA1181F774C002B6D34 /* Frameworks */,
@@ -252,9 +258,9 @@
 			dependencies = (
 				EBF83AAA181F774C002B6D34 /* PBXTargetDependency */,
 			);
-			name = StrotoBasicTests;
+			name = "Stroto BasicTests";
 			productName = StrotoBasicTests;
-			productReference = EBF83AA4181F774C002B6D34 /* StrotoBasicTests.xctest */;
+			productReference = EBF83AA4181F774C002B6D34 /* Stroto BasicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -274,7 +280,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "StrotoBasic" */;
+			buildConfigurationList = EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "Stroto Basic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -287,8 +293,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EBF83A7F181F7748002B6D34 /* StrotoBasic */,
-				EBF83AA3181F774C002B6D34 /* StrotoBasicTests */,
+				EBF83A7F181F7748002B6D34 /* Stroto Basic */,
+				EBF83AA3181F774C002B6D34 /* Stroto BasicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,15 +307,17 @@
 				EBB9BA6A183C36F200974A0B /* color_trans.png in Resources */,
 				EBA75D33182B06A800B47E23 /* RecordArea.png in Resources */,
 				EBD1D4501829BF9400F2F711 /* ButtonDoneR.png in Resources */,
+				4DF63DFD1843067100861A43 /* InfoPlist.strings in Resources */,
 				EBD1D44F1829BF9400F2F711 /* ButtonDoneL.png in Resources */,
 				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,
 				EBD1D4511829BF9400F2F711 /* TopBar.png in Resources */,
 				EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */,
 				EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */,
 				4D2EE0D41842FE770050B0C6 /* Main_iPhone.storyboard in Resources */,
-				4D2EE0D31842FE6F0050B0C6 /* Main_iPad.storyboard in Resources */,
+				4DF63DFC1843067100861A43 /* Main_iPad.storyboard in Resources */,
 				EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */,
 				EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */,
+				4DF63DFF18431F4600861A43 /* Stroto Basic-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,12 +362,28 @@
 /* Begin PBXTargetDependency section */
 		EBF83AAA181F774C002B6D34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EBF83A7F181F7748002B6D34 /* StrotoBasic */;
+			target = EBF83A7F181F7748002B6D34 /* Stroto Basic */;
 			targetProxy = EBF83AA9181F774C002B6D34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4DF63DF81843067100861A43 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DF63DF91843067100861A43 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		4DF63DFA1843067100861A43 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DF63DFB1843067100861A43 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		EBF83A8C181F774A002B6D34 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -374,15 +398,6 @@
 				EBF83A96181F774A002B6D34 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		EBF83A98181F774A002B6D34 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EBF83A99181F774A002B6D34 /* Base */,
-				4D2EE0D61842FFDA0050B0C6 /* en */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		EBF83AAE181F774C002B6D34 /* InfoPlist.strings */ = {
@@ -478,10 +493,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				GCC_PREFIX_HEADER = "StrotoBasic/Stroto Basic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "Stroto Basic";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -496,10 +511,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
+				GCC_PREFIX_HEADER = "StrotoBasic/Stroto Basic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "Stroto Basic";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -522,8 +537,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "StrotoBasicTests/StrotoBasicTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "StrotoBasicTests/Stroto BasicTests-Info.plist";
+				PRODUCT_NAME = "Stroto BasicTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -541,8 +556,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StrotoBasic/StrotoBasic-Prefix.pch";
-				INFOPLIST_FILE = "StrotoBasicTests/StrotoBasicTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "StrotoBasicTests/Stroto BasicTests-Info.plist";
+				PRODUCT_NAME = "Stroto BasicTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -551,7 +566,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "StrotoBasic" */ = {
+		EBF83A7B181F7748002B6D34 /* Build configuration list for PBXProject "Stroto Basic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBF83AB3181F774C002B6D34 /* Debug */,
@@ -560,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasic" */ = {
+		EBF83AB5181F774C002B6D34 /* Build configuration list for PBXNativeTarget "Stroto Basic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBF83AB6181F774C002B6D34 /* Debug */,
@@ -569,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "StrotoBasicTests" */ = {
+		EBF83AB8181F774C002B6D34 /* Build configuration list for PBXNativeTarget "Stroto BasicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBF83AB9181F774C002B6D34 /* Debug */,

@@ -81,7 +81,7 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
     bgImageView.contentMode = UIViewContentModeScaleToFill;
     [bgImageView setUserInteractionEnabled:YES];
     [playView addSubview:bgImageView];
-    bgImageView.image = [UIImage imageNamed:@"recordArea.png"];
+    bgImageView.image = [UIImage imageNamed:@"RecordArea.png"];
     
     CGRect frame = CGRectMake(0, CGRectGetMaxY(playbounds)-thumbHeightBottom, playbounds.size.width, thumbHeightBottom);
     UIImageView *bottombar = [[UIImageView alloc]initWithFrame:frame];
@@ -245,6 +245,7 @@ NSString *fgQuery = @"SELECT ImageDataPNG_Base64, ImageType, DefaultScale  FROM 
 - (void) setWorkspaceBackground:(UIImage *)selectedImage{
     bgImageView.image = selectedImage;
     // [captureview actortoStage:selectedImage];
+    [button setEnabled:NO];
 }
 
 //adding foreground image to work area
