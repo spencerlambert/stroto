@@ -263,11 +263,11 @@
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     NSLog(@"productsresponse = %@",response);
+    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     paidProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
-    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
