@@ -26,7 +26,7 @@
 @property (weak, nonatomic) NSString *dbname;
 @property (weak, nonatomic) NSString *storyTitleString;
 @property (weak, nonatomic) NSString *storySubTitleString;
-
+@property (readwrite, nonatomic) BOOL payment;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction)toggleAddTitle:(UISwitch *)sender;
 - (IBAction)saveToGallery:(UIButton *)sender;

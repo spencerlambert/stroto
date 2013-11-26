@@ -38,6 +38,7 @@
 @synthesize spinningWheel;
 @synthesize savingSpin;
 @synthesize savingLabel;
+@synthesize payment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,6 +68,11 @@
         [self.unlockButton setHidden:YES];
         [self.saveButton setHidden:NO];
     }
+    else
+    {
+        self.payment = 0;
+        [self requestProduct];
+    }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 
@@ -88,13 +94,16 @@
     [self.bgButton setHidden:NO];
     [self.spinningWheel startAnimating];
     [self.spinningWheel setHidden:NO];
+    self.payment = 1;
+    [self requestProduct];
+}
+-(void)requestProduct
+{
     NSSet * productIdentifiers = [NSSet setWithObject:@"export_unlock"];
     SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
     productReq.delegate = self;
     [productReq start];
-    
 }
-
 - (IBAction)save:(UIButton *)sender {
     [self saveVideo];
 }
@@ -334,19 +343,26 @@
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     NSLog(@"productsresponse= %@",response);
+    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     paidProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
-    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+    NSLocale *priceLocale = paidProduct.priceLocale;
+    NSDecimalNumber *price = paidProduct.price;
+    NSLog(@"%@" ,[NSString stringWithFormat:NSLocalizedString(@"Unlock Feature - %@%@", nil), [priceLocale objectForKey:NSLocaleCurrencySymbol], [price stringValue]]);
+    [self.unlockButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"Unlock Feature - %@%@", nil), [priceLocale objectForKey:NSLocaleCurrencySymbol], [price stringValue]] forState:UIControlStateNormal];
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
     }
 -(void)requestDidFinish:(SKRequest *)request
 {
     NSLog(@"requestDidFinish");
-    SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
+    if (payment) {
+        SKPayment *paidPayment = [SKPayment paymentWithProduct:paidProduct];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue] addPayment:paidPayment];
+    }
+    
     
 }
 
