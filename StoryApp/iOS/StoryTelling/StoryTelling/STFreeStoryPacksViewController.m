@@ -273,10 +273,11 @@
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
+    NSLog(@"Response : %@",response);
+    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
     freeProduct = [response.products objectAtIndex:0];
-//    NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
-//    NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
-//    NSLog(@"invalidProductIdentifiers : %@",response.invalidProductIdentifiers);
+    NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
+    NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 

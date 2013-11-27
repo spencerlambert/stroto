@@ -88,6 +88,7 @@ UIButton *button ;
     backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [backgroundimageview setUserInteractionEnabled:YES];
+    [backgroundimageview setTag:99999];
     [captureview addSubview:backgroundimageview];
     backgroundimageview.image = [UIImage imageNamed:@"RecordArea.png"];
     button= [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -184,7 +185,9 @@ UIButton *button ;
         float imageHeight = scale * imageview.image.size.height;
         
         imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
+        
         //        [captureview actortoStage:selectedForegroundImage];
+        
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         pan.delegate = self;
@@ -205,7 +208,7 @@ UIButton *button ;
         for (UIView *subviews in [captureview subviews]) {
             [subviews setUserInteractionEnabled:YES];
         }
-        [storyDB addImageInstance:selectedForegroundImage.imageId];
+        [imageview setTag:[storyDB addImageInstance:selectedForegroundImage.imageId]];
     }
     
 }

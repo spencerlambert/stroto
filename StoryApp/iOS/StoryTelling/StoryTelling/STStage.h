@@ -37,7 +37,7 @@
 - (void) stopRecording;
 - (void) pauseRecording;
 - (void) resumeRecording;
-- (void) actortoStage:(STImage *)actor;
+- (int) actortoStage:(STImage *)actor;
 - (void) initStage;
 
 

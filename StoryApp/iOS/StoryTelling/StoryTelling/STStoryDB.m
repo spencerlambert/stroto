@@ -576,16 +576,26 @@
     return imageInstances;
 }
 
-- (BOOL)addImageInstance:(int)imageId{
+- (int)addImageInstance:(int)imageId{
     char *errMsg;
     NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstance ('imageId') values(%d);", imageId ];
     const char *sql_stmt = [sql UTF8String];
     if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
     {
         NSLog(@"Failed to insert ImageInstance : %s",errMsg);
-        return NO;
+        return -1;
     }
-    return YES;
+    
+    sql = @"select last_insert_rowid();";
+    const char *sql_stmt1 = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt1, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        int instanceID = sqlite3_column_int(compiled_stmt, 0);
+        return instanceID;
+    }
+    else{
+        return -1;
+    }
 }
 
 - (void)updateImageInstanceTimeline:(STImageInstancePosition*)timelineInstance{

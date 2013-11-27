@@ -11,12 +11,10 @@
 
 @interface STStage (Actor_Entry_Handlers)
 
-- (void) createImageInstanceEntry:(STImage *)actor;
+- (int) createImageInstanceEntry:(STImage *)actor;
 - (void) reLoadImageInstances;
 
 @end
-
-
 
 @implementation STStage
 
@@ -61,13 +59,14 @@
     imageInstances = [storyDB getImageInstanceTable];
 }
 
-- (void) createImageInstanceEntry:(STImage *)actor{
-    [storyDB addImageInstance:actor.imageId];
+- (int) createImageInstanceEntry:(STImage *)actor{
+    return [storyDB addImageInstance:actor.imageId];
 }
 
-- (void) actortoStage:(STImage *)actor{
-    [self createImageInstanceEntry:actor];
+- (int) actortoStage:(STImage *)actor{
+    int instanceID = [self createImageInstanceEntry:actor];
     [self reLoadImageInstances];
+    return instanceID;
 }
 
 - (void) startRecording{
@@ -95,25 +94,40 @@
 -(void) drawRect:(CGRect)rect{
     NSDate *start = [NSDate date];
     if(isRecording){
-    [self reLoadImageInstances];
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    
-    float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
-
-    for (STImageInstance *instance in imageInstances) {
-        if(instance.instanceType == false){
-            
-        }
-        else if (instance.instanceType == true){
+        [self reLoadImageInstances];
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        
+        float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
+        
+        for (STImageInstance *instance in imageInstances) {
+            if(instance.instanceType == false){
+                UIImageView *imageview = ((UIImageView*)[self viewWithTag:99999]);
+                STImage *image = (STImage*)imageview.image;
+                STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+                [position setTimecode:millisElapsed];
+                [position setImageInstanceId:instance.imageInstanceID];
+                [position setX:imageview.frame.origin.x];
+                [position setY:imageview.frame.origin.y];
+                [array addObject:position];
+                
+            }
+            else if (instance.instanceType == true){
+                UIImageView *imageview = ((UIImageView*)[self viewWithTag:instance.imageInstanceID]);
+                STImage *image = (STImage*)imageview.image;
+                STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+                [position setTimecode:millisElapsed];
+                [position setImageInstanceId:instance.imageInstanceID];
+                [position setX:imageview.frame.origin.x];
+                [position setY:imageview.frame.origin.y];
+                [array addObject:position];
+            }
             
         }
         
+        for (STImageInstancePosition *position in array){
+            [stageRecorder writeImageInstance:position];
+        }
         
-    }
-    
-    for (STImageInstancePosition *position in array){
-        [stageRecorder writeImageInstance:position];
-    }
     }
     float processingSeconds = [[NSDate date] timeIntervalSinceDate:start];
 	float delayRemaining = (1.0 / self.frameRate) - processingSeconds;

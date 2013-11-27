@@ -228,7 +228,7 @@ NSLog(@"StoryPacksList : %@",storyPacksList);
     }
     [allPacks addObjectsFromArray:defaultPacks];
     count = [allPacks count];
-NSLog (@"number of story packs :%i",count);
+NSLog (@"number of all story packs :%i",count);
     float scrollViewHeight = [installedStoryPacksView bounds].size.height;
     float scrollViewWidth  = [installedStoryPacksView bounds].size.width;
     float xPosition = THUMB_H_PADDING;
@@ -241,7 +241,7 @@ NSLog (@"number of story packs :%i",count);
     [installedStoryPacksHolder setHidden:NO];
     for(int i=0; i<count; i++){
         sqlite3 *db;
-        if([[[storyPacksList[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
+        if([[[allPacks[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
         {
 NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
             [dbNames addObject:allPacks[i]];
@@ -338,7 +338,7 @@ NSLog(@"SQL query Statement preparation on database success.");
 }
 -(void)handleInstallTap:(UITapGestureRecognizer*)recognizer
 {
-NSLog(@"recognizer : %d",recognizer.view.tag);
+NSLog(@"recognizer tag: %d",recognizer.view.tag);
     
     STInstalledStoryPacksViewController *installController = [[STInstalledStoryPacksViewController alloc] init];
     NSString *deviceType = [UIDevice currentDevice].model;
@@ -351,13 +351,14 @@ NSLog(@"recognizer : %d",recognizer.view.tag);
     else{
         installController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"installedStoryPacks"];
     }
-NSLog(@"Path : %@",databasePath);
-    databasePath = [databasePath stringByDeletingLastPathComponent];
-NSLog(@"Path after deleting last path component: %@",databasePath);
-    databasePath = [databasePath stringByAppendingString:@"/"];
-    databasePath = [databasePath stringByAppendingString:dbNames[recognizer.view.tag]];
-NSLog(@"Path after appending : %@",databasePath);
-    installController.filePath = databasePath;
+//NSLog(@"Path : %@",databasePath);
+//    databasePath = [databasePath stringByDeletingLastPathComponent];
+//NSLog(@"Path after deleting last path component: %@",databasePath);
+//    databasePath = [databasePath stringByAppendingString:@"/"];
+//    databasePath = [databasePath stringByAppendingString:dbNames[recognizer.view.tag]];
+//NSLog(@"Path after appending : %@",databasePath);
+    NSLog(@"dbnames[%d] : %@",recognizer.view.tag,dbNames[recognizer.view.tag]);
+    installController.filePath =dbNames[recognizer.view.tag];
     [self.navigationController pushViewController:installController animated:YES];
 }
 
