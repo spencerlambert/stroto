@@ -243,14 +243,14 @@ NSLog (@"number of all story packs :%i",count);
         sqlite3 *db;
         if([[[allPacks[i] lastPathComponent] pathExtension] isEqualToString:@"db"])
         {
-NSLog(@"storypacklist[%d] : %@",i,storyPacksList[i]);
+NSLog(@"allpacklist[%d] : %@",i,allPacks[i]);
             [dbNames addObject:allPacks[i]];
             databasePath = allPacks[i];
 NSLog(@"database path : %@",databasePath);
             const char *dbpath = [allPacks[i] UTF8String];
 NSLog(@"database path UTF8String: %s",dbpath);
             if (sqlite3_open(dbpath, & db) == SQLITE_OK){
-NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames);
+NSLog(@"dbNames[%d] : %@ successfully opened.",i,dbNames[i]);
                 NSString *sql = [NSString stringWithFormat:@"SELECT Name,ImageDataPNG_Base64 FROM StoryPackInfo;"];
                 const char *sql_stmt = [sql UTF8String];
                 sqlite3_stmt *compiled_stmt;

@@ -97,11 +97,9 @@
 
             //[self reloadForegroundImages];
             
-//            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
-//            NSLog(@"html= %@",html);
-//            NSLog(@"st_details = %@",[freeStoryPackDetailsJson valueForKey:@"st_details"]);
-//            NSLog(@"Background Images:%@",[freeStoryPackDetailsJson valueForKey:@"st_bg_list"]);
-//            NSLog(@"Single Image = %@",[[freeStoryPackDetailsJson valueForKey:@"st_bg_list"] objectAtIndex:0 ]);
+            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
+            NSLog(@"html= %@",html);
+            NSLog(@"st_details = %@",[freeStoryPackDetailsJson valueForKey:@"st_details"]);
         }
         else if ([data length] == 0 && error == nil){
             NSLog(@"Nothing was downloaded.");
