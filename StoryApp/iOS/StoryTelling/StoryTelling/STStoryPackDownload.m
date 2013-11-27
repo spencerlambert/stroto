@@ -59,7 +59,7 @@ NSString *filename;
     if(dbSuccess)
     {
         NSLog(@"DB writing success!!");
-        NSURL *installedFileUrl = [NSURL URLWithString:installedFilePath];
+        NSURL *installedFileUrl = [NSURL fileURLWithPath:installedFilePath];
         [self addSkipBackupAttributeToItemAtURL:installedFileUrl];
         [progressDelegate finishedDownloadingDB:installedFilePath];
     }

@@ -409,7 +409,7 @@
 - (void)recordTransaction:(SKPaymentTransaction *)transaction
 {
     NSLog(@"recordTransaction");
-    if ([transaction.payment.productIdentifier isEqualToString:@"test_export"])
+    if ([transaction.payment.productIdentifier isEqualToString:@"export_unlock"])
     {
         //        [self.loader startAnimating];
         NSLog(@"Receipt from transaction : %@",transaction.transactionReceipt);
@@ -482,6 +482,8 @@
     {
         NSLog(@"success Transaction !!");
         [[NSFileManager defaultManager] createFileAtPath:fileString contents:Nil attributes:nil];
+        NSURL *installedFileUrl = [NSURL fileURLWithPath:fileString];
+        [self addSkipBackupAttributeToItemAtURL:installedFileUrl];
         if ([[NSFileManager defaultManager] fileExistsAtPath:fileString]) {
             NSLog(@"File created successfully");
             [self.unlockButton setHidden:YES];
@@ -527,7 +529,18 @@
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     }
 }
-
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
 -(void)didSelectTableCellWithName:(NSString *)dbName
 {
     for (UIViewController *view in self.navigationController.viewControllers) {
