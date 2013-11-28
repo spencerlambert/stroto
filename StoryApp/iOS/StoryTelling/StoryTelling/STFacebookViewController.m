@@ -158,6 +158,8 @@ bool writingFinished;
     NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
+    NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+    [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Video Upload Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];

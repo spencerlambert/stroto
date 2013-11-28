@@ -316,6 +316,7 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
         [[NSFileManager defaultManager] removeItemAtPath:outputFilePath error:nil];
     
+    
     CMTime nextClipStartTime = kCMTimeZero;
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:video_inputFileUrl options:nil];
@@ -456,6 +457,11 @@
     NSFileManager *file = [NSFileManager defaultManager];
     [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), @"videoOutput.mp4"] error:nil];
     [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()] error:nil];
+    NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+    [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()] error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
+
+
     if (error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
