@@ -40,6 +40,7 @@
 @synthesize progressView;
 @synthesize downloadPercentageLabel;
 @synthesize BGHideDownload;
+@synthesize freePayment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -281,9 +282,9 @@
 
 -(void)requestDidFinish:(SKRequest *)request
 {
-    SKPayment *freePayment = [SKPayment paymentWithProduct:freeProduct];
+    self.freePayment = [SKPayment paymentWithProduct:self.freeProduct];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:freePayment];
+    [[SKPaymentQueue defaultQueue] addPayment:self.freePayment];
     [self.loader stopAnimating];
     [self.loader setHidden:YES];
 
