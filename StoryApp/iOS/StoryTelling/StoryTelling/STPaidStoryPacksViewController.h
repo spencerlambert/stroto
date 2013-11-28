@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSDictionary *paidStoryPackDetailsJson;
 @property (strong, nonatomic) NSDictionary *paidStoryPackURLJson;
 @property (strong, nonatomic) SKProduct *paidProduct;
+@property (strong, nonatomic) SKPayment *paidPayment;
 @property (assign, nonatomic) int storyPackID;
 
 @property (strong, nonatomic) IBOutlet UIButton *paidButtonLabel;

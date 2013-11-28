@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSDictionary *freeStoryPackDetailsJson;
 @property (strong, nonatomic) NSDictionary *freeStoryPackURLJson;
 @property (strong, nonatomic) SKProduct *freeProduct;
+@property (strong, nonatomic) SKPayment *freePayment;
 @property (assign, nonatomic) int storyPackID;
 
 @property (strong, nonatomic) IBOutlet UIButton *freeButton;
