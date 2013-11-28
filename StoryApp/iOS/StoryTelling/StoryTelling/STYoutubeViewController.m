@@ -131,15 +131,17 @@ NSURL *uploadLocationURL;
 }
 
 - (IBAction)upload:(id)sender {
+    NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+    [[NSFileManager defaultManager] createFileAtPath:dataPath1 contents:[[NSData alloc]init] attributes:Nil];
     [self.greyBGButton setHidden:NO];
     [self.spinningWheel setHidden:NO];
     [self.spinningWheel startAnimating];
     UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
     UIImage *tempi = [self drawText:mainTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
     tempi = [self drawText:subTitle.text inImage:tempi atPoint:CGPointMake(0,350) withFontsize:50];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/upload_dir"];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
@@ -214,7 +216,7 @@ NSURL *uploadLocationURL;
     // Get a file handle for the upload data.
     //    NSString *path = [_uploadPathField stringValue];
     
-    NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
+    NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@.mov", NSTemporaryDirectory(), [self.dbname stringByDeletingPathExtension]];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:moviePath];
     if (fileHandle) {
         //        NSString *mimeType = [self MIMETypeForFilename:filename
@@ -242,11 +244,13 @@ NSURL *uploadLocationURL;
                                     if (error == nil) {
                                         [self displayAlert:@"Uploaded"
                                                     format:alert];
-                                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                                        NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-                                        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/upload_dir"];
+//                                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//                                        NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+                                        NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
+                                        NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
                                         if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
                                             [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
+                                        [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
                                         [self.navigationController popViewControllerAnimated:YES];
                                         
                                     } else {
@@ -464,9 +468,9 @@ NSURL *uploadLocationURL;
 
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"videoOutput.mp4"];
+    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), @"videoOutput.mp4"];
     NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
-    NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()];
     //    [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
     if([file fileExistsAtPath:firstAsset1]){
         
@@ -517,11 +521,11 @@ NSURL *uploadLocationURL;
     NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
     NSURL*    audio_inputFileUrl = [NSURL fileURLWithPath:audio_inputFilePath];
     
-    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
     NSURL*    video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
     
     NSString* outputFileName = [NSString stringWithFormat:@"%@.mov",[self.dbname stringByDeletingPathExtension]];
-    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], outputFileName];
+    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), outputFileName];
     NSURL*    outputFileUrl = [NSURL fileURLWithPath:outputFilePath];
     [[NSFileManager defaultManager] createDirectoryAtPath:outputFilePath withIntermediateDirectories:YES attributes:nil error:nil];
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
