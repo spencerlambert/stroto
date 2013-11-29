@@ -32,6 +32,7 @@
 @property (strong, nonatomic) SKProduct *paidProduct;
 @property (strong, nonatomic) SKPayment *paidPayment;
 @property (assign, nonatomic) int storyPackID;
+@property (readwrite, nonatomic) BOOL payment;
 
 @property (strong, nonatomic) IBOutlet UIButton *paidButtonLabel;
 @property (strong, nonatomic) IBOutlet UIButton *backgroundButton;

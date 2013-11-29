@@ -83,6 +83,14 @@
   }
 
 - (IBAction)uploadToFacebookButtonClicked:(id)sender {
+    NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"We are currently processing another upload request, please try later" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+    }
+    else{
+      
     NSFileManager *filemngr =[NSFileManager defaultManager];
     //NSLog(@"dbname: %@",dbname);
     NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
@@ -130,7 +138,7 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
-    
+    }
 }
 
 - (IBAction)editButtonClicked:(id)sender {
@@ -189,6 +197,7 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([segue.identifier  isEqual: @"youtubeSegue"]) {
+       
         STYoutubeViewController *controller = segue.destinationViewController;
         [controller setDbname:dbname];
         [controller setMaintitle:navigationBarTitle.title];
@@ -220,6 +229,14 @@
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     if([identifier isEqual:@"youtubeSegue"]){
+        NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"We are currently processing another upload request, please try later" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+            return NO;
+        }
+
         NSFileManager *filemngr =[NSFileManager defaultManager];
         NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
         if([filemngr fileExistsAtPath:moviePath])
@@ -233,6 +250,16 @@
             return NO;
   
         }
+    }
+    else if([identifier isEqual:@"export"]){
+        NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"We are currently processing another upload request, please try later" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+            return NO;
+        }
+
     }
     return YES;
 }

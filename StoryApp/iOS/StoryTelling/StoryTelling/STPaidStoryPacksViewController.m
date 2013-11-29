@@ -40,6 +40,7 @@
 @synthesize downloadPercentageLabel;
 @synthesize BGHideDownload;
 @synthesize paidPayment;
+@synthesize payment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,7 +93,7 @@
         if ([data length] >0 && error == nil){        
                 paidStoryPackDetailsJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                  NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding ];
-                                    NSLog(@"html= %@",html);
+//                                    NSLog(@"html= %@",html);
             [self performSelectorInBackground:@selector(updateText)  withObject:nil];
             [self performSelectorInBackground:@selector(reloadBackgroundImages) withObject:nil];
             [self performSelectorInBackground:@selector(reloadForegroundImages) withObject:nil];
@@ -114,8 +115,8 @@
 -(void) updateText
 {
     paidStoryPackName.text = [NSString stringWithFormat:@"%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Name"]];
-    [paidButtonLabel setTitle:[NSString stringWithFormat:@"$%@",[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"Price"]] forState:UIControlStateNormal];    
-    
+    self.payment = 0;
+    [self requestProduct];
 }
 
 -(void)showAlert:(NSString*)message{
@@ -248,17 +249,21 @@
 
 - (IBAction)buyButtonTapped:(id)sender
 {
-    NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
-    SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
-    productReq.delegate = self;
-    [productReq start];
+    self.payment = 1;
+    [self requestProduct];
 //    [self.paidButtonLabel setHidden:YES];
     [self.loader startAnimating];
     [self.loader setHidden:NO];
     [self.BGHideDownload setHidden:NO];
     [self.backgroundButton setHidden:YES];
 }
-
+-(void)requestProduct
+{
+    NSSet * productIdentifiers = [NSSet setWithObject:[[paidStoryPackDetailsJson valueForKey:@"st_details"] valueForKey:@"AppleStoreKey"]];
+    SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
+    productReq.delegate = self;
+    [productReq start];
+}
 #pragma mark - SKProductsRequestDelegate
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
@@ -268,17 +273,23 @@
     paidProduct = [response.products objectAtIndex:0];
     NSLog(@"Product Title : %@",[[response.products objectAtIndex:0] localizedTitle]);
     NSLog(@"product description : %@", [[response.products objectAtIndex:0] productIdentifier]);
-    NSLog(@"Product Price %f", [[response.products objectAtIndex:0] price].floatValue);
+    NSLocale *priceLocale = paidProduct.priceLocale;
+    NSDecimalNumber *price = paidProduct.price;
+    NSLog(@"%@" ,[NSString stringWithFormat:NSLocalizedString(@"Price - %@%@", nil), [priceLocale objectForKey:NSLocaleCurrencySymbol], [price stringValue]]);
+    [self.paidButtonLabel setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@%@", nil), [priceLocale objectForKey:NSLocaleCurrencySymbol], [price stringValue]] forState:UIControlStateNormal];
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseProductsFetchedNotification object:self userInfo:nil];
 }
 
 -(void)requestDidFinish:(SKRequest *)request
 {
+    if(payment)
+    {
     self.paidPayment = [SKPayment paymentWithProduct:self.paidProduct];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [[SKPaymentQueue defaultQueue] addPayment:self.paidPayment];
     [self.loader stopAnimating];
     [self.loader setHidden:YES];
+    }
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
@@ -484,6 +495,11 @@
     [self setBGHideDownload:nil];
     [self setDownloadRectView:nil];
     [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
 }
 -(void)updateProgress:(float)progress{
 //    NSLog(@"progress : %f",progress);
