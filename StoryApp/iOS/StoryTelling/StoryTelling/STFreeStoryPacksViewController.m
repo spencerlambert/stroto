@@ -528,6 +528,11 @@
     [super viewDidUnload];
 }
 
+-(void)dealloc
+{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
+
 -(void)updateProgress:(float)progress{
 //    NSLog(@"progress : %f",progress);
     self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];

@@ -549,6 +549,12 @@
     }
     return success;
 }
+
+-(void)dealloc
+{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
+
 -(void)didSelectTableCellWithName:(NSString *)dbName
 {
     for (UIViewController *view in self.navigationController.viewControllers) {
