@@ -412,7 +412,7 @@ UIButton *button ;
 
 -(void)mergeAudioRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"sound.caf"];
+    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/%@", NSTemporaryDirectory(), @"sound.caf"];
     NSString* audio_FilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
     NSString *tempSoundFile = [[NSString alloc] initWithFormat:@"%@/mov_dir/temp.m4a", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
     [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
@@ -472,7 +472,7 @@ UIButton *button ;
 
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
+    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/%@", NSTemporaryDirectory(), @"output.mp4"];
     NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [storyDB getDBName]];
     NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/mov_dir/temp.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
     [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
@@ -574,6 +574,9 @@ UIButton *button ;
     [loaderView removeFromSuperview];
     [mydelegate finishedRecording];
     [storyDB closeDB];
+    NSFileManager *file = [NSFileManager defaultManager];
+    [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/output.mp4", NSTemporaryDirectory()] error:nil];
+    [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/sound.caf", NSTemporaryDirectory()] error:nil];
     [self.navigationController setNavigationBarHidden:NO];
     if(IS_IPAD){
     for (UIViewController *cntrlr in [self.navigationController viewControllers]){
