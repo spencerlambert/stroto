@@ -12,7 +12,7 @@
 
 - (id)init{
     startedRecording = NO;
-    NSString *soundFilePath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"sound.caf"];
+    NSString *soundFilePath = [[NSString alloc] initWithFormat:@"%@/%@", NSTemporaryDirectory(), @"sound.caf"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSDictionary *recordSettings = [NSDictionary
                                     dictionaryWithObjectsAndKeys:

@@ -172,7 +172,7 @@
 }
 
 - (NSURL*) tempFileURL {
-	NSString* outputPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
+	NSString* outputPath = [[NSString alloc] initWithFormat:@"%@/%@", NSTemporaryDirectory(), @"output.mp4"];
 	NSURL* outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
 	NSFileManager* fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:outputPath]) {
@@ -242,7 +242,7 @@
 		[self cleanupWriter];
 		
 		id delegateObj = self.delegate;
-		NSString *outputPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mp4"];
+		NSString *outputPath = [[NSString alloc] initWithFormat:@"%@/%@", NSTemporaryDirectory(), @"output.mp4"];
 		NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
 		
 		NSLog(@"Completed recording, file is stored at:  %@", outputURL);
