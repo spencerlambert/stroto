@@ -97,7 +97,9 @@
                 
                 [self initStoryTable:size];
                 
-                sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, thumbnailData BLOB, sizeScale NUMERIC);";
+                //Removed thumbnail image from DB because it ended up as a duplicate of the full image.
+                //Found that it does not simplify anything to have a pre-scaled image.
+                sql_stmt = "CREATE TABLE Image (imageId INTEGER PRIMARY KEY AUTOINCREMENT, listDisplayOrder INTEGER, sizeX INTEGER, sizeY INTEGER, fileType TEXT, type TEXT, defaultX INTEGER,defaultY INTEGER,defaultScale NUMERIC,imageData BLOB, sizeScale NUMERIC);";
                 if (sqlite3_exec(db, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {
                     NSLog(@"Failed to create table3");
@@ -229,7 +231,7 @@
 }
 
 -(BOOL)addImage:(STImage *)image{
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','thumbnailData','sizeScale') VALUES (?,?,?,?,?,?,?,?,?,?,?);"];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Image('listDisplayOrder','sizeX','sizeY','fileType','type','defaultX','defaultY','defaultScale','imageData','sizeScale') VALUES (?,?,?,?,?,?,?,?,?,?);"];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *statement;
         // Prepare the statement.
@@ -251,8 +253,8 @@
             imageData = UIImagePNGRepresentation([UIImage imageWithCGImage:image.thumbimage.CGImage]);
         }
         sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
-        sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
-        sqlite3_bind_double(statement, 11, image.sizeScale);
+        //sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_double(statement, 10, image.sizeScale);
         // Execute the statement.
         int temp = sqlite3_step(statement);
         if (temp != SQLITE_DONE) {
@@ -267,7 +269,7 @@
 }
 
 - (BOOL)updateImage:(STImage*)image{
-    NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, thumbnailData =?, sizeScale =?) where imageId = %d;",image.imageId];
+    NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, sizeScale =?) where imageId = %d;",image.imageId];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *statement;
     // Prepare the statement.
@@ -289,8 +291,8 @@
             imageData = UIImagePNGRepresentation([UIImage imageWithCGImage:image.thumbimage.CGImage]);
         }
         sqlite3_bind_blob(statement, 9, [imageData bytes], [imageData length], SQLITE_STATIC);
-        sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
-        sqlite3_bind_double(statement, 11, image.sizeScale);
+        //sqlite3_bind_blob(statement, 10, [imageData bytes], [imageData length], SQLITE_STATIC);
+        sqlite3_bind_double(statement, 10, image.sizeScale);
         // Execute the statement.
         int temp = sqlite3_step(statement);
         if (temp != SQLITE_DONE) {
@@ -307,7 +309,7 @@
 
 - (STImage*)getImageByID:(int)img_id{
     
-    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where imageId = %d;",img_id];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imageId,listDisplayOrder,sizeX,sizeY,fileType,type,defaultX,defaultY,defaultScale,imageData,sizeScale from Image where imageId = %d;",img_id];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *compiled_stmt;
     if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
@@ -326,12 +328,16 @@
             temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
             temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
             temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
-            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
-            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            /*
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 9);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 9);
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
-            temp.thumbimage = image1;
-            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt, 11);
+            */
+            // Thumbnail is really just a pointer to the main image now
+            temp.thumbimage = image;
+ 
+            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt, 10);
             sqlite3_finalize(compiled_stmt);
             return  temp;
         }
@@ -342,7 +348,7 @@
 
 - (NSArray*)getBackgroundImagesSorted{
     NSMutableArray *bgImages = [[NSMutableArray alloc]init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where type='background';"];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imageId,listDisplayOrder,sizeX,sizeY,fileType,type,defaultX,defaultY,defaultScale,imageData,sizeScale from Image where type='background';"];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *compiled_stmt;
     if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
@@ -361,12 +367,16 @@
             temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
             temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
             temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
-            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
-            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            /*
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 9);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 9);
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
-            temp.thumbimage = image1;
-            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt,11);
+            */
+            // Thumbnail is really just a pointer to the main image now
+            temp.thumbimage = image;
+            
+            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt,10);
             [bgImages addObject:temp];
         }
         
@@ -377,7 +387,7 @@
 
 - (NSArray*)getForegroundImagesSorted{
     NSMutableArray *fgImages = [[NSMutableArray alloc]init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * from Image where type='foreground';"];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imageId,listDisplayOrder,sizeX,sizeY,fileType,type,defaultX,defaultY,defaultScale,imageData,sizeScale from Image where type='foreground';"];
     const char *sql_stmt = [sql UTF8String];
     sqlite3_stmt *compiled_stmt;
     if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
@@ -396,12 +406,16 @@
             temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
             temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
             temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
-            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 10);
-            int size1 = sqlite3_column_bytes(compiled_stmt, 10);
+            /*
+            const void *ptr1 = sqlite3_column_blob(compiled_stmt, 9);
+            int size1 = sqlite3_column_bytes(compiled_stmt, 9);
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
             UIImage *image1 = [UIImage imageWithData:data1];
-            temp.thumbimage = image1;
-            temp.sizeScale= (float)sqlite3_column_double(compiled_stmt, 11);
+            */
+            // Thumbnail is really just a pointer to the main image now
+            temp.thumbimage = image;
+            
+            temp.sizeScale= (float)sqlite3_column_double(compiled_stmt, 10);
             [fgImages addObject:temp];
         }
         
