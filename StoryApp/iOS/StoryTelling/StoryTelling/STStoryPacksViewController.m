@@ -37,6 +37,7 @@
 
 @synthesize paidJson;
 @synthesize freeJson;
+//@synthesize priceArray;
 
 @synthesize installedImages;//to be used later
 NSString *databasePath;
@@ -362,6 +363,37 @@ NSLog(@"recognizer tag: %d",recognizer.view.tag);
     [self.navigationController pushViewController:installController animated:YES];
 }
 
+//-(void)getPrice
+//{
+//    NSMutableSet * productIdentifiers = [[NSMutableSet alloc] init];
+//    for(int i=0; i<[[paidJson valueForKey:@"st_list"] count]; i++)
+//    {
+//    [productIdentifiers addObject:[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"AppleStoreKey"]];
+//    }
+//    SKProductsRequest *productReq =  [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers ];
+//    productReq.delegate = self;
+//    [productReq start];
+//}
+//-(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+//{
+//    SKProduct *product = [[SKProduct alloc] init];
+//    for(int i=0 ; i<[response.products count] ; i++)
+//    {
+//        product = [response.products objectAtIndex:i];
+//        NSLocale *priceLocale = product.priceLocale;
+//        NSDecimalNumber *price = product.price;
+//        [self.priceArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Price - %@%@", nil), [priceLocale objectForKey:NSLocaleCurrencySymbol], [price stringValue]]];
+//    }
+//}
+//-(void)request:(SKRequest *)request didFailWithError:(NSError *)error
+//{
+//   NSLog(@"Failed to load the list of Products : %@",error);
+//}
+//-(void)requestDidFinish:(SKRequest *)request
+//{
+//    
+//}
+
 -(void)reloadPaidView
 {
 //for showing paid story packs in scroll view
@@ -381,6 +413,9 @@ NSLog(@"recognizer tag: %d",recognizer.view.tag);
     while(!paidJson){       //checking for data
 //        NSLog(@"NUll in paidJSON");
      continue;}
+    
+// [self getPrice];
+    
     for (int i = 0; i<[[paidJson valueForKey:@"st_list"] count];i++)
     {
         NSData* data;
@@ -445,6 +480,7 @@ NSLog(@"recognizer tag: %d",recognizer.view.tag);
         [storyPackPrice setTextColor:[UIColor whiteColor]];
         [storyPackPrice setFont:[UIFont fontWithName:@"Helvetica" size:fontSize]];
         [storyPackPrice setNumberOfLines:1];
+//        storyPackPrice.text = [self.priceArray objectAtIndex:i];
         storyPackPrice.text = [NSString stringWithFormat:@"$%@",[[[paidJson valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"Price"]];
         [storyPackPrice setFrame:priceTextFrame];
         [storyPackPrice setHidden:NO];

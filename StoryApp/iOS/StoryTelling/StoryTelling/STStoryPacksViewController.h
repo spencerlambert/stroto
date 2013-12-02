@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "STImage.h"
 #include <sqlite3.h>
+//#include <StoreKit/StoreKit.h>
 
 @interface STStoryPacksViewController : UIViewController
 {
@@ -23,6 +24,7 @@
 
 @property (strong, nonatomic) NSDictionary *paidJson;   //holding json from get_paid_list
 @property (strong, nonatomic) NSDictionary *freeJson;   //holding json from get_free_list
+//@property (strong, nonatomic) NSMutableArray *priceArray;
 
 @property (strong, nonatomic) NSArray *installedImages; //to be used later
 
