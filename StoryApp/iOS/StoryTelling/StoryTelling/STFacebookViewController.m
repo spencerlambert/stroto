@@ -162,6 +162,7 @@ bool writingFinished;
     [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Video Upload Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [self.uploadButton setEnabled:YES] ;
     [alert show];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -190,6 +191,7 @@ bool writingFinished;
 }
 //upload button click
 - (IBAction)uploadStory:(UIButton *)sender {
+    [self.uploadButton setEnabled:NO] ;
     NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
     [[NSFileManager defaultManager] createFileAtPath:dataPath1 contents:[[NSData alloc]init] attributes:Nil];
     //video upload using social framework.

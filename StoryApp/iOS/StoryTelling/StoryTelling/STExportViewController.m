@@ -108,6 +108,7 @@
 }
 - (IBAction)save:(UIButton *)sender {
     [self.navigationItem setHidesBackButton:YES];
+    [self.saveButton setEnabled:NO];
     [self saveVideo];
 }
 
@@ -462,6 +463,7 @@
     [file removeItemAtPath:[[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()] error:nil];
     [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
     [self.navigationItem setHidesBackButton:NO];
+    [self.saveButton setEnabled:YES];
     if (error)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Photo/Video Saving Failed"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];

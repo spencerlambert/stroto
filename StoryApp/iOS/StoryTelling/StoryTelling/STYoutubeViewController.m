@@ -34,6 +34,7 @@ NSURL *uploadLocationURL;
 @synthesize spinningWheel;
 @synthesize storyList;
 @synthesize listViewOutlet;
+@synthesize uploadButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -131,6 +132,7 @@ NSURL *uploadLocationURL;
 }
 
 - (IBAction)upload:(id)sender {
+    [self.uploadButton setEnabled:NO];
     NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
     [[NSFileManager defaultManager] createFileAtPath:dataPath1 contents:[[NSData alloc]init] attributes:Nil];
     [self.greyBGButton setHidden:NO];
@@ -320,6 +322,7 @@ NSURL *uploadLocationURL;
         va_end(argList);
     }
     [[[UIAlertView alloc]initWithTitle:title message:format delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+    [self.uploadButton setEnabled:YES];
 }
 
 - (GTLServiceYouTube *)youTubeService {

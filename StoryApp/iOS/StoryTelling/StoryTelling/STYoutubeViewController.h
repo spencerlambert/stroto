@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSString *dbname;
 @property (strong, nonatomic) NSString *maintitle;
 @property (weak, nonatomic) IBOutlet UIButton *greyBGButton;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinningWheel;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 - (IBAction)logout:(id)sender;
