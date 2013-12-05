@@ -17,6 +17,7 @@
 		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
 		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
 		EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB15DFFD18286E8500B6B662 /* TopRightView.m */; };
+		EB9F99ED1850C805005E114F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9F99EC1850C805005E114F /* Reachability.m */; };
 		EBA75D33182B06A800B47E23 /* RecordArea.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA75D32182B06A800B47E23 /* RecordArea.png */; };
 		EBB9BA6A183C36F200974A0B /* color_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB9BA69183C36F200974A0B /* color_trans.png */; };
 		EBD1D44B1829BF7C00F2F711 /* BottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD1D44A1829BF7C00F2F711 /* BottomBar.png */; };
@@ -37,7 +38,6 @@
 		EBF83AB0181F774C002B6D34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBF83AAE181F774C002B6D34 /* InfoPlist.strings */; };
 		EBF83AB2181F774C002B6D34 /* StrotoBasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */; };
 		EBF83ABC181F789B002B6D34 /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF83ABB181F789B002B6D34 /* color_red.png */; };
-		EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */ = {isa = PBXBuildFile; fileRef = EBF83AC1181F9094002B6D34 /* StoryPacks */; };
 		EBF83AC4181F9C8B002B6D34 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF83AC3181F9C8B002B6D34 /* libsqlite3.dylib */; };
 		EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
@@ -68,6 +68,8 @@
 		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		EB15DFFC18286E8500B6B662 /* TopRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRightView.h; sourceTree = "<group>"; };
 		EB15DFFD18286E8500B6B662 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
+		EB9F99EB1850C805005E114F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		EB9F99EC1850C805005E114F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EBA75D32182B06A800B47E23 /* RecordArea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordArea.png; sourceTree = "<group>"; };
 		EBB9BA69183C36F200974A0B /* color_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_trans.png; sourceTree = "<group>"; };
 		EBD1D44A1829BF7C00F2F711 /* BottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBar.png; sourceTree = "<group>"; };
@@ -94,7 +96,6 @@
 		EBF83AAF181F774C002B6D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EBF83AB1181F774C002B6D34 /* StrotoBasicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrotoBasicTests.m; sourceTree = "<group>"; };
 		EBF83ABB181F789B002B6D34 /* color_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = color_red.png; path = ../../../StoryApp/Images/color_red.png; sourceTree = "<group>"; };
-		EBF83AC1181F9094002B6D34 /* StoryPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = StoryPacks; sourceTree = "<group>"; };
 		EBF83AC3181F9C8B002B6D34 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EBF83AC5181FA302002B6D34 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		EBF83AC6181FA31D002B6D34 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
@@ -128,7 +129,6 @@
 		EBF83A77181F7748002B6D34 = {
 			isa = PBXGroup;
 			children = (
-				EBF83AC1181F9094002B6D34 /* StoryPacks */,
 				EBF83A89181F774A002B6D34 /* Stroto Basic */,
 				EBF83AAB181F774C002B6D34 /* StrotoBasicTests */,
 				EBF83A82181F7748002B6D34 /* Frameworks */,
@@ -164,6 +164,8 @@
 				4DF63DFA1843067100861A43 /* InfoPlist.strings */,
 				EBF83A92181F774A002B6D34 /* AppDelegate.h */,
 				EBF83A93181F774A002B6D34 /* AppDelegate.m */,
+				EB9F99EB1850C805005E114F /* Reachability.h */,
+				EB9F99EC1850C805005E114F /* Reachability.m */,
 				EBF83A95181F774A002B6D34 /* Main_iPhone.storyboard */,
 				4DF63DF81843067100861A43 /* Main_iPad.storyboard */,
 				EBF83A9B181F774A002B6D34 /* ViewController.h */,
@@ -312,7 +314,6 @@
 				EBF83ABC181F789B002B6D34 /* color_red.png in Resources */,
 				EBD1D4511829BF9400F2F711 /* TopBar.png in Resources */,
 				EBF83A9F181F774B002B6D34 /* Images.xcassets in Resources */,
-				EBF83AC2181F9094002B6D34 /* StoryPacks in Resources */,
 				4D2EE0D41842FE770050B0C6 /* Main_iPhone.storyboard in Resources */,
 				4DF63DFC1843067100861A43 /* Main_iPad.storyboard in Resources */,
 				EBF83A8E181F774A002B6D34 /* InfoPlist.strings in Resources */,
@@ -339,6 +340,7 @@
 				EB06A9A4182377DD000F88C6 /* SlideDownView.m in Sources */,
 				EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */,
 				EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */,
+				EB9F99ED1850C805005E114F /* Reachability.m in Sources */,
 				EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */,
 				EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */,
 				EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */,
@@ -428,7 +430,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -468,7 +471,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -491,7 +495,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StrotoBasic/Stroto Basic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
@@ -509,7 +513,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Spencer Lambert (N6B543ASYT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StrotoBasic/Stroto Basic-Prefix.pch";
 				INFOPLIST_FILE = "StrotoBasic/StrotoBasic-Info.plist";
