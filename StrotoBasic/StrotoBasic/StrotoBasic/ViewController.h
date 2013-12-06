@@ -11,8 +11,16 @@
 #import "NSData+Base64.h"
 #import <QuartzCore/QuartzCore.h>
 #import "playViewController.h"
+#import "Reachability.h"
 
 @interface ViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIView *storyPacksView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
+
 @property (strong, nonatomic) NSDictionary *basicJsonDict;
+
+-(void)internetAvailableNotifier;
+
 @end
