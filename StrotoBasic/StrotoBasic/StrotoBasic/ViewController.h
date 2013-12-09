@@ -11,7 +11,7 @@
 #import "NSData+Base64.h"
 #import <QuartzCore/QuartzCore.h>
 #import "playViewController.h"
-#import "Reachability.h"
+#import "STStoryPackDownload.h"
 
 @interface ViewController : UIViewController
 
@@ -19,8 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
+@property (assign, nonatomic) int storyPackID;
 @property (strong, nonatomic) NSDictionary *basicJsonDict;
-
--(void)internetAvailableNotifier;
 
 @end

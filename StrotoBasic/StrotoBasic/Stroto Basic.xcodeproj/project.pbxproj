@@ -17,6 +17,7 @@
 		EB06A9A6182377DD000F88C6 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A1182377DD000F88C6 /* ThumbImageView.m */; };
 		EB06A9AA18238DE7000F88C6 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */; };
 		EB15DFFE18286E8500B6B662 /* TopRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB15DFFD18286E8500B6B662 /* TopRightView.m */; };
+		EB4AA513185620DF00588484 /* STStoryPackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4AA512185620DF00588484 /* STStoryPackDownload.m */; };
 		EB9F99ED1850C805005E114F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9F99EC1850C805005E114F /* Reachability.m */; };
 		EBA75D33182B06A800B47E23 /* RecordArea.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA75D32182B06A800B47E23 /* RecordArea.png */; };
 		EBB9BA6A183C36F200974A0B /* color_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB9BA69183C36F200974A0B /* color_trans.png */; };
@@ -68,6 +69,8 @@
 		EB06A9A918238DE7000F88C6 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		EB15DFFC18286E8500B6B662 /* TopRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRightView.h; sourceTree = "<group>"; };
 		EB15DFFD18286E8500B6B662 /* TopRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRightView.m; sourceTree = "<group>"; };
+		EB4AA511185620DF00588484 /* STStoryPackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackDownload.h; sourceTree = "<group>"; };
+		EB4AA512185620DF00588484 /* STStoryPackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackDownload.m; sourceTree = "<group>"; };
 		EB9F99EB1850C805005E114F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		EB9F99EC1850C805005E114F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EBA75D32182B06A800B47E23 /* RecordArea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordArea.png; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				4DF63DF81843067100861A43 /* Main_iPad.storyboard */,
 				EBF83A9B181F774A002B6D34 /* ViewController.h */,
 				EBF83A9C181F774A002B6D34 /* ViewController.m */,
+				EB4AA511185620DF00588484 /* STStoryPackDownload.h */,
+				EB4AA512185620DF00588484 /* STStoryPackDownload.m */,
 				EB06A9991823745B000F88C6 /* playViewController.h */,
 				EB06A99A1823745C000F88C6 /* playViewController.m */,
 				EBB9BA69183C36F200974A0B /* color_trans.png */,
@@ -344,6 +349,7 @@
 				EBF83A9D181F774A002B6D34 /* ViewController.m in Sources */,
 				EB06A9A5182377DD000F88C6 /* SlideUpView.m in Sources */,
 				EBF83AC7181FA31D002B6D34 /* NSData+Base64.m in Sources */,
+				EB4AA513185620DF00588484 /* STStoryPackDownload.m in Sources */,
 				EBF83A94181F774A002B6D34 /* AppDelegate.m in Sources */,
 				EB06A99B1823745C000F88C6 /* playViewController.m in Sources */,
 				EBF83A90181F774A002B6D34 /* main.m in Sources */,

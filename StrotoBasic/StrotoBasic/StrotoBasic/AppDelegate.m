@@ -7,13 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-//    [self internetAvailableNotifier];
+    [self internetAvailableNotifier];
     return YES;
 }
 							
@@ -43,6 +44,35 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)internetAvailableNotifier{
+    Reachability *internetReachable;
+    
+    internetReachable = [Reachability reachabilityWithHostname:@"storypacks.stroto.com"];
+    
+    // Internet is reachable
+    internetReachable.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.internetAvailable = YES;
+            NSLog(@"internet Available (appdlgt)");
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachable.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.internetAvailable = NO;
+            NSLog(@"internet Unavailable (appdlgt)");
+        });
+    };
+    
+    [internetReachable startNotifier];
+    
 }
 
 @end

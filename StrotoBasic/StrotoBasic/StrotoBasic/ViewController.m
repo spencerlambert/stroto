@@ -14,10 +14,10 @@
 
 #define urlAsString [NSString stringWithFormat:@"http://storypacks.stroto.com"]
 #define freeBody [NSString stringWithFormat:@"{\"st_request\":\"get_free_list\"}"]
-
 #define basic [NSString stringWithFormat:@"{\"st_request\":\"purchase\",\"st_story_id\":\"%d\",\"apple_receipt\":\"BASIC VERSION\"}",storyPackID]
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -26,68 +26,59 @@
 @implementation ViewController
 {
     BOOL internetAvailable;
-    NSDictionary __block *jsonData;
+    NSDictionary *jsonData;
 }
 
 @synthesize storyPacksView;
 @synthesize basicJsonDict;
 @synthesize spinner;
 @synthesize loadingLabel;
+@synthesize storyPackID;
 
 float scrollViewHeight,scrollViewWidth,xPosition,yPosition;
 UIScrollView *storyPacksHolder;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self stopSpin];
-//    [self showError];
-    [self performSelector:@selector(internetAvailableNotifier) withObject:nil afterDelay:0];
-}
+
+ }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.basicJsonDict = [[NSMutableDictionary alloc] init];
+    [self startSpin];
+    basicJsonDict = [[NSDictionary alloc] init];
+    [self performSelector:@selector(startRequest) withObject:nil afterDelay:1];
+    [self performSelector:@selector(showStoryPacks) withObject:nil afterDelay:3];
+    [self performSelector:@selector(dismissLoader) withObject:nil afterDelay:60];
+}
+-(void)startRequest
+{
+    internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+    if(internetAvailable)
+    {
+        NSLog(@"internet Available");
+        [self performSelectorOnMainThread:@selector(jsonRequest:) withObject:freeBody waitUntilDone:1];
+    }
+    else{
+        NSLog(@"internet Unavailable");
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [self stopSpin];
+    }
+ 
 }
 
-
--(void)internetAvailableNotifier{
-    Reachability *internetReachable;
-    
-    internetReachable = [Reachability reachabilityWithHostname:@"storypacks.stroto.com"];
-    
-    // Internet is reachable
-    internetReachable.reachableBlock = ^(Reachability*reach)
-    {
-        // Update the UI on the main thread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            internetAvailable = YES;
-            NSLog(@"internet availability app delegate: %hhd", internetAvailable);
-            [self startSpin];
-            if((self.basicJsonDict = [self jsonRequest:freeBody]))
-            {
-                while(!self.basicJsonDict)
-                    continue;
-                [self performSelectorInBackground:@selector(showStoryPacks) withObject:nil];
-            }
-//            [self performSelector:@selector(jsonRequest:) withObject:freeBody afterDelay:0];
-        });
-    };
-    // Internet is not reachable
-    internetReachable.unreachableBlock = ^(Reachability*reach)
-    {
-        // Update the UI on the main thread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            internetAvailable = NO;
-            NSLog(@"internet availability : %hhd", internetAvailable);
-            [self stopSpin];
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        });
-    };
-    
-    [internetReachable startNotifier];
-    
+-(void)dismissLoader{
+    [self stopSpin];
+    [((AppDelegate *)[[UIApplication sharedApplication]delegate]) internetAvailableNotifier];
+    internetAvailable = ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable;
+    //    NSLog(@"internet availability : %hhd", ((AppDelegate *)[[UIApplication sharedApplication]delegate]).internetAvailable);
+    if (!internetAvailable){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"The device data is off, please turn it on to access the downloadable Story Packs" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [self stopSpin];
+    }
 }
 
 -(void)startSpin
@@ -106,7 +97,7 @@ UIScrollView *storyPacksHolder;
     [self.loadingLabel setHidden:YES];
 }
 
-- (NSDictionary*) jsonRequest:(NSString *)body{
+- (void) jsonRequest:(NSString *)body{
     jsonData = [[NSDictionary alloc] init];
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15 ];
@@ -121,7 +112,6 @@ UIScrollView *storyPacksHolder;
             if ([data length] >0 && error == nil){
                 jsonData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 NSLog(@"jsonData : %@",jsonData);
-//                [self performSelectorInBackground:@selector(showStoryPacks) withObject:nil];
             }
             else if ([data length] == 0 && error == nil){
                 NSLog(@"Nothing was downloaded.");
@@ -132,11 +122,12 @@ UIScrollView *storyPacksHolder;
                 [self performSelectorOnMainThread:@selector(showError) withObject:nil waitUntilDone:YES];
             }
         }];
-    return jsonData;
 }
 
 -(void)showStoryPacks
 {
+    basicJsonDict = jsonData;
+    NSLog(@"basicjsonDict after: %@",jsonData);
     int count = [[basicJsonDict valueForKey:@"st_list"] count];
 NSLog (@"number of story packs :%i",count);
     float holderWidth=0;
@@ -229,13 +220,25 @@ NSLog (@"number of story packs :%i",count);
 
 -(void)handleTap:(UITapGestureRecognizer*)recognizer
 {
-//    playViewController *playGround = [[playViewController alloc] init];
-// if(IS_IPAD)
-//     playGround = [[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
-//    else
-//        playGround = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
-//    playGround.dbName =storyPacksList[recognizer.view.tag];
-//    [self presentViewController:playGround animated:YES completion:nil];
+    NSLog(@"tag: %d",recognizer.view.tag);
+//    [self startSpin];
+    self.storyPackID = (int)[[[self.basicJsonDict valueForKey:@"st_list"] objectAtIndex:recognizer.view.tag] valueForKey:@"StoryPackID"];
+//    [self performSelector:@selector(jsonRequest:) withObject:basic];
+//    [self performSelector:@selector(callDownload) withObject:nil afterDelay:1];
+}
+
+-(void)callDownload
+{
+    STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
+    [freedownload downloadStoryPack:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[jsonData valueForKey:@"st_storypack_url" ]]]];
+    //    playViewController *playGround = [[playViewController alloc] init];
+    // if(IS_IPAD)
+    //     playGround = [[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+    //    else
+    //        playGround = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+    //    playGround.dbName =storyPacksList[recognizer.view.tag];
+    //    [self presentViewController:playGround animated:YES completion:nil];
+
 }
 
 -(void)showAlert:(NSString*)message{
