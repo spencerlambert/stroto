@@ -18,6 +18,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "STStoryPackDownload.h"
 
 @interface ViewController ()
 
@@ -26,6 +27,7 @@
 @implementation ViewController
 {
     BOOL internetAvailable;
+    BOOL download;
     NSDictionary *jsonData;
 }
 
@@ -34,6 +36,11 @@
 @synthesize spinner;
 @synthesize loadingLabel;
 @synthesize storyPackID;
+@synthesize storyDBName;
+@synthesize downloadRectView;
+@synthesize progressView;
+@synthesize downloadPercentageLabel;
+@synthesize BGHideDownload;
 
 float scrollViewHeight,scrollViewWidth,xPosition,yPosition;
 UIScrollView *storyPacksHolder;
@@ -46,10 +53,12 @@ UIScrollView *storyPacksHolder;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+   
+    NSLog(@"download bool: %hhd",download);
     [self startSpin];
     basicJsonDict = [[NSDictionary alloc] init];
     [self performSelector:@selector(startRequest) withObject:nil afterDelay:1];
-    [self performSelector:@selector(showStoryPacks) withObject:nil afterDelay:3];
+//    [self performSelector:@selector(showStoryPacks) withObject:nil afterDelay:3];
     [self performSelector:@selector(dismissLoader) withObject:nil afterDelay:60];
 }
 -(void)startRequest
@@ -58,7 +67,7 @@ UIScrollView *storyPacksHolder;
     if(internetAvailable)
     {
         NSLog(@"internet Available");
-        [self performSelectorOnMainThread:@selector(jsonRequest:) withObject:freeBody waitUntilDone:1];
+        [self performSelectorInBackground:@selector(jsonRequest:) withObject:freeBody];
     }
     else{
         NSLog(@"internet Unavailable");
@@ -112,6 +121,16 @@ UIScrollView *storyPacksHolder;
             if ([data length] >0 && error == nil){
                 jsonData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 NSLog(@"jsonData : %@",jsonData);
+                if(download)
+                {
+//                   [self performSelector:@selector(callDownload) withObject:nil afterDelay:0];
+                    [self callDownload];
+                }
+                else
+                {
+//                    [self performSelector:@selector(showStoryPacks) withObject:nil afterDelay:0];
+                    [self showStoryPacks];
+                }
             }
             else if ([data length] == 0 && error == nil){
                 NSLog(@"Nothing was downloaded.");
@@ -176,7 +195,9 @@ NSLog (@"number of story packs :%i",count);
             [thumbView setUserInteractionEnabled:YES];
             [thumbView setHidden:NO];
             //setting tap.
+//            [thumbView setTag:[[[[basicJsonDict valueForKey:@"st_list"] objectAtIndex:i] valueForKey:@"StoryPackID"] integerValue]];
             [thumbView setTag:i];
+            NSLog(@"thumb.view.tag : %d",thumbView.tag);
             UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
             click.numberOfTapsRequired = 1;
             [thumbView addGestureRecognizer:click];
@@ -222,15 +243,32 @@ NSLog (@"number of story packs :%i",count);
 {
     NSLog(@"tag: %d",recognizer.view.tag);
 //    [self startSpin];
-    self.storyPackID = (int)[[[self.basicJsonDict valueForKey:@"st_list"] objectAtIndex:recognizer.view.tag] valueForKey:@"StoryPackID"];
-//    [self performSelector:@selector(jsonRequest:) withObject:basic];
-//    [self performSelector:@selector(callDownload) withObject:nil afterDelay:1];
+    self.storyPackID = [[[[self.basicJsonDict valueForKey:@"st_list"] objectAtIndex:recognizer.view.tag] valueForKey:@"StoryPackID"] integerValue];
+NSLog(@"self.storypackID : %d",self.storyPackID);
+    self.storyDBName = [[[self.basicJsonDict valueForKey:@"st_list"] objectAtIndex:recognizer.view.tag] valueForKey:@"AppleStoreKey"];
+NSLog(@"self.storyDBName :%@",self.storyDBName);
+    
+    NSLog(@"%@",[[basicJsonDict valueForKey:@"st_list"] objectAtIndex:recognizer.view.tag]);
+    NSLog(@"basic : %@",basic);
+    download = 1;
+    [self performSelector:@selector(jsonRequest:) withObject:basic];
+//    [self performSelector:@selector(callDownload) withObject:nil afterDelay:3];
 }
 
 -(void)callDownload
 {
+    [self startSpin];
+    [self.downloadRectView.layer setCornerRadius:9];
+    [self.downloadRectView.layer setMasksToBounds:YES];
+    [self.downloadRectView setHidden:NO];
+//    [self.navigationItem setHidesBackButton:YES];
+    [self.progressView setHidden:NO];
+    [self.downloadPercentageLabel setHidden:NO];
+    [self.BGHideDownload setHidden:NO];
+    self.storyDBName = [self.storyDBName stringByAppendingPathExtension:@"db"];
     STStoryPackDownload *freedownload = [[STStoryPackDownload alloc] init];
-    [freedownload downloadStoryPack:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[jsonData valueForKey:@"st_storypack_url" ]]]];
+    [freedownload setFilename:self.storyDBName];
+    [freedownload downloadStoryPack:[jsonData valueForKey:@"st_storypack_url" ]];
     //    playViewController *playGround = [[playViewController alloc] init];
     // if(IS_IPAD)
     //     playGround = [[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
@@ -239,6 +277,25 @@ NSLog (@"number of story packs :%i",count);
     //    playGround.dbName =storyPacksList[recognizer.view.tag];
     //    [self presentViewController:playGround animated:YES completion:nil];
 
+}
+
+-(void)updateProgress:(float)progress{
+    NSLog(@"progress : %f",progress);
+    self.downloadPercentageLabel.text = [NSString stringWithFormat:@"Downloading %0.0f%%",(progress*100)];
+    [self.progressView setProgress:progress animated:YES];
+    [self.progressView setProgressTintColor:[UIColor blueColor]];
+}
+
+-(void)finishedDownloadingDB:(NSString *)DBFilePath
+{
+    NSLog(@"finished downloading DB, moving to play!!");
+        playViewController *playGround = [[playViewController alloc] init];
+     if(IS_IPAD)
+        playGround = [[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+        else
+            playGround = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"playGround"];
+        playGround.dbName =DBFilePath;
+        [self presentViewController:playGround animated:YES completion:nil];
 }
 
 -(void)showAlert:(NSString*)message{
@@ -264,7 +321,14 @@ NSLog (@"number of story packs :%i",count);
 }
 
 - (void) retry{
-    [self jsonRequest:freeBody];
+    if(download)
+    {
+        
+    }
+    else{
+        [self performSelector:@selector(startRequest) withObject:nil afterDelay:1];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

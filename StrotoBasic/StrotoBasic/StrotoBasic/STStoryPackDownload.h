@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol STStoryPackDownloadDelegate
+@protocol STStoryPackDownloadDelegate<NSObject>
 
 -(void)updateProgress:(float)progress;
 -(void)finishedDownloadingDB:(NSString*)DBFilePath;
@@ -17,9 +17,11 @@
 
 @interface STStoryPackDownload : NSObject<NSURLConnectionDataDelegate,NSURLConnectionDelegate>
 
+
 @property (nonatomic, weak) NSString *installedFilePath;
 @property (nonatomic, strong) NSMutableData *fileData;
-@property (nonatomic, weak) id<STStoryPackDownloadDelegate> progressDelegate;
+@property (nonatomic, strong)  id<STStoryPackDownloadDelegate> progressDelegate;
+@property (nonatomic, strong) NSString *filename;
 
 -(void)downloadStoryPack:(NSString*)downloadURL;
 

@@ -8,23 +8,27 @@
 
 #import "STStoryPackDownload.h"
 
+
 @implementation STStoryPackDownload
 
 @synthesize installedFilePath;
 @synthesize fileData;
 @synthesize progressDelegate;
+@synthesize filename;
 
 long long int dbSize;
-NSString *filename;
 -(void)downloadStoryPack:(NSString*)downloadURL
 {
     NSLog(@"URL : %@",downloadURL);
-    filename = [downloadURL lastPathComponent];
-    NSLog(@"filename: %@",filename);
+//    filename = [downloadURL lastPathComponent];
+    NSLog(@"filename: %@",self.filename);
     self.fileData = [[NSMutableData alloc]init];
     NSURLConnection *downloadConnection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:downloadURL]] delegate:self startImmediately:NO] ;
     [downloadConnection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
    [downloadConnection start];
+    
+    
+//    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self.progressDelegate selector:@selector(updateProgress:) userInfo:Nil repeats:NO];
 }
 
 #pragma mark - URLConnection delegate methods
@@ -36,13 +40,15 @@ NSString *filename;
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-//    NSLog(@"data length : %d", [data length]);
+    NSLog(@"data length : %d", [data length]);
 //    NSLog(@"fileData length : %@",fileData);
 //    NSLog(@"dbSize : %d",dbSize);
     float progress = (float)[fileData length]/(float)dbSize;
     [progressDelegate updateProgress:progress];
     [self.fileData appendData:data];
     }
+
+
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection 
 {
     installedFilePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]stringByAppendingPathComponent:@"story_dir/story_packs/"];

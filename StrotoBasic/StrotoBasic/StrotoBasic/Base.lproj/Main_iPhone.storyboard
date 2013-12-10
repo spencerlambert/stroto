@@ -32,6 +32,36 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="pTI-ap-JFK">
+                                        <rect key="frame" x="65" y="213" width="190" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView contentMode="scaleToFill" image="lightGray.jpeg" id="zG9-RZ-gZQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="0AU-Kk-K2w">
+                                                <rect key="frame" x="20" y="13" width="150" height="9"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xGl-La-OiF">
+                                                <rect key="frame" x="33" y="29" width="125" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.25587363140000002" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button hidden="YES" clipsSubviews="YES" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l3E-of-1LL">
+                                        <rect key="frame" x="0.0" y="-2" width="320" height="486"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -44,7 +74,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="BGHideDownload" destination="l3E-of-1LL" id="eg1-aA-yua"/>
+                        <outlet property="downloadPercentageLabel" destination="xGl-La-OiF" id="MPH-10-XMN"/>
+                        <outlet property="downloadRectView" destination="pTI-ap-JFK" id="JZ2-Sp-E65"/>
                         <outlet property="loadingLabel" destination="nUb-dw-T2g" id="38m-EI-Ce1"/>
+                        <outlet property="progressView" destination="0AU-Kk-K2w" id="nAV-7N-rpj"/>
                         <outlet property="spinner" destination="G4K-vV-vpa" id="vPW-ga-Aau"/>
                         <outlet property="storyPacksView" destination="yiy-Mz-yCX" id="G2j-50-Pcq"/>
                     </connections>
@@ -83,6 +117,7 @@
     </scenes>
     <resources>
         <image name="color_red.png" width="10" height="10"/>
+        <image name="lightGray.jpeg" width="284" height="177"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
