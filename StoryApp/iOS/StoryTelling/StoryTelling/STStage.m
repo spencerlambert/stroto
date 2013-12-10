@@ -31,6 +31,13 @@
     stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
     audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
 }
+- (id) initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		[self initialize];
+	}
+	return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -112,6 +119,7 @@
                 
             }
             else if (instance.instanceType == true){
+                
                 UIImageView *imageview = ((UIImageView*)[self viewWithTag:instance.imageInstanceID]);
                 STImage *image = (STImage*)imageview.image;
                 STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
@@ -134,6 +142,14 @@
 	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:delayRemaining > 0.0 ? delayRemaining : 0.01];
 
     
+}
+
+-(UIView *)subviewWithTag:(int)tag{
+    for(UIView *views in self.subviews){
+        if(views.tag == tag)
+            return views;
+    }
+    return NULL;
 }
 
 @end

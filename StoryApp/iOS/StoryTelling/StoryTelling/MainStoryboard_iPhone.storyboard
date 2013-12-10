@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PWj-gx-do9">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -1185,7 +1185,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="ScreenCaptureView">
+                            <view alpha="0.99999999999999989" contentMode="scaleToFill" restorationIdentifier="WorkArea" id="LK1-uv-CST" customClass="STStage">
                                 <rect key="frame" x="0.0" y="84" width="320" height="320"/>
                                 <color key="backgroundColor" red="0.48010468482971191" green="0.0" blue="0.069121681153774261" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

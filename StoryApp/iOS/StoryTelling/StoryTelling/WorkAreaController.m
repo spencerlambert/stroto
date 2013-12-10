@@ -52,8 +52,8 @@ UIButton *button ;
     
     [self setBackgroundImages:[NSMutableArray arrayWithArray:[storyDB getBackgroundImagesSorted]]];
     [self setForegroundImages:[NSMutableArray arrayWithArray:[storyDB getForegroundImagesSorted]]];
-    //    [captureview setStoryDB:storyDB];
-    //    [captureview initStage];
+    [captureview setStoryDB:storyDB];
+    [captureview initStage];
 }
 
 - (void)viewDidLoad
@@ -186,7 +186,7 @@ UIButton *button ;
         
         imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
         
-        //        [captureview actortoStage:selectedForegroundImage];
+        [imageview setTag:[captureview actortoStage:selectedForegroundImage]];
         
         [imageview bringToFront];
         pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -208,7 +208,7 @@ UIButton *button ;
         for (UIView *subviews in [captureview subviews]) {
             [subviews setUserInteractionEnabled:YES];
         }
-        [imageview setTag:[storyDB addImageInstance:selectedForegroundImage.imageId]];
+        //[imageview setTag:[storyDB addImageInstance:selectedForegroundImage.imageId]];
     }
     
 }
@@ -290,8 +290,8 @@ UIButton *button ;
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
     backgroundimageview.image = selectedImage;
-    [storyDB addImageInstance:selectedImage.imageId];
-    // [captureview actortoStage:selectedImage];
+    //[storyDB addImageInstance:selectedImage.imageId];
+    [captureview actortoStage:selectedImage];
 }
 
 //adding foreground image to work area

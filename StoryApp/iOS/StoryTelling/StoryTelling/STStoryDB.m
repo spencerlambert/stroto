@@ -600,16 +600,19 @@
         return -1;
     }
     
-    sql = @"select last_insert_rowid();";
-    const char *sql_stmt1 = [sql UTF8String];
-    sqlite3_stmt *compiled_stmt;
-    if(sqlite3_prepare_v2(db, sql_stmt1, -1, &compiled_stmt, NULL) == SQLITE_OK){
-        int instanceID = sqlite3_column_int(compiled_stmt, 0);
+//    sql = @"select last_insert_rowid();";
+//    const char *sql_stmt1 = [sql UTF8String];
+//    sqlite3_stmt *compiled_stmt;
+//    int id1 = sqlite3_last_insert_rowid(db);
+//    if(sqlite3_prepare_v2(db, sql_stmt1, -1, &compiled_stmt, NULL) == SQLITE_OK){
+//        int instanceID = sqlite3_column_int(compiled_stmt, 0);
+//        return instanceID;
+//    }
+//    else{
+//    return  -1;
+    int instanceID = sqlite3_last_insert_rowid(db);
         return instanceID;
-    }
-    else{
-        return -1;
-    }
+//    }
 }
 
 - (void)updateImageInstanceTimeline:(STImageInstancePosition*)timelineInstance{
