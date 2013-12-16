@@ -19,6 +19,7 @@
 #import "STStoryDB.h"
 #import "STStagePlayer.h"
 #import "STStageExporter.h"
+#import "STBGImageView.h"
 
 @protocol WorkAreaDelegate <NSObject>
 
@@ -31,7 +32,7 @@
     SlideDownView *slidedownview;
     SlideLeftView *slideleftview;
     BOOL toolbarsvisible;
-    UIImageView *backgroundimageview;
+    STBGImageView *backgroundimageview;
     AudioRecorder *audiorecorder;
     NSMutableArray *pickedimages;
     BOOL imageselected;

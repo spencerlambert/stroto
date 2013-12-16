@@ -8,6 +8,8 @@
 
 #import "STStage.h"
 #import "STImageInstance.h"
+#import "STFGImageView.h"
+#import "STBGImageView.h"
 
 @interface STStage (Actor_Entry_Handlers)
 
@@ -25,6 +27,7 @@
     isRecording = false;
     startedAt = nil;
     pauseInterval = 0;
+    timeline = [[NSMutableArray alloc]init];
 }
 
 -(void) initRecorders{
@@ -83,6 +86,7 @@
   }
 - (void) stopRecording{
     isRecording = NO;
+    [self updateTimeline];
 }
 -(void) pauseRecording{
     if(isRecording){
@@ -101,40 +105,46 @@
 -(void) drawRect:(CGRect)rect{
     NSDate *start = [NSDate date];
     if(isRecording){
-        [self reLoadImageInstances];
-        NSMutableArray *array = [[NSMutableArray alloc]init];
         
         float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
         
         for (STImageInstance *instance in imageInstances) {
             if(instance.instanceType == false){
-                UIImageView *imageview = ((UIImageView*)[self viewWithTag:99999]);
-                STImage *image = (STImage*)imageview.image;
+                STBGImageView *imageview = ((STBGImageView *)[self viewWithTag:99999]);
+                if ([imageview isChanged]){
                 STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
                 [position setTimecode:millisElapsed];
-                [position setImageInstanceId:instance.imageInstanceID];
+                [position setImageInstanceId:imageview.imageInstanceID];
                 [position setX:imageview.frame.origin.x];
                 [position setY:imageview.frame.origin.y];
-                [array addObject:position];
+//                [stageRecorder writeImageInstance:position];
+                [timeline addObject:position];
+                [imageview setIsChanged:NO];
+                }
                 
             }
             else if (instance.instanceType == true){
                 
-                UIImageView *imageview = ((UIImageView*)[self viewWithTag:instance.imageInstanceID]);
-                STImage *image = (STImage*)imageview.image;
+               STFGImageView *imageview = ((STFGImageView*)[self viewWithTag:instance.imageInstanceID]);
+//                STImage *image = (STImage*)imageview.image;
+                if([imageview isEdited]){
                 STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
                 [position setTimecode:millisElapsed];
                 [position setImageInstanceId:instance.imageInstanceID];
                 [position setX:imageview.frame.origin.x];
                 [position setY:imageview.frame.origin.y];
-                [array addObject:position];
+//                [stageRecorder writeImageInstance:position];
+                [timeline addObject:position];
+                [imageview setIsEdited:NO];
+                                        
+                }
             }
             
         }
         
-        for (STImageInstancePosition *position in array){
-            [stageRecorder writeImageInstance:position];
-        }
+//        for (STImageInstancePosition *position in array){
+//            [stageRecorder writeImageInstance:position];
+//        }
         
     }
     float processingSeconds = [[NSDate date] timeIntervalSinceDate:start];
@@ -150,6 +160,39 @@
             return views;
     }
     return NULL;
+}
+
+-(void) getVideofromDB{
+//    UIImage *bottomImage = [UIImage imageNamed:@"color_red.png"]; //background image
+//    UIImage *image       = [UIImage imageNamed:@"StartRecording.png"]; //foreground image
+//    UIImage *image1      = [UIImage imageNamed:@"AddButton.png"]; //foreground image
+//    UIImage *image2      = [UIImage imageNamed:@"RecordStop.png"]; //foreground image
+//    
+//    CGSize newSize = CGSizeMake(320, 480);
+//    UIGraphicsBeginImageContext( newSize );
+//    
+//    // Use existing opacity as is
+//    [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+//    
+//    // Apply supplied opacity if applicable
+//    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.4];
+//    [image1 drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.3];
+//    [image2 drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.2];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    UIGraphicsEndImageContext();
+//    
+//    resultView = [[UIImageView alloc] initWithImage:newImage];
+//    resultView.frame = CGRectMake(0, 0,320,460);
+//    [self.view addSubview:resultView];
+}
+
+-(void)updateTimeline{
+    
+    for (STImageInstancePosition *position in timeline) {
+        [stageRecorder writeImageInstance:position];
+    }
+    
 }
 
 @end

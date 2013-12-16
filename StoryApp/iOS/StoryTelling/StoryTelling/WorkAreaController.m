@@ -9,6 +9,7 @@
 #import "WorkAreaController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "SavedStoryDetailsViewController.h"
+#import "STFGImageView.h"
 
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
@@ -85,7 +86,7 @@ UIButton *button ;
     rotate.delegate = self;
     audiorecorder = [[AudioRecorder alloc]init];
     CGRect bounds = [captureview bounds];
-    backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
+    backgroundimageview = [[STBGImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [backgroundimageview setUserInteractionEnabled:YES];
     [backgroundimageview setTag:99999];
@@ -173,7 +174,7 @@ UIButton *button ;
         NSLog(@"%f %f",point.x,point.y);
         
         //        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-50,point.y-(60+20)-50, 100, 100)];
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(point.x-(selectedForegroundImage.sizeScale/2),point.y-(60+20)-(selectedForegroundImage.sizeScale/2), selectedForegroundImage.sizeScale, selectedForegroundImage.sizeScale)];
+        STFGImageView *imageview = [[STFGImageView alloc]initWithFrame:CGRectMake(point.x-(selectedForegroundImage.sizeScale/2),point.y-(60+20)-(selectedForegroundImage.sizeScale/2), selectedForegroundImage.sizeScale, selectedForegroundImage.sizeScale)];
         imageview.image=selectedForegroundImage;
         [imageview setContentMode:UIViewContentModeScaleAspectFit];
         [captureview addSubview:imageview];
@@ -202,6 +203,7 @@ UIButton *button ;
         [imageview addGestureRecognizer:pinch];
         [imageview addGestureRecognizer:rotate];
         [imageview addGestureRecognizer:tap];
+        [imageview setIsEdited:YES];
         
         [self setSelectedForegroundImage:nil];
         [slidedownview clearBorder];
@@ -289,9 +291,10 @@ UIButton *button ;
 #pragma mark SlideUpViewDelegate methods
 
 - (void) setWorkspaceBackground:(STImage *)selectedImage{
+    [backgroundimageview  setIsChanged:YES];
     backgroundimageview.image = selectedImage;
     //[storyDB addImageInstance:selectedImage.imageId];
-    [captureview actortoStage:selectedImage];
+    [backgroundimageview setImageInstanceID:[captureview actortoStage:selectedImage]];
 }
 
 //adding foreground image to work area
@@ -335,27 +338,36 @@ UIButton *button ;
 #pragma mark UIGestureRecognizerDelegate methods
 
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+    STFGImageView *img = (STFGImageView *)recognizer.view;
+    img.isEdited = YES;
     [recognizer.view bringToFront];
     CGPoint translation = [recognizer translationInView:self.view];
     recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
                                          recognizer.view.center.y + translation.y);
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+
     
 }
 
 - (IBAction)handleRotate:(UIRotationGestureRecognizer *)recognizer {
+    STFGImageView *img = (STFGImageView *)recognizer.view;
+    img.isEdited = YES;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
     recognizer.rotation = 0;
 }
 
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+    STFGImageView *img = (STFGImageView *)recognizer.view;
+    img.isEdited = YES;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;
 }
 
 -(IBAction)handleTap:(UITapGestureRecognizer*)recognizer{
+    STFGImageView *img = (STFGImageView *)recognizer.view;
+    img.isEdited = YES;
     [recognizer.view bringToFront];
 }
 
@@ -389,11 +401,11 @@ UIButton *button ;
     [captureview stopRecording];
     [audiorecorder stop];
     if(recordbtnClicked){
-        if (!loaderView) {
-            loaderView = [self getLoaderView];
-            [self.view addSubview:loaderView];
-        }
-        [self performSelector:@selector(CompileRecording) withObject:nil afterDelay:10.0];
+//        if (!loaderView) {
+//            loaderView = [self getLoaderView];
+//            [self.view addSubview:loaderView];
+//        }
+       // [self performSelector:@selector(CompileRecording) withObject:nil afterDelay:10.0];
     }else{
         [storyDB closeDB];
         [mydelegate finishedRecording];
