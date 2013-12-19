@@ -87,6 +87,7 @@
 - (void) stopRecording{
     isRecording = NO;
     [self updateTimeline];
+    [self finalizeRecording];
 }
 -(void) pauseRecording{
     if(isRecording){
@@ -190,6 +191,17 @@
 -(void)updateTimeline{
     
     for (STImageInstancePosition *position in timeline) {
+        [stageRecorder writeImageInstance:position];
+    }
+    
+}
+
+-(void)finalizeRecording{
+    NSArray *temp = [storyDB getInstanceIDs];
+    for (NSNumber *instanceID in temp) {
+       STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+        [position setImageInstanceId:instanceID.intValue];
+        [position setLayer:-1];
         [stageRecorder writeImageInstance:position];
     }
     

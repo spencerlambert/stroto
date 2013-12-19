@@ -183,6 +183,8 @@ NSString *databasePath;
 
 - (NSArray*)getImageInstanceTable;
 - (int)addImageInstance:(int)imageId;
+- (NSArray *)getInstanceIDs;
+- (NSArray *)getTimecodes;
 
 - (NSString *)getDBName;
 - (NSString *)getStoryName;

@@ -153,6 +153,10 @@
 		DBFA4AC2174D7F1C001DFCDC /* StartRecordingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */; };
 		DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
 		DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */; };
+		DBFE101D185FFBC800FDAAC7 /* STBGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFE101A185FFBC800FDAAC7 /* STBGImageView.m */; };
+		DBFE101E185FFBC800FDAAC7 /* STBGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFE101A185FFBC800FDAAC7 /* STBGImageView.m */; };
+		DBFE101F185FFBC800FDAAC7 /* STFGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFE101C185FFBC800FDAAC7 /* STFGImageView.m */; };
+		DBFE1020185FFBC800FDAAC7 /* STFGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBFE101C185FFBC800FDAAC7 /* STFGImageView.m */; };
 		EB00E64717FE7E59002CE208 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB00E64617FE7E59002CE208 /* FacebookSDK.framework */; };
 		EB14BB4E180BD6AA009F38E6 /* STFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB00E64417FE74AE002CE208 /* STFacebookViewController.m */; };
 		EB14BB50180BD6B9009F38E6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB14BB4F180BD6B9009F38E6 /* Social.framework */; };
@@ -381,6 +385,10 @@
 		DBFA4AC0174D7F1C001DFCDC /* StartRecordingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartRecordingButton.png; sourceTree = "<group>"; };
 		DBFA4AC3174D8206001DFCDC /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		DBFA4AC4174D8206001DFCDC /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		DBFE1019185FFBC800FDAAC7 /* STBGImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBGImageView.h; sourceTree = "<group>"; };
+		DBFE101A185FFBC800FDAAC7 /* STBGImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBGImageView.m; sourceTree = "<group>"; };
+		DBFE101B185FFBC800FDAAC7 /* STFGImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFGImageView.h; sourceTree = "<group>"; };
+		DBFE101C185FFBC800FDAAC7 /* STFGImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFGImageView.m; sourceTree = "<group>"; };
 		EB00E64317FE74AE002CE208 /* STFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFacebookViewController.h; sourceTree = "<group>"; };
 		EB00E64417FE74AE002CE208 /* STFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFacebookViewController.m; sourceTree = "<group>"; };
 		EB00E64617FE7E59002CE208 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -758,6 +766,10 @@
 		DB9E9E931764A83B00788373 /* WorkArea */ = {
 			isa = PBXGroup;
 			children = (
+				DBFE1019185FFBC800FDAAC7 /* STBGImageView.h */,
+				DBFE101A185FFBC800FDAAC7 /* STBGImageView.m */,
+				DBFE101B185FFBC800FDAAC7 /* STFGImageView.h */,
+				DBFE101C185FFBC800FDAAC7 /* STFGImageView.m */,
 				DB28D7511742E4900071B5C2 /* WorkAreaController.h */,
 				DB28D7521742E4900071B5C2 /* WorkAreaController.m */,
 				DB28D74B1742E2390071B5C2 /* ScreenCaptureView.h */,
@@ -1055,9 +1067,11 @@
 				EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */,
 				EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */,
 				DB28D75F1742E8950071B5C2 /* SlideLeftView.m in Sources */,
+				DBFE101D185FFBC800FDAAC7 /* STBGImageView.m in Sources */,
 				DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC5174D8206001DFCDC /* AudioRecorder.m in Sources */,
 				DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */,
+				DBFE101F185FFBC800FDAAC7 /* STFGImageView.m in Sources */,
 				DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */,
 				DB9E9E8D1764A81000788373 /* AddBackgroundViewController.m in Sources */,
 				DB9E9E911764A82100788373 /* AddForegroundViewController.m in Sources */,
@@ -1123,9 +1137,11 @@
 				DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */,
 				DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */,
+				DBFE1020185FFBC800FDAAC7 /* STFGImageView.m in Sources */,
 				DB9E9E8A1764A7DC00788373 /* CreateStoryRootViewController.m in Sources */,
 				DB9E9E8E1764A81000788373 /* AddBackgroundViewController.m in Sources */,
 				DB9E9E921764A82100788373 /* AddForegroundViewController.m in Sources */,
+				DBFE101E185FFBC800FDAAC7 /* STBGImageView.m in Sources */,
 				DB9E9E981764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */,
 				DB9E9EAE1764BE4100788373 /* ELCAlbumPickerController.m in Sources */,
 				DB9E9EB01764BE4100788373 /* ELCAsset.m in Sources */,
