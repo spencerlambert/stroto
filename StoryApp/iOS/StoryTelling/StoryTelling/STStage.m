@@ -202,6 +202,7 @@
        STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
         [position setImageInstanceId:instanceID.intValue];
         [position setLayer:-1];
+        [position setTimecode:-1];
         [stageRecorder writeImageInstance:position];
     }
     

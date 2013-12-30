@@ -590,6 +590,22 @@
     return imageInstances;
 }
 
+-(NSDictionary*)getImageInstanceTableAsDictionary{
+    NSMutableDictionary *imageInstances = [[NSMutableDictionary alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * from ImageInstance;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            int instanceID = sqlite3_column_int(compiled_stmt, 0);
+            int imageID = sqlite3_column_int(compiled_stmt, 1);
+            [imageInstances setValue:[NSNumber numberWithInt:imageID] forKey:[NSString stringWithFormat:@"%d",instanceID]];
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return imageInstances;
+}
+
 - (int)addImageInstance:(int)imageId{
     char *errMsg;
     NSString *sql = [NSString stringWithFormat:@"INSERT into ImageInstance ('imageId') values(%d);", imageId ];
@@ -685,6 +701,21 @@
         while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
             int instanceID = sqlite3_column_int(compiled_stmt, 0);
             [instanceIDs addObject:[NSNumber numberWithInt:instanceID]];
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return instanceIDs;
+}
+
+- (NSArray *)getInstanceIDsAsString{
+    NSMutableArray *instanceIDs = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imageInstanceId from ImageInstance;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            int instanceID = sqlite3_column_int(compiled_stmt, 0);
+            [instanceIDs addObject:[NSString stringWithFormat:@"%d",instanceID]];
         }
     }
     sqlite3_finalize(compiled_stmt);

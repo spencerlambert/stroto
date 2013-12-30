@@ -177,16 +177,18 @@ NSString *databasePath;
 // Then have things like STImageInstanceTimeline that hold the specific items.
 - (void)updateImageInstanceTimeline:(STImageInstancePosition*)timelineInstance;
 - (NSArray *)getImageInstanceTimeline;
+- (NSArray *)getTimecodes;
+- (NSArray *)getimageInstanceTimeline:(int)imageinstanceID;
+- (STImageInstancePosition *)getLastRow:(int)imageinstanceID;
 
 -(BOOL)updateVersion:(float)version;
 -(BOOL)deleteSTstoryDB;//Delete the current db
 
 - (NSArray*)getImageInstanceTable;
+- (NSDictionary*)getImageInstanceTableAsDictionary;
 - (int)addImageInstance:(int)imageId;
 - (NSArray *)getInstanceIDs;
-- (NSArray *)getTimecodes;
-- (NSArray *)getimageInstanceTimeline:(int)imageinstanceID;
-- (STImageInstancePosition *)getLastRow:(int)imageinstanceID;
+- (NSArray *)getInstanceIDsAsString;
 
 
 - (NSString *)getDBName;

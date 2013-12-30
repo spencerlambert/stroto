@@ -111,6 +111,7 @@
 		DB9A00651815198900244040 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
+		DB9E61BD1871366C0080D708 /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */; };
 		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
@@ -347,6 +348,8 @@
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9D34F517CD98CC00845670 /* STStageExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporter.h; sourceTree = "<group>"; };
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
+		DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerFrame.h; sourceTree = "<group>"; };
+		DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerFrame.m; sourceTree = "<group>"; };
 		DB9E979C17E002C1009BD697 /* navbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbutton.png; sourceTree = "<group>"; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
@@ -513,6 +516,8 @@
 				4D2A0A801780B81800C78EE0 /* STStage.m */,
 				4D2A0A88178110B000C78EE0 /* STStagePlayer.h */,
 				4D2A0A89178110B000C78EE0 /* STStagePlayer.m */,
+				DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */,
+				DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
 				4D2A0A861781108200C78EE0 /* STStageRecorder.m */,
 				4D2A0A8E17811AA500C78EE0 /* STImage.h */,
@@ -1095,6 +1100,7 @@
 				4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */,
 				4D2A0A721780B56900C78EE0 /* STSound.m in Sources */,
 				EB6EEDD2183591B30050F3CD /* Reachability.m in Sources */,
+				DB9E61BD1871366C0080D708 /* STStagePlayerFrame.m in Sources */,
 				4D2A0A751780B5A000C78EE0 /* STModiferImageInstanceZoom.m in Sources */,
 				4D2A0A781780B5C900C78EE0 /* STModifierImageInstanceRotate.m in Sources */,
 				4D2A0A7B1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m in Sources */,

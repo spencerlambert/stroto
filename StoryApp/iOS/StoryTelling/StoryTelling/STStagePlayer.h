@@ -7,6 +7,8 @@
 //
 
 #import "STStoryDB.h"
+#import "STStagePlayerFrame.h"
+#import "STImage.h"
 
 @interface STStagePlayer : NSObject{
     STStoryDB *storyDB;

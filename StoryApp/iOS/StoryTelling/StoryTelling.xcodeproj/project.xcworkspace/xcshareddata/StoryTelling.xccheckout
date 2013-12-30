@@ -5,36 +5,48 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>CCF74EAA-60C7-410B-955E-AA995DFF8F14</string>
+	<string>6EC8D052-2F83-4861-AEC0-864C4341EFA3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>StoryTelling</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>699C2B5F-CB76-4312-9054-A8BCAACA5C01</key>
-		<string>ssh://github.com/spencerlambert/isp_helper.git</string>
+		<key>4A26DFB6-4001-471B-8E25-B404841432BE</key>
+		<string>https://github.com/vnspencer/StoryTelling.git</string>
+		<key>D4E0416E-CB9E-474E-9525-0FD76BE3306F</key>
+		<string>https://github.com/spencerlambert/isp_helper.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>StoryApp/iOS/StoryTelling/StoryTelling.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>699C2B5F-CB76-4312-9054-A8BCAACA5C01</key>
+		<key>4A26DFB6-4001-471B-8E25-B404841432BE</key>
+		<string>../..</string>
+		<key>D4E0416E-CB9E-474E-9525-0FD76BE3306F</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/spencerlambert/isp_helper.git</string>
+	<string>https://github.com/vnspencer/StoryTelling.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>699C2B5F-CB76-4312-9054-A8BCAACA5C01</string>
+	<string>D4E0416E-CB9E-474E-9525-0FD76BE3306F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>699C2B5F-CB76-4312-9054-A8BCAACA5C01</string>
+			<string>D4E0416E-CB9E-474E-9525-0FD76BE3306F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>isp_helper</string>
+			<string>spence</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4A26DFB6-4001-471B-8E25-B404841432BE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StoryTelling</string>
 		</dict>
 	</array>
 </dict>
