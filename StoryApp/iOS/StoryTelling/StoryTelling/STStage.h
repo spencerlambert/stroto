@@ -12,6 +12,7 @@
 #import "STStoryDB.h"
 #import "STStageRecorder.h"
 #import "STAudioRecording.h"
+#import "STStagePlayer.h"
 
 
 @interface STStage : UIView{

@@ -88,6 +88,9 @@
     isRecording = NO;
     [self updateTimeline];
     [self finalizeRecording];
+    
+    STStagePlayer *player = [[STStagePlayer alloc]initWithDB:storyDB];
+    [player generateMovie];
 }
 -(void) pauseRecording{
     if(isRecording){
@@ -163,30 +166,6 @@
     return NULL;
 }
 
--(void) getVideofromDB{
-//    UIImage *bottomImage = [UIImage imageNamed:@"color_red.png"]; //background image
-//    UIImage *image       = [UIImage imageNamed:@"StartRecording.png"]; //foreground image
-//    UIImage *image1      = [UIImage imageNamed:@"AddButton.png"]; //foreground image
-//    UIImage *image2      = [UIImage imageNamed:@"RecordStop.png"]; //foreground image
-//    
-//    CGSize newSize = CGSizeMake(320, 480);
-//    UIGraphicsBeginImageContext( newSize );
-//    
-//    // Use existing opacity as is
-//    [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-//    
-//    // Apply supplied opacity if applicable
-//    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.4];
-//    [image1 drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.3];
-//    [image2 drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModeNormal alpha:0.2];
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    UIGraphicsEndImageContext();
-//    
-//    resultView = [[UIImageView alloc] initWithImage:newImage];
-//    resultView.frame = CGRectMake(0, 0,320,460);
-//    [self.view addSubview:resultView];
-}
 
 -(void)updateTimeline{
     

@@ -168,6 +168,7 @@ NSString *databasePath;
 - (BOOL)deleteImage:(STImage*)image;  // Only deletes if the image has no Instances in the ImageInstance table.
 - (STImage*)getImageByID:(int)img_id;
 // Changed to NSArray as the return type, because I don't think we need a Mutable list.
+- (NSDictionary*)getImagesTable; //Returns a list of all images as dictionary with imageID as key
 - (NSArray*)getBackgroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
 - (NSArray*)getForegroundImagesSorted; // Returns a list of background STIImage* sorted by the listDisplayOrder
 
@@ -193,6 +194,8 @@ NSString *databasePath;
 
 - (NSString *)getDBName;
 - (NSString *)getStoryName;
+- (CGSize)getStorySize;
+
 -(void) closeDB;
 //Still need other methods for getting the timeline in playback mode.
 

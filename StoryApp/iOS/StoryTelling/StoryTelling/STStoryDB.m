@@ -368,6 +368,45 @@
             temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
             temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
             /*
+             const void *ptr1 = sqlite3_column_blob(compiled_stmt, 9);
+             int size1 = sqlite3_column_bytes(compiled_stmt, 9);
+             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
+             UIImage *image1 = [UIImage imageWithData:data1];
+             */
+            // Thumbnail is really just a pointer to the main image now
+            temp.thumbimage = image;
+            
+            temp.sizeScale = (float)sqlite3_column_double(compiled_stmt,10);
+            [bgImages addObject:temp];
+        }
+        
+    }
+    sqlite3_finalize(compiled_stmt);
+    return bgImages;
+}
+
+- (NSDictionary*)getImagesTable{
+    NSMutableDictionary *bgImages = [[NSMutableDictionary alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT imageId,listDisplayOrder,sizeX,sizeY,fileType,type,defaultX,defaultY,defaultScale,imageData,sizeScale from Image;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 9);
+            int size = sqlite3_column_bytes(compiled_stmt, 9);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+            UIImage *image = [UIImage imageWithData:data];
+            STImage *temp = [[STImage alloc]initWithCGImage:image.CGImage];
+            temp.imageId = sqlite3_column_int(compiled_stmt, 0);
+            temp.listDisplayOrder = sqlite3_column_int(compiled_stmt, 1);
+            temp.sizeX = sqlite3_column_int(compiled_stmt, 2);
+            temp.sizeY = sqlite3_column_int(compiled_stmt, 3);
+            temp.fileType =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 4)];
+            temp.type =  [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt, 5)];
+            temp.defaultX = sqlite3_column_int(compiled_stmt, 6);
+            temp.defaultY = sqlite3_column_int(compiled_stmt, 7);
+            temp.defaultScale = (float)sqlite3_column_double(compiled_stmt, 8);
+            /*
             const void *ptr1 = sqlite3_column_blob(compiled_stmt, 9);
             int size1 = sqlite3_column_bytes(compiled_stmt, 9);
             NSData *data1 = [[NSData alloc] initWithBytes:ptr1 length:size1];
@@ -377,7 +416,8 @@
             temp.thumbimage = image;
             
             temp.sizeScale = (float)sqlite3_column_double(compiled_stmt,10);
-            [bgImages addObject:temp];
+            
+            [bgImages setObject:temp forKey:[NSString stringWithFormat:@"%d", temp.imageId]];
         }
         
     }
@@ -690,6 +730,23 @@
     }
     sqlite3_finalize(compiled_stmt);
     return @"";
+}
+
+-(CGSize)getStorySize{
+    CGSize size;
+    NSString *sql = [NSString stringWithFormat:@"SELECT sizeX,sizeY from Story;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            int sizex = sqlite3_column_int(compiled_stmt, 0);
+            int sizey = sqlite3_column_int(compiled_stmt, 1);
+            size = CGSizeMake(sizex, sizey);
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return size;
+ 
 }
 
 - (NSArray *)getInstanceIDs{

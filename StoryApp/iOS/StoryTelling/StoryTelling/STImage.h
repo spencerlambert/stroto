@@ -25,7 +25,7 @@
  imageData           BLOB,
  thumbnailData       BLOB
 
- 
+ /Users/aaswini/Desktop/spence/StoryApp/iOS/StoryTelling/StoryTelling/STImage.h
  Note: Aaswini, I'm not familiar with all the different data types in Objective-C.
  You can make adjustments to my definitions if you find better ways of doing things,
  please change them.
@@ -34,7 +34,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STImage : UIImage
+@interface STImage : UIImage<NSCoding>
 
 @property int imageId;
 @property int listDisplayOrder;

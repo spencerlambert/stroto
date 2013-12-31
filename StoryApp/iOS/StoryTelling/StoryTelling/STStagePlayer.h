@@ -9,11 +9,13 @@
 #import "STStoryDB.h"
 #import "STStagePlayerFrame.h"
 #import "STImage.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface STStagePlayer : NSObject{
     STStoryDB *storyDB;
 }
 -(id)initWithDB:(STStoryDB *)db;
+-(void)generateMovie;
 
 
 @end

@@ -10,16 +10,30 @@
 
 @implementation STStagePlayerFrame
 
+@synthesize fgImages,bgImage;
+
 -(id)initWithInstances:(NSArray *)instances{
     self = [super init];
     if (self) {
-        fgImages = [[NSDictionary alloc] initWithObjects:[[NSArray alloc]init] forKeys:instances];
+        fgImages = [[NSMutableDictionary alloc] init];
+        for (NSString *instanceID in instances) {
+            [fgImages setObject:[NSNull null] forKey:instanceID];
+        }
         bgImage = nil;
     }
     return self;
 }
 
--(void)addFGImage:(STImage *)image withInstanceID:(int)instanceID{
+-(id)initWithSTStagePlayerFrame:(STStagePlayerFrame *)frame{
+    self = [super init];
+    if (self) {
+        fgImages = [[NSMutableDictionary alloc] initWithDictionary:[frame fgImages]];
+        bgImage = [frame bgImage];
+    }
+    return self;
+}
+
+-(void)addFGImage:(STImageInstancePosition *)image withInstanceID:(int)instanceID{
     
     [fgImages setValue:image forKey:[NSString stringWithFormat:@"%d",instanceID]];
     
@@ -33,8 +47,36 @@
 
 -(void)addBGImage:(STImage *)image{
     
-    bgImage = image;
+//    bgImage = image;
+    bgImage = [[STImage alloc]initWithCGImage:image.CGImage];
     
 }
+
+-(UIImage *)getImageforFrame:(CGSize)size{
+    
+    UIGraphicsBeginImageContext(size);
+    if(bgImage==nil) bgImage = [[STImage alloc] initWithCGImage:[UIImage imageNamed:@"RecordArea.png"].CGImage];
+    [bgImage drawInRect:CGRectMake(0,0,size.width,size.height)];
+    
+    for (NSString *instanceID in fgImages) {
+        STImageInstancePosition *fgimageposition = [fgImages objectForKey:instanceID];
+        
+        if(![fgimageposition isKindOfClass:[NSNull class]]){
+        
+        int imageID = [self.instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",fgimageposition.imageInstanceId]];
+        STImage *fgimage = [self.imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
+        
+        [fgimage drawInRect:CGRectMake(fgimageposition.x,fgimageposition.y,fgimage.sizeX,fgimage.sizeY) blendMode:kCGBlendModeNormal alpha:1];
+        }
+        
+    }
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+    
+}
+
+
 
 @end

@@ -32,4 +32,50 @@
     return self;
 }
 
+#pragma mark Encoding/Decoding
+
+
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    NSLog(@"Encoding");
+    
+    [aCoder encodeObject:[NSNumber numberWithInt:self.imageId] forKey:@"imageId"];
+    [aCoder encodeObject:[NSNumber numberWithInt:self.listDisplayOrder] forKey:@"listDisplayOrder"];
+    [aCoder encodeObject:[NSNumber numberWithInt:self.sizeX] forKey:@"sizeX"];
+    [aCoder encodeObject:[NSNumber numberWithInt:self.sizeY] forKey:@"sizeY"];
+    [aCoder encodeObject: self.fileType forKey:@"fileType"];
+    [aCoder encodeObject: self.type forKey:@"type"];
+    [aCoder encodeObject:[NSNumber numberWithInt:self.defaultX] forKey:@"defaultX"];
+    [aCoder encodeObject:[NSNumber numberWithInt:self.defaultY] forKey:@"defaultY"];
+    [aCoder encodeObject:[NSNumber numberWithFloat:self.defaultScale] forKey:@"defaultScale"];
+    [aCoder encodeObject:[NSNumber numberWithFloat:self.minZoomScale] forKey:@"minZoomScale"];
+    [aCoder encodeObject:[NSNumber numberWithFloat:self.sizeScale] forKey:@"sizeScale"];
+
+    
+    NSLog(@"Encoding finished");
+    
+}
+
+
+- (id) initWithCoder: (NSCoder *)coder
+{
+    if (self = [super init])
+    {
+        [self setImageId:[coder decodeIntForKey:@"imageId"]];
+        [self setListDisplayOrder:[coder decodeIntForKey:@"listDisplayOrder"]];
+        [self setSizeX:[coder decodeIntForKey:@"sizeX"]];
+        [self setSizeY:[coder decodeIntForKey:@"sizeY"]];
+        [self setFileType:[coder decodeObjectForKey:@"fileType"]];
+        [self setType:[coder decodeObjectForKey:@"type"]];
+        [self setDefaultX:[coder decodeIntForKey:@"defaultX"]];
+        [self setDefaultY:[coder decodeIntForKey:@"defaultY"]];
+        [self setDefaultScale:[coder decodeFloatForKey:@"defaultScale"]];
+        [self setDefaultScale:[coder decodeFloatForKey:@"minZoomScale"]];
+        [self setDefaultScale:[coder decodeFloatForKey:@"sizeScale"]];
+
+    }
+    return self;
+}
+
 @end
