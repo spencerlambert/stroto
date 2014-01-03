@@ -29,6 +29,8 @@
     if (self) {
         fgImages = [[NSMutableDictionary alloc] initWithDictionary:[frame fgImages]];
         bgImage = [frame bgImage];
+        self.imagesTable = [[NSMutableDictionary alloc]initWithDictionary:frame.imagesTable];
+        self.instanceIDTable = [[NSMutableDictionary alloc]initWithDictionary:frame.instanceIDTable];
     }
     return self;
 }
@@ -63,7 +65,7 @@
         
         if(![fgimageposition isKindOfClass:[NSNull class]]){
         
-        int imageID = [self.instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",fgimageposition.imageInstanceId]];
+        int imageID = [[self.instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",fgimageposition.imageInstanceId]] intValue];
         STImage *fgimage = [self.imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
         
         [fgimage drawInRect:CGRectMake(fgimageposition.x,fgimageposition.y,fgimage.sizeX,fgimage.sizeY) blendMode:kCGBlendModeNormal alpha:1];

@@ -88,9 +88,6 @@
     isRecording = NO;
     [self updateTimeline];
     [self finalizeRecording];
-    
-    STStagePlayer *player = [[STStagePlayer alloc]initWithDB:storyDB];
-    [player generateMovie];
 }
 -(void) pauseRecording{
     if(isRecording){

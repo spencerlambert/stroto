@@ -89,9 +89,6 @@
     for (NSString *timecode in frames) {
         STStagePlayerFrame *frame  = [frames objectForKey:timecode];
         [images setValue:[frame getImageforFrame:size] forKey:timecode];
-//        UIImage *testimage = [frame getImageforFrame:size];
-//        NSData *pngData = UIImagePNGRepresentation(testimage);
-//        [pngData writeToFile:[NSTemporaryDirectory() stringByAppendingPathComponent:[timecode stringByAppendingPathExtension:@".png"]] atomically:YES];
     }
     [self writeImagesAsMovie:images toPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"test.mp4"] size:size];
     
@@ -151,9 +148,12 @@
     //convert uiimage to CGImage.
     
     //Write samples:
-    for ( NSString *timecode in images) {
+    NSArray * sortedKeys = [[images allKeys] sortedArrayUsingSelector: @selector(localizedStandardCompare:)];
+    for ( NSString *timecode in sortedKeys) {
         
         UIImage *image = [images objectForKey:timecode];
+//        NSData *pngData = UIImagePNGRepresentation(image);
+//        [pngData writeToFile:[NSTemporaryDirectory() stringByAppendingPathComponent:[timecode stringByAppendingPathExtension:@".png"]] atomically:YES];
         int time = [timecode intValue];
         buffer = [self pixelBufferFromCGImage:image.CGImage];
         while(! adaptor.assetWriterInput.readyForMoreMediaData );
