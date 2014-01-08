@@ -11,5 +11,11 @@
 @interface STFGImageView : UIImageView
 
 @property BOOL isEdited;
+@property BOOL isRotated;
+@property BOOL isScaled;
+
+@property float rotation;
+@property float scale;
+
 
 @end

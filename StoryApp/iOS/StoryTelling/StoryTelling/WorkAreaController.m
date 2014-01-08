@@ -352,6 +352,8 @@ UIButton *button ;
 - (IBAction)handleRotate:(UIRotationGestureRecognizer *)recognizer {
     STFGImageView *img = (STFGImageView *)recognizer.view;
     img.isEdited = YES;
+    img.isRotated = YES;
+    img.rotation = recognizer.rotation;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
     recognizer.rotation = 0;
@@ -360,6 +362,8 @@ UIButton *button ;
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
     STFGImageView *img = (STFGImageView *)recognizer.view;
     img.isEdited = YES;
+    img.isScaled = YES;
+    img.scale = recognizer.scale;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;

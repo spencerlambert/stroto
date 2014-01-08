@@ -134,6 +134,12 @@
                 [position setImageInstanceId:instance.imageInstanceID];
                 [position setX:imageview.frame.origin.x];
                 [position setY:imageview.frame.origin.y];
+                    if([imageview isRotated]){
+                        [position setRotation:imageview.rotation];
+                    }
+                    if([imageview isScaled]){
+                        [position setScale:imageview.scale];
+                    }
 //                [stageRecorder writeImageInstance:position];
                 [timeline addObject:position];
                 [imageview setIsEdited:NO];
