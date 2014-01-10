@@ -12,6 +12,7 @@
 #include "STFacebookViewController.h"
 #import "STYoutubeViewController.h"
 #import "STExportViewController.h"
+#import "STStagePlayerViewController.h"
 
 @interface SavedStoryDetailsViewController ()
 
@@ -19,7 +20,7 @@
 
 @implementation SavedStoryDetailsViewController{
     STStoryDB *storyDB;
-    STStagePlayer *player;
+    STStagePlayerViewController *player;
 }
 
 @synthesize dbname;
@@ -42,10 +43,13 @@
     storyDB = [STStoryDB loadSTstoryDB:dbname];
     [navigationBarTitle setTitle:[storyDB getStoryName]];
     
-    player = [[STStagePlayer alloc]initWithDB:storyDB];
-    [player generateMovie];
+//    player = [[STStagePlayer alloc]initWithDB:storyDB];
+//    [player generateMovie];
     
-    [storyDB closeDB];
+    player = [[STStagePlayerViewController alloc]init];
+    [player setStoryDB:storyDB];
+    
+  //  [storyDB closeDB];
     [self.listiPad setListDelegate:self];
     [self.listiPad setIndex:storyListiPad.index];
 //    [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
@@ -64,7 +68,14 @@
 
 - (IBAction)playButtonClicked:(id)sender {
     
-    NSFileManager *filemngr =[NSFileManager defaultManager];
+    
+    [self presentViewController:player animated:YES completion:nil];
+    
+    
+    //*****************************************************************************************************
+
+    
+    /* NSFileManager *filemngr =[NSFileManager defaultManager];
     NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
     if([filemngr fileExistsAtPath:moviePath]){
         NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
@@ -83,7 +94,9 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
-
+     */
+    
+//*****************************************************************************************************
     
 //    NSFileManager *filemngr =[NSFileManager defaultManager];
 //    NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];

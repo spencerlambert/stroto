@@ -79,6 +79,10 @@
     
 }
 
+-(UIImage *)rotateImage : (UIImage *)image withAngle :(float)angle{
+    
+}
+
 
 
 @end
