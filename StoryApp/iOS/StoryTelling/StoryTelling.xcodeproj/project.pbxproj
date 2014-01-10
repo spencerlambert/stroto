@@ -111,6 +111,8 @@
 		DB9A00651815198900244040 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9A00641815198900244040 /* MainStoryboard_iPad.storyboard */; };
 		DB9C8BCB1778F48900BA146A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */; };
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
+		DB9E3517187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
+		DB9E3518187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
 		DB9E61BD1871366C0080D708 /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */; };
 		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
@@ -348,6 +350,8 @@
 		DB9C8BCA1778F48900BA146A /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DB9D34F517CD98CC00845670 /* STStageExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporter.h; sourceTree = "<group>"; };
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
+		DB9E3515187FE648002A891F /* STStagePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerViewController.h; sourceTree = "<group>"; };
+		DB9E3516187FE648002A891F /* STStagePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerViewController.m; sourceTree = "<group>"; };
 		DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerFrame.h; sourceTree = "<group>"; };
 		DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerFrame.m; sourceTree = "<group>"; };
 		DB9E979C17E002C1009BD697 /* navbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbutton.png; sourceTree = "<group>"; };
@@ -516,6 +520,8 @@
 				4D2A0A801780B81800C78EE0 /* STStage.m */,
 				4D2A0A88178110B000C78EE0 /* STStagePlayer.h */,
 				4D2A0A89178110B000C78EE0 /* STStagePlayer.m */,
+				DB9E3515187FE648002A891F /* STStagePlayerViewController.h */,
+				DB9E3516187FE648002A891F /* STStagePlayerViewController.m */,
 				DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */,
 				DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
@@ -1080,6 +1086,7 @@
 				DB9E9E891764A7DC00788373 /* CreateStoryRootViewController.m in Sources */,
 				DB9E9E8D1764A81000788373 /* AddBackgroundViewController.m in Sources */,
 				DB9E9E911764A82100788373 /* AddForegroundViewController.m in Sources */,
+				DB9E3517187FE648002A891F /* STStagePlayerViewController.m in Sources */,
 				DB9E9E971764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */,
 				DB9E9EAD1764BE4100788373 /* ELCAlbumPickerController.m in Sources */,
 				DB9E9EAF1764BE4100788373 /* ELCAsset.m in Sources */,
@@ -1155,6 +1162,7 @@
 				DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */,
 				DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */,
 				DB93D70F1774EBEE00437F40 /* TopRightView.m in Sources */,
+				DB9E3518187FE648002A891F /* STStagePlayerViewController.m in Sources */,
 				DB93D7131774EC0000437F40 /* BottomRight.m in Sources */,
 				DB4CA88817A23B1900C21E7D /* CvGrabCutController.mm in Sources */,
 				DB98581D17C35751001AD854 /* UIImageCVMatConverter.mm in Sources */,

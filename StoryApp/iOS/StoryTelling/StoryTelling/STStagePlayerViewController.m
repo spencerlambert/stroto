@@ -110,12 +110,14 @@
 //                    [UIView setAnimationDuration:10];
 //                    [fgimageView setCenter:CGPointMake(position.x, position.y)];
 //                    [UIView commitAnimations];
-                    
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
                     [UIView animateWithDuration:40.0f
                                           delay:0.1f
                                         options: UIViewAnimationOptionBeginFromCurrentState
                                      animations: ^(void){fgimageView.center = CGPointMake(position.x, position.y);}
                                      completion:NULL];
+                        
+                    });
                 }
                 else{
                     int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
