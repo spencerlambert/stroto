@@ -86,8 +86,12 @@
   }
 - (void) stopRecording{
     isRecording = NO;
+    }
+-(void)updateRecordingtoDB{
+    
     [self updateTimeline];
     [self finalizeRecording];
+    
 }
 -(void) pauseRecording{
     if(isRecording){

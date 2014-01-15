@@ -410,6 +410,10 @@ UIButton *button ;
 //            [self.view addSubview:loaderView];
 //        }
        // [self performSelector:@selector(CompileRecording) withObject:nil afterDelay:10.0];
+        [captureview updateRecordingtoDB];
+        [self.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        
     }else{
         [storyDB closeDB];
         [mydelegate finishedRecording];
