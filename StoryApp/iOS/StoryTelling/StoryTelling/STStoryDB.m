@@ -690,11 +690,11 @@
         while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
             STImageInstancePosition *timelineInstance = [[STImageInstancePosition alloc]init];
             int instanceID = sqlite3_column_int(compiled_stmt, 0);
-            float timecode = sqlite3_column_int(compiled_stmt, 1);
+            float timecode = sqlite3_column_double(compiled_stmt, 1);
             int x = sqlite3_column_int(compiled_stmt, 2);
             int y = sqlite3_column_int(compiled_stmt, 3);
-            float scale = sqlite3_column_int(compiled_stmt, 4);
-            float rotation = sqlite3_column_int(compiled_stmt, 5);
+            float scale = sqlite3_column_double(compiled_stmt, 4);
+            float rotation = sqlite3_column_double(compiled_stmt, 5);
             int flip = sqlite3_column_int(compiled_stmt, 6);
             int layer = sqlite3_column_int(compiled_stmt, 7);
             timelineInstance.imageInstanceId = instanceID;

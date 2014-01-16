@@ -42,7 +42,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      
+        
     }
     return self;
 }
@@ -62,18 +62,16 @@
     [playerview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(thumbHeight + thumbHeightBottom)-STATUS_BAR_HEIGHT)];
     [playerview setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:playerview];
-
+    
     CGRect bounds = [playerview bounds];
     backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [playerview addSubview:backgroundimageview];
-    }
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
-//    [self processTimeline];
-
     
 }
 
@@ -83,6 +81,7 @@
 }
 
 - (void) initialize{
+    
     timeline = [storyDB getImageInstanceTimeline];
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
@@ -90,6 +89,7 @@
 }
 
 -(BOOL)isInstanceBG:(int)instanceID{
+    
     int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",instanceID]] intValue];
     STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
     if ([image.type isEqualToString:@"background"]) {
@@ -101,20 +101,15 @@
 
 -(void)processTimeline{
     
-
-    //for (int i=0; i<[timeline count]; i++)
     if(i < [timeline count]){
         STImageInstancePosition *position =timeline[i];
         i++;
         if ([self isInstanceBG:position.imageInstanceId]) {
             int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
             STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
-//            dispatch_async(dispatch_get_main_queue(), ^(void) {
-//            [backgroundimageview setImage:image];
-//            });
             [self performSelectorOnMainThread:@selector(setBGImage:) withObject:image waitUntilDone:YES];
             if(timeline[i]!=nil){
-                  STImageInstancePosition *position1 =timeline[i];
+                STImageInstancePosition *position1 =timeline[i];
                 float tempvalue = position1.timecode - position.timecode ;
                 [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
             }
@@ -123,36 +118,9 @@
             if (position.layer != -1) {
                 if ([self isImageActing:position.imageInstanceId]) {
                     UIImageView *fgimageView = (UIImageView *) [playerview viewWithTag:position.imageInstanceId];
-                    
-//                    dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                    [UIView animateWithDuration:10.0f
-//                                          delay:.1f
-//                                        options: UIViewAnimationOptionBeginFromCurrentState
-//                                     animations: ^(void){fgimageView.center = CGPointMake(position.x, position.y);}
-//                                     completion:NULL];
-//                        
-//                    });
-//                    [self temp:fgimageView withPosition:CGPointMake(position.x, position.y)];
-                    NSArray *params = [NSArray arrayWithObjects:fgimageView, [NSNumber numberWithInt:position.x], [NSNumber numberWithInt:position.y], nil];
-                    //[self performSelectorOnMainThread:@selector(getPanvalues:) withObject:params waitUntilDone:YES];
-                     if(position.rotation != 0){
-                        //   if ([self isImageActing:position.imageInstanceId]) {
-                      
-                        NSArray *params1 = [NSArray arrayWithObjects:fgimageView, [NSNumber numberWithFloat:position.rotation], nil];
-                        [self performSelectorOnMainThread:@selector(getRotatevalues:) withObject:params1 waitUntilDone:YES];
-                    }
-                     else{
-                         if(timeline[i]!=nil){
-                             STImageInstancePosition *position1 =timeline[i];
-                             float tempvalue = position1.timecode - position.timecode ;
-                             [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-                         }
-                     }
+                    NSArray *params = [NSArray arrayWithObjects:fgimageView, position, nil];
+                    [self performSelectorOnMainThread:@selector(getGesturevalues:) withObject:params waitUntilDone:YES];
                 }
-                
-                
-                    
-               
                 else{
                     int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
                     STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
@@ -167,12 +135,6 @@
                     float imageHeight = scale * imageview.image.size.height;
                     
                     [self performSelectorOnMainThread:@selector(addFGimage:) withObject:imageview waitUntilDone:YES];
-                    
-                    
-//                    dispatch_async(dispatch_get_main_queue(), ^(void) {
-//                        [playerview addSubview:imageview];
-//                    });
-                    
                     imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
                     
                     [imageview setTag:position.imageInstanceId];
@@ -183,10 +145,8 @@
                         STImageInstancePosition *position1 =timeline[i];
                         float tempvalue = position1.timecode - position.timecode ;
                         [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-
+                        
                     }
-
-                    
                 }
             }
             else{
@@ -194,7 +154,6 @@
                 
             }
         }
-        
     }
 }
 
@@ -206,63 +165,35 @@
     [playerview addSubview:view];
 }
 
--(void)getPanvalues : (NSArray*)values{
+-(void)getGesturevalues : (NSArray *)values{
     
     UIView *view = values[0];
-    NSNumber *x = values[1];
-    NSNumber *y = values[2];
-//                        [UIView beginAnimations:nil context:nil];
+    STImageInstancePosition *positionvalue = values[1];
     
-//                        [UIView setAnimationBeginsFromCurrentState:YES];
-//                        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-//                        [UIView setAnimationDuration:10];
-//    dispatch_async(dispatch_get_main_queue(), ^(void) {
-//    [view setCenter:CGPointMake(position.x, position.y)];
-//    });
-//                        [UIView commitAnimations];
-
-    [UIView animateWithDuration:.1
-                          delay:0.1
+    [UIView animateWithDuration:0
+                          delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-    [view setCenter:CGPointMake([x intValue], [y intValue])];
-                         //                         [token setFrame:CGRectMake(xx, 0, 64, 64)];
-                         //here you may add any othe actions, but notice, that ALL of them will do in SINGLE step. so, we setting ONLY xx coordinate to move it horizantly first.
-                     }
-                     completion:^(BOOL finished){
+                         [view setCenter:CGPointMake(positionvalue.x, positionvalue.y)];
+                         if(positionvalue.rotation != 0){
+                             [view setTransform:CGAffineTransformRotate(view.transform, positionvalue.rotation)];
+                         }
+                         if(positionvalue.scale != 1){
+                             [view setTransform:CGAffineTransformScale(view.transform, positionvalue.scale, positionvalue.scale)];
+                         }
+                         
+                     }completion:^(BOOL finished){
                          if(timeline[i]!=nil){
+                             
                              STImageInstancePosition *position = timeline[i-1];
                              STImageInstancePosition *position1 =timeline[i];
-                             
                              float tempvalue = position1.timecode - position.timecode ;
+                             
                              [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-
+                             
                          }
                      }];
-    
 }
-
--(void)getRotatevalues : (NSArray *) values{
-    
-    UIView *view = values[0];
-    NSNumber *x = values[1];
-    
-        [UIView animateWithDuration:.1 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
-            [view setTransform:CGAffineTransformRotate(view.transform, [x floatValue])];
-            
-        } completion:^(BOOL finished) {
-           // if (finished && !CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity)) {
-                if(timeline[i]!=nil){
-                    STImageInstancePosition *position = timeline[i-1];
-                    STImageInstancePosition *position1 =timeline[i];
-                    
-                    float tempvalue = position1.timecode - position.timecode ;
-                
-               [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-                }
-        }];
-}
-
 
 - (BOOL) isImageActing:(int)instanceID{
     for (UIView *subview in [playerview subviews]) {
