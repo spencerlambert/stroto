@@ -14,8 +14,8 @@
 @property BOOL isRotated;
 @property BOOL isScaled;
 
-@property float rotation;
-@property float scale;
+@property NSMutableArray *rotation;
+@property NSMutableArray *scale;
 
 
 @end

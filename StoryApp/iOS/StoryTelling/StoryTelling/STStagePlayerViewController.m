@@ -51,6 +51,7 @@
 {
     [super viewDidLoad];
     i=0;
+    [self.view removeConstraints:self.view.constraints];
     [self initialize];
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
@@ -86,6 +87,12 @@
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
+    
+    for (STImageInstancePosition *position in timeline) {
+        NSLog(@"%f",position.timecode);
+    }
+    
+    
 }
 
 -(BOOL)isInstanceBG:(int)instanceID{
@@ -126,6 +133,7 @@
                     STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
                     UIImageView *imageview = [[UIImageView alloc] initWithImage:image];
                     [imageview setFrame:CGRectMake(position.x, position.y, image.sizeScale, image.sizeScale)];
+                    [imageview setCenter:CGPointMake(position.x, position.y)];
                     [imageview setContentMode:UIViewContentModeScaleAspectFit];
                     
                     float widthRatio = imageview.bounds.size.width / imageview.image.size.width;
@@ -172,18 +180,21 @@
     
     [UIView animateWithDuration:0
                           delay:0
-                        options:UIViewAnimationOptionBeginFromCurrentState
+                        options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [view setCenter:CGPointMake(positionvalue.x, positionvalue.y)];
+                         
                          if(positionvalue.rotation != 0){
                              [view setTransform:CGAffineTransformRotate(view.transform, positionvalue.rotation)];
                          }
-                         if(positionvalue.scale != 1){
+                         else if(positionvalue.scale != 1){
                              [view setTransform:CGAffineTransformScale(view.transform, positionvalue.scale, positionvalue.scale)];
                          }
-                         
+                         else{
+                             [view setCenter:CGPointMake(positionvalue.x, positionvalue.y)];
+                         }
                      }completion:^(BOOL finished){
-                         if(timeline[i]!=nil){
+                         
+                             if(timeline[i]!=nil){
                              
                              STImageInstancePosition *position = timeline[i-1];
                              STImageInstancePosition *position1 =timeline[i];
@@ -191,7 +202,7 @@
                              
                              [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
                              
-                         }
+                             }
                      }];
 }
 

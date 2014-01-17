@@ -83,10 +83,10 @@
     [self initRecorders];
     isRecording = YES;
     startedAt =[NSDate date];
-  }
+}
 - (void) stopRecording{
     isRecording = NO;
-    }
+}
 -(void)updateRecordingtoDB{
     
     [self updateTimeline];
@@ -117,51 +117,64 @@
             if(instance.instanceType == false){
                 STBGImageView *imageview = ((STBGImageView *)[self viewWithTag:99999]);
                 if ([imageview isChanged]){
-                STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
-                [position setTimecode:millisElapsed];
-                [position setImageInstanceId:imageview.imageInstanceID];
-                [position setX:imageview.frame.origin.x];
-                [position setY:imageview.frame.origin.y];
-//                [stageRecorder writeImageInstance:position];
-                [timeline addObject:position];
-                [imageview setIsChanged:NO];
+                    STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+                    [position setTimecode:millisElapsed];
+                    [position setImageInstanceId:imageview.imageInstanceID];
+                    [position setX:imageview.center.x];
+                    [position setY:imageview.center.y];
+                    //                [stageRecorder writeImageInstance:position];
+                    [timeline addObject:position];
+                    [imageview setIsChanged:NO];
                 }
                 
             }
             else if (instance.instanceType == true){
                 
-               STFGImageView *imageview = ((STFGImageView*)[self viewWithTag:instance.imageInstanceID]);
-//                STImage *image = (STImage*)imageview.image;
+                STFGImageView *imageview = ((STFGImageView*)[self viewWithTag:instance.imageInstanceID]);
+                //                STImage *image = (STImage*)imageview.image;
                 if([imageview isEdited]){
-                STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
-                [position setTimecode:millisElapsed];
-                [position setImageInstanceId:instance.imageInstanceID];
-                [position setX:imageview.frame.origin.x];
-                [position setY:imageview.frame.origin.y];
+                    STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+                    [position setTimecode:millisElapsed];
+                    [position setImageInstanceId:instance.imageInstanceID];
+                    [position setX:imageview.center.x];
+                    [position setY:imageview.center.y];
                     if([imageview isRotated]){
-                        [position setRotation:imageview.rotation];
+                        float rotation =0;
+                        for (NSNumber *rotationobj in imageview.rotation) {
+                            rotation += [rotationobj floatValue];
+                        }
+                        [position setRotation:rotation];
+                        [imageview.rotation removeAllObjects];
                     }
                     if([imageview isScaled]){
-                        [position setScale:imageview.scale];
+                        float scale =1;
+                        for (NSNumber *scaleobj in imageview.scale) {
+                            if([scaleobj floatValue] >=1)
+                                scale += [scaleobj floatValue] -1;
+                            else
+                                scale -= 1 - [scaleobj floatValue];
+                        }
+                        [position setScale:scale];
+                        [imageview.scale removeAllObjects];
                     }
-//                [stageRecorder writeImageInstance:position];
-                [timeline addObject:position];
-                [imageview setIsEdited:NO];
-                                        
+                    //                [stageRecorder writeImageInstance:position];
+                    [timeline addObject:position];
+                    [imageview setIsEdited:NO];
+                    
                 }
             }
             
         }
         
-//        for (STImageInstancePosition *position in array){
-//            [stageRecorder writeImageInstance:position];
-//        }
+        //        for (STImageInstancePosition *position in array){
+        //            [stageRecorder writeImageInstance:position];
+        //        }
         
     }
     float processingSeconds = [[NSDate date] timeIntervalSinceDate:start];
 	float delayRemaining = (1.0 / self.frameRate) - processingSeconds;
 	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:delayRemaining > 0.0 ? delayRemaining : 0.01];
-
+    
     
 }
 
@@ -185,7 +198,7 @@
 -(void)finalizeRecording{
     NSArray *temp = [storyDB getInstanceIDs];
     for (NSNumber *instanceID in temp) {
-       STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
+        STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
         [position setImageInstanceId:instanceID.intValue];
         [position setLayer:-1];
         [position setTimecode:-1];

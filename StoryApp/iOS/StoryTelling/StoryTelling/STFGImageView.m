@@ -15,9 +15,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.rotation = [[NSMutableArray alloc]init];
+        self.scale = [[NSMutableArray alloc]init];
     }
     return self;
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
