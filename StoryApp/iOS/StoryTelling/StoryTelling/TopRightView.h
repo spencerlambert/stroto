@@ -12,7 +12,7 @@
 
 @optional
 
--(void)stopcapturingview;
+-(void)doneBtnClicked;
 
 @end
 

@@ -399,7 +399,7 @@ UIButton *button ;
 
 #pragma mark TopRightView Delegate Methods
 
-- (void)stopcapturingview{
+- (void)doneBtnClicked{
     // slideleftview.stoprecording.enabled = NO;
     //Changing record methods: captureview is now just a UIView
     [captureview stopRecording];

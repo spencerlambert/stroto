@@ -72,10 +72,9 @@
 
 -(void)donebtn_clicked{
     if(!finishedRecording){
-        if([mydelegate respondsToSelector:@selector(stopcapturingview)]){
-            [mydelegate stopcapturingview];
-            
-        }
+        if([mydelegate respondsToSelector:@selector(doneBtnClicked)]){
+            [mydelegate doneBtnClicked];
+            }
     }
     }
 

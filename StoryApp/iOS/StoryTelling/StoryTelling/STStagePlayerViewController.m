@@ -68,6 +68,11 @@
     backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
     [playerview addSubview:backgroundimageview];
+    
+    TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [back_btn_view setMydelegate:self];
+    [self.view addSubview:back_btn_view];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -165,6 +170,10 @@
     }
 }
 
+-(void)stopplayerview{
+    
+}
+
 -(void)setBGImage:(STImage*)bgimage{
     [backgroundimageview setImage:bgimage];
 }
@@ -177,7 +186,7 @@
     
     UIView *view = values[0];
     STImageInstancePosition *positionvalue = values[1];
-    
+
     [UIView animateWithDuration:0
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
@@ -213,6 +222,11 @@
         }
     }
     return NO;
+}
+
+-(void)doneBtnClicked{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "STStoryDB.h"
 #import "UIView+Hierarchy.h"
+#import "TopRightView.h"
 
-@interface STStagePlayerViewController : UIViewController
+@interface STStagePlayerViewController : UIViewController<TopRightViewDelegate>
 
 @property (nonatomic,retain) STStoryDB *storyDB;
 
