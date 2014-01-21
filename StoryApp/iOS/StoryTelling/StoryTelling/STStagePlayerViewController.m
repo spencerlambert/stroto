@@ -50,7 +50,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    i=0;
     [self.view removeConstraints:self.view.constraints];
     [self initialize];
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
@@ -62,6 +61,7 @@
     playerview = [[UIView alloc]init];
     [playerview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(thumbHeight + thumbHeightBottom)-STATUS_BAR_HEIGHT)];
     [playerview setBackgroundColor:[UIColor whiteColor]];
+    [playerview setClipsToBounds:YES];
     [self.view addSubview:playerview];
     
     CGRect bounds = [playerview bounds];
@@ -73,10 +73,13 @@
     [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
     
+//    BottomLeft *play_btn_view = [[BottomLeft alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+//    [play_btn_view setMydelegate:self];
+//    [self.view addSubview:play_btn_view];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+    i=0;
     [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
     
 }
@@ -170,10 +173,6 @@
     }
 }
 
--(void)stopplayerview{
-    
-}
-
 -(void)setBGImage:(STImage*)bgimage{
     [backgroundimageview setImage:bgimage];
 }
@@ -191,6 +190,8 @@
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
+                         
+                         [view bringToFront];
                          
                          if(positionvalue.rotation != 0){
                              [view setTransform:CGAffineTransformRotate(view.transform, positionvalue.rotation)];
@@ -228,5 +229,8 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
 
 @end

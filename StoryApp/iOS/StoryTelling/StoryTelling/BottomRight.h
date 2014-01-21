@@ -17,6 +17,7 @@
 - (void)pausecapturingview;
 - (void)resumecapturingview;
 
+
 @end
 
 @interface BottomRight : UIView{
