@@ -47,7 +47,6 @@
 		DB0F45A317FAAAB800CE8173 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0F45A217FAAAB800CE8173 /* GTMOAuth2ViewTouch.xib */; };
 		DB0F45A517FAB20F00CE8173 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A417FAB20E00CE8173 /* Security.framework */; };
 		DB0F45A717FAB21B00CE8173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */; };
-		DB116517188E577000D63F0D /* BottomLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = DB116516188E577000D63F0D /* BottomLeft.m */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
@@ -87,6 +86,7 @@
 		DB4E38AC179FA20A00413100 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4E38AB179FA20A00413100 /* opencv2.framework */; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
 		DB8ADED41770D99E0094BB3A /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED31770D99E0094BB3A /* 57@2x.png */; };
+		DB8EF1B91890CAB500950DA9 /* STPlayerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */; };
 		DB93D7061774E36000437F40 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7001774E36000437F40 /* Back.png */; };
 		DB93D7071774E36000437F40 /* BottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7011774E36000437F40 /* BottomBar.png */; };
 		DB93D7081774E36000437F40 /* RecordArea.png in Resources */ = {isa = PBXBuildFile; fileRef = DB93D7021774E36000437F40 /* RecordArea.png */; };
@@ -277,8 +277,6 @@
 		DB0F45A217FAAAB800CE8173 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
 		DB0F45A417FAB20E00CE8173 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		DB116515188E577000D63F0D /* BottomLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomLeft.h; sourceTree = "<group>"; };
-		DB116516188E577000D63F0D /* BottomLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomLeft.m; sourceTree = "<group>"; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -328,6 +326,8 @@
 		DB4E38AB179FA20A00413100 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		DB8ADED31770D99E0094BB3A /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
+		DB8EF1B71890CAB500950DA9 /* STPlayerToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPlayerToolbar.h; sourceTree = "<group>"; };
+		DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPlayerToolbar.m; sourceTree = "<group>"; };
 		DB93D7001774E36000437F40 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		DB93D7011774E36000437F40 /* BottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBar.png; sourceTree = "<group>"; };
 		DB93D7021774E36000437F40 /* RecordArea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordArea.png; sourceTree = "<group>"; };
@@ -525,6 +525,8 @@
 				4D2A0A89178110B000C78EE0 /* STStagePlayer.m */,
 				DB9E3515187FE648002A891F /* STStagePlayerViewController.h */,
 				DB9E3516187FE648002A891F /* STStagePlayerViewController.m */,
+				DB8EF1B71890CAB500950DA9 /* STPlayerToolbar.h */,
+				DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */,
 				DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */,
 				DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
@@ -810,8 +812,6 @@
 				DB93D70D1774EBEE00437F40 /* TopRightView.m */,
 				DB93D7101774EBFF00437F40 /* BottomRight.h */,
 				DB93D7111774EC0000437F40 /* BottomRight.m */,
-				DB116515188E577000D63F0D /* BottomLeft.h */,
-				DB116516188E577000D63F0D /* BottomLeft.m */,
 			);
 			name = "WorkArea Toolbars";
 			sourceTree = "<group>";
@@ -1074,7 +1074,6 @@
 				DB98581F17C3596A001AD854 /* UIImageCVMatConverter.mm in Sources */,
 				DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */,
 				DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */,
-				DB116517188E577000D63F0D /* BottomLeft.m in Sources */,
 				DB28D7191742E1460071B5C2 /* main.m in Sources */,
 				DB28D71D1742E1460071B5C2 /* AppDelegate.m in Sources */,
 				DB28D74F1742E2390071B5C2 /* ScreenCaptureView.m in Sources */,
@@ -1095,6 +1094,7 @@
 				DB9E3517187FE648002A891F /* STStagePlayerViewController.m in Sources */,
 				DB9E9E971764A91C00788373 /* SavedStoryDetailsViewController.m in Sources */,
 				DB9E9EAD1764BE4100788373 /* ELCAlbumPickerController.m in Sources */,
+				DB8EF1B91890CAB500950DA9 /* STPlayerToolbar.m in Sources */,
 				DB9E9EAF1764BE4100788373 /* ELCAsset.m in Sources */,
 				DB9E9EB11764BE4100788373 /* ELCAssetCell.m in Sources */,
 				DB9E9EB31764BE4100788373 /* ELCAssetTablePicker.m in Sources */,

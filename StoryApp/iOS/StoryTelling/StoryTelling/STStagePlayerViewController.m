@@ -28,7 +28,9 @@
     
     UIView *playerview;
     UIImageView *backgroundimageview;
-    int i;
+    int i, pausedAt ;
+    
+    STPlayerToolbar  * toolbar_view;
     
 }
 
@@ -72,16 +74,25 @@
     TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
+  
+    toolbar_view = [[STPlayerToolbar alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [toolbar_view setMydelegate:self];
+    [toolbar_view.slider setMinimumValue:0];
+    [toolbar_view.slider setMaximumValue:[timeline count]];
+    [self.view addSubview:toolbar_view];
     
-//    BottomLeft *play_btn_view = [[BottomLeft alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-//    [play_btn_view setMydelegate:self];
-//    [self.view addSubview:play_btn_view];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     i=0;
+    pausedAt =0 ;
     [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [toolbar_view initialize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,9 +125,14 @@
     }
 }
 
+-(void) setSliderValue:(NSNumber *)value{
+    [toolbar_view.slider setValue:[value floatValue]];
+}
+
 -(void)processTimeline{
     
     if(i < [timeline count]){
+        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:i] waitUntilDone:YES] ;
         STImageInstancePosition *position =timeline[i];
         i++;
         if ([self isInstanceBG:position.imageInstanceId]) {
@@ -166,9 +182,17 @@
                 }
             }
             else{
-                //[[playerview viewWithTag:position.imageInstanceId] removeFromSuperview ];
-                
+                [[playerview viewWithTag:position.imageInstanceId] removeFromSuperview ];
+                i++;
+                [self processTimeline];
             }
+        }
+        if (i>=[timeline count]) {
+            
+        [toolbar_view.slider setValue:0];
+        [toolbar_view.playBtn setTitle:@"Play" forState:UIControlStateNormal];
+            i= 0;
+            pausedAt=0;
         }
     }
 }
@@ -185,7 +209,7 @@
     
     UIView *view = values[0];
     STImageInstancePosition *positionvalue = values[1];
-
+    
     [UIView animateWithDuration:0
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
@@ -204,7 +228,7 @@
                          }
                      }completion:^(BOOL finished){
                          
-                             if(timeline[i]!=nil){
+                         if(timeline[i]!=nil){
                              
                              STImageInstancePosition *position = timeline[i-1];
                              STImageInstancePosition *position1 =timeline[i];
@@ -212,7 +236,7 @@
                              
                              [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
                              
-                             }
+                         }
                      }];
 }
 
@@ -230,6 +254,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)pauseBtnClicked{
+    pausedAt = i;
+    i= [timeline count];
+}
+
+-(void)playBtnClicked{
+    i = pausedAt;
+    pausedAt =0;
+    [self processTimeline];
+    
+}
 
 
 

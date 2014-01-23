@@ -10,9 +10,9 @@
 #import "STStoryDB.h"
 #import "UIView+Hierarchy.h"
 #import "TopRightView.h"
-#import "BottomLeft.h"
+#import "STPlayerToolbar.h"
 
-@interface STStagePlayerViewController : UIViewController<TopRightViewDelegate,BottomLeftViewDelegate>
+@interface STStagePlayerViewController : UIViewController<TopRightViewDelegate, STPlayerToolbarDelegate>
 
 @property (nonatomic,retain) STStoryDB *storyDB;
 
