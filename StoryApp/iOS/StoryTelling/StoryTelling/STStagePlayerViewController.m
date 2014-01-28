@@ -173,6 +173,13 @@
                     
                     [imageview bringToFront];
                     
+                    if(position.rotation != 0){
+                        [imageview setTransform:CGAffineTransformRotate(imageview.transform, position.rotation)];
+                    }
+                    if(position.scale != 1){
+                        [imageview setTransform:CGAffineTransformScale(imageview.transform, position.scale, position.scale)];
+                    }
+                    
                     if(timeline[i]!=nil){
                         STImageInstancePosition *position1 =timeline[i];
                         float tempvalue = position1.timecode - position.timecode ;
