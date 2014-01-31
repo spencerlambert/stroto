@@ -30,6 +30,9 @@
     UIImageView *backgroundimageview;
     int i, pausedAt ;
     
+    NSTimer *timer;
+    float processingTime;
+    
     STPlayerToolbar  * toolbar_view;
     
 }
@@ -69,6 +72,7 @@
     CGRect bounds = [playerview bounds];
     backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
+    backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
     [playerview addSubview:backgroundimageview];
     
     TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -81,12 +85,15 @@
     [toolbar_view.slider setMaximumValue:[timeline count]];
     [self.view addSubview:toolbar_view];
     
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     i=0;
+    processingTime = 0;
     pausedAt =0 ;
-    [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
+//    [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
     
 }
 
@@ -107,9 +114,9 @@
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
     
-    for (STImageInstancePosition *position in timeline) {
-        NSLog(@"%f",position.timecode);
-    }
+//    for (STImageInstancePosition *position in timeline) {
+//        NSLog(@"%f",position.timecode);
+//    }
     
     
 }
@@ -126,28 +133,32 @@
 }
 
 -(void) setSliderValue:(NSNumber *)value{
+    NSLog(@"Frame no. = %f",[value floatValue]);
     [toolbar_view.slider setValue:[value floatValue]];
 }
 
 -(void)processTimeline{
-    
+   
     if(i < [timeline count]){
+        
         [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:i] waitUntilDone:YES] ;
+        if(processingTime > 0){
+            [NSThread sleepForTimeInterval:processingTime];
+        }
         STImageInstancePosition *position =timeline[i];
         i++;
-        if ([self isInstanceBG:position.imageInstanceId]) {
-            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
-            STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
-            [self performSelectorOnMainThread:@selector(setBGImage:) withObject:image waitUntilDone:YES];
-            if(timeline[i]!=nil){
+        if ([self isInstanceBG:position.imageInstanceId]){
+            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];
+            [self performSelectorOnMainThread:@selector(setBGImage:) withObject:[NSNumber numberWithInt:imageID] waitUntilDone:YES];
+            if(i<[timeline count] && timeline[i]!=nil){
                 STImageInstancePosition *position1 =timeline[i];
                 float tempvalue = position1.timecode - position.timecode ;
-                [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
+//                [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
             }
         }
         else{
-            if (position.layer != -1) {
-                if ([self isImageActing:position.imageInstanceId]) {
+            if (position.layer != -1){
+                if ([self isImageActing:position.imageInstanceId]){
                     UIImageView *fgimageView = (UIImageView *) [playerview viewWithTag:position.imageInstanceId];
                     NSArray *params = [NSArray arrayWithObjects:fgimageView, position, nil];
                     [self performSelectorOnMainThread:@selector(getGesturevalues:) withObject:params waitUntilDone:YES];
@@ -180,18 +191,18 @@
                         [imageview setTransform:CGAffineTransformScale(imageview.transform, position.scale, position.scale)];
                     }
                     
-                    if(timeline[i]!=nil){
+                    if(i<[timeline count] && timeline[i]!=nil){
                         STImageInstancePosition *position1 =timeline[i];
                         float tempvalue = position1.timecode - position.timecode ;
-                        [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
+//                        [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
                         
                     }
                 }
             }
             else{
                 [[playerview viewWithTag:position.imageInstanceId] removeFromSuperview ];
-                i++;
-                [self processTimeline];
+                if(i < [timeline count])
+                    [self processTimeline];
             }
         }
         if (i>=[timeline count]) {
@@ -200,12 +211,19 @@
         [toolbar_view.playBtn setTitle:@"Play" forState:UIControlStateNormal];
             i= 0;
             pausedAt=0;
+            
+            [timer invalidate];
+        }else{
+            float time =[timeline[i] timecode]- [timeline[i-1] timecode];
+            if(time / 1000.0f > 1.0/22.0)
+            processingTime = time/1000.0f ;
         }
     }
 }
 
--(void)setBGImage:(STImage*)bgimage{
-    [backgroundimageview setImage:bgimage];
+-(void)setBGImage:(NSNumber*)imageID{
+    STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",[imageID intValue]]];
+    [backgroundimageview setImage:image ];
 }
 
 -(void) addFGimage:(UIView*)view{
@@ -235,13 +253,13 @@
                          }
                      }completion:^(BOOL finished){
                          
-                         if(timeline[i]!=nil){
+                         if(i<[timeline count] && timeline[i]!=nil){
                              
                              STImageInstancePosition *position = timeline[i-1];
                              STImageInstancePosition *position1 =timeline[i];
                              float tempvalue = position1.timecode - position.timecode ;
                              
-                             [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
+//                             [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
                              
                          }
                      }];
@@ -264,12 +282,17 @@
 -(void)pauseBtnClicked{
     pausedAt = i;
     i= [timeline count];
+    [timer invalidate];
 }
 
 -(void)playBtnClicked{
     i = pausedAt;
     pausedAt =0;
-    [self processTimeline];
+//    [self processTimeline];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:.045 target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
+    
+    
     
 }
 
