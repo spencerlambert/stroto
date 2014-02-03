@@ -191,6 +191,7 @@ NSString *databasePath;
 - (NSArray *)getInstanceIDs;
 - (NSArray *)getInstanceIDsAsString;
 
+-(float)getMaximumTimecode;
 
 - (NSString *)getDBName;
 - (NSString *)getStoryName;

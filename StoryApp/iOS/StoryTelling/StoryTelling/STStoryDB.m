@@ -857,6 +857,23 @@
 
 }
 
+-(float)getMaximumTimecode{
+    NSString *sql = [NSString stringWithFormat:@"SELECT Max(timecode) from ImageInstanceTimeline;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            float timecode = sqlite3_column_double(compiled_stmt, 0);
+            return timecode;
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return 0;
+    
+
+    
+}
+
 
 - (void)closeDB
 {

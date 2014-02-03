@@ -31,7 +31,9 @@
     int i, pausedAt ;
     
     NSTimer *timer;
+    NSTimer *timer1;
     float processingTime;
+    float remainingProcessingTime;
     
     STPlayerToolbar  * toolbar_view;
     
@@ -82,19 +84,25 @@
     toolbar_view = [[STPlayerToolbar alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     [toolbar_view setMydelegate:self];
     [toolbar_view.slider setMinimumValue:0];
-    [toolbar_view.slider setMaximumValue:[timeline count]];
+//    [toolbar_view.slider setMaximumValue:0];
+    if (timeline.count>0) {
+        float end = [storyDB getMaximumTimecode]- ((STImageInstancePosition *)timeline[0]).timecode;
+        [toolbar_view.slider setMaximumValue:end/1000.0f];
+    }
     [self.view addSubview:toolbar_view];
     
 
 }
 
+
 -(void)viewDidAppear:(BOOL)animated{
     i=0;
     processingTime = 0;
+    remainingProcessingTime=0;
     pausedAt =0 ;
 //    [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
-        timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
-    
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
+//    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processSlider) userInfo:nil repeats:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -133,19 +141,53 @@
 }
 
 -(void) setSliderValue:(NSNumber *)value{
-    NSLog(@"Frame no. = %f",[value floatValue]);
     [toolbar_view.slider setValue:[value floatValue]];
 }
 
--(void)processTimeline{
+-(void) processSlider{
+//    if (toolbar_view.slider.value < toolbar_view.slider.maximumValue) {
+//        float value = toolbar_view.slider.value + 1.0/22.0 ;
+////        [self setSliderValue:[NSNumber numberWithFloat:value]];
+//        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
+//    }
+    if(processingTime > 0){
+        if(remainingProcessingTime > 1.0/22.0){
+            float value = toolbar_view.slider.value + 1.0/22.0;
+            [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
+            remainingProcessingTime -= 1.0/22.0;
+        }else{
+            float value = toolbar_view.slider.value + remainingProcessingTime;
+            [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
+            remainingProcessingTime =0;
+            processingTime = 0;
+        }
+    }else{
+        [timer1 invalidate];
+    }
+}
+-(void)startTimer{
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
+    
+}
+
+-(void) processTimeline{
    
     if(i < [timeline count]){
         
-        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:i] waitUntilDone:YES] ;
+        
         if(processingTime > 0){
-            [NSThread sleepForTimeInterval:processingTime];
+//            [NSThread sleepForTimeInterval:processingTime];
+            [timer invalidate];
+            [timer1 invalidate];
+            [self performSelector:@selector(startTimer) withObject:self afterDelay:processingTime ];
+//            processingTime = 0;
+            [self processSlider];
+            timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processSlider) userInfo:nil repeats:YES];
+            return ;
         }
         STImageInstancePosition *position =timeline[i];
+        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:position.timecode/1000] waitUntilDone:YES] ;
         i++;
         if ([self isInstanceBG:position.imageInstanceId]){
             int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];
@@ -213,10 +255,12 @@
             pausedAt=0;
             
             [timer invalidate];
+            [timer1 invalidate];
         }else{
             float time =[timeline[i] timecode]- [timeline[i-1] timecode];
             if(time / 1000.0f > 1.0/22.0)
             processingTime = time/1000.0f ;
+            remainingProcessingTime = processingTime;
         }
     }
 }
@@ -283,6 +327,7 @@
     pausedAt = i;
     i= [timeline count];
     [timer invalidate];
+    [timer1 invalidate];
 }
 
 -(void)playBtnClicked{
@@ -293,6 +338,7 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:.045 target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
     
     
+    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processSlider) userInfo:nil repeats:YES];
     
 }
 
