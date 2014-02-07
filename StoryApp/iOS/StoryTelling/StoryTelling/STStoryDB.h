@@ -139,6 +139,7 @@
 #import "STImage.h"
 #import "STStoryFile.h"
 #import "CvGrabCutController.hh"
+#import "STAudio.h"
 
 
 #define STDIRECTORY @"story_dir/"

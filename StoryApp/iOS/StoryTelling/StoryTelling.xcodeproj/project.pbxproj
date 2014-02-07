@@ -49,6 +49,7 @@
 		DB0F45A717FAB21B00CE8173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */; };
 		DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
 		DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */; };
+		DB224D9218A49121007948A5 /* STAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = DB224D9118A49121007948A5 /* STAudio.m */; };
 		DB28D70D1742E1460071B5C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70C1742E1460071B5C2 /* UIKit.framework */; };
 		DB28D70F1742E1460071B5C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D70E1742E1460071B5C2 /* Foundation.framework */; };
 		DB28D7111742E1460071B5C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D7101742E1460071B5C2 /* CoreGraphics.framework */; };
@@ -279,6 +280,8 @@
 		DB0F45A617FAB21A00CE8173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DB21F8CD17445B0300FA7D52 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		DB21F8CE17445B0300FA7D52 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
+		DB224D9018A49121007948A5 /* STAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAudio.h; sourceTree = "<group>"; };
+		DB224D9118A49121007948A5 /* STAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAudio.m; sourceTree = "<group>"; };
 		DB28D7081742E1460071B5C2 /* Stroto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stroto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB28D70C1742E1460071B5C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB28D70E1742E1460071B5C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -519,6 +522,8 @@
 				4D2A0A6E1780B53E00C78EE0 /* STAudioRecording.m */,
 				4D2A0A701780B56900C78EE0 /* STSound.h */,
 				4D2A0A711780B56900C78EE0 /* STSound.m */,
+				DB224D9018A49121007948A5 /* STAudio.h */,
+				DB224D9118A49121007948A5 /* STAudio.m */,
 				4D2A0A7F1780B81800C78EE0 /* STStage.h */,
 				4D2A0A801780B81800C78EE0 /* STStage.m */,
 				4D2A0A88178110B000C78EE0 /* STStagePlayer.h */,
@@ -1074,6 +1079,7 @@
 				DB98581F17C3596A001AD854 /* UIImageCVMatConverter.mm in Sources */,
 				DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */,
 				DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */,
+				DB224D9218A49121007948A5 /* STAudio.m in Sources */,
 				DB28D7191742E1460071B5C2 /* main.m in Sources */,
 				DB28D71D1742E1460071B5C2 /* AppDelegate.m in Sources */,
 				DB28D74F1742E2390071B5C2 /* ScreenCaptureView.m in Sources */,

@@ -268,6 +268,7 @@
     return  true; 
 }
 
+
 - (BOOL)updateImage:(STImage*)image{
     NSString *sql = [NSString stringWithFormat:@"UPDATE Image set listDisplayOrder = ?,sizeX = ?,sizeY = ?,fileType =?, type = ?, defaultX = ?, defaultY = ?,defaultScale =?, imageData =?, sizeScale =?) where imageId = %d;",image.imageId];
     const char *sql_stmt = [sql UTF8String];
@@ -345,6 +346,7 @@
      sqlite3_finalize(compiled_stmt);
     return  nil;
 }
+
 
 - (NSArray*)getBackgroundImagesSorted{
     NSMutableArray *bgImages = [[NSMutableArray alloc]init];
@@ -869,11 +871,125 @@
     }
     sqlite3_finalize(compiled_stmt);
     return 0;
-    
 
+}
+
+-(BOOL)addSound:(NSData *)data{
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO Sound('mp3Data')VALUES (?);"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *statement ;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &statement, NULL) == SQLITE_OK){
+        
+        sqlite3_bind_blob(statement, 1, [data bytes], [data length], SQLITE_STATIC);
+        int temp = sqlite3_step(statement);
+        if(temp != SQLITE_DONE){
+            NSLog(@"Failed to insert Sound %s",sqlite3_errmsg(db));
+            sqlite3_finalize(statement);
+            return false;
+        }
+    }
+    sqlite3_finalize(statement);
+    return true;
     
 }
 
+- (NSData *)getSoundByID:(int)sound_id{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT mp3Data from Sound where soundId =%d;", sound_id];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db,  sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 0);
+            int size = sqlite3_column_bytes(compiled_stmt, 0);
+            NSData *data = [[NSData alloc] initWithBytes:ptr length:size];
+            sqlite3_finalize(compiled_stmt);
+            return data;
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return nil;
+}
+
+-(NSDictionary *)getSound{
+    NSMutableDictionary *sounds = [[NSMutableDictionary alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT soundId,mp3Data from Sound;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            int soundId = sqlite3_column_int(compiled_stmt, 0);
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 1);
+            int size = sqlite3_column_bytes(compiled_stmt, 1);
+            NSData *data = [[NSData alloc]initWithBytes:ptr length:size];
+            [sounds setObject:data forKey:[NSString stringWithFormat:@"%d",soundId]];
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return sounds;
+}
+
+//CREATE TABLE AudioRecording (audioId INTEGER PRIMARY KEY AUTOINCREMENT,timecode NUMERIC, audioData       BLOB);
+-(BOOL)addAudio:(STAudio *)audio{
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO AudioRecording('timecode','audioData')VALUES (?,?);"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *statement ;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &statement, NULL) == SQLITE_OK){
+        sqlite3_bind_double(statement, 1, audio.timecode);
+        sqlite3_bind_blob(statement, 2, [audio.audio bytes], [audio.audio length], SQLITE_STATIC);
+        int temp = sqlite3_step(statement);
+        if(temp != SQLITE_DONE){
+            NSLog(@"Failed to insert Sound %s",sqlite3_errmsg(db));
+            sqlite3_finalize(statement);
+            return false;
+        }
+    }
+    sqlite3_finalize(statement);
+    return true;
+    
+}
+
+-(NSDictionary *)getAudio{
+    NSMutableDictionary *audios =[[NSMutableDictionary alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT audioId,timecode,audioData from AudioRecording;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK)
+    {
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW) {
+            int audioId = sqlite3_column_int(compiled_stmt,0);
+            float timecode = sqlite3_column_double(compiled_stmt, 1);
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 2);
+            int size = sqlite3_column_bytes(compiled_stmt, 2);
+            NSData *data = [[NSData alloc]initWithBytes:ptr length:size];
+            STAudio *audio = [[STAudio alloc]initWithAudio:data atTimecode:timecode];
+            [audios setObject:audio forKey:[NSString stringWithFormat:@"%d",audioId]];
+            
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return audios;
+}
+
+-(STAudio *)getAudioByID:(int)audio_id{
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT timecode,audioData from AudioRecording where audioId = %d:", audio_id];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(compiled_stmt) == SQLITE_ROW) {
+            float timecode = sqlite3_column_double(compiled_stmt, 0);
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 1);
+            int size = sqlite3_column_bytes(compiled_stmt, 1);
+            NSData *data = [[NSData alloc]initWithBytes:ptr length:size];
+            STAudio *audio = [[STAudio alloc]initWithAudio:data atTimecode:timecode];
+            sqlite3_finalize(compiled_stmt);
+            return audio;
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return nil;
+}
 
 - (void)closeDB
 {
