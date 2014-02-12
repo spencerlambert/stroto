@@ -83,6 +83,7 @@
 		DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */; };
 		DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */; };
 		DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */; };
+		DB4E0B2F18A88E22009B6CEE /* STModifierToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E0B2E18A88E22009B6CEE /* STModifierToolbar.m */; };
 		DB4E38A6179F81E000413100 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4E38A5179F81E000413100 /* libz.dylib */; };
 		DB4E38AC179FA20A00413100 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4E38AB179FA20A00413100 /* opencv2.framework */; };
 		DB8ADED21770D97C0094BB3A /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8ADED11770D97C0094BB3A /* 57.png */; };
@@ -325,6 +326,8 @@
 		DB4DF525178D6C7F00E90492 /* STCropBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropBackgroundViewController.m; sourceTree = "<group>"; };
 		DB4DF529178D98C600E90492 /* STCropForegroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCropForegroundViewController.h; sourceTree = "<group>"; };
 		DB4DF52A178D98C700E90492 /* STCropForegroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCropForegroundViewController.m; sourceTree = "<group>"; };
+		DB4E0B2D18A88E22009B6CEE /* STModifierToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModifierToolbar.h; sourceTree = "<group>"; };
+		DB4E0B2E18A88E22009B6CEE /* STModifierToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierToolbar.m; sourceTree = "<group>"; };
 		DB4E38A5179F81E000413100 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DB4E38AB179FA20A00413100 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		DB8ADED11770D97C0094BB3A /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				DB9E3516187FE648002A891F /* STStagePlayerViewController.m */,
 				DB8EF1B71890CAB500950DA9 /* STPlayerToolbar.h */,
 				DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */,
+				DB4E0B2D18A88E22009B6CEE /* STModifierToolbar.h */,
+				DB4E0B2E18A88E22009B6CEE /* STModifierToolbar.m */,
 				DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */,
 				DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
@@ -1129,6 +1134,7 @@
 				4D2A0A871781108300C78EE0 /* STStageRecorder.m in Sources */,
 				4D2A0A8A178110B200C78EE0 /* STStagePlayer.m in Sources */,
 				4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */,
+				DB4E0B2F18A88E22009B6CEE /* STModifierToolbar.m in Sources */,
 				4D2A0A931783758600C78EE0 /* STStoryFile.m in Sources */,
 				DB4DF527178D6C7F00E90492 /* STCropBackgroundViewController.m in Sources */,
 				DB4DF52B178D98C700E90492 /* STCropForegroundViewController.m in Sources */,

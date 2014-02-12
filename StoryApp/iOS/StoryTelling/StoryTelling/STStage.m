@@ -83,9 +83,12 @@
     [self initRecorders];
     isRecording = YES;
     startedAt =[NSDate date];
+    [audioRecorder setStartedTime:[self getTimecode]];
+    [audioRecorder recordAudio];
 }
 - (void) stopRecording{
     isRecording = NO;
+    [audioRecorder stop];
 }
 -(void)updateRecordingtoDB{
     
@@ -97,6 +100,7 @@
     if(isRecording){
         pausedTime = [NSDate date];
         isRecording = false;
+        [audioRecorder pause];
     }
 }
 
@@ -104,6 +108,7 @@
     if(!isRecording){
         pauseInterval += [[NSDate date]timeIntervalSinceDate:pausedTime] * 1000.0;
         isRecording = true;
+        [audioRecorder recordAudio];
     }
 }
 
@@ -205,6 +210,11 @@
         [stageRecorder writeImageInstance:position];
     }
     
+}
+
+-(float)getTimecode{
+     float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
+    return millisElapsed;
 }
 
 @end

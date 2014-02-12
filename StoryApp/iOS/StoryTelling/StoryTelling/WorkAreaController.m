@@ -12,6 +12,7 @@
 #import "STFGImageView.h"
 
 
+
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
 #define THUMB_HEIGHT (IS_IPAD ? 128 : 70)
@@ -84,7 +85,7 @@ UIButton *button ;
     pinch.delegate = self;
     rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotate:)];
     rotate.delegate = self;
-    audiorecorder = [[AudioRecorder alloc]init];
+//    audiorecorder = [[AudioRecorder alloc]init];
     CGRect bounds = [captureview bounds];
     backgroundimageview = [[STBGImageView alloc]initWithFrame:bounds];
     backgroundimageview.contentMode = UIViewContentModeScaleToFill;
@@ -145,6 +146,10 @@ UIButton *button ;
     TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
+    
+    modifier_toolbar = [[STModifierToolbar alloc]initWithFrame:CGRectMake(-320, captureview.frame.origin.y, 320, captureview.frame.size.height)withBtnSize:CGSizeMake(30,captureview.frame.size.height/8)];
+    [modifier_toolbar setModifierDelegate:self];
+    [self.view addSubview:modifier_toolbar];
     
 }
 
@@ -211,6 +216,8 @@ UIButton *button ;
             [subviews setUserInteractionEnabled:YES];
         }
         //[imageview setTag:[storyDB addImageInstance:selectedForegroundImage.imageId]];
+    }else{
+        [modifier_toolbar setFrame:CGRectMake(0, captureview.frame.origin.y, 320, captureview.frame.size.height)];
     }
     
 }
@@ -382,18 +389,18 @@ UIButton *button ;
     //    slideleftview.startrecording.enabled = NO;
     //    slideleftview.stoprecording.enabled = YES;
     recordbtnClicked = YES;
-    [audiorecorder recordAudio];
+//    [audiorecorder recordAudio];
     //Changing record methods: captureview is now just a UIView
     [captureview startRecording];
 }
 
 -(void)pausecapturingview{
-    [audiorecorder pause];
+//    [audiorecorder pause];
     [captureview pauseRecording];
 }
 
 -(void)resumecapturingview{
-    [audiorecorder recordAudio];
+//    [audiorecorder recordAudio];
     [captureview resumeRecording];
 }
 
@@ -403,7 +410,7 @@ UIButton *button ;
     // slideleftview.stoprecording.enabled = NO;
     //Changing record methods: captureview is now just a UIView
     [captureview stopRecording];
-    [audiorecorder stop];
+//    [audiorecorder stop];
     if(recordbtnClicked){
 //        if (!loaderView) {
 //            loaderView = [self getLoaderView];
@@ -623,5 +630,39 @@ UIButton *button ;
     [indicator setCenter:loaderView.center];
     return loaderView;
 }
+
+#pragma mark STModifierToolbar Delegate Methods
+
+-(void)handleFlip{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+-(void)handleFollowTangent{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+-(void)handlePerspectiveGround{
+}
+
+-(void)handlePerspectiveSky{
+    
+}
+
+-(void)handleRotateLeft{
+    
+}
+
+-(void)handleRotateRight{
+    
+}
+
+-(void)handleZoomLarger{
+    
+}
+
+-(void)handleZoomSmaller{
+    
+}
+
 
 @end

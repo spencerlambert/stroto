@@ -8,11 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "STStoryDB.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface STAudioRecording : NSObject{
+@interface STAudioRecording : NSObject<AVAudioRecorderDelegate>{
+   
     STStoryDB *storyDB;
+    AVAudioRecorder *audioRecorder;
+    BOOL startedRecording;
+    
 }
--(id)initWithDB:(STStoryDB *)db;
 
+@property (nonatomic)float startedTime;
+
+-(id)initWithDB:(STStoryDB *)db;
+-(void) recordAudio;
+-(void) stop;
+-(void) pause;
 
 @end

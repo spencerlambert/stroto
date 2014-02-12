@@ -198,6 +198,13 @@ NSString *databasePath;
 - (NSString *)getStoryName;
 - (CGSize)getStorySize;
 
+-(BOOL)addSound:(NSData *)data;
+-(NSData *)getSoundByID:(int)sound_id;
+-(NSDictionary *)getSound;
+-(BOOL)addAudio:(STAudio *)audio;
+-(NSDictionary *)getAudio;
+-(STAudio *)getAudioByID:(int)audio_id;
+
 -(void) closeDB;
 //Still need other methods for getting the timeline in playback mode.
 

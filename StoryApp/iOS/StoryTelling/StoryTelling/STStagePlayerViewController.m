@@ -38,6 +38,9 @@
     
     STPlayerToolbar  * toolbar_view;
     
+    NSDictionary *audioTimeline;
+    AVAudioPlayer *audioplayer;
+    
 }
 
 @end
@@ -123,6 +126,13 @@
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
+    
+    audioTimeline = [storyDB getAudio];
+    if([audioTimeline count] >0){
+        STAudio *audio = [audioTimeline objectForKey:[[audioTimeline allKeys]objectAtIndex:0]];
+        audioplayer = [[AVAudioPlayer alloc]initWithData:audio.audio error:nil];
+        [audioplayer play];
+    }
     
 //    for (STImageInstancePosition *position in timeline) {
 //        NSLog(@"%f",position.timecode);

@@ -20,6 +20,7 @@
 #import "STStagePlayer.h"
 #import "STStageExporter.h"
 #import "STBGImageView.h"
+#import "STModifierToolbar.h"
 
 @protocol WorkAreaDelegate <NSObject>
 
@@ -27,7 +28,7 @@
 
 @end
 
-@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate,TopRightViewDelegate>{
+@interface WorkAreaController : UIViewController<UIGestureRecognizerDelegate,SlideUpViewDelegate,SlideDownViewDelegate,BottomRightViewDelegate,TopRightViewDelegate,STModifierToolbarDelegate>{
     SlideUpView *slideupview;
     SlideDownView *slidedownview;
     SlideLeftView *slideleftview;
@@ -46,6 +47,8 @@
     
     STStagePlayer *stagePlayer;
     STStageExporter *stageExporter;
+    
+    STModifierToolbar *modifier_toolbar;
    
 }
 @property (weak, nonatomic) IBOutlet STStage *captureview;

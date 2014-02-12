@@ -48,7 +48,7 @@
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *filelist= [filemgr contentsOfDirectoryAtPath:storyDir error:nil];
     int count = [filelist count];
-    NSLog (@"Number of dbs : %i",count);
+//    NSLog (@"Number of dbs : %i",count);
     for(int i=0;i<count;i++)
     {
         sqlite3 *db;
