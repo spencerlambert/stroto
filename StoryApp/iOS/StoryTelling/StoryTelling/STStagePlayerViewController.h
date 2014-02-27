@@ -12,6 +12,7 @@
 #import "TopRightView.h"
 #import "STPlayerToolbar.h"
 #import <AVFoundation/AVFoundation.h>
+#import "STStagePlayerFrame.h"
 
 
 @interface STStagePlayerViewController : UIViewController<TopRightViewDelegate, STPlayerToolbarDelegate>

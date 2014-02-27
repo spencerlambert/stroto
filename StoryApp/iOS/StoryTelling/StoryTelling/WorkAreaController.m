@@ -154,9 +154,6 @@ UIButton *button ;
 }
 
 - (void)initRecorders{
-   
-    stagePlayer = [[STStagePlayer alloc]initWithDB:storyDB];
-   
 }
 
 -(void)closeBtn{

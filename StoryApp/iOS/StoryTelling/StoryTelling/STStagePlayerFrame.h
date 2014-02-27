@@ -2,32 +2,19 @@
 //  STStagePlayerFrame.h
 //  StoryTelling
 //
-//  Created by Aaswini on 30/12/13.
-//  Copyright (c) 2013 Stroto, LLC. All rights reserved.
+//  Created by Aaswini on 26/02/14.
+//  Copyright (c) 2014 Stroto, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "STImage.h"
 #import "STImageInstancePosition.h"
 
-@interface STStagePlayerFrame : NSObject{
-    
-    
-}
+@interface STStagePlayerFrame : NSObject
 
-@property NSMutableDictionary *fgImages;
-@property STImage *bgImage;
+@property STImageInstancePosition *frame;
+@property BOOL presented;
+@property float timecode;
 
-@property NSDictionary *instanceIDTable;
-@property NSDictionary *imagesTable;
+-(id)initWithFrame:(STImageInstancePosition *)frame atTimecode:(float)timecode;
 
--(id)initWithInstances:(NSArray *)instances ;
--(id)initWithSTStagePlayerFrame:(STStagePlayerFrame *)frame;
-
--(void)addFGImage:(STImageInstancePosition *)image withInstanceID:(int)instanceID;
--(void)removeFGImageWithInstanceID:(int)instanceID;
-
--(void)addBGImage:(STImage *)image;
-
--(UIImage *)getImageforFrame :(CGSize) size;
 @end

@@ -122,27 +122,31 @@
 
 - (void) initialize{
     
-    timeline = [storyDB getImageInstanceTimeline];
+    timeline = [self getProcessedTimeline:[storyDB getImageInstanceTimeline]];
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
     
-    audioTimeline = [storyDB getAudio];
-    if([audioTimeline count] >0){
-        STAudio *audio = [audioTimeline objectForKey:[[audioTimeline allKeys]objectAtIndex:0]];
-        audioplayer = [[AVAudioPlayer alloc]initWithData:audio.audio error:nil];
-        [audioplayer play];
-    }
-    
-//    for (STImageInstancePosition *position in timeline) {
-//        NSLog(@"%f",position.timecode);
+//    audioTimeline = [storyDB getAudio];
+//    if([audioTimeline count] >0){
+//        STAudio *audio = [audioTimeline objectForKey:[[audioTimeline allKeys]objectAtIndex:0]];
+//        audioplayer = [[AVAudioPlayer alloc]initWithData:audio.audio error:nil];
+//        [audioplayer play];
 //    }
-    
     
 }
 
+-(NSArray *)getProcessedTimeline:(NSArray *)timeline{
+    NSMutableArray *frames = [[NSMutableArray alloc]init];
+    for (STImageInstancePosition *position in timeline) {
+        STStagePlayerFrame *frame = [[STStagePlayerFrame alloc]initWithFrame:position atTimecode:position.timecode];
+        [frames addObject:frame];
+    }
+    return frames;
+}
+
+
 -(BOOL)isInstanceBG:(int)instanceID{
-    
     int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",instanceID]] intValue];
     STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
     if ([image.type isEqualToString:@"background"]) {

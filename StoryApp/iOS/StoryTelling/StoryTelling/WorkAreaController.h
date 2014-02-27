@@ -17,7 +17,6 @@
 #import "TopRightView.h"
 #import "STStage.h"
 #import "STStoryDB.h"
-#import "STStagePlayer.h"
 #import "STStageExporter.h"
 #import "STBGImageView.h"
 #import "STModifierToolbar.h"
@@ -44,9 +43,6 @@
     UITapGestureRecognizer *tap;
     UIView *loaderView;
     BOOL recordbtnClicked;
-    
-    STStagePlayer *stagePlayer;
-    STStageExporter *stageExporter;
     
     STModifierToolbar *modifier_toolbar;
    

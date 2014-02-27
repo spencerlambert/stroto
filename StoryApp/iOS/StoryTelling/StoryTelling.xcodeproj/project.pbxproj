@@ -26,7 +26,6 @@
 		4D2A0A811780B81800C78EE0 /* STStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A801780B81800C78EE0 /* STStage.m */; };
 		4D2A0A8417810F8900C78EE0 /* STModifierImageInstanceFlip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A8317810F8900C78EE0 /* STModifierImageInstanceFlip.m */; };
 		4D2A0A871781108300C78EE0 /* STStageRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A861781108200C78EE0 /* STStageRecorder.m */; };
-		4D2A0A8A178110B200C78EE0 /* STStagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A89178110B000C78EE0 /* STStagePlayer.m */; };
 		4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A8F17811AA600C78EE0 /* STImage.m */; };
 		4D2A0A931783758600C78EE0 /* STStoryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A0A921783758600C78EE0 /* STStoryFile.m */; };
 		4D3CFDA517A1FE5C004EB904 /* app_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D3CFDA417A1FE5C004EB904 /* app_bg.png */; };
@@ -78,6 +77,10 @@
 		DB28D76E1742F4CE0071B5C2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */; };
 		DB28D7701742F4D30071B5C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */; };
 		DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28D7641742E8BE0071B5C2 /* ThumbImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DB32244918BDB8A4006A5D4E /* STStagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244818BDB8A4006A5D4E /* STStagePlayer.m */; };
+		DB32244A18BDB8A4006A5D4E /* STStagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244818BDB8A4006A5D4E /* STStagePlayer.m */; };
+		DB32244D18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */; };
+		DB32244E18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */; };
 		DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB38441D1781B07C0036469D /* libsqlite3.dylib */; };
 		DB4CA88817A23B1900C21E7D /* CvGrabCutController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */; };
 		DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */; };
@@ -116,7 +119,6 @@
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
 		DB9E3517187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
 		DB9E3518187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
-		DB9E61BD1871366C0080D708 /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */; };
 		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
@@ -233,8 +235,6 @@
 		4D2A0A8317810F8900C78EE0 /* STModifierImageInstanceFlip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModifierImageInstanceFlip.m; sourceTree = "<group>"; };
 		4D2A0A851781108100C78EE0 /* STStageRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageRecorder.h; sourceTree = "<group>"; };
 		4D2A0A861781108200C78EE0 /* STStageRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageRecorder.m; sourceTree = "<group>"; };
-		4D2A0A88178110B000C78EE0 /* STStagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayer.h; sourceTree = "<group>"; };
-		4D2A0A89178110B000C78EE0 /* STStagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayer.m; sourceTree = "<group>"; };
 		4D2A0A8E17811AA500C78EE0 /* STImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImage.h; sourceTree = "<group>"; };
 		4D2A0A8F17811AA600C78EE0 /* STImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImage.m; sourceTree = "<group>"; };
 		4D2A0A911783758600C78EE0 /* STStoryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryFile.h; sourceTree = "<group>"; };
@@ -319,6 +319,10 @@
 		DB28D76B1742F4C50071B5C2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		DB28D76D1742F4CE0071B5C2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DB28D76F1742F4D30071B5C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DB32244718BDB8A4006A5D4E /* STStagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayer.h; sourceTree = "<group>"; };
+		DB32244818BDB8A4006A5D4E /* STStagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayer.m; sourceTree = "<group>"; };
+		DB32244B18BDB987006A5D4E /* STStagePlayerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerFrame.h; sourceTree = "<group>"; };
+		DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerFrame.m; sourceTree = "<group>"; };
 		DB38441D1781B07C0036469D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB4CA88617A23B0800C21E7D /* CvGrabCutController.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CvGrabCutController.hh; sourceTree = "<group>"; };
 		DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CvGrabCutController.mm; sourceTree = "<group>"; };
@@ -361,8 +365,6 @@
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
 		DB9E3515187FE648002A891F /* STStagePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerViewController.h; sourceTree = "<group>"; };
 		DB9E3516187FE648002A891F /* STStagePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerViewController.m; sourceTree = "<group>"; };
-		DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerFrame.h; sourceTree = "<group>"; };
-		DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerFrame.m; sourceTree = "<group>"; };
 		DB9E979C17E002C1009BD697 /* navbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbutton.png; sourceTree = "<group>"; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
@@ -529,16 +531,16 @@
 				DB224D9118A49121007948A5 /* STAudio.m */,
 				4D2A0A7F1780B81800C78EE0 /* STStage.h */,
 				4D2A0A801780B81800C78EE0 /* STStage.m */,
-				4D2A0A88178110B000C78EE0 /* STStagePlayer.h */,
-				4D2A0A89178110B000C78EE0 /* STStagePlayer.m */,
 				DB9E3515187FE648002A891F /* STStagePlayerViewController.h */,
 				DB9E3516187FE648002A891F /* STStagePlayerViewController.m */,
 				DB8EF1B71890CAB500950DA9 /* STPlayerToolbar.h */,
 				DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */,
+				DB32244718BDB8A4006A5D4E /* STStagePlayer.h */,
+				DB32244818BDB8A4006A5D4E /* STStagePlayer.m */,
+				DB32244B18BDB987006A5D4E /* STStagePlayerFrame.h */,
+				DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */,
 				DB4E0B2D18A88E22009B6CEE /* STModifierToolbar.h */,
 				DB4E0B2E18A88E22009B6CEE /* STModifierToolbar.m */,
-				DB9E61BB1871366C0080D708 /* STStagePlayerFrame.h */,
-				DB9E61BC1871366C0080D708 /* STStagePlayerFrame.m */,
 				4D2A0A851781108100C78EE0 /* STStageRecorder.h */,
 				4D2A0A861781108200C78EE0 /* STStageRecorder.m */,
 				4D2A0A8E17811AA500C78EE0 /* STImage.h */,
@@ -1121,10 +1123,10 @@
 				EBA21FB7181783F8006BB6B7 /* STListStoryiPad.m in Sources */,
 				4D2A0A691780B47D00C78EE0 /* STImageInstanceBackground.m in Sources */,
 				4D2A0A6C1780B4BB00C78EE0 /* STImageInstanceForeground.m in Sources */,
+				DB32244918BDB8A4006A5D4E /* STStagePlayer.m in Sources */,
 				4D2A0A6F1780B53E00C78EE0 /* STAudioRecording.m in Sources */,
 				4D2A0A721780B56900C78EE0 /* STSound.m in Sources */,
 				EB6EEDD2183591B30050F3CD /* Reachability.m in Sources */,
-				DB9E61BD1871366C0080D708 /* STStagePlayerFrame.m in Sources */,
 				4D2A0A751780B5A000C78EE0 /* STModiferImageInstanceZoom.m in Sources */,
 				4D2A0A781780B5C900C78EE0 /* STModifierImageInstanceRotate.m in Sources */,
 				4D2A0A7B1780B5EA00C78EE0 /* STModifierImageInstanceFollowTangent.m in Sources */,
@@ -1132,7 +1134,6 @@
 				4D2A0A811780B81800C78EE0 /* STStage.m in Sources */,
 				4D2A0A8417810F8900C78EE0 /* STModifierImageInstanceFlip.m in Sources */,
 				4D2A0A871781108300C78EE0 /* STStageRecorder.m in Sources */,
-				4D2A0A8A178110B200C78EE0 /* STStagePlayer.m in Sources */,
 				4D2A0A9017811AA800C78EE0 /* STImage.m in Sources */,
 				DB4E0B2F18A88E22009B6CEE /* STModifierToolbar.m in Sources */,
 				4D2A0A931783758600C78EE0 /* STStoryFile.m in Sources */,
@@ -1146,6 +1147,7 @@
 				EB7FE48717C7439B00E28B4F /* STPaidStoryPacksViewController.m in Sources */,
 				EB7FE48A17C743F000E28B4F /* STFreeStoryPacksViewController.m in Sources */,
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
+				DB32244D18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */,
 				EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */,
 				DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */,
 				DB0F459C17FAA5CC00CE8173 /* GTLNetworking_Sources.m in Sources */,
@@ -1164,6 +1166,7 @@
 				DB28D7581742E86A0071B5C2 /* SlideUpView.m in Sources */,
 				DB28D75C1742E8840071B5C2 /* SlideDownView.m in Sources */,
 				DB28D7601742E8950071B5C2 /* SlideLeftView.m in Sources */,
+				DB32244A18BDB8A4006A5D4E /* STStagePlayer.m in Sources */,
 				DB28D7661742E8BE0071B5C2 /* ThumbImageView.m in Sources */,
 				DB21F8D017445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,
 				DBFA4AC6174D8206001DFCDC /* AudioRecorder.m in Sources */,
@@ -1179,6 +1182,7 @@
 				DB9E9EB21764BE4100788373 /* ELCAssetCell.m in Sources */,
 				DB9E9EB41764BE4100788373 /* ELCAssetTablePicker.m in Sources */,
 				DB9E9EB61764BE4100788373 /* ELCImagePickerController.m in Sources */,
+				DB32244E18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */,
 				DB93D70F1774EBEE00437F40 /* TopRightView.m in Sources */,
 				DB9E3518187FE648002A891F /* STStagePlayerViewController.m in Sources */,
 				DB93D7131774EC0000437F40 /* BottomRight.m in Sources */,
