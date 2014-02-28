@@ -39,6 +39,7 @@
 		4D908E7117FA3A7D00B309FA /* color_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D908E6D17FA3A7D00B309FA /* color_red.png */; };
 		4DBE3DE11816440700ED3A12 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBE3DE01816440700ED3A12 /* Images.xcassets */; };
 		4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */; };
+		DB0BF94418C0593600F9B095 /* STStagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0BF94318C0593600F9B095 /* STStagePlayerView.m */; };
 		DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459917FAA5CC00CE8173 /* GTLCommon_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB0F459C17FAA5CC00CE8173 /* GTLNetworking_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459A17FAA5CC00CE8173 /* GTLNetworking_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DB0F459E17FAA8D500CE8173 /* GTLYouTube_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0F459D17FAA8D500CE8173 /* GTLYouTube_Sources.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -271,6 +272,8 @@
 		4DD126F517D9640C001DD0AC /* STStoryPackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStoryPackDownload.h; sourceTree = "<group>"; };
 		4DD126F617D9640C001DD0AC /* STStoryPackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStoryPackDownload.m; sourceTree = "<group>"; };
 		DB01F4D41785ADF300BC2D73 /* StoryTellingRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTellingRootViewController.h; sourceTree = "<group>"; };
+		DB0BF94218C0593600F9B095 /* STStagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerView.h; sourceTree = "<group>"; };
+		DB0BF94318C0593600F9B095 /* STStagePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerView.m; sourceTree = "<group>"; };
 		DB0F459917FAA5CC00CE8173 /* GTLCommon_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLCommon_Sources.m; sourceTree = "<group>"; };
 		DB0F459A17FAA5CC00CE8173 /* GTLNetworking_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLNetworking_Sources.m; sourceTree = "<group>"; };
 		DB0F459D17FAA8D500CE8173 /* GTLYouTube_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLYouTube_Sources.m; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				4D2A0A801780B81800C78EE0 /* STStage.m */,
 				DB9E3515187FE648002A891F /* STStagePlayerViewController.h */,
 				DB9E3516187FE648002A891F /* STStagePlayerViewController.m */,
+				DB0BF94218C0593600F9B095 /* STStagePlayerView.h */,
+				DB0BF94318C0593600F9B095 /* STStagePlayerView.m */,
 				DB8EF1B71890CAB500950DA9 /* STPlayerToolbar.h */,
 				DB8EF1B81890CAB500950DA9 /* STPlayerToolbar.m */,
 				DB32244718BDB8A4006A5D4E /* STStagePlayer.h */,
@@ -1116,6 +1121,7 @@
 				EBDDB3A7182D93B200B73149 /* STExportViewController.m in Sources */,
 				DB93D7121774EC0000437F40 /* BottomRight.m in Sources */,
 				4D2A0A58177F8D0F00C78EE0 /* STStoryDB.m in Sources */,
+				DB0BF94418C0593600F9B095 /* STStagePlayerView.m in Sources */,
 				4D2A0A5B177FB11300C78EE0 /* STImageInstancePosition.m in Sources */,
 				4D2A0A5F1780B28100C78EE0 /* STModifier.m in Sources */,
 				4D2A0A621780B37A00C78EE0 /* STModifierImageInstance.m in Sources */,

@@ -1,0 +1,18 @@
+//
+//  STStagePlayerView.h
+//  StoryTelling
+//
+//  Created by Aaswini on 28/02/14.
+//  Copyright (c) 2014 Stroto, LLC. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "STStoryDB.h"
+#import "STStagePlayerFrame.h"
+
+@interface STStagePlayerView : UIView
+
+@property(assign) float frameRate;
+@property (nonatomic,retain) STStoryDB *storyDB;
+
+@end
