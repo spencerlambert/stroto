@@ -58,10 +58,7 @@
     
    
     
-    // Initialization code
-   
-    //        [playBtn setBackgroundImage:btnimage forState:UIControlStateNormal];
-    [playBtn setTitle:@"Pause" forState:UIControlStateNormal];
+       [playBtn setTitle:@"Stop" forState:UIControlStateNormal];
     
     
 }
@@ -69,7 +66,7 @@
 -(void)playbtn_clicked{
     
     if([[playBtn titleLabel].text  isEqual: @"Play"]){
-        [playBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        [playBtn setTitle:@"Stop" forState:UIControlStateNormal];
         [mydelegate playBtnClicked];
     }else{
         [playBtn setTitle:@"Play" forState:UIControlStateNormal];

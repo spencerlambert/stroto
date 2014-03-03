@@ -7,6 +7,8 @@
 //
 
 #import "STStagePlayerView.h"
+#import "UIView+Hierarchy.h"
+
 
 @implementation STStagePlayerView{
     
@@ -21,6 +23,8 @@
     
     NSDictionary *instanceIDTable;
     NSDictionary *imagesTable;
+    
+    UIImageView *backgroundimageview;
 }
 
 @synthesize storyDB;
@@ -29,7 +33,7 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		[self initialize];
+//		[self initialize];
 	}
 	return self;
 }
@@ -39,7 +43,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self initialize];
+//        [self initialize];
     }
     return self;
 }
@@ -47,7 +51,7 @@
 - (id) init {
 	self = [super init];
 	if (self) {
-		[self initialize];
+//		[self initialize];
 	}
 	return self;
 }
@@ -61,12 +65,25 @@
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
+    
+    CGRect bounds = [self bounds];
+    backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
+    backgroundimageview.contentMode = UIViewContentModeScaleToFill;
+    [self resetBGImage];
+    [backgroundimageview setTag:-1];
+    [self addSubview:backgroundimageview];
+    
+    if (timeline.count>0) {
+        float end = [storyDB getMaximumTimecode]- ((STStagePlayerFrame *)timeline[0]).timecode;
+        [self.slider setMaximumValue:end/1000.0f];
+    }
+
 
 }
 
--(NSArray *)getProcessedTimeline:(NSArray *)timeline{
+-(NSArray *)getProcessedTimeline:(NSArray *)rawTimeline{
     NSMutableArray *frames = [[NSMutableArray alloc]init];
-    for (STImageInstancePosition *position in timeline) {
+    for (STImageInstancePosition *position in rawTimeline) {
         STStagePlayerFrame *frame = [[STStagePlayerFrame alloc]initWithFrame:position atTimecode:position.timecode];
         [frames addObject:frame];
     }
@@ -98,13 +115,16 @@
 }
 
 -(void)startPlaying{
-   
+    
+    [self initialize];
+    [self removeAllFgImages];
     isPlaying = YES;
     startedAt =[NSDate date];
 }
 
 -(void)stopPlaying{
     isPlaying = NO;
+    [self.slider setValue:0 animated:YES];
 }
 
 -(void)pausePlaying{
@@ -122,42 +142,123 @@
   
 }
 
+-(void) removeAllFgImages{
+    for (UIView *view in self.subviews) {
+        if([view tag] != -1){
+            [view removeFromSuperview];
+        }
+    }
+}
+
+-(void) resetBGImage{
+    backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
+}
+
+
 -(void) drawRect:(CGRect)rect{
     NSDate *start = [NSDate date];
     if(isPlaying){
         
         float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
         
+        [self.slider setValue:millisElapsed/1000.0f];
         
+        //        STStagePlayerFrame *frame = [self getFrameforTimecode:millisElapsed];
+        NSArray *frames = [self getFrameforTimecode:millisElapsed];
+        
+        if([frames count] != 0){
+            for (STStagePlayerFrame *frame in frames) {
+                [frame setPresented:YES];
+                
+                STImageInstancePosition *position = [frame frame];
+                
+                if ([self isInstanceBG:position.imageInstanceId]){
+                    int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];
+                    [self setBGImage:[NSNumber numberWithInt:imageID]];
+                }
+                else{
+                    if (position.layer != -1){
+                        if ([self isImageActing:position.imageInstanceId]){
+                            UIImageView *fgimageView = (UIImageView *) [self viewWithTag:position.imageInstanceId];
+                            [fgimageView bringToFront];
+                            
+                            if(position.rotation != 0){
+                                [fgimageView setTransform:CGAffineTransformRotate(fgimageView.transform, position.rotation)];
+                            }
+                            else if(position.scale != 1){
+                                [fgimageView setTransform:CGAffineTransformScale(fgimageView.transform, position.scale, position.scale)];
+                            }
+                            else{
+                                [fgimageView setCenter:CGPointMake(position.x, position.y)];
+                            }
+                        }
+                        else{
+                            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
+                            STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
+                            UIImageView *imageview = [[UIImageView alloc] initWithImage:image];
+                            [imageview setFrame:CGRectMake(position.x, position.y, image.sizeScale, image.sizeScale)];
+                            [imageview setCenter:CGPointMake(position.x, position.y)];
+                            [imageview setContentMode:UIViewContentModeScaleAspectFit];
+                            
+                            float widthRatio = imageview.bounds.size.width / imageview.image.size.width;
+                            float heightRatio = imageview.bounds.size.height / imageview.image.size.height;
+                            float scale = MIN(widthRatio, heightRatio);
+                            float imageWidth = scale * imageview.image.size.width;
+                            float imageHeight = scale * imageview.image.size.height;
+                            
+                            [self addFGimage:imageview];
+                            
+                            imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
+                            
+                            [imageview setTag:position.imageInstanceId];
+                            
+                            [imageview bringToFront];
+                            
+                            if(position.rotation != 0){
+                                [imageview setTransform:CGAffineTransformRotate(imageview.transform, position.rotation)];
+                            }
+                            if(position.scale != 1){
+                                [imageview setTransform:CGAffineTransformScale(imageview.transform, position.scale, position.scale)];
+                            }
+                        }
+                    }
+                    else{
+                        [[self viewWithTag:position.imageInstanceId] removeFromSuperview ];
+                    }
+                }
+            }
+        }
     }
+    float processingSeconds = [[NSDate date] timeIntervalSinceDate:start];
+	float delayRemaining = (1.0 / self.frameRate) - processingSeconds;
+	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:delayRemaining > 0.0 ? delayRemaining : 0.01];
 }
 
--(STStagePlayerFrame *)getFrameforTimecode:(float)timecode{
+-(NSArray *)getFrameforTimecode:(float)timecode{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timecode == %f",timecode];
     NSArray *visible = [timeline filteredArrayUsingPredicate:predicate];
     if (visible.count == 0) {
         float timecode1 = timecode - (1.0 / self.frameRate * 1000);
-        predicate = [NSPredicate predicateWithFormat:@"(timecode >= %f) AND (timecode <= %f)  ",timecode1,timecode];
-        NSArray *visible1 = [timeline filteredArrayUsingPredicate:predicate];
-        if (visible1.count != 0) {
-            for (STStagePlayerFrame *frame in visible1) {
-                if (!frame.presented) {
-                    return frame;
-                }
-            }
-        }
+        NSPredicate *rangePredicate = [NSPredicate predicateWithFormat:@"(timecode >= %f) AND (timecode <= %f)  ",timecode1,timecode];
+        NSArray *visible1 = [timeline filteredArrayUsingPredicate:rangePredicate];
+        
+        NSPredicate *presentedPredicate = [NSPredicate predicateWithFormat:@"presented == NO"];
+        return [visible1 filteredArrayUsingPredicate:presentedPredicate];
     }else{
-        STStagePlayerFrame *frame = [visible objectAtIndex:0];
-        if (!frame.presented) {
-            return frame;
-        }
+        
+        NSPredicate *presentedPredicate = [NSPredicate predicateWithFormat:@"presented == NO"];
+        return [visible filteredArrayUsingPredicate:presentedPredicate];
     }
     
-    return nil;
+    return [[NSArray alloc]init];
 }
 
--(void)setFramePresented:(float)timecode{
-    
+-(void)setBGImage:(NSNumber*)imageID{
+    STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",[imageID intValue]]];
+    [backgroundimageview setImage:image ];
 }
 
+-(void) addFGimage:(UIView*)view{
+    [self addSubview:view];
+}
 @end

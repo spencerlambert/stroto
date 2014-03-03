@@ -14,5 +14,12 @@
 
 @property(assign) float frameRate;
 @property (nonatomic,retain) STStoryDB *storyDB;
+@property UISlider *slider;
+
+-(void)startPlaying;
+-(void)stopPlaying;
+-(void)pausePlaying;
+-(void)resumePlaying;
+-(void)initialize;
 
 @end

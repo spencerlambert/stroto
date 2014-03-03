@@ -18,7 +18,9 @@
 
 @end
 
-@implementation STStage
+@implementation STStage{
+    float initialTimecode;
+}
 
 @synthesize storyDB;
 
@@ -28,11 +30,13 @@
     startedAt = nil;
     pauseInterval = 0;
     timeline = [[NSMutableArray alloc]init];
+    initialTimecode =0;
 }
 
 -(void) initRecorders{
     stageRecorder = [[STStageRecorder alloc]initWithDB:storyDB];
     audioRecorder = [[STAudioRecording alloc]initWithDB:storyDB];
+    initialTimecode = [storyDB getMaximumTimecode];
 }
 - (id) initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
@@ -116,7 +120,7 @@
     NSDate *start = [NSDate date];
     if(isRecording){
         
-        float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
+        float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval + initialTimecode;
         
         for (STImageInstance *instance in imageInstances) {
             if(instance.instanceType == false){
@@ -206,14 +210,14 @@
         STImageInstancePosition *position = [[STImageInstancePosition alloc]init];
         [position setImageInstanceId:instanceID.intValue];
         [position setLayer:-1];
-        [position setTimecode:-1];
+        [position setTimecode:[storyDB getMaximumTimecode] + ((1.0/self.frameRate)*1000)];
         [stageRecorder writeImageInstance:position];
     }
     
 }
 
 -(float)getTimecode{
-     float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval;
+     float millisElapsed = ([[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0) - pauseInterval + initialTimecode;
     return millisElapsed;
 }
 

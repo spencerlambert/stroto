@@ -8,6 +8,7 @@
 
 #import "STStagePlayerViewController.h"
 #import "STImage.h"
+#import "STStagePlayerView.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IS_IPAD ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height == 1024 ))
@@ -26,8 +27,7 @@
     NSDictionary *instanceIDTable;
     NSDictionary *imagesTable;
     
-    UIView *playerview;
-    UIImageView *backgroundimageview;
+    STStagePlayerView *playerview;
     int i, pausedAt ;
     
     NSTimer *timer;
@@ -69,30 +69,24 @@
     if (IS_IPHONE_5) {
         thumbHeightBottom = THUMB_HEIGHT + THUMB_V_PADDING + IPHONE_5_ADDITIONAL * 2 ;
     }
-    playerview = [[UIView alloc]init];
+    playerview = [[STStagePlayerView alloc]init];
     [playerview setFrame:CGRectMake(0,thumbHeight,capturebounds.size.width,capturebounds.size.height-(thumbHeight + thumbHeightBottom)-STATUS_BAR_HEIGHT)];
     [playerview setBackgroundColor:[UIColor whiteColor]];
     [playerview setClipsToBounds:YES];
     [self.view addSubview:playerview];
     
-    CGRect bounds = [playerview bounds];
-    backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
-    backgroundimageview.contentMode = UIViewContentModeScaleToFill;
-    backgroundimageview.image = [UIImage imageNamed:@"RecordAreaBlank.png"];
-    [playerview addSubview:backgroundimageview];
+    toolbar_view = [[STPlayerToolbar alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [toolbar_view setMydelegate:self];
+    [toolbar_view.slider setMinimumValue:0];
+    
+    [playerview setSlider:toolbar_view.slider];
+    [playerview setFrameRate:22.0f];
+    [playerview setStoryDB:storyDB];
     
     TopRightView *back_btn_view = [[TopRightView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     [back_btn_view setMydelegate:self];
     [self.view addSubview:back_btn_view];
-  
-    toolbar_view = [[STPlayerToolbar alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [toolbar_view setMydelegate:self];
-    [toolbar_view.slider setMinimumValue:0];
-//    [toolbar_view.slider setMaximumValue:0];
-    if (timeline.count>0) {
-        float end = [storyDB getMaximumTimecode]- ((STImageInstancePosition *)timeline[0]).timecode;
-        [toolbar_view.slider setMaximumValue:end/1000.0f];
-    }
+
     [self.view addSubview:toolbar_view];
     
 
@@ -100,14 +94,7 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    i=0;
-    processingTime = 0;
-    remainingProcessingTime=0;
-    pausedAt =0 ;
-    timerPaused = NO;
-//    [self performSelectorOnMainThread:@selector(processTimeline) withObject:nil waitUntilDone:NO];
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
-//    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processSlider) userInfo:nil repeats:YES];
+    [playerview startPlaying];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -146,225 +133,19 @@
 }
 
 
--(BOOL)isInstanceBG:(int)instanceID{
-    int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",instanceID]] intValue];
-    STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
-    if ([image.type isEqualToString:@"background"]) {
-        return YES;
-    }else{
-        return NO;
-    }
-}
-
--(void) setSliderValue:(NSNumber *)value{
-    [UIView animateWithDuration:0
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                            [toolbar_view.slider setValue:[value floatValue]];
-                     }
-                     completion:nil];
-}
-
--(void) processSlider{
-//    if (toolbar_view.slider.value < toolbar_view.slider.maximumValue) {
-//        float value = toolbar_view.slider.value + 1.0/22.0 ;
-////        [self setSliderValue:[NSNumber numberWithFloat:value]];
-//        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
-//    }
-    if(processingTime > 0){
-        if(remainingProcessingTime > 1.0/22.0){
-            float value = toolbar_view.slider.value + 1.0/22.0;
-            [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
-            remainingProcessingTime -= 1.0/22.0;
-        }else{
-            float value = toolbar_view.slider.value + remainingProcessingTime;
-            [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:value] waitUntilDone:YES] ;
-            remainingProcessingTime =0;
-            processingTime = 0;
-        }
-    }else{
-        [timer1 invalidate];
-    }
-}
--(void)startTimer{
-    
-    timerPaused = NO;
-    processingTime = 0;
-//    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
-    
-}
-
--(void) processTimeline{
-   
-    if(i < [timeline count]){
-        
-        
-        STImageInstancePosition *position =timeline[i];
-        [self performSelectorOnMainThread:@selector(setSliderValue:) withObject:[NSNumber numberWithFloat:position.timecode/1000] waitUntilDone:YES] ;
-        
-        if (timerPaused) {
-            return;
-        }
-        
-        if(processingTime > 0){
-            timerPaused = YES;
-            [self performSelector:@selector(startTimer) withObject:self afterDelay:processingTime];
-            return ;
-        }
-        i++;
-        if ([self isInstanceBG:position.imageInstanceId]){
-            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];
-            [self performSelectorOnMainThread:@selector(setBGImage:) withObject:[NSNumber numberWithInt:imageID] waitUntilDone:YES];
-            if(i<[timeline count] && timeline[i]!=nil){
-                STImageInstancePosition *position1 =timeline[i];
-                float tempvalue = position1.timecode - position.timecode ;
-//                [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-            }
-        }
-        else{
-            if (position.layer != -1){
-                if ([self isImageActing:position.imageInstanceId]){
-                    UIImageView *fgimageView = (UIImageView *) [playerview viewWithTag:position.imageInstanceId];
-                    NSArray *params = [NSArray arrayWithObjects:fgimageView, position, nil];
-                    [self performSelectorOnMainThread:@selector(getGesturevalues:) withObject:params waitUntilDone:YES];
-                }
-                else{
-                    int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
-                    STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
-                    UIImageView *imageview = [[UIImageView alloc] initWithImage:image];
-                    [imageview setFrame:CGRectMake(position.x, position.y, image.sizeScale, image.sizeScale)];
-                    [imageview setCenter:CGPointMake(position.x, position.y)];
-                    [imageview setContentMode:UIViewContentModeScaleAspectFit];
-                    
-                    float widthRatio = imageview.bounds.size.width / imageview.image.size.width;
-                    float heightRatio = imageview.bounds.size.height / imageview.image.size.height;
-                    float scale = MIN(widthRatio, heightRatio);
-                    float imageWidth = scale * imageview.image.size.width;
-                    float imageHeight = scale * imageview.image.size.height;
-                    
-                    [self performSelectorOnMainThread:@selector(addFGimage:) withObject:imageview waitUntilDone:YES];
-                    imageview.frame = CGRectMake(imageview.frame.origin.x, imageview.frame.origin.y, imageWidth, imageHeight);
-                    
-                    [imageview setTag:position.imageInstanceId];
-                    
-                    [imageview bringToFront];
-                    
-                    if(position.rotation != 0){
-                        [imageview setTransform:CGAffineTransformRotate(imageview.transform, position.rotation)];
-                    }
-                    if(position.scale != 1){
-                        [imageview setTransform:CGAffineTransformScale(imageview.transform, position.scale, position.scale)];
-                    }
-                    
-                    if(i<[timeline count] && timeline[i]!=nil){
-                        STImageInstancePosition *position1 =timeline[i];
-                        float tempvalue = position1.timecode - position.timecode ;
-//                        [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-                        
-                    }
-                }
-            }
-            else{
-                [[playerview viewWithTag:position.imageInstanceId] removeFromSuperview ];
-                if(i < [timeline count])
-                    [self processTimeline];
-            }
-        }
-        if (i>=[timeline count]) {
-            
-        [toolbar_view.slider setValue:0];
-        [toolbar_view.playBtn setTitle:@"Play" forState:UIControlStateNormal];
-            i= 0;
-            pausedAt=0;
-            
-            [timer invalidate];
-            [timer1 invalidate];
-        }else{
-            float time =[timeline[i] timecode]- [timeline[i-1] timecode];
-            if(time / 1000.0f > 1.0/22.0)
-            processingTime = time/1000.0f ;
-            remainingProcessingTime = processingTime;
-        }
-    }
-}
-
--(void)setBGImage:(NSNumber*)imageID{
-    STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",[imageID intValue]]];
-    [backgroundimageview setImage:image ];
-}
-
--(void) addFGimage:(UIView*)view{
-    [playerview addSubview:view];
-}
-
--(void)getGesturevalues : (NSArray *)values{
-    
-    UIView *view = values[0];
-    STImageInstancePosition *positionvalue = values[1];
-    
-    [UIView animateWithDuration:0
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         
-                         [view bringToFront];
-                         
-                         if(positionvalue.rotation != 0){
-                             [view setTransform:CGAffineTransformRotate(view.transform, positionvalue.rotation)];
-                         }
-                         else if(positionvalue.scale != 1){
-                             [view setTransform:CGAffineTransformScale(view.transform, positionvalue.scale, positionvalue.scale)];
-                         }
-                         else{
-                             [view setCenter:CGPointMake(positionvalue.x, positionvalue.y)];
-                         }
-                     }completion:^(BOOL finished){
-                         
-                         if(i<[timeline count] && timeline[i]!=nil){
-                             
-                             STImageInstancePosition *position = timeline[i-1];
-                             STImageInstancePosition *position1 =timeline[i];
-                             float tempvalue = position1.timecode - position.timecode ;
-                             
-//                             [self performSelector:@selector(processTimeline) withObject:nil afterDelay:tempvalue/1000];
-                             
-                         }
-                     }];
-}
-
-- (BOOL) isImageActing:(int)instanceID{
-    for (UIView *subview in [playerview subviews]) {
-        if ([subview tag] == instanceID) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 -(void)doneBtnClicked{
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)pauseBtnClicked{
-    pausedAt = i;
-    i= [timeline count];
-    [timer invalidate];
-    [timer1 invalidate];
+    [playerview stopPlaying];
 }
 
 -(void)playBtnClicked{
-    i = pausedAt;
-    pausedAt =0;
-//    [self processTimeline];
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:.045 target:self selector:@selector(processTimeline) userInfo:nil repeats:YES];
-    
-    
-    timer1 = [NSTimer scheduledTimerWithTimeInterval:1.0f/22.0f target:self selector:@selector(processSlider) userInfo:nil repeats:YES];
-    
+    [playerview startPlaying];
 }
+
 
 
 
