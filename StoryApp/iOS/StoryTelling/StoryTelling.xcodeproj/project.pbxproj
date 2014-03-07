@@ -82,6 +82,7 @@
 		DB32244A18BDB8A4006A5D4E /* STStagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244818BDB8A4006A5D4E /* STStagePlayer.m */; };
 		DB32244D18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */; };
 		DB32244E18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */; };
+		DB33AC5418C9876F00BFE800 /* STStageAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB33AC5318C9876F00BFE800 /* STStageAudioFrame.m */; };
 		DB38441E1781B07C0036469D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB38441D1781B07C0036469D /* libsqlite3.dylib */; };
 		DB4CA88817A23B1900C21E7D /* CvGrabCutController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */; };
 		DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */; };
@@ -326,6 +327,8 @@
 		DB32244818BDB8A4006A5D4E /* STStagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayer.m; sourceTree = "<group>"; };
 		DB32244B18BDB987006A5D4E /* STStagePlayerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerFrame.h; sourceTree = "<group>"; };
 		DB32244C18BDB987006A5D4E /* STStagePlayerFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerFrame.m; sourceTree = "<group>"; };
+		DB33AC5218C9876F00BFE800 /* STStageAudioFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageAudioFrame.h; sourceTree = "<group>"; };
+		DB33AC5318C9876F00BFE800 /* STStageAudioFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageAudioFrame.m; sourceTree = "<group>"; };
 		DB38441D1781B07C0036469D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DB4CA88617A23B0800C21E7D /* CvGrabCutController.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CvGrabCutController.hh; sourceTree = "<group>"; };
 		DB4CA88717A23B1900C21E7D /* CvGrabCutController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CvGrabCutController.mm; sourceTree = "<group>"; };
@@ -550,6 +553,8 @@
 				4D2A0A861781108200C78EE0 /* STStageRecorder.m */,
 				4D2A0A8E17811AA500C78EE0 /* STImage.h */,
 				4D2A0A8F17811AA600C78EE0 /* STImage.m */,
+				DB33AC5218C9876F00BFE800 /* STStageAudioFrame.h */,
+				DB33AC5318C9876F00BFE800 /* STStageAudioFrame.m */,
 			);
 			name = StageItems;
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 				DB28D75B1742E8840071B5C2 /* SlideDownView.m in Sources */,
 				EB9ACE6E17FD092300FCF6EE /* STSelectStoryViewController.m in Sources */,
 				EB9ACE6D17FD092300FCF6EE /* STSelectImagesFromStoryViewController.m in Sources */,
+				DB33AC5418C9876F00BFE800 /* STStageAudioFrame.m in Sources */,
 				DB28D75F1742E8950071B5C2 /* SlideLeftView.m in Sources */,
 				DBFE101D185FFBC800FDAAC7 /* STBGImageView.m in Sources */,
 				DB21F8CF17445B0300FA7D52 /* UIView+Hierarchy.m in Sources */,

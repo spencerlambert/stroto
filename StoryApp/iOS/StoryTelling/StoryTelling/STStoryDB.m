@@ -971,6 +971,26 @@
     return audios;
 }
 
+
+- (NSArray *)getAudioInstanceTimeline{
+    NSMutableArray *audioInstancesTimeline = [[NSMutableArray alloc]init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT timecode,audioData from AudioRecording;"];
+    const char *sql_stmt = [sql UTF8String];
+    sqlite3_stmt *compiled_stmt;
+    if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
+        while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
+            float timecode = sqlite3_column_double(compiled_stmt, 0);
+            const void *ptr = sqlite3_column_blob(compiled_stmt, 1);
+            int size = sqlite3_column_bytes(compiled_stmt, 1);
+            NSData *data = [[NSData alloc]initWithBytes:ptr length:size];
+            STAudio *audio = [[STAudio alloc]initWithAudio:data atTimecode:timecode];
+            [audioInstancesTimeline addObject:audio];
+        }
+    }
+    sqlite3_finalize(compiled_stmt);
+    return audioInstancesTimeline;
+}
+
 -(STAudio *)getAudioByID:(int)audio_id{
     
     NSString *sql = [NSString stringWithFormat:@"SELECT timecode,audioData from AudioRecording where audioId = %d:", audio_id];

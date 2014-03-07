@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "STStoryDB.h"
 #import "STStagePlayerFrame.h"
+#import "STStageAudioFrame.h"
 
 @interface STStagePlayerView : UIView
 

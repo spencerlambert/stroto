@@ -8,6 +8,8 @@
 
 #import "STStagePlayerView.h"
 #import "UIView+Hierarchy.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 
 @implementation STStagePlayerView{
@@ -19,12 +21,15 @@
     NSDate *pausedTime;
     
     NSArray *timeline;
+    NSArray *audioTimeline;
     NSArray *instanceIDs;
     
     NSDictionary *instanceIDTable;
     NSDictionary *imagesTable;
     
     UIImageView *backgroundimageview;
+    
+    AVAudioPlayer *audioplayer;
 }
 
 @synthesize storyDB;
@@ -62,6 +67,7 @@
     pauseInterval = 0;
     isPlaying = false;
     timeline = [self getProcessedTimeline:[storyDB getImageInstanceTimeline]];
+    audioTimeline = [self getProcessedAudioTimeline:[storyDB getAudioInstanceTimeline]];
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
@@ -77,6 +83,10 @@
         float end = [storyDB getMaximumTimecode]- ((STStagePlayerFrame *)timeline[0]).timecode;
         [self.slider setMaximumValue:end/1000.0f];
     }
+    if (audioplayer != nil) {
+        [audioplayer stop];
+        audioplayer = nil;
+    }
 
 
 }
@@ -85,6 +95,15 @@
     NSMutableArray *frames = [[NSMutableArray alloc]init];
     for (STImageInstancePosition *position in rawTimeline) {
         STStagePlayerFrame *frame = [[STStagePlayerFrame alloc]initWithFrame:position atTimecode:position.timecode];
+        [frames addObject:frame];
+    }
+    return frames;
+}
+
+-(NSArray *)getProcessedAudioTimeline:(NSArray *)myAudioTimeline{
+    NSMutableArray *frames = [[NSMutableArray alloc]init];
+    for (STAudio *audio in myAudioTimeline) {
+        STStageAudioFrame *frame = [[STStageAudioFrame alloc]initWithFrame:audio atTimecode:audio.timecode];
         [frames addObject:frame];
     }
     return frames;
@@ -163,7 +182,14 @@
         
         [self.slider setValue:millisElapsed/1000.0f];
         
-        //        STStagePlayerFrame *frame = [self getFrameforTimecode:millisElapsed];
+        NSArray *audioFrames = [self getAudioFrameforTimecode:millisElapsed];
+        
+        if ([audioFrames count] != 0) {
+            STStageAudioFrame *audioFrame = [audioFrames objectAtIndex:0];
+            [audioFrame setPresented:YES];
+            
+            [self performSelectorOnMainThread:@selector(playAudio:) withObject:[[audioFrame frame]audio] waitUntilDone:NO];
+        }
         NSArray *frames = [self getFrameforTimecode:millisElapsed];
         
         if([frames count] != 0){
@@ -234,6 +260,18 @@
 	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:delayRemaining > 0.0 ? delayRemaining : 0.01];
 }
 
+-(void)playAudio:(NSData*)audioData{
+    if (audioplayer == nil) {
+        audioplayer = [[AVAudioPlayer alloc]initWithData:audioData error:nil];
+    }
+    else{
+        if([audioplayer isPlaying])
+            [audioplayer stop];
+        audioplayer = [[AVAudioPlayer alloc] initWithData:audioData error:nil];
+    }
+    [audioplayer play];
+}
+
 -(NSArray *)getFrameforTimecode:(float)timecode{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timecode == %f",timecode];
     NSArray *visible = [timeline filteredArrayUsingPredicate:predicate];
@@ -252,6 +290,26 @@
     
     return [[NSArray alloc]init];
 }
+
+-(NSArray *)getAudioFrameforTimecode:(float)timecode{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timecode == %f",timecode];
+    NSArray *visible = [audioTimeline filteredArrayUsingPredicate:predicate];
+    if (visible.count == 0) {
+        float timecode1 = timecode - (1.0 / self.frameRate * 1000);
+        NSPredicate *rangePredicate = [NSPredicate predicateWithFormat:@"(timecode >= %f) AND (timecode <= %f)  ",timecode1,timecode];
+        NSArray *visible1 = [audioTimeline filteredArrayUsingPredicate:rangePredicate];
+        
+        NSPredicate *presentedPredicate = [NSPredicate predicateWithFormat:@"presented == NO"];
+        return [visible1 filteredArrayUsingPredicate:presentedPredicate];
+    }else{
+        
+        NSPredicate *presentedPredicate = [NSPredicate predicateWithFormat:@"presented == NO"];
+        return [visible filteredArrayUsingPredicate:presentedPredicate];
+    }
+    
+    return [[NSArray alloc]init];
+}
+
 
 -(void)setBGImage:(NSNumber*)imageID{
     STImage *image = [imagesTable objectForKey:[NSString stringWithFormat:@"%d",[imageID intValue]]];

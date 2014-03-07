@@ -204,6 +204,7 @@ NSString *databasePath;
 -(BOOL)addAudio:(STAudio *)audio;
 -(NSDictionary *)getAudio;
 -(STAudio *)getAudioByID:(int)audio_id;
+- (NSArray *)getAudioInstanceTimeline;
 
 -(void) closeDB;
 //Still need other methods for getting the timeline in playback mode.
