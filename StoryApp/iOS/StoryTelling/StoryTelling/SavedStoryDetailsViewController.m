@@ -20,7 +20,6 @@
 
 @implementation SavedStoryDetailsViewController{
     STStoryDB *storyDB;
-    STStagePlayerViewController *player;
 }
 
 @synthesize dbname;
@@ -46,10 +45,8 @@
 //    player = [[STStagePlayer alloc]initWithDB:storyDB];
 //    [player generateMovie];
     
-    player = [[STStagePlayerViewController alloc]init];
-    [player setStoryDB:storyDB];
     
-  //  [storyDB closeDB];
+    [storyDB closeDB];
     [self.listiPad setListDelegate:self];
     [self.listiPad setIndex:storyListiPad.index];
 //    [self.listiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
@@ -68,7 +65,8 @@
 
 - (IBAction)playButtonClicked:(id)sender {
     
-    
+    STStagePlayerViewController *player = [[STStagePlayerViewController alloc]init];
+    [player setDbname:dbname];
     [self presentViewController:player animated:YES completion:nil];
     
     

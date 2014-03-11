@@ -866,6 +866,7 @@
     if(sqlite3_prepare_v2(db, sql_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK){
         while (sqlite3_step(compiled_stmt) == SQLITE_ROW){
             float timecode = sqlite3_column_double(compiled_stmt, 0);
+            sqlite3_finalize(compiled_stmt);
             return timecode;
         }
     }

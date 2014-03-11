@@ -62,6 +62,11 @@
 {
     [super viewDidLoad];
     [self.view removeConstraints:self.view.constraints];
+    if (storyDB != nil) {
+        [storyDB closeDB];
+        storyDB = nil;
+    }
+    storyDB = [STStoryDB loadSTstoryDB:self.dbname];
     [self initialize];
     CGRect capturebounds = [[UIScreen mainScreen] bounds];
     float thumbHeight = THUMB_HEIGHT + THUMB_V_PADDING * 2 ;
@@ -135,6 +140,8 @@
 
 -(void)doneBtnClicked{
     
+    [storyDB closeDB];
+    storyDB = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

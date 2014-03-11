@@ -18,5 +18,7 @@
 @interface STStagePlayerViewController : UIViewController<TopRightViewDelegate, STPlayerToolbarDelegate>
 
 @property (nonatomic,retain) STStoryDB *storyDB;
+@property NSString *dbname;
+
 
 @end
