@@ -14,6 +14,7 @@
 @property STImageInstancePosition *frame;
 @property BOOL presented;
 @property float timecode;
+@property BOOL bgFrame;
 
 -(id)initWithFrame:(STImageInstancePosition *)frame atTimecode:(float)timecode;
 

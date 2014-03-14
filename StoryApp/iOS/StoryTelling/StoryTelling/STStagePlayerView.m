@@ -66,11 +66,12 @@
     startedAt = nil;
     pauseInterval = 0;
     isPlaying = false;
-    timeline = [self getProcessedTimeline:[storyDB getImageInstanceTimeline]];
-    audioTimeline = [self getProcessedAudioTimeline:[storyDB getAudioInstanceTimeline]];
     instanceIDs = [storyDB getInstanceIDsAsString];
     instanceIDTable = [storyDB getImageInstanceTableAsDictionary];
     imagesTable = [storyDB getImagesTable];
+
+    timeline = [self getProcessedTimeline:[storyDB getImageInstanceTimeline]];
+    audioTimeline = [self getProcessedAudioTimeline:[storyDB getAudioInstanceTimeline]];
     
     CGRect bounds = [self bounds];
     backgroundimageview = [[UIImageView alloc]initWithFrame:bounds];
@@ -95,6 +96,9 @@
     NSMutableArray *frames = [[NSMutableArray alloc]init];
     for (STImageInstancePosition *position in rawTimeline) {
         STStagePlayerFrame *frame = [[STStagePlayerFrame alloc]initWithFrame:position atTimecode:position.timecode];
+        if([self isInstanceBG:[position imageInstanceId]]){
+            [frame setBgFrame:YES];
+        }
         [frames addObject:frame];
     }
     return frames;
@@ -275,6 +279,16 @@
 -(NSArray *)getFrameforTimecode:(float)timecode{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timecode == %f",timecode];
     NSArray *visible = [timeline filteredArrayUsingPredicate:predicate];
+    NSMutableArray *newvisible = [NSMutableArray arrayWithArray:visible];
+    NSPredicate *newpredicate = [NSPredicate predicateWithFormat:@"(timecode <= %f) AND (bgFrame == YES) AND (presented == NO)",timecode];
+    NSArray *newArray = [timeline filteredArrayUsingPredicate:newpredicate];
+    for (STStagePlayerFrame *arrayobj in newArray) {
+        if(![newvisible containsObject:arrayobj]){
+            [newvisible insertObject:arrayobj atIndex:0];
+        }
+    }
+    visible = nil;
+    visible = newvisible;
     if (visible.count == 0) {
         float timecode1 = timecode - (1.0 / self.frameRate * 1000);
         NSPredicate *rangePredicate = [NSPredicate predicateWithFormat:@"(timecode >= %f) AND (timecode <= %f)  ",timecode1,timecode];
@@ -294,7 +308,7 @@
 -(NSArray *)getAudioFrameforTimecode:(float)timecode{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timecode == %f",timecode];
     NSArray *visible = [audioTimeline filteredArrayUsingPredicate:predicate];
-    if (visible.count == 0) {
+        if (visible.count == 0) {
         float timecode1 = timecode - (1.0 / self.frameRate * 1000);
         NSPredicate *rangePredicate = [NSPredicate predicateWithFormat:@"(timecode >= %f) AND (timecode <= %f)  ",timecode1,timecode];
         NSArray *visible1 = [audioTimeline filteredArrayUsingPredicate:rangePredicate];

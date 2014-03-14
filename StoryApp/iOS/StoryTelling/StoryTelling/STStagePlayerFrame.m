@@ -18,6 +18,7 @@
         [self setFrame:frame];
         [self setPresented:NO];
         [self setTimecode:timecode];
+        [self setBgFrame:NO];
     }
     return self;
 }
