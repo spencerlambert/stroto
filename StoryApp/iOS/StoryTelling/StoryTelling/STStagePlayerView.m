@@ -96,7 +96,7 @@
     NSMutableArray *frames = [[NSMutableArray alloc]init];
     for (STImageInstancePosition *position in rawTimeline) {
         STStagePlayerFrame *frame = [[STStagePlayerFrame alloc]initWithFrame:position atTimecode:position.timecode];
-        if([self isInstanceBG:[position imageInstanceId]]){
+        if([self isInstanceBG:[position imageInstanceId]] || position.layer == -1){
             [frame setBgFrame:YES];
         }
         [frames addObject:frame];
@@ -282,7 +282,8 @@
     NSMutableArray *newvisible = [NSMutableArray arrayWithArray:visible];
     NSPredicate *newpredicate = [NSPredicate predicateWithFormat:@"(timecode <= %f) AND (bgFrame == YES) AND (presented == NO)",timecode];
     NSArray *newArray = [timeline filteredArrayUsingPredicate:newpredicate];
-    for (STStagePlayerFrame *arrayobj in newArray) {
+    for (int i=[newArray count]-1;i>=0;i--) {
+        STStagePlayerFrame *arrayobj = [newArray objectAtIndex:i];
         if(![newvisible containsObject:arrayobj]){
             [newvisible insertObject:arrayobj atIndex:0];
         }
