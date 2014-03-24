@@ -71,13 +71,13 @@
     
     UIButton *btn5=[UIButton buttonWithType:UIButtonTypeCustom];
     btn5.frame= CGRectMake(0, btnSize.height*4, btnSize.width, btnSize.height);
-    [btn5 setBackgroundImage:[UIImage imageNamed:@"ModifierButtonRotateLeft.png"] forState:UIControlStateNormal];
+    [btn5 setBackgroundImage:[UIImage imageNamed:@"ModifierButtonRotateRight.png"] forState:UIControlStateNormal];
     [btn5 addTarget:self action:@selector(handleRotateLeft:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn5];
     
     UIButton *btn6=[UIButton buttonWithType:UIButtonTypeCustom];
     btn6.frame= CGRectMake(0, btnSize.height*5, btnSize.width, btnSize.height);
-    [btn6 setBackgroundImage:[UIImage imageNamed:@"ModifierButtonRotateRight.png"] forState:UIControlStateNormal];
+    [btn6 setBackgroundImage:[UIImage imageNamed:@"ModifierButtonRotateLeft.png"] forState:UIControlStateNormal];
     [btn6 addTarget:self action:@selector(handleRotateRight:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn6];
     
@@ -157,6 +157,15 @@
     if(modifierDelegate != nil){
         if([modifierDelegate respondsToSelector:@selector(handleZoomSmaller)])
             [modifierDelegate handleZoomSmaller];
+    }
+}
+
+-(void)toggle{
+    NSLog(@"%s",__FUNCTION__);
+    if(self.frame.origin.x == 0){
+        [self setFrame:CGRectMake(-320, self.frame.origin.y,320, self.frame.size.height)];
+    }else{
+        [self setFrame:CGRectMake(0, self.frame.origin.y, 320, self.frame.size.height)];
     }
 }
 

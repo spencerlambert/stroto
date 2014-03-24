@@ -28,6 +28,7 @@
 @property (nonatomic,assign)id<STModifierToolbarDelegate> modifierDelegate;
 
 - (id)initWithFrame:(CGRect)frame withBtnSize:(CGSize)size;
+- (void)toggle;
 
 
 @end

@@ -334,4 +334,7 @@
 -(void) addFGimage:(UIView*)view{
     [self addSubview:view];
 }
+
+
+
 @end

@@ -32,13 +32,16 @@
 
 @end
 
-@implementation WorkAreaController
+@implementation WorkAreaController{
+    STFGImageView *selectedfgimage;
+}
 
 @synthesize captureview;
 @synthesize selectedForegroundImage;
 @synthesize storyDB;
 @synthesize mydelegate;
 UIButton *button ;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -211,10 +214,11 @@ UIButton *button ;
         [slidedownview clearBorder];
         for (UIView *subviews in [captureview subviews]) {
             [subviews setUserInteractionEnabled:YES];
+            selectedfgimage = imageview;
         }
         //[imageview setTag:[storyDB addImageInstance:selectedForegroundImage.imageId]];
     }else{
-        [modifier_toolbar setFrame:CGRectMake(0, captureview.frame.origin.y, 320, captureview.frame.size.height)];
+        [modifier_toolbar toggle];
     }
     
 }
@@ -349,6 +353,7 @@ UIButton *button ;
     recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
                                          recognizer.view.center.y + translation.y);
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+    selectedfgimage = img;
 
     
 }
@@ -361,6 +366,8 @@ UIButton *button ;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
     recognizer.rotation = 0;
+    selectedfgimage = img;
+    
 }
 
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
@@ -371,12 +378,15 @@ UIButton *button ;
     [recognizer.view bringToFront];
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;
+    selectedfgimage = img;
+    
 }
 
 -(IBAction)handleTap:(UITapGestureRecognizer*)recognizer{
     STFGImageView *img = (STFGImageView *)recognizer.view;
     img.isEdited = YES;
     [recognizer.view bringToFront];
+    selectedfgimage = img;
 }
 
 
@@ -646,18 +656,39 @@ UIButton *button ;
 }
 
 -(void)handleRotateLeft{
-    
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isRotated = YES;
+    [img.rotation addObject:[NSNumber numberWithFloat:-M_PI/2]];
+    [img bringToFront];
+    img.transform = CGAffineTransformRotate(img.transform,-M_PI/2);
 }
 
 -(void)handleRotateRight{
-    
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isRotated = YES;
+    [img.rotation addObject:[NSNumber numberWithFloat:M_PI/2]];
+    [img bringToFront];
+    img.transform = CGAffineTransformRotate(img.transform, M_PI/2);
 }
 
 -(void)handleZoomLarger{
-    
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isScaled = YES;
+    [img.scale addObject:[NSNumber numberWithFloat:1.2]];
+    [img bringToFront];
+    img.transform = CGAffineTransformScale(img.transform, 1.2, 1.2);
 }
 
 -(void)handleZoomSmaller{
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isScaled = YES;
+    [img.scale addObject:[NSNumber numberWithFloat:.9]];
+    [img bringToFront];
+    img.transform = CGAffineTransformScale(img.transform, .9, .9);
     
 }
 
