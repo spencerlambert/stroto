@@ -13,13 +13,13 @@
 @optional
 
 -(void)handleFlip;
--(void)handleFollowTangent;
--(void)handlePerspectiveGround;
--(void)handlePerspectiveSky;
--(void)handleRotateLeft;
--(void)handleRotateRight;
--(void)handleZoomLarger;
--(void)handleZoomSmaller;
+-(void)handleFollowTangent:(BOOL)value;
+-(void)handlePerspectiveGround:(BOOL)value;
+-(void)handlePerspectiveSky:(BOOL)value;
+-(void)handleRotateLeft:(BOOL)value;
+-(void)handleRotateRight:(BOOL)value;
+-(void)handleZoomLarger:(BOOL)value;
+-(void)handleZoomSmaller:(BOOL)value;
 
 @end
 

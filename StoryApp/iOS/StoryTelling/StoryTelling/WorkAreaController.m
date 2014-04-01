@@ -34,6 +34,8 @@
 
 @implementation WorkAreaController{
     STFGImageView *selectedfgimage;
+    
+    BOOL modifierrotateright,modifierrotateleft,modifierzoomin,modifierzoomout,modifierperspectiveground,modifierperspectivesky,modifiertangent;
 }
 
 @synthesize captureview;
@@ -354,7 +356,9 @@ UIButton *button ;
                                          recognizer.view.center.y + translation.y);
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
     selectedfgimage = img;
-
+    if(modifierrotateright){
+        selectedfgimage.transform = CGAffineTransformRotate(img.transform, M_PI/2);
+    }
     
 }
 
@@ -644,51 +648,57 @@ UIButton *button ;
     NSLog(@"%s",__FUNCTION__);
 }
 
--(void)handleFollowTangent{
+-(void)handleFollowTangent:(BOOL)value{
     NSLog(@"%s",__FUNCTION__);
+    modifiertangent = value;
 }
 
--(void)handlePerspectiveGround{
+-(void)handlePerspectiveGround:(BOOL)value{
+    modifierperspectiveground = value;
 }
 
--(void)handlePerspectiveSky{
-    
+-(void)handlePerspectiveSky:(BOOL)value{
+    modifierperspectivesky = value;
 }
 
--(void)handleRotateLeft{
-    STFGImageView *img = selectedfgimage;
-    img.isEdited = YES;
-    img.isRotated = YES;
-    [img.rotation addObject:[NSNumber numberWithFloat:-M_PI/2]];
-    [img bringToFront];
-    img.transform = CGAffineTransformRotate(img.transform,-M_PI/2);
+-(void)handleRotateLeft:(BOOL)value{
+    modifierrotateleft = value;
+//    STFGImageView *img = selectedfgimage;
+//    img.isEdited = YES;
+//    img.isRotated = YES;
+//    [img.rotation addObject:[NSNumber numberWithFloat:-M_PI/2]];
+//    [img bringToFront];
+//    img.transform = CGAffineTransformRotate(img.transform,-M_PI/2);
 }
 
--(void)handleRotateRight{
-    STFGImageView *img = selectedfgimage;
-    img.isEdited = YES;
-    img.isRotated = YES;
-    [img.rotation addObject:[NSNumber numberWithFloat:M_PI/2]];
-    [img bringToFront];
-    img.transform = CGAffineTransformRotate(img.transform, M_PI/2);
+-(void)handleRotateRight:(BOOL)value{
+    modifierrotateright = value;
+//    STFGImageView *img = selectedfgimage;
+//    img.isEdited = YES;
+//    img.isRotated = YES;
+//    [img.rotation addObject:[NSNumber numberWithFloat:M_PI/2]];
+//    [img bringToFront];
+//    img.transform = CGAffineTransformRotate(img.transform, M_PI/2);
 }
 
--(void)handleZoomLarger{
-    STFGImageView *img = selectedfgimage;
-    img.isEdited = YES;
-    img.isScaled = YES;
-    [img.scale addObject:[NSNumber numberWithFloat:1.2]];
-    [img bringToFront];
-    img.transform = CGAffineTransformScale(img.transform, 1.2, 1.2);
+-(void)handleZoomLarger:(BOOL)value{
+    modifierzoomin = value;
+//    STFGImageView *img = selectedfgimage;
+//    img.isEdited = YES;
+//    img.isScaled = YES;
+//    [img.scale addObject:[NSNumber numberWithFloat:1.2]];
+//    [img bringToFront];
+//    img.transform = CGAffineTransformScale(img.transform, 1.2, 1.2);
 }
 
--(void)handleZoomSmaller{
-    STFGImageView *img = selectedfgimage;
-    img.isEdited = YES;
-    img.isScaled = YES;
-    [img.scale addObject:[NSNumber numberWithFloat:.9]];
-    [img bringToFront];
-    img.transform = CGAffineTransformScale(img.transform, .9, .9);
+-(void)handleZoomSmaller:(BOOL)value{
+    modifierzoomout = value;
+//    STFGImageView *img = selectedfgimage;
+//    img.isEdited = YES;
+//    img.isScaled = YES;
+//    [img.scale addObject:[NSNumber numberWithFloat:.9]];
+//    [img bringToFront];
+//    img.transform = CGAffineTransformScale(img.transform, .9, .9);
     
 }
 
