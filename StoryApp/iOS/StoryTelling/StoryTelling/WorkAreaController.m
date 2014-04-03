@@ -357,7 +357,10 @@ UIButton *button ;
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
     selectedfgimage = img;
     if(modifierrotateright){
-        selectedfgimage.transform = CGAffineTransformRotate(img.transform, M_PI/2);
+        selectedfgimage.transform = CGAffineTransformRotate(img.transform, M_PI/40);
+    }
+    if(modifierrotateleft){
+        selectedfgimage.transform = CGAffineTransformRotate(img.transform, -M_PI/40);
     }
     
 }

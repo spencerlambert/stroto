@@ -227,9 +227,9 @@
 -(void)toggle{
     NSLog(@"%s",__FUNCTION__);
     if(self.frame.origin.x == 0){
-        [self setFrame:CGRectMake(-320, self.frame.origin.y,320, self.frame.size.height)];
+        [self setFrame:CGRectMake(-320, self.frame.origin.y,30, self.frame.size.height)];
     }else{
-        [self setFrame:CGRectMake(0, self.frame.origin.y, 320, self.frame.size.height)];
+        [self setFrame:CGRectMake(0, self.frame.origin.y, 30, self.frame.size.height)];
     }
 }
 

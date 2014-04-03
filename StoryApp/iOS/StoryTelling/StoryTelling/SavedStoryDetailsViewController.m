@@ -120,6 +120,10 @@
 }
 
 - (IBAction)UploadToYoutubeButtonClicked:(id)sender {
+    STStageExporter *exporter = [[STStageExporter alloc]init];
+    [exporter setDbname:self.dbname];
+    [exporter initDB];
+    [exporter generateMovie];
   }
 
 - (IBAction)uploadToFacebookButtonClicked:(id)sender {

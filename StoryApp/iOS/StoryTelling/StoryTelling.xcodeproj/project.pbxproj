@@ -121,6 +121,7 @@
 		DB9D34F917CD997500845670 /* STStageExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D34F617CD98CC00845670 /* STStageExporter.m */; };
 		DB9E3517187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
 		DB9E3518187FE648002A891F /* STStagePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E3516187FE648002A891F /* STStagePlayerViewController.m */; };
+		DB9E5ADF18ED2546003FB695 /* STStageExporterFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E5ADE18ED2546003FB695 /* STStageExporterFrame.m */; };
 		DB9E979D17E002C1009BD697 /* navbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9E979C17E002C1009BD697 /* navbutton.png */; };
 		DB9E9E841764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
 		DB9E9E851764A79B00788373 /* StoryTellingRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */; };
@@ -371,6 +372,8 @@
 		DB9D34F617CD98CC00845670 /* STStageExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporter.m; sourceTree = "<group>"; };
 		DB9E3515187FE648002A891F /* STStagePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStagePlayerViewController.h; sourceTree = "<group>"; };
 		DB9E3516187FE648002A891F /* STStagePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStagePlayerViewController.m; sourceTree = "<group>"; };
+		DB9E5ADD18ED2546003FB695 /* STStageExporterFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporterFrame.h; sourceTree = "<group>"; };
+		DB9E5ADE18ED2546003FB695 /* STStageExporterFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporterFrame.m; sourceTree = "<group>"; };
 		DB9E979C17E002C1009BD697 /* navbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbutton.png; sourceTree = "<group>"; };
 		DB9E9E831764A79B00788373 /* StoryTellingRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTellingRootViewController.m; sourceTree = SOURCE_ROOT; };
 		DB9E9E871764A7DC00788373 /* CreateStoryRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStoryRootViewController.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 			children = (
 				DB9D34F517CD98CC00845670 /* STStageExporter.h */,
 				DB9D34F617CD98CC00845670 /* STStageExporter.m */,
+				DB9E5ADD18ED2546003FB695 /* STStageExporterFrame.h */,
+				DB9E5ADE18ED2546003FB695 /* STStageExporterFrame.m */,
 				4D2A0A641780B44200C78EE0 /* STImageInstance.h */,
 				4D2A0A651780B44200C78EE0 /* STImageInstance.m */,
 				4D2A0A671780B47D00C78EE0 /* STImageInstanceBackground.h */,
@@ -1095,6 +1100,7 @@
 				DB9D34F917CD997500845670 /* STStageExporter.m in Sources */,
 				DB98581F17C3596A001AD854 /* UIImageCVMatConverter.mm in Sources */,
 				DB4CA88F17A25D4900C21E7D /* CvGrabCutController.mm in Sources */,
+				DB9E5ADF18ED2546003FB695 /* STStageExporterFrame.m in Sources */,
 				DB28D7711742F5F50071B5C2 /* ThumbImageView.m in Sources */,
 				DB224D9218A49121007948A5 /* STAudio.m in Sources */,
 				DB28D7191742E1460071B5C2 /* main.m in Sources */,

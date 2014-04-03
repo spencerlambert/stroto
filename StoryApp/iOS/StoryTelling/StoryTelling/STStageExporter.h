@@ -7,7 +7,15 @@
 //
 
 #import "STStagePlayer.h"
+#import "STStoryDB.h"
 
 @interface STStageExporter : STStagePlayer
+
+@property (nonatomic,retain) STStoryDB *storyDB;
+@property NSString *dbname;
+
+-(void)initDB;
+-(void)generateMovie;
+
 
 @end
