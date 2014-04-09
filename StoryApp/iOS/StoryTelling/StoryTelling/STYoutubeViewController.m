@@ -218,7 +218,7 @@ NSURL *uploadLocationURL;
     // Get a file handle for the upload data.
     //    NSString *path = [_uploadPathField stringValue];
     
-    NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@.mov", NSTemporaryDirectory(), [self.dbname stringByDeletingPathExtension]];
+   NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:moviePath];
     if (fileHandle) {
         //        NSString *mimeType = [self MIMETypeForFilename:filename
@@ -472,7 +472,8 @@ NSURL *uploadLocationURL;
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
     NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), @"videoOutput.mp4"];
-    NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
+//    NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
+     NSString* secondAsset1 =  [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
     NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()];
     //    [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
     if([file fileExistsAtPath:firstAsset1]){
