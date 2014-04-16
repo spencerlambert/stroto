@@ -56,6 +56,8 @@
     
     [self generateFrames];
     [self processFrames];
+    [self processAudio];
+    
 }
 
 - (void) generateFrames{
@@ -63,7 +65,7 @@
         STImageInstancePosition *position =timeline[i];
         if ([self isInstanceBG:position.imageInstanceId]) {
             STStageExporterFrame *currentFrame = [[STStageExporterFrame alloc] initWithSTStageExporterFrame:previousFrame];
-            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];;
+            int imageID = [[instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",position.imageInstanceId]] intValue];
             [currentFrame addBGImage:[imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]]];
             [frames setValue:currentFrame forKey:[NSString stringWithFormat:@"%f",position.timecode]];
             previousFrame = [[STStageExporterFrame alloc] initWithSTStageExporterFrame:currentFrame];
@@ -97,6 +99,15 @@
     [self writeImagesAsMovie:images toPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"test.mp4"] size:size];
     
     
+}
+
+- (void)processAudio{
+    NSArray *audioArray = [storyDB getAudioInstanceTimeline];
+    if(audioArray.count > 0){
+        STAudio *audio = [audioArray objectAtIndex:0];
+        NSString* audioFilePath = [[NSString alloc] initWithFormat:@"%@/audioOutput.caf", NSTemporaryDirectory()];
+        [audio.audio writeToFile:audioFilePath atomically:YES];
+    }
 }
 
 -(BOOL)isInstanceBG:(int)instanceID{

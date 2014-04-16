@@ -14,6 +14,7 @@
 #import "SavedStoryDetailsViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CreateStoryRootViewController.h"
+#import "STStoryDB.h"
 
 #define title_screen_sec 5
 
@@ -150,8 +151,8 @@ NSURL *uploadLocationURL;
     NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
     
     // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, screenWidth, screenWidth).size duration:title_screen_sec];
+    CGSize size = [[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
+    [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
     [self mergeVideoRecording];
 }
 
@@ -218,7 +219,7 @@ NSURL *uploadLocationURL;
     // Get a file handle for the upload data.
     //    NSString *path = [_uploadPathField stringValue];
     
-   NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
+   NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:moviePath];
     if (fileHandle) {
         //        NSString *mimeType = [self MIMETypeForFilename:filename
@@ -253,6 +254,10 @@ NSURL *uploadLocationURL;
                                         if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
                                             [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
                                         [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
+                                         NSString* secondAsset1 =  [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
+                                        [[NSFileManager defaultManager]removeItemAtPath:secondAsset1 error:nil];
+                                        NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/audioOutput.caf", NSTemporaryDirectory()];
+                                        [[NSFileManager defaultManager]removeItemAtPath:audio_inputFilePath error:nil];
                                         [self.navigationController popViewControllerAnimated:YES];
                                         
                                     } else {
@@ -522,7 +527,7 @@ NSURL *uploadLocationURL;
 {
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
     
-    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
+    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/audioOutput.caf", NSTemporaryDirectory()];
     NSURL*    audio_inputFileUrl = [NSURL fileURLWithPath:audio_inputFilePath];
     
     NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
@@ -545,6 +550,7 @@ NSURL *uploadLocationURL;
     AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0)
     [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
