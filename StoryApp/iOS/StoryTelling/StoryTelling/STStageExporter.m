@@ -91,8 +91,10 @@
 
 - (void) processFrames{
     NSMutableDictionary *images = [[NSMutableDictionary alloc] init];
-    CGSize size = [storyDB getStorySize];
-    for (NSString *timecode in frames) {
+    float width = [UIScreen mainScreen].bounds.size.width;
+    CGSize size = CGSizeMake(width,width); //[storyDB getStorySize];
+     NSArray * sortedKeys = [[frames allKeys] sortedArrayUsingSelector: @selector(localizedStandardCompare:)];
+    for (NSString *timecode in sortedKeys) {
         STStageExporterFrame *frame  = [frames objectForKey:timecode];
         [images setValue:[frame getImageforFrame:size] forKey:timecode];
     }

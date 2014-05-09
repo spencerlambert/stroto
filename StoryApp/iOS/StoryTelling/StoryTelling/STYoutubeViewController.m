@@ -150,7 +150,7 @@ NSURL *uploadLocationURL;
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
     NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
     
-    // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
+    
     CGSize size = [[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
     [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
     [self mergeVideoRecording];

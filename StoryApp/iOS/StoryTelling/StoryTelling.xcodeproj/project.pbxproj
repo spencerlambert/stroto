@@ -151,6 +151,7 @@
 		DBE496D517B372FC009B5C31 /* ACMagnifyingGlass.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE496CF17B372FC009B5C31 /* ACMagnifyingGlass.m */; };
 		DBE496D617B372FC009B5C31 /* ACMagnifyingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE496D117B372FC009B5C31 /* ACMagnifyingView.m */; };
 		DBE496D717B372FC009B5C31 /* kb-loupe-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */; };
+		DBE62E9C191C880300449D27 /* STStageExporterFrameTransformHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE62E9B191C880300449D27 /* STStageExporterFrameTransformHelper.m */; };
 		DBFA4AA6174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AA7174D66B4001DFCDC /* RecordStop.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AA5174D66B4001DFCDC /* RecordStop.png */; };
 		DBFA4AAD174D6718001DFCDC /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4AAB174D6718001DFCDC /* AddButton.png */; };
@@ -404,6 +405,8 @@
 		DBE496D017B372FC009B5C31 /* ACMagnifyingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMagnifyingView.h; sourceTree = "<group>"; };
 		DBE496D117B372FC009B5C31 /* ACMagnifyingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMagnifyingView.m; sourceTree = "<group>"; };
 		DBE496D317B372FC009B5C31 /* kb-loupe-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kb-loupe-hi.png"; sourceTree = "<group>"; };
+		DBE62E9A191C880300449D27 /* STStageExporterFrameTransformHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStageExporterFrameTransformHelper.h; sourceTree = "<group>"; };
+		DBE62E9B191C880300449D27 /* STStageExporterFrameTransformHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStageExporterFrameTransformHelper.m; sourceTree = "<group>"; };
 		DBFA4AA5174D66B4001DFCDC /* RecordStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordStop.png; sourceTree = "<group>"; };
 		DBFA4AAB174D6718001DFCDC /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
 		DBFA4AB0174D79F7001DFCDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -560,6 +563,8 @@
 				4D2A0A8F17811AA600C78EE0 /* STImage.m */,
 				DB33AC5218C9876F00BFE800 /* STStageAudioFrame.h */,
 				DB33AC5318C9876F00BFE800 /* STStageAudioFrame.m */,
+				DBE62E9A191C880300449D27 /* STStageExporterFrameTransformHelper.h */,
+				DBE62E9B191C880300449D27 /* STStageExporterFrameTransformHelper.m */,
 			);
 			name = StageItems;
 			sourceTree = "<group>";
@@ -1167,6 +1172,7 @@
 				4DD126F717D9640C001DD0AC /* STStoryPackDownload.m in Sources */,
 				DB32244D18BDB987006A5D4E /* STStagePlayerFrame.m in Sources */,
 				EB63BB3E17E1A4B90044B23A /* STInstalledStoryPacksViewController.m in Sources */,
+				DBE62E9C191C880300449D27 /* STStageExporterFrameTransformHelper.m in Sources */,
 				DB0F459B17FAA5CC00CE8173 /* GTLCommon_Sources.m in Sources */,
 				DB0F459C17FAA5CC00CE8173 /* GTLNetworking_Sources.m in Sources */,
 				DB0F459E17FAA8D500CE8173 /* GTLYouTube_Sources.m in Sources */,
