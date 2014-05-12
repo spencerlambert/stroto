@@ -30,6 +30,12 @@ NSURL *uploadLocationURL;
     GTLServiceTicket *_uploadFileTicket;
 }
 
+NSString *videoAssetPath;
+NSString *audioAssetPath;
+
+NSString *uploadDirPath;
+NSString *titleVideoPath;
+
 @synthesize mainTitle,subTitle;
 @synthesize greyBGButton;
 @synthesize spinningWheel;
@@ -68,6 +74,10 @@ NSURL *uploadLocationURL;
     
     self.youTubeService.authorizer = auth;
     
+    uploadDirPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
+    titleVideoPath = [uploadDirPath stringByAppendingPathComponent:@"titleVideo.mp4"];
+    videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+    audioAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/audioAssets"];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -142,17 +152,16 @@ NSURL *uploadLocationURL;
     UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
     UIImage *tempi = [self drawText:mainTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
     tempi = [self drawText:subTitle.text inImage:tempi atPoint:CGPointMake(0,350) withFontsize:50];
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
-        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
-    NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:uploadDirPath]){
+        [[NSFileManager defaultManager] removeItemAtPath:uploadDirPath error:nil];
+    }
     
+    //Create upload folder
+    [[NSFileManager defaultManager] createDirectoryAtPath:uploadDirPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     CGSize size = [[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
-    [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
+    [self writeImageAsMovie:tempi toPath:titleVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
     [self mergeVideoRecording];
 }
 
@@ -167,6 +176,8 @@ NSURL *uploadLocationURL;
     status.privacyStatus = @"public";
     
     // Snippet.
+    
+    
     GTLYouTubeVideoSnippet *snippet = [GTLYouTubeVideoSnippet object];
     NSString *text = [mainTitle text];
     snippet.title = text;
@@ -218,9 +229,11 @@ NSURL *uploadLocationURL;
            resumeUploadLocationURL:(NSURL *)locationURL {
     // Get a file handle for the upload data.
     //    NSString *path = [_uploadPathField stringValue];
-    
-   NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:moviePath];
+   
+    NSString* outputFileName = @"videoToUpload.mov";
+    NSString* outputFilePath = [videoAssetPath stringByAppendingPathComponent:outputFileName];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:outputFilePath];
+
     if (fileHandle) {
         //        NSString *mimeType = [self MIMETypeForFilename:filename
         //                                       defaultMIMEType:@"video/mp4"];
@@ -476,11 +489,12 @@ NSURL *uploadLocationURL;
 
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), @"videoOutput.mp4"];
-//    NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
-     NSString* secondAsset1 =  [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
-    NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()];
-    //    [file createDirectoryAtPath:[[NSString alloc] initWithFormat:@"%@/mov_dir/", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]] withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    NSString* firstAsset1 = [NSString stringWithString:titleVideoPath];
+    
+    NSString* secondAsset1 =  [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
+    NSString *outputFilePath = [videoAssetPath stringByAppendingPathComponent:@"/finalVideoOutput.mp4"];
+    
     if([file fileExistsAtPath:firstAsset1]){
         
         
@@ -500,7 +514,7 @@ NSURL *uploadLocationURL;
                             ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
         
         
-        NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
+        NSURL *url = [NSURL fileURLWithPath:outputFilePath];
         
         
         AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetPassthrough];
@@ -511,7 +525,7 @@ NSURL *uploadLocationURL;
          {
              NSLog(@"AVVideoAssetExportSessionStatusCompleted");
              [file removeItemAtPath:firstAsset1 error:nil];
-             [file moveItemAtPath:tempVideoFile toPath:firstAsset1 error:nil];
+             [file removeItemAtPath:secondAsset1 error:nil];
              [self CompileFilesToMakeMovie];
          }];
         
@@ -527,14 +541,20 @@ NSURL *uploadLocationURL;
 {
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
     
-    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/audioOutput.caf", NSTemporaryDirectory()];
-    NSURL*    audio_inputFileUrl = [NSURL fileURLWithPath:audio_inputFilePath];
     
-    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
-    NSURL*    video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
+    STStoryDB *storyDB = [[STStoryDB alloc]initWithFilename:self.dbname];
+    NSArray *audioArray = [storyDB getAudioInstanceTimeline];
+    NSMutableArray *audioURLs = [[NSMutableArray alloc]init];
+    for (int i=0; i<[audioArray count]; i++) {
+        NSString* audioFilePath = [audioAssetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/audioAsset-%d.caf",i]];
+        audioURLs[i] = [NSURL fileURLWithPath:audioFilePath];
+    }
     
-    NSString* outputFileName = [NSString stringWithFormat:@"%@.mov",[self.dbname stringByDeletingPathExtension]];
-    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), outputFileName];
+    NSString* video_inputFilePath = [videoAssetPath stringByAppendingPathComponent:@"/finalVideoOutput.mp4"];
+    NSURL* video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
+    
+    NSString* outputFileName = @"videoToUpload.mov";
+    NSString* outputFilePath = [videoAssetPath stringByAppendingPathComponent:outputFileName];
     NSURL*    outputFileUrl = [NSURL fileURLWithPath:outputFilePath];
     [[NSFileManager defaultManager] createDirectoryAtPath:outputFilePath withIntermediateDirectories:YES attributes:nil error:nil];
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
@@ -547,11 +567,29 @@ NSURL *uploadLocationURL;
     AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:nextClipStartTime error:nil];
     
-    AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
-    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
+    NSMutableArray *audiourlassets = [[NSMutableArray alloc]init];
+    for (int i=0; i<[audioURLs count]; i++) {
+        AVURLAsset *audioAsset = [[AVURLAsset alloc] initWithURL:[audioURLs objectAtIndex:i] options:nil];
+        audiourlassets[i] = audioAsset;
+    }
+
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0)
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
+    float elapsedtime = 0;
+    if ([audiourlassets objectAtIndex:0]!=nil) {
+        AVURLAsset *audioAsset = audiourlassets[0];
+        if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0){
+            [b_compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
+        }
+        elapsedtime = elapsedtime + title_screen_sec + audioAsset.duration.value;
+    }
+    
+    for (int i=1; i<[audiourlassets count]; i++) {
+        AVURLAsset *audioAsset = audiourlassets[i];
+        if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0){
+            [b_compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(elapsedtime,1) error:nil];
+        }
+        elapsedtime = elapsedtime + audioAsset.duration.value;
+    }
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";

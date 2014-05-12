@@ -60,86 +60,191 @@ static NSMutableDictionary *usedFgImages;
 }
 
 -(UIImage *)getImageforFrame:(CGSize)size{
-    UIImage* actingImage = nil;
-    CGRect drawRect;
+    NSMutableArray* actingImages = [[NSMutableArray alloc]init];
+    
     float screenWidth = [[UIScreen mainScreen] bounds].size.width;
     
+    
+    
     for (NSString *instanceID in fgImages) {
+        
         STImageInstancePosition *fgimageposition = [fgImages objectForKey:instanceID];
         
+        
+        
         if ([[usedFgImages objectForKey:instanceID] isKindOfClass:[NSNull class]]) {
+            
             if(![fgimageposition isKindOfClass:[NSNull class]]){
                 
+                
+                
                 int imageID = [[self.instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",fgimageposition.imageInstanceId]] intValue];
+                
                 STImage *fgimage = [self.imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
                 
-                actingImage = [self imageWithImage:fgimage scaledToSize:CGSizeMake(fgimage.sizeScale, fgimage.sizeScale)];
+                
+                
+                UIImage *actingImage = [self imageWithImage:fgimage scaledToSize:CGSizeMake(fgimage.sizeScale, fgimage.sizeScale)];
+                
+                
                 
                 if(fgimageposition.rotation != 0){
+                    
                     actingImage = [self rotateImage:[UIImage imageWithCGImage:actingImage.CGImage] byRadian:fgimageposition.rotation];
-                }
-                if(fgimageposition.scale != 1){
-                    float newWidth = fgimageposition.scale * actingImage.size.width;
-                    float newHeight = fgimageposition.scale * actingImage.size.height;
-                    actingImage = [self imageWithImage:actingImage scaledToSize:CGSizeMake(newWidth, newHeight)];
+                    
                 }
                 
-                drawRect = CGRectMake(fgimageposition.x - (actingImage.size.width/2.0) + ((size.width - screenWidth)/2), fgimageposition.y - (actingImage.size.height/2.0) + ((size.width - screenWidth)/2), actingImage.size.width, actingImage.size.height);
+                if(fgimageposition.scale != 1){
+                    
+                    float newWidth = fgimageposition.scale * actingImage.size.width;
+                    
+                    float newHeight = fgimageposition.scale * actingImage.size.height;
+                    
+                    actingImage = [self imageWithImage:actingImage scaledToSize:CGSizeMake(newWidth, newHeight)];
+                    
+                }
+                
+                
+                
+                CGRect drawRect = CGRectMake(fgimageposition.x - (actingImage.size.width/2.0) + ((size.width - screenWidth)/2), fgimageposition.y - (actingImage.size.height/2.0) + ((size.width - screenWidth)/2), actingImage.size.width, actingImage.size.height);
+                
+                
                 
                 STStageExporterFrameTransformHelper *helper = [[STStageExporterFrameTransformHelper alloc]init];
+                
                 [helper setRotation:fgimageposition.rotation];
+                
                 [helper setScale:fgimageposition.scale];
                 
+                
+                
                 [usedFgImages setObject:helper forKey:instanceID];
+                
+                
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                
+                [dict setObject:actingImage forKey:@"image"];
+                
+                [dict setObject:@[[NSNumber numberWithFloat:drawRect.origin.x],[NSNumber numberWithFloat:drawRect.origin.y],[NSNumber numberWithFloat:drawRect.size.width],[NSNumber numberWithFloat:drawRect.size.height]] forKey:@"rect"];
+                
+                
+                
+                [actingImages addObject:dict];
+                
             }
+            
         }
+        
         else{
+            
             if(![fgimageposition isKindOfClass:[NSNull class]]){
+                
                 int imageID = [[self.instanceIDTable objectForKey:[NSString stringWithFormat:@"%d",fgimageposition.imageInstanceId]] intValue];
+                
                 STImage *fgimage = [self.imagesTable objectForKey:[NSString stringWithFormat:@"%d",imageID]];
-                actingImage = [self imageWithImage:fgimage scaledToSize:CGSizeMake(fgimage.sizeScale, fgimage.sizeScale)];
+                
+                UIImage *actingImage = [self imageWithImage:fgimage scaledToSize:CGSizeMake(fgimage.sizeScale, fgimage.sizeScale)];
+                
                 STStageExporterFrameTransformHelper *helper = [usedFgImages objectForKey:instanceID];
                 
+                
+                
                 float newrotation = [helper rotation] ;
+                
                 float newscale = [helper scale] ;
                 
+                
+                
                 if(fgimageposition.rotation != 0 || [helper rotation] != 0){
+                    
                     newrotation = [helper rotation] + fgimageposition.rotation ;
+                    
                     actingImage = [self rotateImage:[UIImage imageWithCGImage:actingImage.CGImage] byRadian:newrotation];
+                    
                 }
+                
                 if(fgimageposition.scale != 1 || [helper scale] != 1){
+                    
                     newscale = [helper scale] + (fgimageposition.scale>=1?(fgimageposition.scale-1):fgimageposition.scale-1) ;
+                    
                     float newWidth = newscale * actingImage.size.width;
+                    
                     float newHeight = newscale * actingImage.size.height;
+                    
                     actingImage = [self imageWithImage:actingImage scaledToSize:CGSizeMake(newWidth, newHeight)];
+                    
                 }
                 
                 
                 
-                drawRect = CGRectMake(fgimageposition.x - (actingImage.size.width/2.0) + ((size.width - screenWidth)/2), fgimageposition.y - (actingImage.size.height/2.0) + ((size.width - screenWidth)/2), actingImage.size.width, actingImage.size.height);
+                
+                
+                
+                
+                CGRect drawRect = CGRectMake(fgimageposition.x - (actingImage.size.width/2.0) + ((size.width - screenWidth)/2), fgimageposition.y - (actingImage.size.height/2.0) + ((size.width - screenWidth)/2), actingImage.size.width, actingImage.size.height);
+                
+                
                 
                 STStageExporterFrameTransformHelper *helper1 = [[STStageExporterFrameTransformHelper alloc]init];
+                
                 [helper1 setRotation:newrotation];
+                
                 [helper1 setScale:newscale];
+                
                 [usedFgImages setObject:helper1 forKey:instanceID];
+                
+                
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                
+                [dict setObject:actingImage forKey:@"image"];
+                
+                [dict setObject:@[[NSNumber numberWithFloat:drawRect.origin.x],[NSNumber numberWithFloat:drawRect.origin.y],[NSNumber numberWithFloat:drawRect.size.width],[NSNumber numberWithFloat:drawRect.size.height]] forKey:@"rect"];
+                
+                
+                
+                [actingImages addObject:dict];
+                
             }
+            
+        }
+        
+        
+        
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 1.0);
+    
+    if(bgImage==nil) bgImage = [[STImage alloc] initWithCGImage:[UIImage imageNamed:@"RecordArea.png"].CGImage];
+    
+    [bgImage drawInRect:CGRectMake(0,0,size.width,size.height)];
+    
+    for (NSDictionary *actingImageDict in actingImages) {
+        
+        UIImage *actingImage = [actingImageDict objectForKey:@"image"];
+        
+        NSArray *drawCoords = [actingImageDict objectForKey:@"rect"];
+        
+        CGRect drawRect = CGRectMake([drawCoords[0] floatValue], [drawCoords[1] floatValue], [drawCoords[2] floatValue], [drawCoords[3] floatValue]);
+        
+        if(actingImage != nil){
+            
+            [actingImage drawInRect:drawRect blendMode:kCGBlendModeNormal alpha:1.0];
+            
         }
         
     }
-    UIGraphicsBeginImageContextWithOptions(size, NO, 1.0);
-    if(bgImage==nil) bgImage = [[STImage alloc] initWithCGImage:[UIImage imageNamed:@"RecordArea.png"].CGImage];
-    [bgImage drawInRect:CGRectMake(0,0,size.width,size.height)];
-    if(actingImage != nil){
-        [actingImage drawInRect:drawRect blendMode:kCGBlendModeNormal alpha:1.0];
-    }
+    
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
+    
     return newImage;
     
-
+    
     
 }
-
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     UIImage *newImage;
     

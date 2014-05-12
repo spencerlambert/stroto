@@ -98,18 +98,30 @@
         STStageExporterFrame *frame  = [frames objectForKey:timecode];
         [images setValue:[frame getImageforFrame:size] forKey:timecode];
     }
-    [self writeImagesAsMovie:images toPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"test.mp4"] size:size];
-    
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString *videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+    if([filemanager fileExistsAtPath:videoAssetPath]){
+        [filemanager removeItemAtPath:videoAssetPath error:nil];
+    }
+    [filemanager createDirectoryAtPath:videoAssetPath withIntermediateDirectories:YES attributes:nil error:nil];
+    [self writeImagesAsMovie:images toPath:[videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"] size:size];
     
 }
 
 - (void)processAudio{
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString *audioAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/audioAssets"];
+    if([filemanager fileExistsAtPath:audioAssetPath]){
+        [filemanager removeItemAtPath:audioAssetPath error:nil];
+    }
+    [filemanager createDirectoryAtPath:audioAssetPath withIntermediateDirectories:YES attributes:nil error:nil];
     NSArray *audioArray = [storyDB getAudioInstanceTimeline];
-    if(audioArray.count > 0){
-        STAudio *audio = [audioArray objectAtIndex:0];
-        NSString* audioFilePath = [[NSString alloc] initWithFormat:@"%@/audioOutput.caf", NSTemporaryDirectory()];
+    for (int i=0; i<[audioArray count]; i++) {
+        STAudio *audio = [audioArray objectAtIndex:i];
+        NSString* audioFilePath = [audioAssetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/audioAsset-%d.caf",i]];
         [audio.audio writeToFile:audioFilePath atomically:YES];
     }
+
 }
 
 -(BOOL)isInstanceBG:(int)instanceID{

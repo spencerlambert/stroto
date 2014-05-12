@@ -127,7 +127,8 @@
     
     {
         NSFileManager *filemngr =[NSFileManager defaultManager];
-        NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
+        NSString *videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+        NSString *moviePath = [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
         if([filemngr fileExistsAtPath:moviePath]){
             NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
 //            mp = [[MPMoviePlayerViewController alloc] initWithContentURL:outputURL];
@@ -305,7 +306,9 @@
         }
 
         NSFileManager *filemngr =[NSFileManager defaultManager];
-        NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/test.mp4", NSTemporaryDirectory()];
+        NSString *videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+        NSString *moviePath = [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
+
         if([filemngr fileExistsAtPath:moviePath])
         {
             return YES;
