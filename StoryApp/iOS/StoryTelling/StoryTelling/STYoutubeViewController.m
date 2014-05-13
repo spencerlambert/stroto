@@ -160,8 +160,9 @@ NSString *titleVideoPath;
     //Create upload folder
     [[NSFileManager defaultManager] createDirectoryAtPath:uploadDirPath withIntermediateDirectories:NO attributes:nil error:nil];
     
-    CGSize size = [[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
-    [self writeImageAsMovie:tempi toPath:titleVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
+//    CGSize size = [[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
+    float width = [UIScreen mainScreen].bounds.size.width;
+    [self writeImageAsMovie:tempi toPath:titleVideoPath size:CGRectMake(0, 0, width, width).size duration:title_screen_sec];
     [self mergeVideoRecording];
 }
 
