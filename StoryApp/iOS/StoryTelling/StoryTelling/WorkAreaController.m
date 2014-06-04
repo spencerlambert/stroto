@@ -686,22 +686,22 @@ UIButton *button ;
 
 -(void)handleZoomLarger:(BOOL)value{
     modifierzoomin = value;
-//    STFGImageView *img = selectedfgimage;
-//    img.isEdited = YES;
-//    img.isScaled = YES;
-//    [img.scale addObject:[NSNumber numberWithFloat:1.2]];
-//    [img bringToFront];
-//    img.transform = CGAffineTransformScale(img.transform, 1.2, 1.2);
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isScaled = YES;
+    [img.scale addObject:[NSNumber numberWithFloat:1.2]];
+    [img bringToFront];
+    img.transform = CGAffineTransformScale(img.transform, 1.2, 1.2);
 }
 
 -(void)handleZoomSmaller:(BOOL)value{
     modifierzoomout = value;
-//    STFGImageView *img = selectedfgimage;
-//    img.isEdited = YES;
-//    img.isScaled = YES;
-//    [img.scale addObject:[NSNumber numberWithFloat:.9]];
-//    [img bringToFront];
-//    img.transform = CGAffineTransformScale(img.transform, .9, .9);
+    STFGImageView *img = selectedfgimage;
+    img.isEdited = YES;
+    img.isScaled = YES;
+    [img.scale addObject:[NSNumber numberWithFloat:.9]];
+    [img bringToFront];
+    img.transform = CGAffineTransformScale(img.transform, .9, .9);
     
 }
 

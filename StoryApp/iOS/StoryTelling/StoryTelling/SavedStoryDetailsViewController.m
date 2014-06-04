@@ -158,55 +158,63 @@
         [alert show];
     }
     else{
-      
-    NSFileManager *filemngr =[NSFileManager defaultManager];
-    //NSLog(@"dbname: %@",dbname);
-    NSString *moviePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mov", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [dbname stringByDeletingPathExtension]];
-    //NSLog(@"movie path : %@",moviePath);
-    if([filemngr fileExistsAtPath:moviePath])
-    {
-        STFacebookViewController *facebookController = [[STFacebookViewController alloc] init];
-        NSString *deviceType = [UIDevice currentDevice].model;
-        NSLog(@"%@",deviceType);
-        if([deviceType hasPrefix:@"iPad"]){
-            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
-        }
-        else{
-            facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
-        }
-        //setting the title and subtitle.
-        facebookController.storyTitleString = navigationBarTitle.title;
-        facebookController.storySubTitleString = @"by: ";
-        NSLog(@"facebookController.storyTitleString : %@",facebookController.storyTitleString);
-        NSLog(@"facebookController.storySubTitleString : %@",facebookController.storySubTitleString);
-        //passing mov file path
-        facebookController.filepath = moviePath;
-        NSLog(@"facebookcontroller.filepath : %@",facebookController.filepath);
-        //read request
-        if([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook])
+        
+        NSFileManager *filemngr =[NSFileManager defaultManager];
+        
+        STStageExporter *exporter = [[STStageExporter alloc]init];
+        [exporter setDbname:self.dbname];
+        [exporter initDB];
+        [exporter generateMovie];
+        
+        NSString *videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+        NSString *moviePath = [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
+        
+        
+        if([filemngr fileExistsAtPath:moviePath])
         {
-            STListStoryiPad *temp = [[STListStoryiPad alloc] init];
-            [facebookController setStoryListiPad:temp];
-//            [[facebookController storyListiPad] setDBNamesiPad:self.listiPad.DBNamesiPad];
-//            [[facebookController storyListiPad] setStoryNamesiPad:self.listiPad.storyNamesiPad];
-            [[facebookController storyListiPad] setIndex:self.listiPad.index];
-            [self.navigationController pushViewController:facebookController animated:YES];
-        }
-        else{
+            NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:moviePath];
+            AVURLAsset* asset = [[AVURLAsset alloc]initWithURL:outputURL options:nil];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Facebook Account" message:@"There are no Facebook accounts configured. You can add or create a Facebook account in Settings." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil ];
-            NSLog(@"Error : No account found, go to settings an set up an account");
+            if(CMTimeCompare(asset.duration,kCMTimeZero) > 0){
+                
+                STFacebookViewController *facebookController = [[STFacebookViewController alloc] init];
+                NSString *deviceType = [UIDevice currentDevice].model;
+                if([deviceType hasPrefix:@"iPad"]){
+                    facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+                }
+                else{
+                    facebookController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"toFacebook"];
+                }
+                facebookController.storyTitleString = navigationBarTitle.title;
+                facebookController.storySubTitleString = @"by: ";
+                facebookController.filepath = moviePath;
+                facebookController.dbname = dbname;
+                
+                if([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook])
+                {
+                    STListStoryiPad *temp = [[STListStoryiPad alloc] init];
+                    [facebookController setStoryListiPad:temp];
+                    [[facebookController storyListiPad] setIndex:self.listiPad.index];
+                    [self.navigationController pushViewController:facebookController animated:YES];
+                }
+                else{
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Facebook Account" message:@"There are no Facebook accounts configured. You can add or create a Facebook account in Settings." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil ];
+                    NSLog(@"Error : No account found, go to settings an set up an account");
+                    [alert show];
+                }
+                
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Processing movie, Please wait." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alert show];
         }
-        //end read
-        
-        
-        
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"File Not Found" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
     }
-    }
+
 }
 
 - (IBAction)editButtonClicked:(id)sender {
@@ -308,7 +316,7 @@
         NSFileManager *filemngr =[NSFileManager defaultManager];
         NSString *videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
         NSString *moviePath = [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
-
+        
         if([filemngr fileExistsAtPath:moviePath])
         {
             return YES;

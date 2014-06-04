@@ -21,7 +21,15 @@
 
 @end
 
-@implementation STFacebookViewController
+@implementation STFacebookViewController{
+    
+    
+    NSString *videoAssetPath;
+    NSString *audioAssetPath;
+    
+    NSString *uploadDirPath;
+    NSString *titleVideoPath;
+}
 
 @synthesize storyTitle;
 @synthesize storySubTitle;
@@ -50,26 +58,26 @@ bool writingFinished;
 {
     [super viewDidLoad];
     self.iQuit1 = NO;
-    self.dbname = [[filepath lastPathComponent]stringByDeletingPathExtension];
+//    self.dbname = [[filepath lastPathComponent]stringByDeletingPathExtension];
+    
     self.uploadProgressBar.progress = 0.0f;
-	// Do any additional setup after loading the view.
+    
     self.storyTitle.text = storyTitleString;
     self.storySubTitle.text = storySubTitleString;
+    
     [self.listViewiPad setListDelegate:self];
     [self.listViewiPad setIndex:storyListiPad.index];
-    //    [self.listViewiPad setStoryNamesiPad:storyListiPad.storyNamesiPad];
-    //    [self.listViewiPad setDBNamesiPad:storyListiPad.DBNamesiPad];
+    
     storyListiPad = nil;
+    
     [self.listViewiPad reloadInputViews];
     
     //social framework ios
     if(!_accountStore)
         _accountStore = [[ACAccountStore alloc] init];
-    
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     
     //read request
-    
     [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
                                            options:@{ACFacebookAppIdKey: ST_FACEBOOK_APP_ID, ACFacebookPermissionsKey: @[@"basic_info"]}
                                         completion:^(BOOL granted, NSError *error) {
@@ -85,7 +93,14 @@ bool writingFinished;
                                             }
                                         }];
     
+    uploadDirPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
+    titleVideoPath = [uploadDirPath stringByAppendingPathComponent:@"titleVideo.mp4"];
+    videoAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/videoAssets"];
+    audioAssetPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/audioAssets"];
+    
+    
 }
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.destinationViewController isKindOfClass:[CreateStoryRootViewController class]])
@@ -95,30 +110,33 @@ bool writingFinished;
         [newstoryFlag setIsNewStory:@"true"];
     }
 }
+
 -(void)iQuit{
     self.iQuit1 = YES;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
     [[[(UITableView*)self.listViewiPad subviews] objectAtIndex:0] reloadData];
 }
+
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(void)upload
 {
     //social framework ios
     NSURL *videourl = [NSURL URLWithString:@"https://graph.facebook.com/me/videos"];
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
-    NSString *path = [dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mov",self.dbname]];
     
-    NSURL *pathURL = [[NSURL alloc]initFileURLWithPath:path isDirectory:NO];
+    NSString* outputFileName = @"videoToUpload.mov";
+    NSString* outputFilePath = [videoAssetPath stringByAppendingPathComponent:outputFileName];
     
-    NSData *videoData = [NSData dataWithContentsOfFile:path];
+    NSURL *pathURL = [[NSURL alloc]initFileURLWithPath:outputFilePath isDirectory:NO];
+    
+    NSData *videoData = [NSData dataWithContentsOfFile:outputFilePath];
     
     NSString *desc = storySubTitle.text;
     desc = [desc stringByAppendingString:@" \n Created using : Stroto (http://www.stroto.com)"];
@@ -145,31 +163,28 @@ bool writingFinished;
 
 -(void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-    //    NSLog(@"bytesWritten :%d",bytesWritten);
-    //    NSLog(@"totalBytesWritten :%d",totalBytesWritten);
-    //    NSLog(@"totalBytesExpectedToWrite :%d",totalBytesExpectedToWrite);
     float progress =(float) totalBytesWritten/totalBytesExpectedToWrite;
     NSLog(@"progress :%f",progress);
     self.uploadProgressBar.progress = progress;
 }
+
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] removeItemAtPath:dataPath error:nil];
     NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
     [[NSFileManager defaultManager] removeItemAtPath:dataPath1 error:nil];
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Video Upload Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [self.uploadButton setEnabled:YES] ;
     [alert show];
 }
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSLog(@"response: %@",response);
     NSLog(@"response.expectedContentLength: %lld",response.expectedContentLength);
 }
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"error: %@",error);
@@ -187,13 +202,16 @@ bool writingFinished;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
 //upload button click
 - (IBAction)uploadStory:(UIButton *)sender {
+    
     [self.uploadButton setEnabled:NO] ;
+    
     NSString *dataPath1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/movie_process_lock.lock"];
     [[NSFileManager defaultManager] createFileAtPath:dataPath1 contents:[[NSData alloc]init] attributes:Nil];
+    
     //video upload using social framework.
     ACAccountType *facebookTypeAccount = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     [_accountStore requestAccessToAccountsWithType:facebookTypeAccount
@@ -203,22 +221,23 @@ bool writingFinished;
                                                 NSArray *accounts = [_accountStore accountsWithAccountType:facebookTypeAccount];
                                                 _facebookAccount = [accounts lastObject];
                                                 NSLog(@"Success, upload starting");
+                                                
+                                                [self performSelectorInBackground:@selector(showSpin) withObject:Nil];
+                                                
                                                 //append title to video.
                                                 UIImage *temp = [UIImage imageNamed:@"TitlePage.png"];
                                                 UIImage *tempi = [self drawText:storyTitle.text inImage:temp atPoint:CGPointMake(0,100) withFontsize:70];
                                                 tempi = [self drawText:storySubTitle.text inImage:tempi atPoint:CGPointMake(0,350) withFontsize:50];
-//                                                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//                                                NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-                                                NSString *dataPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/upload_dir"];
                                                 
-                                                if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
-                                                    [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil]; //Create folder
-                                                NSString *savedVideoPath = [dataPath stringByAppendingPathComponent:@"videoOutput.mp4"];
+                                                if ([[NSFileManager defaultManager] fileExistsAtPath:uploadDirPath]){
+                                                    [[NSFileManager defaultManager] removeItemAtPath:uploadDirPath error:nil];
+                                                }
                                                 
-                                                // printf(" \n\n\n-Video file == %s--\n\n\n",[savedVideoPath UTF8String]);
-                                                [self performSelectorInBackground:@selector(showSpin) withObject:Nil];
-                                                CGFloat video_size = [[UIScreen mainScreen] bounds].size.width;
-                                                [self writeImageAsMovie:tempi toPath:savedVideoPath size:CGRectMake(0, 0, video_size, video_size).size duration:title_screen_sec];
+                                                //Create upload folder
+                                                [[NSFileManager defaultManager] createDirectoryAtPath:uploadDirPath withIntermediateDirectories:NO attributes:nil error:nil];
+                                                
+                                                CGSize size = CGSizeMake(320, 320);//[[STStoryDB loadSTstoryDB:self.dbname] getStorySize];
+                                                [self writeImageAsMovie:tempi toPath:titleVideoPath size:CGRectMake(0, 0, size.width, size.height).size duration:title_screen_sec];
                                                 [self mergeVideoRecording];
                                                 
                                                 
@@ -237,6 +256,7 @@ bool writingFinished;
     [self.spinningWheel setHidden:NO];
     [self.spinningWheel startAnimating];
 }
+
 -(UIImage*) drawText:(NSString*) text
              inImage:(UIImage*)  image
              atPoint:(CGPoint)   point
@@ -368,9 +388,11 @@ bool writingFinished;
 
 -(void)mergeVideoRecording{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString* firstAsset1 = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), @"videoOutput.mp4"];
-    NSString* secondAsset1 = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.mp4", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
-    NSString *tempVideoFile = [[NSString alloc] initWithFormat:@"%@/upload_dir/title.mp4", NSTemporaryDirectory()];
+    
+    NSString* firstAsset1 = [NSString stringWithString:titleVideoPath];
+    
+    NSString* secondAsset1 =  [videoAssetPath stringByAppendingPathComponent:@"storyVideo.mp4"];
+    NSString *outputFilePath = [videoAssetPath stringByAppendingPathComponent:@"/finalVideoOutput.mp4"];
     
     if([file fileExistsAtPath:firstAsset1]){
         
@@ -391,9 +413,10 @@ bool writingFinished;
                             ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
         
         
-        NSURL *url = [NSURL fileURLWithPath:tempVideoFile];
+        NSURL *url = [NSURL fileURLWithPath:outputFilePath];
         
-        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPreset640x480];
+        
+        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetPassthrough];
         exporter.outputURL=url;
         exporter.outputFileType = AVFileTypeQuickTimeMovie;
         exporter.shouldOptimizeForNetworkUse = YES;
@@ -401,7 +424,7 @@ bool writingFinished;
          {
              NSLog(@"AVVideoAssetExportSessionStatusCompleted");
              [file removeItemAtPath:firstAsset1 error:nil];
-             [file moveItemAtPath:tempVideoFile toPath:firstAsset1 error:nil];
+             [file removeItemAtPath:secondAsset1 error:nil];
              [self CompileFilesToMakeMovie];
          }];
         
@@ -417,14 +440,19 @@ bool writingFinished;
 {
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
     
-    NSString* audio_inputFilePath = [[NSString alloc] initWithFormat:@"%@/mov_dir/%@.caf", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], [self.dbname stringByDeletingPathExtension]];
-    NSURL*    audio_inputFileUrl = [NSURL fileURLWithPath:audio_inputFilePath];
+    STStoryDB *storyDB = [[STStoryDB alloc]initWithFilename:self.dbname];
+    NSArray *audioArray = [storyDB getAudioInstanceTimeline];
+    NSMutableArray *audioURLs = [[NSMutableArray alloc]init];
+    for (int i=0; i<[audioArray count]; i++) {
+        NSString* audioFilePath = [audioAssetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/audioAsset-%d.caf",i]];
+        audioURLs[i] = [NSURL fileURLWithPath:audioFilePath];
+    }
     
-    NSString* video_inputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/videoOutput.mp4", NSTemporaryDirectory()];
-    NSURL*    video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
+    NSString* video_inputFilePath = [videoAssetPath stringByAppendingPathComponent:@"/finalVideoOutput.mp4"];
+    NSURL* video_inputFileUrl = [NSURL fileURLWithPath:video_inputFilePath];
     
-    NSString* outputFileName = [NSString stringWithFormat:@"%@.mov",[self.dbname stringByDeletingPathExtension]];
-    NSString* outputFilePath = [[NSString alloc] initWithFormat:@"%@/upload_dir/%@", NSTemporaryDirectory(), outputFileName];
+    NSString* outputFileName = @"videoToUpload.mov";
+    NSString* outputFilePath = [videoAssetPath stringByAppendingPathComponent:outputFileName];
     NSURL*    outputFileUrl = [NSURL fileURLWithPath:outputFilePath];
     [[NSFileManager defaultManager] createDirectoryAtPath:outputFilePath withIntermediateDirectories:YES attributes:nil error:nil];
     if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath])
@@ -437,19 +465,39 @@ bool writingFinished;
     AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:nextClipStartTime error:nil];
     
-    AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audio_inputFileUrl options:nil];
-    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, audioAsset.duration);
+    NSMutableArray *audiourlassets = [[NSMutableArray alloc]init];
+    for (int i=0; i<[audioURLs count]; i++) {
+        AVURLAsset *audioAsset = [[AVURLAsset alloc] initWithURL:[audioURLs objectAtIndex:i] options:nil];
+        audiourlassets[i] = audioAsset;
+    }
+    
+    
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
+    
+    float elapsedtime = 0;
+    if ([audiourlassets objectAtIndex:0]!=nil) {
+        AVURLAsset *audioAsset = audiourlassets[0];
+        if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0){
+            [b_compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(title_screen_sec,1) error:nil];
+        }
+        elapsedtime = elapsedtime + title_screen_sec + audioAsset.duration.value;
+    }
+    
+    for (int i=1; i<[audiourlassets count]; i++) {
+        AVURLAsset *audioAsset = audiourlassets[i];
+        if([[audioAsset tracksWithMediaType:AVMediaTypeAudio]count]>0){
+            [b_compositionAudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:CMTimeMakeWithSeconds(elapsedtime,1) error:nil];
+        }
+        elapsedtime = elapsedtime + audioAsset.duration.value;
+    }
+    
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetHighestQuality];
     _assetExport.outputFileType = @"com.apple.quicktime-movie";
     _assetExport.outputURL = outputFileUrl;
+    
     [_assetExport exportAsynchronouslyWithCompletionHandler:
      ^(void ) {
-         //                 NSString *sourcePath = outputFilePath;
-         //              UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
-         //             slideleftview.playVideo.enabled = YES;
          [self performSelectorInBackground:@selector(stopSpin) withObject:Nil];
          [self performSelectorOnMainThread:@selector(upload) withObject:self waitUntilDone:YES];
      }];
