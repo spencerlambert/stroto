@@ -1,4 +1,4 @@
-isp_helper
+stroto
 ==========
 
-This stores different projects that ISP Helper is working on.
+The stroto app.
